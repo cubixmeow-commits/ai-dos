@@ -1,13 +1,14 @@
-#!/usr/bin/env php
 <?php
+declare(strict_types=1);
+
 /**
  * AI-DOS Repository Compiler (PHP)
  *
  * Reads organizational source code from the repository and generates
  * disposable Mission Control artifacts under site/.
+ *
+ * CLI: php compiler/compile.php
  */
-
-declare(strict_types=1);
 
 require_once __DIR__ . '/RepositoryIntelligence.php';
 
