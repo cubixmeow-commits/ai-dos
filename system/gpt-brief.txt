@@ -1,0 +1,43 @@
+AI-DOS MISSION 009 BRIEF (paste all into GPT)
+
+STATUS: Mission 009 complete. Evolved file index to Asset Registry in place. No new mission for this.
+
+CANONICAL FILES:
+- system/assets.yaml (49 assets, schema v2, machine source)
+- system/assets.md (human/iPhone companion)
+- system/file-index.yaml and file-index.md (legacy shims, use assets instead)
+
+DEPLOY ROOT: https://cubixmeow.com/ai-dos/
+
+PUBLIC URLS:
+- Mission Control: /site/
+- missions.json: /site/data/missions.json
+- organization.json: /site/data/organization.json
+- validation page: /site/validation/invoice-tool.html
+- compiler: /compiler/compile.php
+
+ASSET TYPES: file, directory, compiler, generated-file, website, workflow, github-action, template, prompt, mission, api, service
+
+KEY FIELDS: id, type, name, source.path, public.url, depends_on, outputs, editable, generated, status
+
+KEY RELATIONSHIPS:
+- compiler-compile-php outputs organization.json, missions.json, site/index.html, styles.css
+- site-index-html depends on organization.json + missions.json + styles
+- organization.json depends on compiler + asset-registry
+
+COMPILER: php compiler/compile.php reads assets.yaml. organization.json has asset_registry (canonical) and file_index (legacy derived view).
+
+STANDARDS: company/Standards.md section 5 = Asset Registry rules.
+
+MISSION DOCS: missions/009-file-index-foundation/mission.md and report.md
+
+NEXT IN BACKLOG: Mission 010 V2 Foundation (manifest.yaml, index.yaml, portfolio.yaml). Separate from registry work.
+
+APPROVAL QUESTION: Approve Mission 010 V2 Foundation and Sequencing Reconciliation? Y/N
+
+QUICK LOOKUP:
+- Where? source.path
+- URL? public.url
+- What made it? depends_on or parent outputs
+- Safe to edit? editable true=yes, false=run compiler
+- What uses it? outputs
