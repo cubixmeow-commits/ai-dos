@@ -8,3 +8,5 @@
 > - **This file:** legacy shim for tools expecting `file-index.md`
 
 Use [assets.md](assets.md) for all operator and agent lookups.
+
+**Paste into GPT:** [gpt-brief.txt](gpt-brief.txt) (Select All → Copy).

@@ -181,6 +181,7 @@ assets: &id001
   - file-index-legacy-shim
   - file-index-md-legacy
   - asset-registry-md
+  - gpt-brief-txt
   editable: true
   generated: false
   status: active
@@ -210,6 +211,30 @@ assets: &id001
   status: active
   notes: Keep in sync with assets.yaml.
   path: system/assets.md
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 009
+  last_major_update: Mission 009
+- id: gpt-brief-txt
+  type: file
+  name: gpt-brief.txt
+  purpose: Plain-text mobile brief for select-all copy into GPT.
+  short_description: iPhone GPT paste brief.
+  source:
+    path: system/gpt-brief.txt
+  public:
+    url: null
+  created_by: Mission 009
+  updated_by: Mission 009
+  depends_on:
+  - asset-registry
+  outputs: []
+  editable: true
+  generated: false
+  status: active
+  notes: Keep in sync with assets.yaml and Backlog. Compact plain text only.
+  path: system/gpt-brief.txt
   safe_to_edit: true
   source_or_generated: source
   public_url: null
