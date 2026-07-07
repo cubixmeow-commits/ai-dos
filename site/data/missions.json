@@ -198,5 +198,21 @@
         "next_mission": "Mission 013: Build the First External Product Using AI-DOS",
         "has_report": true,
         "artifacts": []
+    },
+    {
+        "id": "013",
+        "slug": "first-external-product",
+        "title": "Build the First External Product Using AI-DOS",
+        "status": "Complete — pending operator merge approval",
+        "status_category": "complete",
+        "path": "missions/013-first-external-product",
+        "summary": "AI-DOS proposed five simple product ideas, scored them against operator constraints, and built **Billable Rate Calculator** — a mobile-first static tool that tells freelancers the hourly rate they need to hit a take-home goal.",
+        "approval_question": "Approve Mission 014: Improve or Launch First External Product? Y/N",
+        "what_ai_dos_learned": null,
+        "executed_by": "Cursor Cloud Agent",
+        "confidence": null,
+        "next_mission": "Mission 014: Improve or Launch First External Product",
+        "has_report": true,
+        "artifacts": []
     }
 ]

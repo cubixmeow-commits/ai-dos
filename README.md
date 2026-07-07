@@ -49,7 +49,7 @@ citing specific files, that a fresh session could pick up from here.
 | `site/` | Mission Control — public entry point (`/site/`) |
 | `tasks/Backlog.md` | The queue of upcoming missions |
 | `workflow/Templates/` | Templates for recurring artifacts (missions) |
-| `architecture-audit.md` | Independent architecture review (input, not governance) |
+| `products/` | Portfolio projects (external product code) |
 
 **Canonical URLs:** Command Center `https://cubixmeow.com/ai-dos/site/` ·
 Compiler `https://cubixmeow.com/ai-dos/compiler/compile.php` (build tool only).
@@ -73,9 +73,13 @@ Missions **001–005** established governance, showcase, and merge-based approva
   [missions/011-architecture-integration/report.md](missions/011-architecture-integration/report.md).
 - **Mission 012** — Minimal Execution Engine (plans, roles, context routing). See
   [missions/012-execution-engine-foundation/report.md](missions/012-execution-engine-foundation/report.md).
+- **Mission 013** — First external product: Billable Rate Calculator (P001). See
+  [missions/013-first-external-product/report.md](missions/013-first-external-product/report.md).
 
-**Next:** Mission 013 — Build the First External Product Using AI-DOS. See
+**Next:** Mission 014 — Improve or Launch First External Product. See
 [tasks/Backlog.md](tasks/Backlog.md).
+
+**Portfolio product:** [products/001-billable-rate-calculator/](products/001-billable-rate-calculator/)
 
 **Mission Control:** [site/index.html](site/index.html) — compile with
 `php compiler/compile.php` after source changes.

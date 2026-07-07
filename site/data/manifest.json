@@ -1,5 +1,5 @@
 {
-    "compiled_at": "2026-07-07T23:15:57+00:00",
+    "compiled_at": "2026-07-07T23:26:31+00:00",
     "source": "system/manifest.yaml",
     "subsystem": "repository-manifest",
     "ai_dos_version": "V2-in-progress",
@@ -76,8 +76,8 @@
     },
     "current_mission": null,
     "next_mission": {
-        "id": "013",
-        "title": "Build the First External Product Using AI-DOS",
+        "id": "014",
+        "title": "Improve or Launch First External Product",
         "source": "tasks/Backlog.md"
     },
     "completed_missions": [
@@ -135,6 +135,11 @@
             "id": "012",
             "title": "Execution Engine Foundation",
             "path": "missions/012-execution-engine-foundation"
+        },
+        {
+            "id": "013",
+            "title": "Build the First External Product Using AI-DOS",
+            "path": "missions/013-first-external-product"
         }
     ],
     "active_missions": [],
@@ -153,56 +158,57 @@
         "issue_count": 0,
         "error_count": 0,
         "warning_count": 0,
-        "asset_count": 70
+        "asset_count": 78
     },
     "generated_artifact_versions": {
         "missions.json": {
             "path": "site/data/missions.json",
-            "modified_at": "2026-07-07T22:15:14+00:00",
-            "bytes": 14945
+            "modified_at": "2026-07-07T23:15:57+00:00",
+            "bytes": 15769
         },
         "organization.json": {
             "path": "site/data/organization.json",
-            "modified_at": "2026-07-07T22:15:14+00:00",
-            "bytes": 1921
+            "modified_at": "2026-07-07T23:15:57+00:00",
+            "bytes": 1939
         },
         "manifest.json": {
             "path": "site/data/manifest.json",
-            "modified_at": "2026-07-07T22:15:14+00:00",
-            "bytes": 6364
+            "modified_at": "2026-07-07T23:15:57+00:00",
+            "bytes": 7070
         },
         "context-packages.json": {
             "path": "site/data/context-packages.json",
-            "modified_at": "2026-07-07T22:15:14+00:00",
-            "bytes": 6026
+            "modified_at": "2026-07-07T23:15:57+00:00",
+            "bytes": 6703
         },
         "dependency-report.json": {
             "path": "site/data/dependency-report.json",
-            "modified_at": "2026-07-07T22:15:14+00:00",
+            "modified_at": "2026-07-07T23:15:57+00:00",
             "bytes": 257
         },
         "repository.json": {
             "path": "site/data/repository.json",
-            "modified_at": "2026-07-07T22:15:14+00:00",
-            "bytes": 107706
+            "modified_at": "2026-07-07T23:15:57+00:00",
+            "bytes": 124302
         },
         "decisions.json": {
             "path": "site/data/decisions.json",
-            "modified_at": "2026-07-07T22:15:14+00:00",
+            "modified_at": "2026-07-07T23:15:57+00:00",
             "bytes": 11009
         },
         "execution-engine.json": {
             "path": "site/data/execution-engine.json",
-            "status": "not_yet_generated"
+            "modified_at": "2026-07-07T23:15:57+00:00",
+            "bytes": 38469
         },
         "index.html": {
             "path": "site/index.html",
-            "modified_at": "2026-07-07T22:15:14+00:00",
-            "bytes": 16362
+            "modified_at": "2026-07-07T23:15:57+00:00",
+            "bytes": 20642
         },
         "styles.css": {
             "path": "site/styles.css",
-            "modified_at": "2026-07-07T22:15:14+00:00",
+            "modified_at": "2026-07-07T23:15:57+00:00",
             "bytes": 8288
         }
     }

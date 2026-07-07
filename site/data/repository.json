@@ -1,5 +1,5 @@
 {
-    "compiled_at": "2026-07-07T23:15:57+00:00",
+    "compiled_at": "2026-07-07T23:26:31+00:00",
     "subsystem": "repository-intelligence",
     "capabilities": [
         "repository_manifest",
@@ -22,7 +22,7 @@
             "issue_count": 0,
             "error_count": 0,
             "warning_count": 0,
-            "asset_count": 70
+            "asset_count": 78
         },
         "compiler_version": "1.5.0-mission-012",
         "asset_registry_version": 2
@@ -1399,7 +1399,9 @@
                     "execution-engine-yaml",
                     "execution-plans-directory"
                 ],
-                "context_packages": []
+                "context_packages": [
+                    "website-context"
+                ]
             },
             "architecture-audit-md": {
                 "id": "architecture-audit-md",
@@ -1540,6 +1542,170 @@
                 "outputs": [],
                 "generated_by": [
                     "missions-012-execution-engine-foundation"
+                ],
+                "context_packages": [
+                    "mission-context"
+                ]
+            },
+            "portfolio-p001-billable-rate-calculator": {
+                "id": "portfolio-p001-billable-rate-calculator",
+                "type": "directory",
+                "name": "products/001-billable-rate-calculator",
+                "path": "products/001-billable-rate-calculator/",
+                "public_url": "https://cubixmeow.com/ai-dos/products/001-billable-rate-calculator/",
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 013",
+                "depends_on": [],
+                "depended_on_by": [
+                    "portfolio-p001-index-html",
+                    "portfolio-p001-readme-md"
+                ],
+                "outputs": [
+                    "portfolio-p001-index-html"
+                ],
+                "generated_by": [
+                    "missions-013-first-external-product"
+                ],
+                "context_packages": []
+            },
+            "portfolio-p001-index-html": {
+                "id": "portfolio-p001-index-html",
+                "type": "website",
+                "name": "index.html",
+                "path": "products/001-billable-rate-calculator/index.html",
+                "public_url": "https://cubixmeow.com/ai-dos/products/001-billable-rate-calculator/",
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 013",
+                "depends_on": [
+                    "portfolio-p001-billable-rate-calculator"
+                ],
+                "depended_on_by": [
+                    "portfolio-p001-styles-css",
+                    "portfolio-p001-app-js"
+                ],
+                "outputs": [],
+                "generated_by": [
+                    "portfolio-p001-billable-rate-calculator"
+                ],
+                "context_packages": []
+            },
+            "portfolio-p001-styles-css": {
+                "id": "portfolio-p001-styles-css",
+                "type": "file",
+                "name": "styles.css",
+                "path": "products/001-billable-rate-calculator/styles.css",
+                "public_url": "https://cubixmeow.com/ai-dos/products/001-billable-rate-calculator/styles.css",
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 013",
+                "depends_on": [
+                    "portfolio-p001-index-html"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "portfolio-p001-app-js": {
+                "id": "portfolio-p001-app-js",
+                "type": "file",
+                "name": "app.js",
+                "path": "products/001-billable-rate-calculator/app.js",
+                "public_url": "https://cubixmeow.com/ai-dos/products/001-billable-rate-calculator/app.js",
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 013",
+                "depends_on": [
+                    "portfolio-p001-index-html"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "portfolio-p001-readme-md": {
+                "id": "portfolio-p001-readme-md",
+                "type": "file",
+                "name": "README.md",
+                "path": "products/001-billable-rate-calculator/README.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 013",
+                "depends_on": [
+                    "portfolio-p001-billable-rate-calculator"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "missions-013-first-external-product": {
+                "id": "missions-013-first-external-product",
+                "type": "mission",
+                "name": "Mission folder: missions/013-first-external-product",
+                "path": "missions/013-first-external-product/",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 013",
+                "depends_on": [],
+                "depended_on_by": [
+                    "missions-013-first-external-product-mission-md",
+                    "missions-013-first-external-product-report-md"
+                ],
+                "outputs": [
+                    "missions-013-first-external-product-report-md",
+                    "portfolio-p001-billable-rate-calculator"
+                ],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "missions-013-first-external-product-mission-md": {
+                "id": "missions-013-first-external-product-mission-md",
+                "type": "file",
+                "name": "mission.md",
+                "path": "missions/013-first-external-product/mission.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 013",
+                "depends_on": [
+                    "missions-013-first-external-product"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
+            },
+            "missions-013-first-external-product-report-md": {
+                "id": "missions-013-first-external-product-report-md",
+                "type": "file",
+                "name": "report.md",
+                "path": "missions/013-first-external-product/report.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 013",
+                "depends_on": [
+                    "missions-013-first-external-product"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-013-first-external-product"
                 ],
                 "context_packages": [
                     "mission-context"
@@ -2907,7 +3073,9 @@
                     "execution-engine-yaml",
                     "execution-plans-directory"
                 ],
-                "context_packages": []
+                "context_packages": [
+                    "website-context"
+                ]
             },
             "architecture-audit.md": {
                 "id": "architecture-audit-md",
@@ -3052,6 +3220,170 @@
                 "context_packages": [
                     "mission-context"
                 ]
+            },
+            "products/001-billable-rate-calculator/": {
+                "id": "portfolio-p001-billable-rate-calculator",
+                "type": "directory",
+                "name": "products/001-billable-rate-calculator",
+                "path": "products/001-billable-rate-calculator/",
+                "public_url": "https://cubixmeow.com/ai-dos/products/001-billable-rate-calculator/",
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 013",
+                "depends_on": [],
+                "depended_on_by": [
+                    "portfolio-p001-index-html",
+                    "portfolio-p001-readme-md"
+                ],
+                "outputs": [
+                    "portfolio-p001-index-html"
+                ],
+                "generated_by": [
+                    "missions-013-first-external-product"
+                ],
+                "context_packages": []
+            },
+            "products/001-billable-rate-calculator/index.html": {
+                "id": "portfolio-p001-index-html",
+                "type": "website",
+                "name": "index.html",
+                "path": "products/001-billable-rate-calculator/index.html",
+                "public_url": "https://cubixmeow.com/ai-dos/products/001-billable-rate-calculator/",
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 013",
+                "depends_on": [
+                    "portfolio-p001-billable-rate-calculator"
+                ],
+                "depended_on_by": [
+                    "portfolio-p001-styles-css",
+                    "portfolio-p001-app-js"
+                ],
+                "outputs": [],
+                "generated_by": [
+                    "portfolio-p001-billable-rate-calculator"
+                ],
+                "context_packages": []
+            },
+            "products/001-billable-rate-calculator/styles.css": {
+                "id": "portfolio-p001-styles-css",
+                "type": "file",
+                "name": "styles.css",
+                "path": "products/001-billable-rate-calculator/styles.css",
+                "public_url": "https://cubixmeow.com/ai-dos/products/001-billable-rate-calculator/styles.css",
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 013",
+                "depends_on": [
+                    "portfolio-p001-index-html"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "products/001-billable-rate-calculator/app.js": {
+                "id": "portfolio-p001-app-js",
+                "type": "file",
+                "name": "app.js",
+                "path": "products/001-billable-rate-calculator/app.js",
+                "public_url": "https://cubixmeow.com/ai-dos/products/001-billable-rate-calculator/app.js",
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 013",
+                "depends_on": [
+                    "portfolio-p001-index-html"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "products/001-billable-rate-calculator/README.md": {
+                "id": "portfolio-p001-readme-md",
+                "type": "file",
+                "name": "README.md",
+                "path": "products/001-billable-rate-calculator/README.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 013",
+                "depends_on": [
+                    "portfolio-p001-billable-rate-calculator"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "missions/013-first-external-product/": {
+                "id": "missions-013-first-external-product",
+                "type": "mission",
+                "name": "Mission folder: missions/013-first-external-product",
+                "path": "missions/013-first-external-product/",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 013",
+                "depends_on": [],
+                "depended_on_by": [
+                    "missions-013-first-external-product-mission-md",
+                    "missions-013-first-external-product-report-md"
+                ],
+                "outputs": [
+                    "missions-013-first-external-product-report-md",
+                    "portfolio-p001-billable-rate-calculator"
+                ],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "missions/013-first-external-product/mission.md": {
+                "id": "missions-013-first-external-product-mission-md",
+                "type": "file",
+                "name": "mission.md",
+                "path": "missions/013-first-external-product/mission.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 013",
+                "depends_on": [
+                    "missions-013-first-external-product"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
+            },
+            "missions/013-first-external-product/report.md": {
+                "id": "missions-013-first-external-product-report-md",
+                "type": "file",
+                "name": "report.md",
+                "path": "missions/013-first-external-product/report.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 013",
+                "depends_on": [
+                    "missions-013-first-external-product"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-013-first-external-product"
+                ],
+                "context_packages": [
+                    "mission-context"
+                ]
             }
         },
         "by_type": {
@@ -3095,7 +3427,12 @@
                 "missions-011-architecture-integration-mission-md",
                 "missions-011-architecture-integration-report-md",
                 "missions-012-execution-engine-foundation-mission-md",
-                "missions-012-execution-engine-foundation-report-md"
+                "missions-012-execution-engine-foundation-report-md",
+                "portfolio-p001-styles-css",
+                "portfolio-p001-app-js",
+                "portfolio-p001-readme-md",
+                "missions-013-first-external-product-mission-md",
+                "missions-013-first-external-product-report-md"
             ],
             "template": [
                 "workflow-templates-missiontemplate-md"
@@ -3108,7 +3445,8 @@
             ],
             "website": [
                 "site-index-html",
-                "site-validation-invoice-tool-html"
+                "site-validation-invoice-tool-html",
+                "portfolio-p001-index-html"
             ],
             "generated-file": [
                 "site-styles-css",
@@ -3135,11 +3473,13 @@
                 "missions-008-repository-compiler",
                 "missions-009-file-index-foundation",
                 "decisions-directory",
-                "execution-plans-directory"
+                "execution-plans-directory",
+                "portfolio-p001-billable-rate-calculator"
             ],
             "mission": [
                 "missions-011-architecture-integration",
-                "missions-012-execution-engine-foundation"
+                "missions-012-execution-engine-foundation",
+                "missions-013-first-external-product"
             ]
         }
     },

@@ -1,5 +1,5 @@
 {
-    "compiled_at": "2026-07-07T23:15:57+00:00",
+    "compiled_at": "2026-07-07T23:26:31+00:00",
     "source": "system/context-packages.yaml",
     "package_count": 5,
     "packages": [
@@ -7,7 +7,7 @@
             "id": "mission-context",
             "name": "Mission Context",
             "purpose": "Execute, review, or approve missions without scanning the full repository.",
-            "file_count": 40,
+            "file_count": 42,
             "files": [
                 "company/Principles.md",
                 "company/Standards.md",
@@ -41,6 +41,8 @@
                 "missions/011-architecture-integration/report.md",
                 "missions/012-execution-engine-foundation/mission.md",
                 "missions/012-execution-engine-foundation/report.md",
+                "missions/013-first-external-product/mission.md",
+                "missions/013-first-external-product/report.md",
                 "system/execution-engine.md",
                 "system/execution-engine.yaml",
                 "system/execution-plans/example-inventory-saas.yaml",
@@ -106,11 +108,12 @@
             "id": "website-context",
             "name": "Website Context",
             "purpose": "Work on Mission Control, showcase, or public site artifacts.",
-            "file_count": 11,
+            "file_count": 12,
             "files": [
                 "site/data/context-packages.json",
                 "site/data/decisions.json",
                 "site/data/dependency-report.json",
+                "site/data/execution-engine.json",
                 "site/data/manifest.json",
                 "site/data/missions.json",
                 "site/data/organization.json",

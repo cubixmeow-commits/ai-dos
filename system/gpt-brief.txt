@@ -1,27 +1,19 @@
 AI-DOS MOBILE GPT BRIEF (select all, copy, paste into GPT)
 
-STATUS: Mission 012 complete. Minimal Execution Engine operational. No autonomous execution.
+STATUS: Mission 013 complete. First external product shipped (P001).
 
-FILES: system/execution-engine.yaml system/worker-roles.yaml system/execution-plans/ system/assets.yaml system/manifest.yaml
+PRODUCT: Billable Rate Calculator — products/001-billable-rate-calculator/
 
-INTELLIGENCE JSON: site/data/execution-engine.json repository.json manifest.json context-packages.json decisions.json
+PRODUCT URL: https://cubixmeow.com/ai-dos/products/001-billable-rate-calculator/
 
-ROOT: https://cubixmeow.com/ai-dos/
+AI-DOS: https://cubixmeow.com/ai-dos/site/
 
-URLS: /site/ (Command Center) | /site/data/execution-engine.json | /site/data/repository.json
+MISSION: missions/013-first-external-product/
 
-EXECUTION: plans only | roles not brands | Cursor=implementation | Claude Code=architecture/review
+NEXT: Mission 014 Improve or Launch First External Product
 
-WORKER ROLES: principal-architect research-specialist implementation-engineer backend-engineer frontend-builder reviewer qa-engineer documentation-writer
+APPROVE: Mission 014 Improve or Launch First External Product? Y/N
 
-COMPILER: php compiler/compile.php v1.5.0-mission-012
+STACK: static HTML/CSS/JS — no backend v1
 
-STANDARDS: company/Standards.md sections 4-10
-
-MISSION: missions/012-execution-engine-foundation/
-
-NEXT: Mission 013 Build the First External Product Using AI-DOS
-
-APPROVE: Mission 013 Build the First External Product Using AI-DOS? Y/N
-
-PLANS: system/execution-plans/mission-013-first-external-product.yaml
+WHAT IT DOES: calculates minimum freelance hourly rate from take-home goal, tax, expenses, billable hours
