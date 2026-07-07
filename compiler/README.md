@@ -24,9 +24,15 @@ Optional (included in mission artifact lists when present):
 ```text
 site/data/missions.json
 site/data/organization.json
+site/data/manifest.json
+site/data/context-packages.json
+site/data/dependency-report.json
+site/data/repository.json
 site/index.html
 site/styles.css
 ```
+
+Requires PHP 8.1+ with `yaml` extension for manifest and context package parsing.
 
 None of these outputs are canonical. Repository artifacts are canonical.
 

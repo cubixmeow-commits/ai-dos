@@ -1,0 +1,61 @@
+# AI-DOS Repository Manifest — top-level pointer graph (source)
+# Compiled view: site/data/manifest.json (disposable)
+# Mission 010: references only; values resolved at compile time.
+
+meta:
+  version: 1
+  subsystem: repository-manifest
+  maintained_by: Mission 010
+  canonical_compiled: site/data/manifest.json
+  last_updated: 2026-07-07
+
+references:
+  missions:
+    description: Mission registry and status
+    source_glob: missions/*/mission.md
+    compiled: site/data/missions.json
+  backlog:
+    description: Mission queue and next mission
+    path: tasks/Backlog.md
+  asset_registry:
+    description: Canonical map of everything AI-DOS owns
+    path: system/assets.yaml
+    compiled_summary: site/data/organization.json#asset_registry
+  architecture:
+    description: Approved V2 architecture blueprint
+    path: missions/007-design-v2/architecture.md
+  compiler:
+    description: Repository Compiler entry point
+    path: compiler/compile.php
+  standards:
+    description: Operational standards
+    path: company/Standards.md
+  principles:
+    description: Constitutional rules
+    path: company/Principles.md
+  identity:
+    description: Organizational identity
+    path: company/Identity.md
+  context_packages:
+    description: Agent context package definitions
+    path: system/context-packages.yaml
+    compiled: site/data/context-packages.json
+  dependency_report:
+    description: Asset registry validation report
+    compiled: site/data/dependency-report.json
+  repository_intelligence:
+    description: Lookup indexes and intelligence umbrella
+    compiled: site/data/repository.json
+
+computed_at_compile:
+  - ai_dos_version
+  - current_mission
+  - completed_missions
+  - active_missions
+  - paused_missions
+  - next_mission
+  - architecture_version
+  - compiler_version
+  - asset_registry_version
+  - repository_health
+  - generated_artifact_versions

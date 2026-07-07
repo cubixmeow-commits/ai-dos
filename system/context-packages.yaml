@@ -1,0 +1,66 @@
+# AI-DOS Context Packages — agent context definitions (source)
+# Compiled view: site/data/context-packages.json
+# Mission 010: each package lists only files required for that task class.
+
+meta:
+  version: 1
+  subsystem: context-packages
+  maintained_by: Mission 010
+  last_updated: 2026-07-07
+
+packages:
+  - id: mission-context
+    name: Mission Context
+    purpose: Execute, review, or approve missions without scanning the full repository.
+    includes:
+      - tasks/Backlog.md
+      - workflow/Templates/MissionTemplate.md
+      - company/Principles.md
+      - company/Standards.md
+      - system/gpt-brief.txt
+    globs:
+      - missions/*/mission.md
+      - missions/*/report.md
+
+  - id: architecture-context
+    name: Architecture Context
+    purpose: Design or implement V2 capabilities against the approved blueprint.
+    includes:
+      - missions/007-design-v2/architecture.md
+      - missions/007-design-v2/report.md
+      - company/Identity.md
+      - company/Principles.md
+      - system/manifest.yaml
+
+  - id: compiler-context
+    name: Compiler Context
+    purpose: Modify or extend the Repository Compiler and generated artifacts.
+    includes:
+      - compiler/compile.php
+      - compiler/README.md
+      - company/Standards.md
+      - system/assets.yaml
+      - system/manifest.yaml
+      - system/context-packages.yaml
+      - .github/workflows/compile-site.yml
+
+  - id: website-context
+    name: Website Context
+    purpose: Work on Mission Control, showcase, or public site artifacts.
+    includes:
+      - site/index.html
+      - site/styles.css
+      - system/assets.yaml
+    globs:
+      - site/data/*.json
+      - site/validation/*
+
+  - id: governance-context
+    name: Governance Context
+    purpose: Governance, standards, and organizational memory decisions.
+    includes:
+      - company/Identity.md
+      - company/Principles.md
+      - company/Standards.md
+      - tasks/Backlog.md
+      - README.md

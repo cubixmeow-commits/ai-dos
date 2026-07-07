@@ -151,3 +151,28 @@ among many (compiler, website, workflow, mission, etc.).
 - The Repository Compiler includes an `asset_registry` summary in
   `site/data/organization.json` and derives a backward-compatible `file_index`
   view — it does not duplicate canonical registry data.
+
+## §6 Repository Intelligence
+
+Mission 010 formalized the **Repository Intelligence Layer** — systems that
+help AI-DOS understand, validate, search, and package repository knowledge.
+
+### §6.1 Capabilities
+
+1. **Repository Manifest** — `system/manifest.yaml` (source) →
+   `site/data/manifest.json` (compiled). Pointer graph; no duplicated facts.
+2. **Context Packages** — `system/context-packages.yaml` →
+   `site/data/context-packages.json`. Task-scoped file lists for agents.
+3. **Dependency Validation** — `site/data/dependency-report.json`. Reports
+   broken paths, missing assets, circular dependencies, invalid URLs.
+   **Report only — never auto-repair.**
+4. **Repository Lookup** — `site/data/repository.json`. Indexes and query
+   examples from the Asset Registry.
+
+### §6.2 Rules
+
+- Repository artifacts remain canonical; intelligence JSON is disposable.
+- Generated Command Center cards must load from compiled JSON only.
+- Update `system/manifest.yaml` and `system/context-packages.yaml` when
+  intelligence sources change materially.
+- PHP `yaml` extension is required for full manifest/context parsing in CI.

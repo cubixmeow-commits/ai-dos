@@ -1,0 +1,98 @@
+{
+    "compiled_at": "2026-07-07T21:38:53+00:00",
+    "source": "system/context-packages.yaml",
+    "package_count": 5,
+    "packages": [
+        {
+            "id": "mission-context",
+            "name": "Mission Context",
+            "purpose": "Execute, review, or approve missions without scanning the full repository.",
+            "file_count": 24,
+            "files": [
+                "company/Principles.md",
+                "company/Standards.md",
+                "missions/001-bootstrap/mission.md",
+                "missions/001-bootstrap/report.md",
+                "missions/002-knowledge-preservation/mission.md",
+                "missions/002-knowledge-preservation/report.md",
+                "missions/003-prove-the-loop/mission.md",
+                "missions/003-prove-the-loop/report.md",
+                "missions/004-close-governance-loop/mission.md",
+                "missions/004-close-governance-loop/report.md",
+                "missions/005-showcase-page/mission.md",
+                "missions/005-showcase-page/report.md",
+                "missions/006-validate-recommendation/mission.md",
+                "missions/007-design-v2/mission.md",
+                "missions/007-design-v2/report.md",
+                "missions/008-repository-compiler/mission.md",
+                "missions/008-repository-compiler/report.md",
+                "missions/009-file-index-foundation/mission.md",
+                "missions/009-file-index-foundation/report.md",
+                "missions/010-repository-intelligence/mission.md",
+                "missions/010-repository-intelligence/report.md",
+                "system/gpt-brief.txt",
+                "tasks/Backlog.md",
+                "workflow/Templates/MissionTemplate.md"
+            ]
+        },
+        {
+            "id": "architecture-context",
+            "name": "Architecture Context",
+            "purpose": "Design or implement V2 capabilities against the approved blueprint.",
+            "file_count": 5,
+            "files": [
+                "company/Identity.md",
+                "company/Principles.md",
+                "missions/007-design-v2/architecture.md",
+                "missions/007-design-v2/report.md",
+                "system/manifest.yaml"
+            ]
+        },
+        {
+            "id": "compiler-context",
+            "name": "Compiler Context",
+            "purpose": "Modify or extend the Repository Compiler and generated artifacts.",
+            "file_count": 7,
+            "files": [
+                ".github/workflows/compile-site.yml",
+                "company/Standards.md",
+                "compiler/README.md",
+                "compiler/compile.php",
+                "system/assets.yaml",
+                "system/context-packages.yaml",
+                "system/manifest.yaml"
+            ]
+        },
+        {
+            "id": "website-context",
+            "name": "Website Context",
+            "purpose": "Work on Mission Control, showcase, or public site artifacts.",
+            "file_count": 10,
+            "files": [
+                "site/data/context-packages.json",
+                "site/data/dependency-report.json",
+                "site/data/manifest.json",
+                "site/data/missions.json",
+                "site/data/organization.json",
+                "site/data/repository.json",
+                "site/index.html",
+                "site/styles.css",
+                "site/validation/invoice-tool.html",
+                "system/assets.yaml"
+            ]
+        },
+        {
+            "id": "governance-context",
+            "name": "Governance Context",
+            "purpose": "Governance, standards, and organizational memory decisions.",
+            "file_count": 5,
+            "files": [
+                "README.md",
+                "company/Identity.md",
+                "company/Principles.md",
+                "company/Standards.md",
+                "tasks/Backlog.md"
+            ]
+        }
+    ]
+}

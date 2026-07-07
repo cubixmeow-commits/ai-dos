@@ -9,6 +9,8 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/RepositoryIntelligence.php';
+
 final class RepositoryCompiler
 {
     private string $root;
@@ -36,23 +38,49 @@ final class RepositoryCompiler
             return 1;
         }
 
+        $registry = $this->loadAssetRegistry();
+        $intelligence = new RepositoryIntelligence(
+            $this->root,
+            $this->missions,
+            $organization,
+            $registry
+        );
+
+        $dependencyReport = $intelligence->compileDependencyReport();
+        $manifest = $intelligence->compileManifest($dependencyReport);
+        $contextPackages = $intelligence->compileContextPackages();
+        $repository = $intelligence->compileRepository($manifest, $contextPackages, $dependencyReport);
+
         $this->missions = $this->sanitizeForJson($this->missions);
         $organization = $this->sanitizeForJson($organization);
+        $manifest = $this->sanitizeForJson($manifest);
+        $contextPackages = $this->sanitizeForJson($contextPackages);
+        $dependencyReport = $this->sanitizeForJson($dependencyReport);
+        $repository = $this->sanitizeForJson($repository);
 
-        $missionsJson = json_encode($this->missions, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-        $organizationJson = json_encode($organization, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+        $writes = [
+            'missions.json' => $this->missions,
+            'organization.json' => $organization,
+            'manifest.json' => $manifest,
+            'context-packages.json' => $contextPackages,
+            'dependency-report.json' => $dependencyReport,
+            'repository.json' => $repository,
+        ];
 
-        if ($missionsJson === false || $organizationJson === false) {
-            fwrite(STDERR, "Failed to encode JSON: " . json_last_error_msg() . "\n");
-            return 1;
+        foreach ($writes as $file => $data) {
+            $json = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+            if ($json === false) {
+                fwrite(STDERR, "Failed to encode {$file}: " . json_last_error_msg() . "\n");
+                return 1;
+            }
+            file_put_contents($this->dataDir . '/' . $file, $json . "\n");
         }
 
-        file_put_contents($this->dataDir . '/missions.json', $missionsJson . "\n");
-        file_put_contents($this->dataDir . '/organization.json', $organizationJson . "\n");
         file_put_contents($this->siteDir . '/index.html', $this->renderIndexHtml());
         file_put_contents($this->siteDir . '/styles.css', $this->renderStylesCss());
 
         fwrite(STDOUT, "Compiled " . count($this->missions) . " missions to site/data/\n");
+        fwrite(STDOUT, "Generated repository intelligence artifacts (manifest, context-packages, dependency-report, repository)\n");
         fwrite(STDOUT, "Generated site/index.html and site/styles.css\n");
 
         return 0;
@@ -179,7 +207,7 @@ final class RepositoryCompiler
         $organization = [
             'compiled_at' => gmdate('c'),
             'compiler' => 'Repository Compiler (PHP)',
-            'compiler_version' => '1.2.0-mission-009',
+            'compiler_version' => '1.3.0-mission-010',
             'current_mission' => $currentMission,
             'next_mission' => $nextMission,
             'completed_mission_count' => count($completed),
@@ -847,7 +875,7 @@ final class RepositoryCompiler
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI-DOS | Mission Control</title>
   <meta name="description" content="AI-DOS Mission Control — compiled from repository source." />
-  <link rel="stylesheet" href="styles.css?v=mission008" />
+  <link rel="stylesheet" href="styles.css?v=mission010" />
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
@@ -900,6 +928,33 @@ final class RepositoryCompiler
       <h2>Next Mission</h2>
       <div class="next-card" id="next-card"></div>
     </section>
+
+    <section class="frame" id="intelligence-section">
+      <h2>Repository Intelligence</h2>
+      <p class="lead">Mission 010 — manifest, context packages, dependency health, and asset relationships. All data from generated JSON.</p>
+      <div class="intel-grid" id="intel-grid"></div>
+    </section>
+
+    <section class="frame" id="manifest-section">
+      <h2>Repository Manifest</h2>
+      <div class="intel-card" id="manifest-card"></div>
+    </section>
+
+    <section class="frame" id="context-section">
+      <h2>Context Packages</h2>
+      <ul class="context-list" id="context-list"></ul>
+    </section>
+
+    <section class="frame" id="dependency-section">
+      <h2>Dependency Health</h2>
+      <div class="intel-card" id="dependency-card"></div>
+      <ul class="issue-list" id="issue-list"></ul>
+    </section>
+
+    <section class="frame" id="relationships-section">
+      <h2>Asset Relationships</h2>
+      <ul class="relation-list" id="relation-list"></ul>
+    </section>
   </main>
 
   <footer>
@@ -931,19 +986,28 @@ final class RepositoryCompiler
     }
 
     async function loadMissionControl() {
-      const [missionsRes, orgRes] = await Promise.all([
-        fetch('data/missions.json'),
-        fetch('data/organization.json')
-      ]);
+      const endpoints = [
+        'data/missions.json',
+        'data/organization.json',
+        'data/manifest.json',
+        'data/context-packages.json',
+        'data/dependency-report.json',
+        'data/repository.json'
+      ];
 
-      if (!missionsRes.ok || !orgRes.ok) {
+      const responses = await Promise.all(endpoints.map((e) => fetch(e)));
+      if (!responses[0].ok || !responses[1].ok) {
         document.getElementById('strategy-line').textContent =
           'Failed to load compiled data. Run: php compiler/compile.php';
         return;
       }
 
-      const missions = await missionsRes.json();
-      const org = await orgRes.json();
+      const missions = await responses[0].json();
+      const org = await responses[1].json();
+      const manifest = responses[2].ok ? await responses[2].json() : null;
+      const contextPkgs = responses[3].ok ? await responses[3].json() : null;
+      const depReport = responses[4].ok ? await responses[4].json() : null;
+      const repository = responses[5].ok ? await responses[5].json() : null;
 
       document.getElementById('compiler-lead').innerHTML = markdownish(org.repository_compiler_concept || '');
       document.getElementById('source-truth').textContent = org.source_of_truth_statement || '';
@@ -1019,6 +1083,85 @@ final class RepositoryCompiler
       } else {
         nextCard.appendChild(el('p', null, 'No next mission declared in Backlog.md'));
       }
+
+      if (manifest) {
+        const intelGrid = document.getElementById('intel-grid');
+        const addIntel = (label, value) => {
+          const row = el('p');
+          row.appendChild(el('span', null, label));
+          row.appendChild(el('strong', null, value));
+          intelGrid.appendChild(row);
+        };
+        addIntel('Repository health', (manifest.repository_health && manifest.repository_health.status) || 'unknown');
+        addIntel('Compiler', manifest.compiler_version || 'unknown');
+        addIntel('Asset registry', String(manifest.asset_registry_version ?? 'unknown'));
+        addIntel('Architecture', manifest.architecture_version || 'unknown');
+        addIntel('Context packages', contextPkgs ? String(contextPkgs.package_count) : '—');
+
+        const mCard = document.getElementById('manifest-card');
+        mCard.appendChild(el('p', null, 'Completed: ' + (manifest.completed_missions ? manifest.completed_missions.length : 0)));
+        if (manifest.current_mission) {
+          mCard.appendChild(el('p', null, 'Current: M' + manifest.current_mission.id + ' — ' + manifest.current_mission.title));
+        }
+        if (manifest.next_mission) {
+          mCard.appendChild(el('p', null, 'Next: M' + manifest.next_mission.id + ' — ' + manifest.next_mission.title));
+        }
+        mCard.appendChild(el('p', 'muted', 'Source: system/manifest.yaml → manifest.json'));
+      }
+
+      if (contextPkgs && contextPkgs.packages) {
+        const list = document.getElementById('context-list');
+        contextPkgs.packages.forEach((pkg) => {
+          const li = el('li');
+          li.appendChild(el('strong', null, pkg.name || pkg.id));
+          li.appendChild(document.createTextNode(' — ' + (pkg.file_count || 0) + ' files'));
+          if (pkg.purpose) {
+            li.appendChild(el('p', 'muted', pkg.purpose));
+          }
+          list.appendChild(li);
+        });
+      }
+
+      if (depReport) {
+        const dCard = document.getElementById('dependency-card');
+        dCard.appendChild(el('p', null, 'Status: ' + (depReport.status || 'unknown')));
+        dCard.appendChild(el('p', null, 'Issues: ' + (depReport.issue_count || 0) + ' (' + (depReport.error_count || 0) + ' errors)'));
+        dCard.appendChild(el('p', 'muted', depReport.repair_policy || 'report_only'));
+        const issueList = document.getElementById('issue-list');
+        (depReport.issues || []).slice(0, 8).forEach((issue) => {
+          const li = el('li', issue.severity === 'error' ? 'issue-error' : 'issue-warn');
+          li.textContent = (issue.asset_id || '?') + ': ' + issue.message;
+          issueList.appendChild(li);
+        });
+        if ((depReport.issues || []).length > 8) {
+          issueList.appendChild(el('li', 'muted', '…and ' + (depReport.issues.length - 8) + ' more in dependency-report.json'));
+        }
+      }
+
+      if (repository && repository.lookup && repository.lookup.by_id) {
+        const relList = document.getElementById('relation-list');
+        const compiler = repository.lookup.by_id['compiler-compile-php'];
+        if (compiler) {
+          const li = el('li');
+          li.appendChild(el('strong', null, 'compiler-compile-php'));
+          li.appendChild(document.createTextNode(' → outputs: ' + (compiler.outputs || []).join(', ')));
+          relList.appendChild(li);
+        }
+        const orgAsset = repository.lookup.by_id['site-data-organization-json'];
+        if (orgAsset) {
+          const li = el('li');
+          li.appendChild(el('strong', null, 'site-data-organization-json'));
+          li.appendChild(document.createTextNode(' ← depends on: ' + (orgAsset.depends_on || []).join(', ')));
+          relList.appendChild(li);
+        }
+        const site = repository.lookup.by_id['site-index-html'];
+        if (site) {
+          const li = el('li');
+          li.appendChild(el('strong', null, 'site-index-html'));
+          li.appendChild(document.createTextNode(' ← depends on: ' + (site.depends_on || []).join(', ')));
+          relList.appendChild(li);
+        }
+      }
     }
 
     loadMissionControl();
@@ -1053,6 +1196,14 @@ HTML;
 .next-title { margin: 0.35rem 0; font-size: 1.05rem; }
 .next-source { margin: 0; color: var(--muted); font-size: 0.85rem; }
 .confidence-tag { color: var(--warn); font-size: 0.86rem; margin-top: 0.35rem; }
+.intel-grid { display: grid; gap: 0.35rem; }
+.intel-grid p, .intel-card p { margin: 0.35rem 0; color: var(--text); }
+.intel-card { border: 1px solid var(--line); border-radius: 10px; padding: 0.85rem 1rem; background: rgba(10, 20, 35, 0.55); }
+.context-list, .relation-list, .issue-list { margin: 0; padding-left: 1.1rem; color: var(--muted); }
+.context-list li, .relation-list li, .issue-list li { margin-bottom: 0.5rem; }
+.issue-error { color: #ff6b6b; }
+.issue-warn { color: var(--warn); }
+.muted { color: var(--muted); font-size: 0.88rem; margin: 0.25rem 0 0; }
 CSS;
 
         if (!str_contains($css, 'Mission Control — Repository Compiler')) {

@@ -1,0 +1,168 @@
+{
+    "compiled_at": "2026-07-07T21:38:53+00:00",
+    "source": "system/manifest.yaml",
+    "subsystem": "repository-manifest",
+    "ai_dos_version": "V2-in-progress",
+    "references": {
+        "missions": {
+            "description": "Mission registry and status",
+            "source_glob": "missions/*/mission.md",
+            "compiled": "site/data/missions.json"
+        },
+        "backlog": {
+            "description": "Mission queue and next mission",
+            "path": "tasks/Backlog.md"
+        },
+        "asset_registry": {
+            "description": "Canonical map of everything AI-DOS owns",
+            "path": "system/assets.yaml",
+            "compiled_summary": "site/data/organization.json#asset_registry"
+        },
+        "architecture": {
+            "description": "Approved V2 architecture blueprint",
+            "path": "missions/007-design-v2/architecture.md"
+        },
+        "compiler": {
+            "description": "Repository Compiler entry point",
+            "path": "compiler/compile.php"
+        },
+        "standards": {
+            "description": "Operational standards",
+            "path": "company/Standards.md"
+        },
+        "principles": {
+            "description": "Constitutional rules",
+            "path": "company/Principles.md"
+        },
+        "identity": {
+            "description": "Organizational identity",
+            "path": "company/Identity.md"
+        },
+        "context_packages": {
+            "description": "Agent context package definitions",
+            "path": "system/context-packages.yaml",
+            "compiled": "site/data/context-packages.json"
+        },
+        "dependency_report": {
+            "description": "Asset registry validation report",
+            "compiled": "site/data/dependency-report.json"
+        },
+        "repository_intelligence": {
+            "description": "Lookup indexes and intelligence umbrella",
+            "compiled": "site/data/repository.json"
+        }
+    },
+    "current_mission": null,
+    "next_mission": {
+        "id": "011",
+        "title": "Decision Intelligence Layer",
+        "source": "tasks/Backlog.md"
+    },
+    "completed_missions": [
+        {
+            "id": "001",
+            "title": "Bootstrap the Repository",
+            "path": "missions/001-bootstrap"
+        },
+        {
+            "id": "002",
+            "title": "Formalize the Knowledge Preservation Standard",
+            "path": "missions/002-knowledge-preservation"
+        },
+        {
+            "id": "003",
+            "title": "Prove the Loop",
+            "path": "missions/003-prove-the-loop"
+        },
+        {
+            "id": "004",
+            "title": "Close the Governance Loop",
+            "path": "missions/004-close-governance-loop"
+        },
+        {
+            "id": "005",
+            "title": "Build the AI-DOS Showcase Page",
+            "path": "missions/005-showcase-page"
+        },
+        {
+            "id": "007",
+            "title": "Design AI-DOS V2",
+            "path": "missions/007-design-v2"
+        },
+        {
+            "id": "008",
+            "title": "Build the Repository Compiler",
+            "path": "missions/008-repository-compiler"
+        },
+        {
+            "id": "009",
+            "title": "File Index Foundation",
+            "path": "missions/009-file-index-foundation"
+        },
+        {
+            "id": "010",
+            "title": "Repository Intelligence Foundation",
+            "path": "missions/010-repository-intelligence"
+        }
+    ],
+    "active_missions": [],
+    "paused_missions": [
+        {
+            "id": "006",
+            "title": "Validate the Recommendation",
+            "status": "Paused — Phase B (operator validation)"
+        }
+    ],
+    "architecture_version": "0.2 (approved — operator decisions incorporated)",
+    "compiler_version": "1.3.0-mission-010",
+    "asset_registry_version": 2,
+    "repository_health": {
+        "status": "healthy",
+        "issue_count": 0,
+        "error_count": 0,
+        "warning_count": 0,
+        "asset_count": 56
+    },
+    "generated_artifact_versions": {
+        "missions.json": {
+            "path": "site/data/missions.json",
+            "modified_at": "2026-07-07T21:38:50+00:00",
+            "bytes": 13993
+        },
+        "organization.json": {
+            "path": "site/data/organization.json",
+            "modified_at": "2026-07-07T21:38:50+00:00",
+            "bytes": 40133
+        },
+        "manifest.json": {
+            "path": "site/data/manifest.json",
+            "modified_at": "2026-07-07T21:38:50+00:00",
+            "bytes": 5493
+        },
+        "context-packages.json": {
+            "path": "site/data/context-packages.json",
+            "modified_at": "2026-07-07T21:38:50+00:00",
+            "bytes": 3956
+        },
+        "dependency-report.json": {
+            "path": "site/data/dependency-report.json",
+            "modified_at": "2026-07-07T21:38:50+00:00",
+            "bytes": 257
+        },
+        "repository.json": {
+            "path": "site/data/repository.json",
+            "modified_at": "2026-07-07T21:38:50+00:00",
+            "bytes": 56603
+        },
+        "index.html": {
+            "path": "site/index.html",
+            "modified_at": "2026-07-07T21:38:50+00:00",
+            "bytes": 12792
+        },
+        "styles.css": {
+            "path": "site/styles.css",
+            "modified_at": "2026-07-07T21:38:50+00:00",
+            "bytes": 8288
+        }
+    }
+}

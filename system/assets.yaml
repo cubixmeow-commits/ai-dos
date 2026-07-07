@@ -215,6 +215,85 @@ assets: &id001
   public_url: null
   created_by_mission: Mission 009
   last_major_update: Mission 009
+- id: repository-intelligence-php
+  type: compiler
+  name: RepositoryIntelligence.php
+  purpose: Repository Intelligence Layer — manifest, packages, validation, lookup.
+  short_description: Intelligence compiler module.
+  source:
+    path: compiler/RepositoryIntelligence.php
+  public:
+    url: null
+  created_by: Mission 010
+  updated_by: Mission 010
+  depends_on:
+  - compiler-compile-php
+  - asset-registry
+  outputs:
+  - site-data-manifest-json
+  - site-data-context-packages-json
+  - site-data-dependency-report-json
+  - site-data-repository-json
+  editable: true
+  generated: false
+  status: active
+  notes: null
+  path: compiler/RepositoryIntelligence.php
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 010
+  last_major_update: Mission 010
+- id: context-packages-yaml
+  type: file
+  name: context-packages.yaml
+  purpose: Agent context package definitions.
+  short_description: Context package source.
+  source:
+    path: system/context-packages.yaml
+  public:
+    url: null
+  created_by: Mission 010
+  updated_by: Mission 010
+  depends_on:
+  - asset-registry
+  outputs:
+  - site-data-context-packages-json
+  editable: true
+  generated: false
+  status: active
+  notes: null
+  path: system/context-packages.yaml
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 010
+  last_major_update: Mission 010
+- id: repository-manifest
+  type: file
+  name: manifest.yaml
+  purpose: Top-level pointer graph for Repository Intelligence.
+  short_description: Repository manifest source.
+  source:
+    path: system/manifest.yaml
+  public:
+    url: null
+  created_by: Mission 010
+  updated_by: Mission 010
+  depends_on:
+  - asset-registry
+  outputs:
+  - site-data-manifest-json
+  editable: true
+  generated: false
+  status: active
+  notes: References only; values compiled to manifest.json.
+  path: system/manifest.yaml
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 010
+  last_major_update: Mission 010
 - id: file-index-legacy-shim
   type: file
   name: file-index.yaml (legacy shim)
@@ -1191,4 +1270,100 @@ assets: &id001
   public_url: null
   created_by_mission: Mission 009
   last_major_update: Mission 009
+- id: site-data-manifest-json
+  type: generated-file
+  name: manifest.json
+  purpose: Compiled repository manifest.
+  short_description: manifest.json
+  source:
+    path: site/data/manifest.json
+  public:
+    url: https://cubixmeow.com/ai-dos/site/data/manifest.json
+  created_by: Mission 010
+  updated_by: Mission 010
+  depends_on:
+  - compiler-compile-php
+  outputs: []
+  editable: false
+  generated: true
+  status: active
+  notes: null
+  path: site/data/manifest.json
+  safe_to_edit: false
+  source_or_generated: generated
+  public_url: https://cubixmeow.com/ai-dos/site/data/manifest.json
+  created_by_mission: Mission 010
+  last_major_update: Mission 010
+- id: site-data-context-packages-json
+  type: generated-file
+  name: context-packages.json
+  purpose: Compiled context packages.
+  short_description: context-packages.json
+  source:
+    path: site/data/context-packages.json
+  public:
+    url: https://cubixmeow.com/ai-dos/site/data/context-packages.json
+  created_by: Mission 010
+  updated_by: Mission 010
+  depends_on:
+  - compiler-compile-php
+  outputs: []
+  editable: false
+  generated: true
+  status: active
+  notes: null
+  path: site/data/context-packages.json
+  safe_to_edit: false
+  source_or_generated: generated
+  public_url: https://cubixmeow.com/ai-dos/site/data/context-packages.json
+  created_by_mission: Mission 010
+  last_major_update: Mission 010
+- id: site-data-dependency-report-json
+  type: generated-file
+  name: dependency-report.json
+  purpose: Asset dependency validation report.
+  short_description: dependency-report.json
+  source:
+    path: site/data/dependency-report.json
+  public:
+    url: https://cubixmeow.com/ai-dos/site/data/dependency-report.json
+  created_by: Mission 010
+  updated_by: Mission 010
+  depends_on:
+  - compiler-compile-php
+  outputs: []
+  editable: false
+  generated: true
+  status: active
+  notes: null
+  path: site/data/dependency-report.json
+  safe_to_edit: false
+  source_or_generated: generated
+  public_url: https://cubixmeow.com/ai-dos/site/data/dependency-report.json
+  created_by_mission: Mission 010
+  last_major_update: Mission 010
+- id: site-data-repository-json
+  type: generated-file
+  name: repository.json
+  purpose: Repository lookup indexes and query examples.
+  short_description: repository.json
+  source:
+    path: site/data/repository.json
+  public:
+    url: https://cubixmeow.com/ai-dos/site/data/repository.json
+  created_by: Mission 010
+  updated_by: Mission 010
+  depends_on:
+  - compiler-compile-php
+  outputs: []
+  editable: false
+  generated: true
+  status: active
+  notes: null
+  path: site/data/repository.json
+  safe_to_edit: false
+  source_or_generated: generated
+  public_url: https://cubixmeow.com/ai-dos/site/data/repository.json
+  created_by_mission: Mission 010
+  last_major_update: Mission 010
 entries: *id001
