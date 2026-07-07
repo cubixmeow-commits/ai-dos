@@ -116,4 +116,68 @@ This mission changed AI-DOS itself in the following ways:
 
 ---
 
+## Addendum: Asset Registry upgrade (Mission 009 follow-up)
+
+*Same mission, no new mission number. The file index evolved into the Asset
+Registry per AI-DOS subsystem improvement practice.*
+
+### What changed
+
+| Before (v1) | After (v2) |
+|---|---|
+| `file-index.yaml` indexed files only | `assets.yaml` registers all asset types |
+| Flat `path` / `type` fields | Full schema: `id`, `source.path`, `public.url`, `depends_on`, `outputs`, etc. |
+| No relationships | Key pipelines linked (compiler → JSON → Mission Control) |
+| `file_index` in organization.json | `asset_registry` canonical + derived `file_index` for compat |
+
+### New canonical files
+
+- [system/assets.yaml](../../system/assets.yaml) — 49 assets, schema v2
+- [system/assets.md](../../system/assets.md) — human-readable registry
+
+### Asset types supported
+
+`file`, `directory`, `compiler`, `generated-file`, `website`, `workflow`,
+`github-action`, `template`, `prompt`, `mission`, `api`, `service` — extensible
+without schema redesign.
+
+### Key relationships documented
+
+| Asset ID | Depends on | Outputs |
+|---|---|---|
+| `compiler-compile-php` | `asset-registry`, company docs, Backlog | `organization.json`, `missions.json`, Mission Control, styles |
+| `site-data-organization-json` | `compiler-compile-php`, `asset-registry` | — |
+| `site-index-html` | organization + missions JSON, styles | — |
+| Mission folders | — | corresponding `report.md` assets |
+
+### Compiler update
+
+`organization.json` now includes:
+
+- **`asset_registry`** — summarized assets with relationships (canonical source: `assets.yaml`)
+- **`file_index`** — derived v1-compat view (not a second source of truth)
+
+### How to use the Asset Registry
+
+Answer these from [assets.md](../../system/assets.md) or [assets.yaml](../../system/assets.yaml):
+
+1. **Where is this implemented?** → `source.path`
+2. **What URL opens it?** → `public.url` or Public URLs table in assets.md
+3. **What generated this?** → parent asset's `outputs` or child's `depends_on`
+4. **Is it safe to edit?** → `editable` (false for generated assets)
+5. **What depends on it?** → `outputs` lists downstream asset IDs
+
+### What AI-DOS learned (addendum)
+
+- **Subsystem evolution beats mission sprawl** — refining Mission 009 in place
+  kept history cleaner than opening Mission 010 for a schema upgrade.
+- **Files are assets, not the whole model** — compilers, workflows, websites,
+  and missions are first-class registry entries.
+- **Simple references suffice** — `depends_on` / `outputs` asset IDs replace
+  the need for a graph database.
+- **Backward compatibility is cheap** — legacy shims and derived JSON views
+  let old tools keep working while the registry grows.
+
+---
+
 Approve Mission 010: V2 Foundation & Sequencing Reconciliation? Y/N

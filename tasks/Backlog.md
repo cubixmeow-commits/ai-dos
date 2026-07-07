@@ -16,19 +16,21 @@ architecture (Mission 007). Retroactively align mission numbering in README.
 - `system/portfolio.yaml` — Portfolio Projects registry (P001 candidate)
 - Reconcile README.md mission numbering and current state
 - Add renumbering protocol to Standards
-- Coordinate with `system/file-index.yaml` (Mission 009) — no duplicate registries
+- Coordinate with `system/assets.yaml` (Mission 009 Asset Registry) — no duplicate registries
 
 **Explicitly out of scope:** full V2 capability implementation; Mission 006
 artifact changes.
 
-## Mission 009 Record — File Index Foundation
+## Mission 009 Record — File Index Foundation → Asset Registry
 
-Mission 009 created the canonical master file index:
+Mission 009 created the canonical registry layer, which evolved within the
+same mission from a file index to the **Asset Registry**:
 
-- `system/file-index.yaml` — machine-readable map of important files and URLs
-- `system/file-index.md` — iPhone-friendly companion
-- Standards §5 — file index maintenance rules
-- Compiler `file_index` summary in `organization.json`
+- `system/assets.yaml` — canonical Asset Registry (v2 schema, 49 assets)
+- `system/assets.md` — iPhone-friendly companion
+- `system/file-index.yaml` / `file-index.md` — legacy compatibility shims
+- Standards §5 — asset registry maintenance rules
+- Compiler `asset_registry` + derived `file_index` in `organization.json`
 
 See [missions/009-file-index-foundation/report.md](../missions/009-file-index-foundation/report.md).
 

@@ -9,7 +9,8 @@ AI-DOS needs one reliable place to answer: what file exists, where it is,
 what it does, whether it is source or generated, whether it is safe to edit,
 what public URL maps to it, and which mission created or last changed it.
 Mission 007 V2 architecture planned a `system/` registry layer; this mission
-delivers the first permanent piece — the master file index.
+delivers the first permanent piece — evolving from a file index into the
+**Asset Registry**.
 
 ## Mission Objective
 
