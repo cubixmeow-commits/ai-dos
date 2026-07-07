@@ -13,6 +13,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/RepositoryIntelligence.php';
 require_once __DIR__ . '/DecisionRecords.php';
 require_once __DIR__ . '/ExecutionEngine.php';
+require_once __DIR__ . '/PortfolioRegistry.php';
 
 final class RepositoryCompiler
 {
@@ -60,7 +61,8 @@ final class RepositoryCompiler
         $contextPackages = $intelligence->compileContextPackages();
         $decisions = (new DecisionRecords($this->root))->compile();
         $executionEngine = (new ExecutionEngine($this->root))->compile($contextPackages, $organization);
-        $repository = $intelligence->compileRepository($manifest, $contextPackages, $dependencyReport, $decisions, $executionEngine);
+        $portfolio = (new PortfolioRegistry($this->root))->compile();
+        $repository = $intelligence->compileRepository($manifest, $contextPackages, $dependencyReport, $decisions, $executionEngine, $portfolio);
 
         $this->missions = $this->sanitizeForJson($this->missions);
         $organization = $this->sanitizeForJson($organization);
@@ -70,6 +72,7 @@ final class RepositoryCompiler
         $repository = $this->sanitizeForJson($repository);
         $decisions = $this->sanitizeForJson($decisions);
         $executionEngine = $this->sanitizeForJson($executionEngine);
+        $portfolio = $this->sanitizeForJson($portfolio);
 
         $writes = [
             'missions.json' => $this->missions,
@@ -80,6 +83,7 @@ final class RepositoryCompiler
             'repository.json' => $repository,
             'decisions.json' => $decisions,
             'execution-engine.json' => $executionEngine,
+            'portfolio.json' => $portfolio,
         ];
 
         foreach ($writes as $file => $data) {
@@ -95,7 +99,7 @@ final class RepositoryCompiler
         file_put_contents($this->siteDir . '/styles.css', $this->renderStylesCss());
 
         $this->writeln('Compiled ' . count($this->missions) . ' missions to site/data/');
-        $this->writeln('Generated repository intelligence, decisions, execution-engine.json');
+        $this->writeln('Generated repository intelligence, decisions, execution-engine, portfolio.json');
         $this->writeln('Generated site/index.html and site/styles.css');
 
         return 0;
@@ -247,7 +251,7 @@ final class RepositoryCompiler
         $organization = [
             'compiled_at' => gmdate('c'),
             'compiler' => 'Repository Compiler (PHP)',
-            'compiler_version' => '1.5.0-mission-012',
+            'compiler_version' => '1.6.0-mission-014',
             'current_mission' => $currentMission,
             'next_mission' => $nextMission,
             'completed_mission_count' => count($completed),
@@ -886,7 +890,7 @@ final class RepositoryCompiler
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI-DOS | Mission Control</title>
   <meta name="description" content="AI-DOS Mission Control — compiled from repository source." />
-  <link rel="stylesheet" href="styles.css?v=mission012" />
+  <link rel="stylesheet" href="styles.css?v=mission014" />
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
@@ -949,6 +953,12 @@ final class RepositoryCompiler
     <section class="frame" id="next-section">
       <h2>Next Mission</h2>
       <div class="next-card" id="next-card"></div>
+    </section>
+
+    <section class="frame" id="portfolio-section">
+      <h2>Portfolio Products</h2>
+      <p class="lead">External products built by AI-DOS — from <code>system/portfolio.yaml</code>.</p>
+      <ul class="portfolio-list" id="portfolio-list"></ul>
     </section>
 
     <section class="frame" id="execution-section">
@@ -1036,7 +1046,8 @@ final class RepositoryCompiler
         'data/dependency-report.json',
         'data/repository.json',
         'data/decisions.json',
-        'data/execution-engine.json'
+        'data/execution-engine.json',
+        'data/portfolio.json'
       ];
 
       const responses = await Promise.all(endpoints.map((e) => fetch(e)));
@@ -1054,6 +1065,7 @@ final class RepositoryCompiler
       const repository = responses[5].ok ? await responses[5].json() : null;
       const decisions = responses[6].ok ? await responses[6].json() : null;
       const execution = responses[7].ok ? await responses[7].json() : null;
+      const portfolio = responses[8].ok ? await responses[8].json() : null;
 
       const stack = document.getElementById('arch-stack');
       const layers = [
@@ -1162,6 +1174,25 @@ final class RepositoryCompiler
         nextCard.appendChild(el('p', 'next-source', 'Source: ' + (org.next_mission.source || 'tasks/Backlog.md')));
       } else {
         nextCard.appendChild(el('p', null, 'No next mission declared in Backlog.md'));
+      }
+
+      if (portfolio && portfolio.projects) {
+        const pList = document.getElementById('portfolio-list');
+        portfolio.projects.forEach((proj) => {
+          const li = el('li');
+          const link = el('a', null, proj.name || proj.id);
+          if (proj.public_url) {
+            link.href = proj.public_url;
+            link.target = '_blank';
+            link.rel = 'noopener';
+          }
+          li.appendChild(link);
+          li.appendChild(document.createTextNode(' — ' + (proj.problem || proj.status || '')));
+          if (proj.path) {
+            li.appendChild(el('p', 'muted', proj.path));
+          }
+          pList.appendChild(li);
+        });
       }
 
       if (execution) {
@@ -1373,6 +1404,10 @@ HTML;
 .deploy-grid span { display: block; font-size: 0.82rem; color: var(--muted); margin-bottom: 0.15rem; }
 .decision-list { margin: 0; padding-left: 1.1rem; color: var(--muted); }
 .decision-list li { margin-bottom: 0.55rem; }
+.portfolio-list { margin: 0; padding-left: 1.1rem; color: var(--muted); }
+.portfolio-list li { margin-bottom: 0.65rem; }
+.portfolio-list a { color: var(--cyan); text-decoration: none; font-weight: 600; }
+.portfolio-list a:hover { text-decoration: underline; }
 .role-list, .flow-list { margin: 0; padding-left: 1.1rem; color: var(--muted); }
 .role-list li, .flow-list li { margin-bottom: 0.45rem; }
 .subhead { margin: 1rem 0 0.5rem; font-size: 0.95rem; color: var(--cyan); }

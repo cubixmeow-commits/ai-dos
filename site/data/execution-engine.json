@@ -1,5 +1,5 @@
 {
-    "compiled_at": "2026-07-07T23:26:31+00:00",
+    "compiled_at": "2026-07-07T23:41:11+00:00",
     "source": "system/execution-engine.yaml",
     "subsystem": "execution-engine",
     "status": "minimal-implementation",
@@ -434,31 +434,31 @@
                 "id": "mission-context",
                 "name": "Mission Context",
                 "purpose": "Execute, review, or approve missions without scanning the full repository.",
-                "file_count": 42
+                "file_count": 45
             },
             {
                 "id": "architecture-context",
                 "name": "Architecture Context",
                 "purpose": "Design or implement V2 capabilities against the approved blueprint.",
-                "file_count": 14
+                "file_count": 15
             },
             {
                 "id": "compiler-context",
                 "name": "Compiler Context",
                 "purpose": "Modify or extend the Repository Compiler and generated artifacts.",
-                "file_count": 21
+                "file_count": 22
             },
             {
                 "id": "website-context",
                 "name": "Website Context",
                 "purpose": "Work on Mission Control, showcase, or public site artifacts.",
-                "file_count": 12
+                "file_count": 13
             },
             {
                 "id": "governance-context",
                 "name": "Governance Context",
                 "purpose": "Governance, standards, and organizational memory decisions.",
-                "file_count": 12
+                "file_count": 13
             }
         ]
     },
@@ -600,7 +600,7 @@
             {
                 "id": "mission-013-first-external-product",
                 "title": "Build the First External Product Using AI-DOS",
-                "status": "proposed",
+                "status": "completed",
                 "created_by": "Mission 012",
                 "related_mission": "013",
                 "operator_request": "Use AI-DOS Execution Engine to build a real software product — not more AI-DOS infrastructure.\n",
@@ -775,41 +775,29 @@
         ]
     },
     "latest_execution_plan": {
-        "id": "mission-013-first-external-product",
-        "title": "Build the First External Product Using AI-DOS",
-        "status": "proposed",
+        "id": "example-inventory-saas",
+        "title": "Inventory Management SaaS (example intake)",
+        "status": "example",
         "created_by": "Mission 012",
-        "related_mission": "013",
-        "operator_request": "Use AI-DOS Execution Engine to build a real software product — not more AI-DOS infrastructure.\n",
-        "objective": "Prove AI-DOS can coordinate product-building work by shipping the first external product using role-based plans, context packages, and merge-based governance.\n",
+        "operator_request": "Build an inventory management SaaS.",
+        "objective": "Produce a structured plan for a multi-tenant inventory management SaaS without building it. Demonstrates mission intake and work decomposition.\n",
         "scope": {
             "in": [
-                "one focused MVP product (operator selects candidate at mission start)",
-                "execution plan driven development via Cursor and Claude Code",
-                "mission report with cold-start proof"
+                "research competitive landscape",
+                "define MVP architecture",
+                "outline backend, frontend, and deployment work units"
             ],
             "out": [
-                "AI-DOS infrastructure changes unless required for the product",
-                "autonomous multi-agent orchestration",
-                "fabricated execution history"
+                "actual product code",
+                "autonomous agent execution",
+                "external API integration"
             ]
         },
-        "product_candidates": [
-            {
-                "id": "invoice-follow-up",
-                "source": "missions/003-prove-the-loop/report.md",
-                "note": "Mission 006 validation paused; operator may resume or choose another MVP"
-            },
-            {
-                "id": "operator-choice",
-                "note": "Operator defines product in Mission 013 mission.md before execution"
-            }
-        ],
         "work_units": [
             {
-                "id": "m13-w1-research",
+                "id": "w1-research",
                 "type": "research",
-                "title": "Confirm product scope and validation evidence",
+                "title": "Market and competitor scan",
                 "role": "research-specialist",
                 "practical_tool": "claude-code",
                 "context_packages": [
@@ -817,15 +805,15 @@
                     "governance-context"
                 ],
                 "expected_outputs": [
-                    "scoped MVP definition",
-                    "evidence tier summary for key claims"
+                    "evidence-backed problem statement",
+                    "competitor shortlist"
                 ],
                 "depends_on": []
             },
             {
-                "id": "m13-w2-architecture",
+                "id": "w2-architecture",
                 "type": "architecture",
-                "title": "Product architecture and repo layout",
+                "title": "MVP system design",
                 "role": "principal-architect",
                 "practical_tool": "claude-code",
                 "context_packages": [
@@ -833,17 +821,18 @@
                     "governance-context"
                 ],
                 "expected_outputs": [
-                    "architecture.md in mission folder",
-                    "tech stack decision record if needed"
+                    "data model sketch",
+                    "API surface outline",
+                    "deployment approach"
                 ],
                 "depends_on": [
-                    "m13-w1-research"
+                    "w1-research"
                 ]
             },
             {
-                "id": "m13-w3-backend",
+                "id": "w3-backend",
                 "type": "backend",
-                "title": "Core product backend",
+                "title": "Core inventory API",
                 "role": "backend-engineer",
                 "practical_tool": "cursor",
                 "context_packages": [
@@ -851,16 +840,16 @@
                     "compiler-context"
                 ],
                 "expected_outputs": [
-                    "working API or server logic per architecture"
+                    "API routes for SKUs, stock levels, locations"
                 ],
                 "depends_on": [
-                    "m13-w2-architecture"
+                    "w2-architecture"
                 ]
             },
             {
-                "id": "m13-w4-frontend",
-                "type": "ui",
-                "title": "Product UI for operator and users",
+                "id": "w4-frontend",
+                "type": "frontend",
+                "title": "Operator dashboard UI",
                 "role": "frontend-builder",
                 "practical_tool": "cursor",
                 "context_packages": [
@@ -868,97 +857,64 @@
                     "architecture-context"
                 ],
                 "expected_outputs": [
-                    "deployable UI matching MVP scope"
+                    "inventory list and adjust-stock flows"
                 ],
                 "depends_on": [
-                    "m13-w2-architecture"
+                    "w2-architecture"
                 ]
             },
             {
-                "id": "m13-w5-testing",
+                "id": "w5-testing",
                 "type": "testing",
-                "title": "Smoke test and acceptance criteria",
+                "title": "Smoke and acceptance tests",
                 "role": "qa-engineer",
                 "practical_tool": "cursor",
                 "context_packages": [
-                    "mission-context"
-                ],
-                "expected_outputs": [
-                    "test results in mission report"
-                ],
-                "depends_on": [
-                    "m13-w3-backend",
-                    "m13-w4-frontend"
-                ]
-            },
-            {
-                "id": "m13-w6-docs",
-                "type": "documentation",
-                "title": "Operator README and deployment notes",
-                "role": "documentation-writer",
-                "practical_tool": "cursor",
-                "context_packages": [
                     "mission-context",
-                    "governance-context"
+                    "compiler-context"
                 ],
                 "expected_outputs": [
-                    "product README",
-                    "how to run / deploy"
+                    "test checklist",
+                    "critical path smoke tests"
                 ],
                 "depends_on": [
-                    "m13-w5-testing"
+                    "w3-backend",
+                    "w4-frontend"
                 ]
             },
             {
-                "id": "m13-w7-review",
+                "id": "w6-review",
                 "type": "review",
-                "title": "Pre-merge review and approval question",
+                "title": "Architecture and governance review",
                 "role": "reviewer",
                 "practical_tool": "claude-code",
                 "context_packages": [
                     "governance-context",
-                    "mission-context"
+                    "architecture-context"
                 ],
                 "expected_outputs": [
-                    "report.md with approval question"
+                    "review notes",
+                    "merge readiness assessment"
                 ],
                 "depends_on": [
-                    "m13-w6-docs"
+                    "w5-testing"
                 ]
             }
         ],
-        "operator_approval_point": "Operator approves Mission 013 mission.md, then reviews report.md and merges to main. No product work is canonical until merged.\n",
-        "routing_summary": {
-            "claude_code": {
-                "units": [
-                    "m13-w1-research",
-                    "m13-w2-architecture",
-                    "m13-w7-review"
-                ],
-                "why": "architecture, synthesis, governance review"
-            },
-            "cursor": {
-                "units": [
-                    "m13-w3-backend",
-                    "m13-w4-frontend",
-                    "m13-w5-testing",
-                    "m13-w6-docs"
-                ],
-                "why": "implementation, UI, tests, documentation"
-            }
-        },
-        "source_path": "system/execution-plans/mission-013-first-external-product.yaml"
+        "operator_approval_point": "Operator reviews this plan, defines Mission 013 (or other mission), merges mission brief — then pastes work units to assigned tools manually.\n",
+        "paste_instructions": "1. Copy one work unit block into Claude Code (architecture/research/review)\n   or Cursor (implementation/testing/docs).\n2. Attach listed context package files from the repository.\n3. Commit results per Knowledge Preservation standard.\n4. Merge only after operator approval.\n",
+        "source_path": "system/execution-plans/example-inventory-saas.yaml"
     },
     "next_product_mission": {
         "mission_id": "013",
         "title": "Build the First External Product Using AI-DOS",
         "plan_id": "mission-013-first-external-product",
         "plan_path": "system/execution-plans/mission-013-first-external-product.yaml",
-        "status": "proposed",
+        "status": "completed",
         "work_unit_count": 7,
         "backlog_next": {
-            "id": "014",
-            "title": "Improve or Launch First External Product",
+            "id": "015",
+            "title": "Continue Product Portfolio",
             "source": "tasks/Backlog.md"
         }
     },

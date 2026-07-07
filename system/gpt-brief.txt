@@ -1,19 +1,21 @@
 AI-DOS MOBILE GPT BRIEF (select all, copy, paste into GPT)
 
-STATUS: Mission 013 complete. First external product shipped (P001).
+STATUS: Mission 014 complete. AI-DOS independently built Invoice Chase (P002).
 
-PRODUCT: Billable Rate Calculator — products/001-billable-rate-calculator/
+PRODUCTS:
+P001 Billable Rate Calculator — /products/001-billable-rate-calculator/
+P002 Invoice Chase — /products/002-invoice-chase/
 
-PRODUCT URL: https://cubixmeow.com/ai-dos/products/001-billable-rate-calculator/
+P002 URL: https://cubixmeow.com/ai-dos/products/002-invoice-chase/
 
 AI-DOS: https://cubixmeow.com/ai-dos/site/
 
-MISSION: missions/013-first-external-product/
+PORTFOLIO JSON: site/data/portfolio.json
 
-NEXT: Mission 014 Improve or Launch First External Product
+MISSION: missions/014-ai-dos-independent-product-test/
 
-APPROVE: Mission 014 Improve or Launch First External Product? Y/N
+NEXT: Mission 015 Continue Product Portfolio
 
-STACK: static HTML/CSS/JS — no backend v1
+APPROVE: Mission 015 Continue Product Portfolio? Y/N
 
-WHAT IT DOES: calculates minimum freelance hourly rate from take-home goal, tax, expenses, billable hours
+WHAT P002 DOES: generates 5 escalating late-invoice reminder emails — copy and send yourself

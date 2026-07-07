@@ -1,0 +1,29 @@
+{
+    "compiled_at": "2026-07-07T23:41:11+00:00",
+    "source": "system/portfolio.yaml",
+    "project_count": 2,
+    "projects": [
+        {
+            "id": "P001",
+            "name": "Billable Rate Calculator",
+            "slug": "001-billable-rate-calculator",
+            "path": "products/001-billable-rate-calculator/",
+            "public_url": "https://cubixmeow.com/ai-dos/products/001-billable-rate-calculator/",
+            "status": "active",
+            "created_by_mission": "013",
+            "problem": "Freelancers unsure what hourly rate hits income goals",
+            "stack": "static HTML/CSS/JS"
+        },
+        {
+            "id": "P002",
+            "name": "Invoice Chase",
+            "slug": "002-invoice-chase",
+            "path": "products/002-invoice-chase/",
+            "public_url": "https://cubixmeow.com/ai-dos/products/002-invoice-chase/",
+            "status": "active",
+            "created_by_mission": "014",
+            "problem": "Freelancers dread writing late-invoice reminder emails",
+            "stack": "static HTML/CSS/JS"
+        }
+    ]
+}

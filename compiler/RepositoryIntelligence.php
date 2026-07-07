@@ -197,6 +197,7 @@ final class RepositoryIntelligence
      * @param array<string, mixed> $dependencyReport
      * @param array<string, mixed>|null $decisions
      * @param array<string, mixed>|null $executionEngine
+     * @param array<string, mixed>|null $portfolio
      * @return array<string, mixed>
      */
     public function compileRepository(
@@ -204,7 +205,8 @@ final class RepositoryIntelligence
         array $contextPackages,
         array $dependencyReport,
         ?array $decisions = null,
-        ?array $executionEngine = null
+        ?array $executionEngine = null,
+        ?array $portfolio = null
     ): array {
         $pathToPackages = $this->buildPathToPackagesIndex($contextPackages);
         $generatedBy = $this->buildReverseOutputsIndex();
@@ -269,6 +271,11 @@ final class RepositoryIntelligence
                 'status' => $executionEngine['status'] ?? null,
                 'plan_count' => $executionEngine['execution_plans']['plan_count'] ?? 0,
                 'role_count' => $executionEngine['worker_roles']['role_count'] ?? 0,
+            ] : null,
+            'portfolio' => $portfolio !== null ? [
+                'source' => 'system/portfolio.yaml',
+                'compiled' => 'site/data/portfolio.json',
+                'project_count' => $portfolio['project_count'] ?? 0,
             ] : null,
             'lookup' => [
                 'by_id' => $byId,
@@ -408,6 +415,7 @@ final class RepositoryIntelligence
             'repository.json' => 'site/data/repository.json',
             'decisions.json' => 'site/data/decisions.json',
             'execution-engine.json' => 'site/data/execution-engine.json',
+            'portfolio.json' => 'site/data/portfolio.json',
             'index.html' => 'site/index.html',
             'styles.css' => 'site/styles.css',
         ];

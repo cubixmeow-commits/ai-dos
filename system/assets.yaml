@@ -7,7 +7,7 @@ meta:
   registry: asset-registry
   deployment_root: https://cubixmeow.com/ai-dos/
   canonical_source: system/assets.yaml
-  maintained_by: Mission 013
+  maintained_by: Mission 014
   last_updated: '2026-07-07'
   schema:
     asset_types:
@@ -310,6 +310,7 @@ assets: &id001
   - repository-intelligence-php
   - decision-records-php
   - execution-engine-php
+  - portfolio-registry-php
   outputs:
   - site-data-organization-json
   - site-data-missions-json
@@ -319,6 +320,7 @@ assets: &id001
   - site-data-repository-json
   - site-data-decisions-json
   - site-data-execution-engine-json
+  - site-data-portfolio-json
   - site-index-html
   - site-styles-css
   editable: true
@@ -1911,4 +1913,293 @@ assets: &id001
   public_url: null
   created_by_mission: Mission 013
   last_major_update: Mission 013
+- id: portfolio-registry-yaml
+  type: file
+  name: portfolio.yaml
+  purpose: Portfolio project registry (external products).
+  short_description: Portfolio registry source.
+  source:
+    path: system/portfolio.yaml
+  public:
+    url: null
+  created_by: Mission 014
+  updated_by: Mission 014
+  depends_on: []
+  outputs:
+  - site-data-portfolio-json
+  editable: true
+  generated: false
+  status: active
+  notes: null
+  path: system/portfolio.yaml
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 014
+  last_major_update: Mission 014
+- id: portfolio-registry-php
+  type: compiler
+  name: PortfolioRegistry.php
+  purpose: Compiles system/portfolio.yaml to portfolio.json.
+  short_description: Portfolio compiler module.
+  source:
+    path: compiler/PortfolioRegistry.php
+  public:
+    url: null
+  created_by: Mission 014
+  updated_by: Mission 014
+  depends_on:
+  - portfolio-registry-yaml
+  outputs:
+  - site-data-portfolio-json
+  editable: true
+  generated: false
+  status: active
+  notes: null
+  path: compiler/PortfolioRegistry.php
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 014
+  last_major_update: Mission 014
+- id: site-data-portfolio-json
+  type: generated-file
+  name: portfolio.json
+  purpose: Compiled portfolio registry.
+  short_description: portfolio.json
+  source:
+    path: site/data/portfolio.json
+  public:
+    url: https://cubixmeow.com/ai-dos/site/data/portfolio.json
+  created_by: Mission 014
+  updated_by: Mission 014
+  depends_on:
+  - compiler-compile-php
+  outputs: []
+  editable: false
+  generated: true
+  status: active
+  notes: null
+  path: site/data/portfolio.json
+  safe_to_edit: false
+  source_or_generated: generated
+  public_url: https://cubixmeow.com/ai-dos/site/data/portfolio.json
+  created_by_mission: Mission 014
+  last_major_update: Mission 014
+- id: portfolio-p002-invoice-chase
+  type: directory
+  name: products/002-invoice-chase
+  purpose: Portfolio Project 002 — Invoice Chase (Mission 014).
+  short_description: Late-invoice email sequence generator.
+  source:
+    path: products/002-invoice-chase/
+  public:
+    url: https://cubixmeow.com/ai-dos/products/002-invoice-chase/
+  created_by: Mission 014
+  updated_by: Mission 014
+  depends_on: []
+  outputs:
+  - portfolio-p002-index-html
+  editable: true
+  generated: false
+  status: active
+  notes: Autonomous product selection Mission 014.
+  path: products/002-invoice-chase/
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: https://cubixmeow.com/ai-dos/products/002-invoice-chase/
+  created_by_mission: Mission 014
+  last_major_update: Mission 014
+- id: portfolio-p002-index-html
+  type: website
+  name: index.html
+  purpose: Invoice Chase main UI.
+  short_description: Invoice Chase homepage.
+  source:
+    path: products/002-invoice-chase/index.html
+  public:
+    url: https://cubixmeow.com/ai-dos/products/002-invoice-chase/
+  created_by: Mission 014
+  updated_by: Mission 014
+  depends_on:
+  - portfolio-p002-invoice-chase
+  outputs: []
+  editable: true
+  generated: false
+  status: active
+  notes: null
+  path: products/002-invoice-chase/index.html
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: https://cubixmeow.com/ai-dos/products/002-invoice-chase/
+  created_by_mission: Mission 014
+  last_major_update: Mission 014
+- id: portfolio-p002-styles-css
+  type: file
+  name: styles.css
+  purpose: Invoice Chase styles.
+  short_description: Product stylesheet.
+  source:
+    path: products/002-invoice-chase/styles.css
+  public:
+    url: https://cubixmeow.com/ai-dos/products/002-invoice-chase/styles.css
+  created_by: Mission 014
+  updated_by: Mission 014
+  depends_on:
+  - portfolio-p002-index-html
+  outputs: []
+  editable: true
+  generated: false
+  status: active
+  notes: null
+  path: products/002-invoice-chase/styles.css
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: https://cubixmeow.com/ai-dos/products/002-invoice-chase/styles.css
+  created_by_mission: Mission 014
+  last_major_update: Mission 014
+- id: portfolio-p002-app-js
+  type: file
+  name: app.js
+  purpose: Invoice Chase logic and templates.
+  short_description: Product JavaScript.
+  source:
+    path: products/002-invoice-chase/app.js
+  public:
+    url: https://cubixmeow.com/ai-dos/products/002-invoice-chase/app.js
+  created_by: Mission 014
+  updated_by: Mission 014
+  depends_on:
+  - portfolio-p002-index-html
+  outputs: []
+  editable: true
+  generated: false
+  status: active
+  notes: null
+  path: products/002-invoice-chase/app.js
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: https://cubixmeow.com/ai-dos/products/002-invoice-chase/app.js
+  created_by_mission: Mission 014
+  last_major_update: Mission 014
+- id: portfolio-p002-readme-md
+  type: file
+  name: README.md
+  purpose: Invoice Chase documentation.
+  short_description: Product README.
+  source:
+    path: products/002-invoice-chase/README.md
+  public:
+    url: null
+  created_by: Mission 014
+  updated_by: Mission 014
+  depends_on:
+  - portfolio-p002-invoice-chase
+  outputs: []
+  editable: true
+  generated: false
+  status: active
+  notes: null
+  path: products/002-invoice-chase/README.md
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 014
+  last_major_update: Mission 014
+- id: decision-d008-invoice-chase
+  type: file
+  name: D008-invoice-chase-p002.md
+  purpose: Decision record for autonomous P002 selection.
+  short_description: Decision D008.
+  source:
+    path: decisions/D008-invoice-chase-p002.md
+  public:
+    url: null
+  created_by: Mission 014
+  updated_by: Mission 014
+  depends_on: []
+  outputs: []
+  editable: true
+  generated: false
+  status: active
+  notes: null
+  path: decisions/D008-invoice-chase-p002.md
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 014
+  last_major_update: Mission 014
+- id: missions-014-ai-dos-independent-product-test
+  type: mission
+  name: 'Mission folder: missions/014-ai-dos-independent-product-test'
+  purpose: Mission 014 — independent product test.
+  short_description: Independent Product Test mission folder.
+  source:
+    path: missions/014-ai-dos-independent-product-test/
+  public:
+    url: null
+  created_by: Mission 014
+  updated_by: Mission 014
+  depends_on: []
+  outputs:
+  - missions-014-ai-dos-independent-product-test-report-md
+  - portfolio-p002-invoice-chase
+  editable: true
+  generated: false
+  status: complete
+  notes: null
+  path: missions/014-ai-dos-independent-product-test/
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 014
+  last_major_update: Mission 014
+- id: missions-014-ai-dos-independent-product-test-mission-md
+  type: file
+  name: mission.md
+  purpose: Mission 014 brief.
+  short_description: Independent Product Test brief.
+  source:
+    path: missions/014-ai-dos-independent-product-test/mission.md
+  public:
+    url: null
+  created_by: Mission 014
+  updated_by: Mission 014
+  depends_on:
+  - missions-014-ai-dos-independent-product-test
+  outputs: []
+  editable: true
+  generated: false
+  status: complete
+  notes: null
+  path: missions/014-ai-dos-independent-product-test/mission.md
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 014
+  last_major_update: Mission 014
+- id: missions-014-ai-dos-independent-product-test-report-md
+  type: file
+  name: report.md
+  purpose: Mission 014 outcome — autonomous product test.
+  short_description: Independent Product Test report.
+  source:
+    path: missions/014-ai-dos-independent-product-test/report.md
+  public:
+    url: null
+  created_by: Mission 014
+  updated_by: Mission 014
+  depends_on:
+  - missions-014-ai-dos-independent-product-test
+  outputs: []
+  editable: true
+  generated: false
+  status: complete
+  notes: null
+  path: missions/014-ai-dos-independent-product-test/report.md
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 014
+  last_major_update: Mission 014
 entries: *id001

@@ -1,14 +1,14 @@
 {
-    "compiled_at": "2026-07-07T23:26:31+00:00",
+    "compiled_at": "2026-07-07T23:41:11+00:00",
     "compiler": "Repository Compiler (PHP)",
-    "compiler_version": "1.5.0-mission-012",
+    "compiler_version": "1.6.0-mission-014",
     "current_mission": null,
     "next_mission": {
-        "id": "014",
-        "title": "Improve or Launch First External Product",
+        "id": "015",
+        "title": "Continue Product Portfolio",
         "source": "tasks/Backlog.md"
     },
-    "completed_mission_count": 12,
+    "completed_mission_count": 13,
     "paused_missions": [
         {
             "id": "006",
@@ -33,7 +33,7 @@
     "asset_registry": {
         "source": "system/assets.yaml",
         "version": 2,
-        "asset_count": 78,
+        "asset_count": 90,
         "full_lookup": "site/data/repository.json"
     }
 }

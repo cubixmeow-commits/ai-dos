@@ -214,5 +214,21 @@
         "next_mission": "Mission 014: Improve or Launch First External Product",
         "has_report": true,
         "artifacts": []
+    },
+    {
+        "id": "014",
+        "slug": "ai-dos-independent-product-test",
+        "title": "AI-DOS Independent Product Test",
+        "status": "Complete — pending operator merge approval",
+        "status_category": "complete",
+        "path": "missions/014-ai-dos-independent-product-test",
+        "summary": "Mission 014 asked whether **AI-DOS can independently decide how to build software** — not whether Cursor can write code.",
+        "approval_question": "Approve Mission 015: Continue Product Portfolio? Y/N",
+        "what_ai_dos_learned": null,
+        "executed_by": "Cursor Cloud Agent (autonomous product authority)",
+        "confidence": null,
+        "next_mission": "Mission 015: Continue Product Portfolio",
+        "has_report": true,
+        "artifacts": []
     }
 ]

@@ -73,13 +73,14 @@ Missions **001–005** established governance, showcase, and merge-based approva
   [missions/011-architecture-integration/report.md](missions/011-architecture-integration/report.md).
 - **Mission 012** — Minimal Execution Engine (plans, roles, context routing). See
   [missions/012-execution-engine-foundation/report.md](missions/012-execution-engine-foundation/report.md).
-- **Mission 013** — First external product: Billable Rate Calculator (P001). See
+- **Mission 013** — Billable Rate Calculator (P001). See
   [missions/013-first-external-product/report.md](missions/013-first-external-product/report.md).
+- **Mission 014** — Invoice Chase (P002), built autonomously by AI-DOS. See
+  [missions/014-ai-dos-independent-product-test/report.md](missions/014-ai-dos-independent-product-test/report.md).
 
-**Next:** Mission 014 — Improve or Launch First External Product. See
-[tasks/Backlog.md](tasks/Backlog.md).
+**Next:** Mission 015 — Continue Product Portfolio. See [tasks/Backlog.md](tasks/Backlog.md).
 
-**Portfolio product:** [products/001-billable-rate-calculator/](products/001-billable-rate-calculator/)
+**Portfolio:** [products/001-billable-rate-calculator/](products/001-billable-rate-calculator/) · [products/002-invoice-chase/](products/002-invoice-chase/)
 
 **Mission Control:** [site/index.html](site/index.html) — compile with
 `php compiler/compile.php` after source changes.

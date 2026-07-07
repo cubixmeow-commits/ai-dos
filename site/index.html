@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI-DOS | Mission Control</title>
   <meta name="description" content="AI-DOS Mission Control — compiled from repository source." />
-  <link rel="stylesheet" href="styles.css?v=mission012" />
+  <link rel="stylesheet" href="styles.css?v=mission014" />
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
@@ -70,6 +70,12 @@
       <div class="next-card" id="next-card"></div>
     </section>
 
+    <section class="frame" id="portfolio-section">
+      <h2>Portfolio Products</h2>
+      <p class="lead">External products built by AI-DOS — from <code>system/portfolio.yaml</code>.</p>
+      <ul class="portfolio-list" id="portfolio-list"></ul>
+    </section>
+
     <section class="frame" id="execution-section">
       <h2>Execution Engine</h2>
       <p class="lead" id="execution-lead">Plans only — operator approves; workers execute manually.</p>
@@ -120,7 +126,7 @@
 
   <footer>
     <p class="canonical-line">Generated view only. Repository artifacts remain canonical.</p>
-    <p>Compiled at <span id="compiled-at">2026-07-07 23:26:31 UTC</span> by Repository Compiler (PHP)</p>
+    <p>Compiled at <span id="compiled-at">2026-07-07 23:41:11 UTC</span> by Repository Compiler (PHP)</p>
     <p>Source: <code>/missions/</code>, <code>/company/</code>, <code>/tasks/Backlog.md</code></p>
   </footer>
 
@@ -155,7 +161,8 @@
         'data/dependency-report.json',
         'data/repository.json',
         'data/decisions.json',
-        'data/execution-engine.json'
+        'data/execution-engine.json',
+        'data/portfolio.json'
       ];
 
       const responses = await Promise.all(endpoints.map((e) => fetch(e)));
@@ -173,6 +180,7 @@
       const repository = responses[5].ok ? await responses[5].json() : null;
       const decisions = responses[6].ok ? await responses[6].json() : null;
       const execution = responses[7].ok ? await responses[7].json() : null;
+      const portfolio = responses[8].ok ? await responses[8].json() : null;
 
       const stack = document.getElementById('arch-stack');
       const layers = [
@@ -281,6 +289,25 @@
         nextCard.appendChild(el('p', 'next-source', 'Source: ' + (org.next_mission.source || 'tasks/Backlog.md')));
       } else {
         nextCard.appendChild(el('p', null, 'No next mission declared in Backlog.md'));
+      }
+
+      if (portfolio && portfolio.projects) {
+        const pList = document.getElementById('portfolio-list');
+        portfolio.projects.forEach((proj) => {
+          const li = el('li');
+          const link = el('a', null, proj.name || proj.id);
+          if (proj.public_url) {
+            link.href = proj.public_url;
+            link.target = '_blank';
+            link.rel = 'noopener';
+          }
+          li.appendChild(link);
+          li.appendChild(document.createTextNode(' — ' + (proj.problem || proj.status || '')));
+          if (proj.path) {
+            li.appendChild(el('p', 'muted', proj.path));
+          }
+          pList.appendChild(li);
+        });
       }
 
       if (execution) {
