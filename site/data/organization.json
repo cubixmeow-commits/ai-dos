@@ -1,7 +1,7 @@
 {
-    "compiled_at": "2026-07-07T20:38:00+00:00",
+    "compiled_at": "2026-07-07T20:50:12+00:00",
     "compiler": "Repository Compiler (PHP)",
-    "compiler_version": "1.1.0-mission-009",
+    "compiler_version": "1.2.0-mission-009",
     "current_mission": null,
     "next_mission": {
         "id": "010",
@@ -28,16 +28,16 @@
     "strategic_pivot": "AI-DOS itself is the primary product. Portfolio Projects use a product-agnostic workflow; Mission 006 validates the first candidate (P001).",
     "repository_compiler_concept": "The repository is the source code of the organization. The Repository Compiler (PHP) transforms that source into human-readable Mission Control interfaces.",
     "file_index": {
-        "source": "system/file-index.yaml",
+        "source": "derived from system/assets.yaml",
         "parse_status": "ok",
-        "version": 1,
+        "version": 2,
         "deployment_root": "https://cubixmeow.com/ai-dos/",
         "last_updated": "2026-07-07",
-        "entry_count": 47,
+        "entry_count": 49,
         "entries": [
             {
                 "path": "README.md",
-                "type": "readme",
+                "type": "file",
                 "status": "active",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -45,7 +45,7 @@
             },
             {
                 "path": "company/Identity.md",
-                "type": "company",
+                "type": "file",
                 "status": "active",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -53,7 +53,7 @@
             },
             {
                 "path": "company/Principles.md",
-                "type": "company",
+                "type": "file",
                 "status": "active",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -61,7 +61,7 @@
             },
             {
                 "path": "company/Standards.md",
-                "type": "company",
+                "type": "file",
                 "status": "active",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -69,7 +69,7 @@
             },
             {
                 "path": "tasks/Backlog.md",
-                "type": "tasks",
+                "type": "file",
                 "status": "active",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -84,17 +84,33 @@
                 "source_or_generated": "source"
             },
             {
-                "path": "system/file-index.yaml",
-                "type": "system",
+                "path": "system/assets.yaml",
+                "type": "file",
                 "status": "active",
                 "public_url": null,
                 "safe_to_edit": true,
                 "source_or_generated": "source"
             },
             {
-                "path": "system/file-index.md",
-                "type": "system",
+                "path": "system/assets.md",
+                "type": "file",
                 "status": "active",
+                "public_url": null,
+                "safe_to_edit": true,
+                "source_or_generated": "source"
+            },
+            {
+                "path": "system/file-index.yaml",
+                "type": "file",
+                "status": "deprecated",
+                "public_url": null,
+                "safe_to_edit": true,
+                "source_or_generated": "source"
+            },
+            {
+                "path": "system/file-index.md",
+                "type": "file",
+                "status": "deprecated",
                 "public_url": null,
                 "safe_to_edit": true,
                 "source_or_generated": "source"
@@ -109,7 +125,7 @@
             },
             {
                 "path": "compiler/README.md",
-                "type": "compiler",
+                "type": "file",
                 "status": "active",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -117,7 +133,7 @@
             },
             {
                 "path": "site/index.html",
-                "type": "site",
+                "type": "website",
                 "status": "active",
                 "public_url": "https://cubixmeow.com/ai-dos/site/",
                 "safe_to_edit": false,
@@ -125,7 +141,7 @@
             },
             {
                 "path": "site/styles.css",
-                "type": "site",
+                "type": "generated-file",
                 "status": "active",
                 "public_url": "https://cubixmeow.com/ai-dos/site/styles.css",
                 "safe_to_edit": false,
@@ -133,7 +149,7 @@
             },
             {
                 "path": "site/data/missions.json",
-                "type": "site-data",
+                "type": "generated-file",
                 "status": "active",
                 "public_url": "https://cubixmeow.com/ai-dos/site/data/missions.json",
                 "safe_to_edit": false,
@@ -141,7 +157,7 @@
             },
             {
                 "path": "site/data/organization.json",
-                "type": "site-data",
+                "type": "generated-file",
                 "status": "active",
                 "public_url": "https://cubixmeow.com/ai-dos/site/data/organization.json",
                 "safe_to_edit": false,
@@ -149,7 +165,7 @@
             },
             {
                 "path": "site/validation/invoice-tool.html",
-                "type": "validation",
+                "type": "website",
                 "status": "active",
                 "public_url": "https://cubixmeow.com/ai-dos/site/validation/invoice-tool.html",
                 "safe_to_edit": true,
@@ -157,7 +173,7 @@
             },
             {
                 "path": ".github/workflows/compile-site.yml",
-                "type": "workflow",
+                "type": "github-action",
                 "status": "active",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -165,7 +181,7 @@
             },
             {
                 "path": "missions/001-bootstrap/",
-                "type": "mission",
+                "type": "directory",
                 "status": "complete",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -173,7 +189,7 @@
             },
             {
                 "path": "missions/001-bootstrap/mission.md",
-                "type": "mission-artifact",
+                "type": "file",
                 "status": "complete",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -181,7 +197,7 @@
             },
             {
                 "path": "missions/001-bootstrap/report.md",
-                "type": "mission-artifact",
+                "type": "file",
                 "status": "complete",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -189,7 +205,7 @@
             },
             {
                 "path": "missions/002-knowledge-preservation/",
-                "type": "mission",
+                "type": "directory",
                 "status": "complete",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -197,7 +213,7 @@
             },
             {
                 "path": "missions/002-knowledge-preservation/mission.md",
-                "type": "mission-artifact",
+                "type": "file",
                 "status": "complete",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -205,7 +221,7 @@
             },
             {
                 "path": "missions/002-knowledge-preservation/report.md",
-                "type": "mission-artifact",
+                "type": "file",
                 "status": "complete",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -213,7 +229,7 @@
             },
             {
                 "path": "missions/003-prove-the-loop/",
-                "type": "mission",
+                "type": "directory",
                 "status": "complete",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -221,7 +237,7 @@
             },
             {
                 "path": "missions/003-prove-the-loop/mission.md",
-                "type": "mission-artifact",
+                "type": "file",
                 "status": "complete",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -229,7 +245,7 @@
             },
             {
                 "path": "missions/003-prove-the-loop/report.md",
-                "type": "mission-artifact",
+                "type": "file",
                 "status": "complete",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -237,7 +253,7 @@
             },
             {
                 "path": "missions/003-prove-the-loop/research.md",
-                "type": "mission-artifact",
+                "type": "file",
                 "status": "complete",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -245,7 +261,7 @@
             },
             {
                 "path": "missions/003-prove-the-loop/evaluation.md",
-                "type": "mission-artifact",
+                "type": "file",
                 "status": "complete",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -253,7 +269,7 @@
             },
             {
                 "path": "missions/004-close-governance-loop/",
-                "type": "mission",
+                "type": "directory",
                 "status": "complete",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -261,7 +277,7 @@
             },
             {
                 "path": "missions/004-close-governance-loop/mission.md",
-                "type": "mission-artifact",
+                "type": "file",
                 "status": "complete",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -269,7 +285,7 @@
             },
             {
                 "path": "missions/004-close-governance-loop/report.md",
-                "type": "mission-artifact",
+                "type": "file",
                 "status": "complete",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -277,7 +293,7 @@
             },
             {
                 "path": "missions/005-showcase-page/",
-                "type": "mission",
+                "type": "directory",
                 "status": "complete",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -285,7 +301,7 @@
             },
             {
                 "path": "missions/005-showcase-page/mission.md",
-                "type": "mission-artifact",
+                "type": "file",
                 "status": "complete",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -293,7 +309,7 @@
             },
             {
                 "path": "missions/005-showcase-page/report.md",
-                "type": "mission-artifact",
+                "type": "file",
                 "status": "complete",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -301,7 +317,7 @@
             },
             {
                 "path": "missions/006-validate-recommendation/",
-                "type": "mission",
+                "type": "directory",
                 "status": "paused",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -309,7 +325,7 @@
             },
             {
                 "path": "missions/006-validate-recommendation/mission.md",
-                "type": "mission-artifact",
+                "type": "file",
                 "status": "paused",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -317,7 +333,7 @@
             },
             {
                 "path": "missions/006-validate-recommendation/phase-a-thresholds.md",
-                "type": "mission-artifact",
+                "type": "file",
                 "status": "complete",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -325,7 +341,7 @@
             },
             {
                 "path": "missions/006-validate-recommendation/evidence-ledger.md",
-                "type": "mission-artifact",
+                "type": "file",
                 "status": "active",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -333,7 +349,7 @@
             },
             {
                 "path": "missions/007-design-v2/",
-                "type": "mission",
+                "type": "directory",
                 "status": "complete",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -341,7 +357,7 @@
             },
             {
                 "path": "missions/007-design-v2/mission.md",
-                "type": "mission-artifact",
+                "type": "file",
                 "status": "complete",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -349,7 +365,7 @@
             },
             {
                 "path": "missions/007-design-v2/report.md",
-                "type": "mission-artifact",
+                "type": "file",
                 "status": "complete",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -357,7 +373,7 @@
             },
             {
                 "path": "missions/007-design-v2/architecture.md",
-                "type": "architecture",
+                "type": "file",
                 "status": "active",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -365,7 +381,7 @@
             },
             {
                 "path": "missions/008-repository-compiler/",
-                "type": "mission",
+                "type": "directory",
                 "status": "complete",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -373,7 +389,7 @@
             },
             {
                 "path": "missions/008-repository-compiler/mission.md",
-                "type": "mission-artifact",
+                "type": "file",
                 "status": "complete",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -381,7 +397,7 @@
             },
             {
                 "path": "missions/008-repository-compiler/report.md",
-                "type": "mission-artifact",
+                "type": "file",
                 "status": "complete",
                 "public_url": null,
                 "safe_to_edit": true,
@@ -389,27 +405,690 @@
             },
             {
                 "path": "missions/009-file-index-foundation/",
-                "type": "mission",
-                "status": "in_progress",
+                "type": "directory",
+                "status": "complete",
                 "public_url": null,
                 "safe_to_edit": true,
                 "source_or_generated": "source"
             },
             {
                 "path": "missions/009-file-index-foundation/mission.md",
-                "type": "mission-artifact",
-                "status": "in_progress",
+                "type": "file",
+                "status": "complete",
                 "public_url": null,
                 "safe_to_edit": true,
                 "source_or_generated": "source"
             },
             {
                 "path": "missions/009-file-index-foundation/report.md",
-                "type": "mission-artifact",
-                "status": "in_progress",
+                "type": "file",
+                "status": "complete",
                 "public_url": null,
                 "safe_to_edit": true,
                 "source_or_generated": "source"
+            }
+        ],
+        "legacy_note": "Backward-compat view. Use asset_registry for full schema."
+    },
+    "asset_registry": {
+        "source": "system/assets.yaml",
+        "registry": "asset-registry",
+        "parse_status": "ok",
+        "version": 2,
+        "deployment_root": "https://cubixmeow.com/ai-dos/",
+        "last_updated": "2026-07-07",
+        "asset_count": 49,
+        "assets": [
+            {
+                "id": "readme-md",
+                "type": "file",
+                "name": "README.md",
+                "path": "README.md",
+                "status": "active",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": []
+            },
+            {
+                "id": "company-identity-md",
+                "type": "file",
+                "name": "Identity.md",
+                "path": "company/Identity.md",
+                "status": "active",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": []
+            },
+            {
+                "id": "company-principles-md",
+                "type": "file",
+                "name": "Principles.md",
+                "path": "company/Principles.md",
+                "status": "active",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": []
+            },
+            {
+                "id": "company-standards-md",
+                "type": "file",
+                "name": "Standards.md",
+                "path": "company/Standards.md",
+                "status": "active",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": []
+            },
+            {
+                "id": "tasks-backlog-md",
+                "type": "file",
+                "name": "Backlog.md",
+                "path": "tasks/Backlog.md",
+                "status": "active",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": []
+            },
+            {
+                "id": "workflow-templates-missiontemplate-md",
+                "type": "template",
+                "name": "MissionTemplate.md",
+                "path": "workflow/Templates/MissionTemplate.md",
+                "status": "active",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": []
+            },
+            {
+                "id": "asset-registry",
+                "type": "file",
+                "name": "assets.yaml",
+                "path": "system/assets.yaml",
+                "status": "active",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": [
+                    "file-index-legacy-shim",
+                    "file-index-md-legacy",
+                    "asset-registry-md"
+                ]
+            },
+            {
+                "id": "asset-registry-md",
+                "type": "file",
+                "name": "assets.md",
+                "path": "system/assets.md",
+                "status": "active",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [
+                    "asset-registry"
+                ],
+                "outputs": []
+            },
+            {
+                "id": "file-index-legacy-shim",
+                "type": "file",
+                "name": "file-index.yaml (legacy shim)",
+                "path": "system/file-index.yaml",
+                "status": "deprecated",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [
+                    "asset-registry"
+                ],
+                "outputs": []
+            },
+            {
+                "id": "file-index-md-legacy",
+                "type": "file",
+                "name": "file-index.md (legacy companion)",
+                "path": "system/file-index.md",
+                "status": "deprecated",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [
+                    "asset-registry-md"
+                ],
+                "outputs": []
+            },
+            {
+                "id": "compiler-compile-php",
+                "type": "compiler",
+                "name": "compile.php",
+                "path": "compiler/compile.php",
+                "status": "active",
+                "public_url": "https://cubixmeow.com/ai-dos/compiler/compile.php",
+                "editable": true,
+                "generated": false,
+                "depends_on": [
+                    "asset-registry",
+                    "company-standards-md",
+                    "company-identity-md",
+                    "tasks-backlog-md"
+                ],
+                "outputs": [
+                    "site-data-organization-json",
+                    "site-data-missions-json",
+                    "site-index-html",
+                    "site-styles-css"
+                ]
+            },
+            {
+                "id": "compiler-readme-md",
+                "type": "file",
+                "name": "README.md",
+                "path": "compiler/README.md",
+                "status": "active",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": []
+            },
+            {
+                "id": "site-index-html",
+                "type": "website",
+                "name": "index.html",
+                "path": "site/index.html",
+                "status": "active",
+                "public_url": "https://cubixmeow.com/ai-dos/site/",
+                "editable": false,
+                "generated": true,
+                "depends_on": [
+                    "site-data-organization-json",
+                    "site-data-missions-json",
+                    "site-styles-css"
+                ],
+                "outputs": []
+            },
+            {
+                "id": "site-styles-css",
+                "type": "generated-file",
+                "name": "styles.css",
+                "path": "site/styles.css",
+                "status": "active",
+                "public_url": "https://cubixmeow.com/ai-dos/site/styles.css",
+                "editable": false,
+                "generated": true,
+                "depends_on": [],
+                "outputs": []
+            },
+            {
+                "id": "site-data-missions-json",
+                "type": "generated-file",
+                "name": "missions.json",
+                "path": "site/data/missions.json",
+                "status": "active",
+                "public_url": "https://cubixmeow.com/ai-dos/site/data/missions.json",
+                "editable": false,
+                "generated": true,
+                "depends_on": [
+                    "compiler-compile-php"
+                ],
+                "outputs": []
+            },
+            {
+                "id": "site-data-organization-json",
+                "type": "generated-file",
+                "name": "organization.json",
+                "path": "site/data/organization.json",
+                "status": "active",
+                "public_url": "https://cubixmeow.com/ai-dos/site/data/organization.json",
+                "editable": false,
+                "generated": true,
+                "depends_on": [
+                    "compiler-compile-php",
+                    "asset-registry"
+                ],
+                "outputs": []
+            },
+            {
+                "id": "site-validation-invoice-tool-html",
+                "type": "website",
+                "name": "invoice-tool.html",
+                "path": "site/validation/invoice-tool.html",
+                "status": "active",
+                "public_url": "https://cubixmeow.com/ai-dos/site/validation/invoice-tool.html",
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": []
+            },
+            {
+                "id": "github-workflows-compile-site-yml",
+                "type": "github-action",
+                "name": "compile-site.yml",
+                "path": ".github/workflows/compile-site.yml",
+                "status": "active",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [
+                    "compiler-compile-php"
+                ],
+                "outputs": []
+            },
+            {
+                "id": "missions-001-bootstrap",
+                "type": "directory",
+                "name": "Mission folder: missions/001-bootstrap",
+                "path": "missions/001-bootstrap/",
+                "status": "complete",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": [
+                    "missions-001-bootstrap-report-md"
+                ]
+            },
+            {
+                "id": "missions-001-bootstrap-mission-md",
+                "type": "file",
+                "name": "mission.md",
+                "path": "missions/001-bootstrap/mission.md",
+                "status": "complete",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": []
+            },
+            {
+                "id": "missions-001-bootstrap-report-md",
+                "type": "file",
+                "name": "report.md",
+                "path": "missions/001-bootstrap/report.md",
+                "status": "complete",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [
+                    "missions-001-bootstrap"
+                ],
+                "outputs": []
+            },
+            {
+                "id": "missions-002-knowledge-preservation",
+                "type": "directory",
+                "name": "Mission folder: missions/002-knowledge-preservation",
+                "path": "missions/002-knowledge-preservation/",
+                "status": "complete",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": [
+                    "missions-002-knowledge-preservation-report-md"
+                ]
+            },
+            {
+                "id": "missions-002-knowledge-preservation-mission-md",
+                "type": "file",
+                "name": "mission.md",
+                "path": "missions/002-knowledge-preservation/mission.md",
+                "status": "complete",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": []
+            },
+            {
+                "id": "missions-002-knowledge-preservation-report-md",
+                "type": "file",
+                "name": "report.md",
+                "path": "missions/002-knowledge-preservation/report.md",
+                "status": "complete",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [
+                    "missions-002-knowledge-preservation"
+                ],
+                "outputs": []
+            },
+            {
+                "id": "missions-003-prove-the-loop",
+                "type": "directory",
+                "name": "Mission folder: missions/003-prove-the-loop",
+                "path": "missions/003-prove-the-loop/",
+                "status": "complete",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": [
+                    "missions-003-prove-the-loop-report-md"
+                ]
+            },
+            {
+                "id": "missions-003-prove-the-loop-mission-md",
+                "type": "file",
+                "name": "mission.md",
+                "path": "missions/003-prove-the-loop/mission.md",
+                "status": "complete",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": []
+            },
+            {
+                "id": "missions-003-prove-the-loop-report-md",
+                "type": "file",
+                "name": "report.md",
+                "path": "missions/003-prove-the-loop/report.md",
+                "status": "complete",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [
+                    "missions-003-prove-the-loop"
+                ],
+                "outputs": []
+            },
+            {
+                "id": "missions-003-prove-the-loop-research-md",
+                "type": "file",
+                "name": "research.md",
+                "path": "missions/003-prove-the-loop/research.md",
+                "status": "complete",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": []
+            },
+            {
+                "id": "missions-003-prove-the-loop-evaluation-md",
+                "type": "file",
+                "name": "evaluation.md",
+                "path": "missions/003-prove-the-loop/evaluation.md",
+                "status": "complete",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": []
+            },
+            {
+                "id": "missions-004-close-governance-loop",
+                "type": "directory",
+                "name": "Mission folder: missions/004-close-governance-loop",
+                "path": "missions/004-close-governance-loop/",
+                "status": "complete",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": [
+                    "missions-004-close-governance-loop-report-md"
+                ]
+            },
+            {
+                "id": "missions-004-close-governance-loop-mission-md",
+                "type": "file",
+                "name": "mission.md",
+                "path": "missions/004-close-governance-loop/mission.md",
+                "status": "complete",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": []
+            },
+            {
+                "id": "missions-004-close-governance-loop-report-md",
+                "type": "file",
+                "name": "report.md",
+                "path": "missions/004-close-governance-loop/report.md",
+                "status": "complete",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [
+                    "missions-004-close-governance-loop"
+                ],
+                "outputs": []
+            },
+            {
+                "id": "missions-005-showcase-page",
+                "type": "directory",
+                "name": "Mission folder: missions/005-showcase-page",
+                "path": "missions/005-showcase-page/",
+                "status": "complete",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": [
+                    "missions-005-showcase-page-report-md"
+                ]
+            },
+            {
+                "id": "missions-005-showcase-page-mission-md",
+                "type": "file",
+                "name": "mission.md",
+                "path": "missions/005-showcase-page/mission.md",
+                "status": "complete",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": []
+            },
+            {
+                "id": "missions-005-showcase-page-report-md",
+                "type": "file",
+                "name": "report.md",
+                "path": "missions/005-showcase-page/report.md",
+                "status": "complete",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [
+                    "missions-005-showcase-page"
+                ],
+                "outputs": []
+            },
+            {
+                "id": "missions-006-validate-recommendation",
+                "type": "directory",
+                "name": "Mission folder: missions/006-validate-recommendation",
+                "path": "missions/006-validate-recommendation/",
+                "status": "paused",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": []
+            },
+            {
+                "id": "missions-006-validate-recommendation-mission-md",
+                "type": "file",
+                "name": "mission.md",
+                "path": "missions/006-validate-recommendation/mission.md",
+                "status": "paused",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": []
+            },
+            {
+                "id": "missions-006-validate-recommendation-phase-a-thresholds-md",
+                "type": "file",
+                "name": "phase-a-thresholds.md",
+                "path": "missions/006-validate-recommendation/phase-a-thresholds.md",
+                "status": "complete",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": []
+            },
+            {
+                "id": "missions-006-validate-recommendation-evidence-ledger-md",
+                "type": "file",
+                "name": "evidence-ledger.md",
+                "path": "missions/006-validate-recommendation/evidence-ledger.md",
+                "status": "active",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": []
+            },
+            {
+                "id": "missions-007-design-v2",
+                "type": "directory",
+                "name": "Mission folder: missions/007-design-v2",
+                "path": "missions/007-design-v2/",
+                "status": "complete",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": [
+                    "missions-007-design-v2-report-md"
+                ]
+            },
+            {
+                "id": "missions-007-design-v2-mission-md",
+                "type": "file",
+                "name": "mission.md",
+                "path": "missions/007-design-v2/mission.md",
+                "status": "complete",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": []
+            },
+            {
+                "id": "missions-007-design-v2-report-md",
+                "type": "file",
+                "name": "report.md",
+                "path": "missions/007-design-v2/report.md",
+                "status": "complete",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [
+                    "missions-007-design-v2"
+                ],
+                "outputs": []
+            },
+            {
+                "id": "missions-007-design-v2-architecture-md",
+                "type": "file",
+                "name": "architecture.md",
+                "path": "missions/007-design-v2/architecture.md",
+                "status": "active",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": []
+            },
+            {
+                "id": "missions-008-repository-compiler",
+                "type": "directory",
+                "name": "Mission folder: missions/008-repository-compiler",
+                "path": "missions/008-repository-compiler/",
+                "status": "complete",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": [
+                    "missions-008-repository-compiler-report-md"
+                ]
+            },
+            {
+                "id": "missions-008-repository-compiler-mission-md",
+                "type": "file",
+                "name": "mission.md",
+                "path": "missions/008-repository-compiler/mission.md",
+                "status": "complete",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": []
+            },
+            {
+                "id": "missions-008-repository-compiler-report-md",
+                "type": "file",
+                "name": "report.md",
+                "path": "missions/008-repository-compiler/report.md",
+                "status": "complete",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [
+                    "missions-008-repository-compiler"
+                ],
+                "outputs": []
+            },
+            {
+                "id": "missions-009-file-index-foundation",
+                "type": "directory",
+                "name": "Mission folder: missions/009-file-index-foundation",
+                "path": "missions/009-file-index-foundation/",
+                "status": "complete",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": [
+                    "missions-009-file-index-foundation-report-md"
+                ]
+            },
+            {
+                "id": "missions-009-file-index-foundation-mission-md",
+                "type": "file",
+                "name": "mission.md",
+                "path": "missions/009-file-index-foundation/mission.md",
+                "status": "complete",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [],
+                "outputs": []
+            },
+            {
+                "id": "missions-009-file-index-foundation-report-md",
+                "type": "file",
+                "name": "report.md",
+                "path": "missions/009-file-index-foundation/report.md",
+                "status": "complete",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "depends_on": [
+                    "missions-009-file-index-foundation"
+                ],
+                "outputs": []
             }
         ]
     }

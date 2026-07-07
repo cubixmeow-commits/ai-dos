@@ -174,12 +174,12 @@ final class RepositoryCompiler
             }
         }
 
-        $fileIndex = $this->loadFileIndex();
+        $registry = $this->loadAssetRegistry();
 
         $organization = [
             'compiled_at' => gmdate('c'),
             'compiler' => 'Repository Compiler (PHP)',
-            'compiler_version' => '1.1.0-mission-009',
+            'compiler_version' => '1.2.0-mission-009',
             'current_mission' => $currentMission,
             'next_mission' => $nextMission,
             'completed_mission_count' => count($completed),
@@ -205,91 +205,172 @@ final class RepositoryCompiler
             'repository_compiler_concept' => 'The repository is the source code of the organization. The Repository Compiler (PHP) transforms that source into human-readable Mission Control interfaces.',
         ];
 
-        if ($fileIndex !== null) {
-            $organization['file_index'] = $fileIndex;
+        if ($registry !== null) {
+            $organization['asset_registry'] = $registry['asset_registry'];
+            $organization['file_index'] = $registry['file_index'];
         }
 
         return $organization;
     }
 
     /**
-     * Load and summarize system/file-index.yaml for organization.json.
+     * Load Asset Registry (system/assets.yaml) with legacy file_index compat.
      *
-     * Uses the PHP yaml extension when available; otherwise a minimal subset
-     * parser for this repository's flat entry list (no nested structures).
-     *
-     * @return array<string, mixed>|null
+     * @return array{asset_registry: array<string, mixed>, file_index: array<string, mixed>}|null
      */
-    private function loadFileIndex(): ?array
+    private function loadAssetRegistry(): ?array
     {
-        $file = $this->root . '/system/file-index.yaml';
-        if (!is_file($file)) {
-            return null;
+        $assetsFile = $this->root . '/system/assets.yaml';
+        $legacyFile = $this->root . '/system/file-index.yaml';
+
+        $parsed = null;
+        $source = 'system/assets.yaml';
+
+        if (is_file($assetsFile)) {
+            $parsed = $this->parseRegistryYaml((string) file_get_contents($assetsFile));
         }
 
-        $content = (string) file_get_contents($file);
-        $parsed = null;
-
-        if (function_exists('yaml_parse')) {
-            $yaml = yaml_parse($content);
-            if (is_array($yaml)) {
-                $parsed = $yaml;
-            }
+        if ($parsed === null && is_file($legacyFile)) {
+            $parsed = $this->parseRegistryYaml((string) file_get_contents($legacyFile));
+            $source = 'system/file-index.yaml';
         }
 
         if ($parsed === null) {
-            $parsed = $this->parseFileIndexYamlSubset($content);
-        }
-
-        if ($parsed === null || !isset($parsed['entries']) || !is_array($parsed['entries'])) {
-            return [
-                'source' => 'system/file-index.yaml',
-                'parse_status' => 'failed',
-                'entry_count' => 0,
-                'entries' => [],
-            ];
+            return null;
         }
 
         $meta = is_array($parsed['meta'] ?? null) ? $parsed['meta'] : [];
-        $entries = [];
+        $rawAssets = $parsed['assets'] ?? $parsed['entries'] ?? [];
 
-        foreach ($parsed['entries'] as $entry) {
-            if (!is_array($entry) || !isset($entry['path'])) {
-                continue;
-            }
-
-            $entries[] = [
-                'path' => (string) $entry['path'],
-                'type' => (string) ($entry['type'] ?? ''),
-                'status' => (string) ($entry['status'] ?? ''),
-                'public_url' => $entry['public_url'] ?? null,
-                'safe_to_edit' => (bool) ($entry['safe_to_edit'] ?? true),
-                'source_or_generated' => (string) ($entry['source_or_generated'] ?? ''),
-            ];
+        if (!is_array($rawAssets)) {
+            $rawAssets = [];
         }
 
-        return [
-            'source' => 'system/file-index.yaml',
-            'parse_status' => 'ok',
+        $assets = [];
+        foreach ($rawAssets as $asset) {
+            if (!is_array($asset)) {
+                continue;
+            }
+            $summary = $this->summarizeAssetForJson($asset);
+            if ($summary !== null) {
+                $assets[] = $summary;
+            }
+        }
+
+        $assetRegistry = [
+            'source' => $source,
+            'registry' => (string) ($meta['registry'] ?? 'asset-registry'),
+            'parse_status' => count($assets) > 0 ? 'ok' : 'empty',
             'version' => $meta['version'] ?? null,
             'deployment_root' => $meta['deployment_root'] ?? null,
             'last_updated' => $meta['last_updated'] ?? null,
-            'entry_count' => count($entries),
-            'entries' => $entries,
+            'asset_count' => count($assets),
+            'assets' => $assets,
+        ];
+
+        return [
+            'asset_registry' => $assetRegistry,
+            'file_index' => $this->legacyFileIndexFromAssets($assetRegistry),
         ];
     }
 
     /**
-     * Minimal YAML parser for AI-DOS file-index.yaml (flat maps only).
+     * @return array<string, mixed>|null
+     */
+    private function summarizeAssetForJson(array $asset): ?array
+    {
+        $path = $asset['source']['path'] ?? $asset['path'] ?? null;
+        if ($path === null && !isset($asset['id'])) {
+            return null;
+        }
+
+        $publicUrl = $asset['public']['url'] ?? $asset['public_url'] ?? null;
+        $editable = $asset['editable'] ?? $asset['safe_to_edit'] ?? true;
+        $generated = $asset['generated'] ?? (($asset['source_or_generated'] ?? '') === 'generated');
+
+        return [
+            'id' => (string) ($asset['id'] ?? ''),
+            'type' => (string) ($asset['type'] ?? ''),
+            'name' => (string) ($asset['name'] ?? ''),
+            'path' => $path !== null ? (string) $path : null,
+            'status' => (string) ($asset['status'] ?? ''),
+            'public_url' => $publicUrl,
+            'editable' => (bool) $editable,
+            'generated' => (bool) $generated,
+            'depends_on' => array_values(array_filter(
+                is_array($asset['depends_on'] ?? null) ? $asset['depends_on'] : [],
+                static fn(mixed $v): bool => is_string($v) && $v !== ''
+            )),
+            'outputs' => array_values(array_filter(
+                is_array($asset['outputs'] ?? null) ? $asset['outputs'] : [],
+                static fn(mixed $v): bool => is_string($v) && $v !== ''
+            )),
+        ];
+    }
+
+    /**
+     * Derive v1 file_index shape from asset registry — no duplicate canonical data.
+     *
+     * @param array<string, mixed> $assetRegistry
+     * @return array<string, mixed>
+     */
+    private function legacyFileIndexFromAssets(array $assetRegistry): array
+    {
+        $entries = [];
+        foreach ($assetRegistry['assets'] ?? [] as $asset) {
+            if (!is_array($asset) || empty($asset['path'])) {
+                continue;
+            }
+
+            $entries[] = [
+                'path' => $asset['path'],
+                'type' => $asset['type'] ?? '',
+                'status' => $asset['status'] ?? '',
+                'public_url' => $asset['public_url'] ?? null,
+                'safe_to_edit' => $asset['editable'] ?? true,
+                'source_or_generated' => !empty($asset['generated']) ? 'generated' : 'source',
+            ];
+        }
+
+        return [
+            'source' => 'derived from ' . ($assetRegistry['source'] ?? 'asset registry'),
+            'parse_status' => $assetRegistry['parse_status'] ?? 'ok',
+            'version' => $assetRegistry['version'] ?? null,
+            'deployment_root' => $assetRegistry['deployment_root'] ?? null,
+            'last_updated' => $assetRegistry['last_updated'] ?? null,
+            'entry_count' => count($entries),
+            'entries' => $entries,
+            'legacy_note' => 'Backward-compat view. Use asset_registry for full schema.',
+        ];
+    }
+
+    /**
+     * @return array<string, mixed>|null
+     */
+    private function parseRegistryYaml(string $content): ?array
+    {
+        if (function_exists('yaml_parse')) {
+            $yaml = yaml_parse($content);
+            if (is_array($yaml)) {
+                return $yaml;
+            }
+        }
+
+        return $this->parseAssetRegistryYamlSubset($content);
+    }
+
+    /**
+     * Minimal YAML parser for AI-DOS asset registry (flat assets, shallow nesting).
      *
      * @return array<string, mixed>|null
      */
-    private function parseFileIndexYamlSubset(string $content): ?array
+    private function parseAssetRegistryYamlSubset(string $content): ?array
     {
         $meta = [];
-        $entries = [];
+        $assets = [];
         $current = null;
         $section = null;
+        $nested = null;
 
         foreach (preg_split('/\r\n|\r|\n/', $content) ?: [] as $line) {
             if (preg_match('/^\s*#/', $line)) {
@@ -299,20 +380,40 @@ final class RepositoryCompiler
             if (preg_match('/^meta:\s*$/', $line)) {
                 $section = 'meta';
                 $current = null;
+                $nested = null;
                 continue;
             }
 
-            if (preg_match('/^entries:\s*$/', $line)) {
-                $section = 'entries';
+            if (preg_match('/^(assets|entries):\s*/', $line)) {
+                $section = 'assets';
                 $current = null;
+                $nested = null;
+                continue;
+            }
+
+            if (preg_match('/^\s*-\s+id:\s*(.+)$/', $line, $m)) {
+                if ($current !== null && $section === 'assets') {
+                    $assets[] = $current;
+                }
+                $current = ['id' => $this->parseYamlScalar(trim($m[1]))];
+                $nested = null;
                 continue;
             }
 
             if (preg_match('/^\s*-\s+path:\s*(.+)$/', $line, $m)) {
-                if ($current !== null && $section === 'entries') {
-                    $entries[] = $current;
+                if ($current !== null && $section === 'assets') {
+                    $assets[] = $current;
                 }
                 $current = ['path' => $this->parseYamlScalar(trim($m[1]))];
+                $nested = null;
+                continue;
+            }
+
+            if (preg_match('/^\s{2}(source|public):\s*$/', $line, $m)) {
+                $nested = $m[1];
+                if ($current !== null) {
+                    $current[$nested] = [];
+                }
                 continue;
             }
 
@@ -322,21 +423,77 @@ final class RepositoryCompiler
 
                 if ($section === 'meta') {
                     $meta[$key] = $value;
-                } elseif ($section === 'entries' && $current !== null) {
-                    if ($key === 'safe_to_edit') {
-                        $current[$key] = $value === true || $value === 'true';
-                    } else {
-                        $current[$key] = $value;
+                    continue;
+                }
+
+                if ($section !== 'assets' || $current === null) {
+                    continue;
+                }
+
+                if ($nested !== null && in_array($key, ['path', 'url'], true)) {
+                    $current[$nested][$key] = $value;
+                    continue;
+                }
+
+                if (in_array($key, ['safe_to_edit', 'editable', 'generated'], true)) {
+                    $current[$key] = $value === true || $value === 'true';
+                    continue;
+                }
+
+                if (in_array($key, ['depends_on', 'outputs'], true)) {
+                    continue;
+                }
+
+                $current[$key] = $value;
+                $nested = null;
+            }
+
+            if ($current !== null && $section === 'assets' && preg_match('/^\s{4}-\s+(.+)$/', $line, $m)) {
+                $listKey = $nested === null ? 'depends_on' : null;
+                if ($listKey === null) {
+                    if (isset($current['depends_on']) && !isset($current['_outputs_mode'])) {
+                        $current['depends_on'][] = trim($m[1]);
+                    } elseif (isset($current['_outputs_mode'])) {
+                        $current['outputs'][] = trim($m[1]);
                     }
+                }
+            }
+
+            if ($current !== null && preg_match('/^\s{2}depends_on:\s*$/', $line)) {
+                $current['depends_on'] = [];
+                $current['_outputs_mode'] = false;
+                $nested = null;
+            }
+
+            if ($current !== null && preg_match('/^\s{2}outputs:\s*$/', $line)) {
+                $current['outputs'] = [];
+                $current['_outputs_mode'] = true;
+                $nested = null;
+            }
+
+            if ($current !== null && preg_match('/^\s{4}-\s+(\S+)/', $line, $m)) {
+                if (!empty($current['_outputs_mode'])) {
+                    $current['outputs'][] = $m[1];
+                } elseif (isset($current['depends_on']) && is_array($current['depends_on'])) {
+                    $current['depends_on'][] = $m[1];
                 }
             }
         }
 
-        if ($current !== null && $section === 'entries') {
-            $entries[] = $current;
+        if ($current !== null && $section === 'assets') {
+            unset($current['_outputs_mode']);
+            $assets[] = $current;
         }
 
-        return ['meta' => $meta, 'entries' => $entries];
+        foreach ($assets as &$asset) {
+            unset($asset['_outputs_mode']);
+            if (!isset($asset['path']) && isset($asset['source']['path'])) {
+                $asset['path'] = $asset['source']['path'];
+            }
+        }
+        unset($asset);
+
+        return ['meta' => $meta, 'assets' => $assets, 'entries' => $assets];
     }
 
     /** @return string|bool|null */

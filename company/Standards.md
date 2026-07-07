@@ -136,14 +136,18 @@ successful output (`.github/workflows/compile-site.yml`). Governance is
 unchanged: only generated artifacts are automated. Operator approval is
 never automated.
 
-## §5 File Index
+## §5 Asset Registry
 
-AI-DOS maintains `/system/file-index.yaml` as the canonical map of important
-files, generated locations, and public URLs.
+AI-DOS maintains `/system/assets.yaml` as the canonical **Asset Registry** —
+the machine-readable map of everything AI-DOS owns. A file is one asset type
+among many (compiler, website, workflow, mission, etc.).
 
-- **`file-index.yaml`** is the machine-readable source of truth for the index.
-- **`file-index.md`** is the human-readable companion for operator use on mobile.
+- **`assets.yaml`** is the machine-readable source of truth.
+- **`assets.md`** is the human-readable companion for operator use on mobile.
+- **`file-index.yaml`** and **`file-index.md`** are legacy compatibility shims
+  that point to the Asset Registry (Mission 009 v1 → v2 evolution).
 - Every mission that creates, removes, relocates, or materially changes a major
-  file must update the file index before completion.
-- The Repository Compiler may include a summary of the file index in
-  `site/data/organization.json` when the YAML source is present.
+  asset must update the registry before completion.
+- The Repository Compiler includes an `asset_registry` summary in
+  `site/data/organization.json` and derives a backward-compatible `file_index`
+  view — it does not duplicate canonical registry data.
