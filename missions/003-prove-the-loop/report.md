@@ -62,7 +62,7 @@ search-accessed, page not fetchable · **[U]** unverified/ambiguous.
 | U | 4 claims (IPSE 71%, $6k owed, Senja $1M ARR, changelog 72%) | Context only, none load-bearing |
 
 **No claim was cited from memory.** Every URL is in research.md §6,
-including the 7 blocked fetch attempts. Assumptions (5, none silently
+including all blocked fetch attempts. Assumptions (5, none silently
 embedded) are tabled in research.md §7 — the load-bearing one is that
 search snippets faithfully reflect their pages.
 
