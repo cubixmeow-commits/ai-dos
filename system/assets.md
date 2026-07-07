@@ -1,5 +1,7 @@
 # AI-DOS Asset Registry
 
+**Copy for GPT (iPhone):** open [gpt-brief.txt](gpt-brief.txt) → Select All → Copy → Paste.
+
 **Deployment root:** https://cubixmeow.com/ai-dos/
 
 Canonical machine-readable source: [assets.yaml](assets.yaml)

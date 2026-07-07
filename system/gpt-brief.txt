@@ -1,43 +1,27 @@
-AI-DOS MISSION 009 BRIEF (paste all into GPT)
+AI-DOS MOBILE GPT BRIEF (select all, copy, paste into GPT)
 
-STATUS: Mission 009 complete. Evolved file index to Asset Registry in place. No new mission for this.
+STATUS: Mission 009 complete. File index evolved to Asset Registry in place.
 
-CANONICAL FILES:
-- system/assets.yaml (49 assets, schema v2, machine source)
-- system/assets.md (human/iPhone companion)
-- system/file-index.yaml and file-index.md (legacy shims, use assets instead)
+FILES: system/assets.yaml (49 assets, v2 source), system/assets.md (human), file-index.yaml/md (legacy shims), system/gpt-brief.txt (this file)
 
-DEPLOY ROOT: https://cubixmeow.com/ai-dos/
+ROOT: https://cubixmeow.com/ai-dos/
 
-PUBLIC URLS:
-- Mission Control: /site/
-- missions.json: /site/data/missions.json
-- organization.json: /site/data/organization.json
-- validation page: /site/validation/invoice-tool.html
-- compiler: /compiler/compile.php
+URLS: /site/ | /site/data/missions.json | /site/data/organization.json | /site/validation/invoice-tool.html | /compiler/compile.php
 
-ASSET TYPES: file, directory, compiler, generated-file, website, workflow, github-action, template, prompt, mission, api, service
+TYPES: file directory compiler generated-file website workflow github-action template prompt mission api service
 
-KEY FIELDS: id, type, name, source.path, public.url, depends_on, outputs, editable, generated, status
+FIELDS: id type name source.path public.url depends_on outputs editable generated status
 
-KEY RELATIONSHIPS:
-- compiler-compile-php outputs organization.json, missions.json, site/index.html, styles.css
-- site-index-html depends on organization.json + missions.json + styles
-- organization.json depends on compiler + asset-registry
+RELATIONS: compiler-compile-php -> org.json missions.json index.html styles.css | site-index-html needs org.json + missions.json + styles
 
-COMPILER: php compiler/compile.php reads assets.yaml. organization.json has asset_registry (canonical) and file_index (legacy derived view).
+COMPILER: php compiler/compile.php | org.json has asset_registry + file_index (derived)
 
-STANDARDS: company/Standards.md section 5 = Asset Registry rules.
+STANDARDS: company/Standards.md section 5
 
-MISSION DOCS: missions/009-file-index-foundation/mission.md and report.md
+MISSION: missions/009-file-index-foundation/
 
-NEXT IN BACKLOG: Mission 010 V2 Foundation (manifest.yaml, index.yaml, portfolio.yaml). Separate from registry work.
+NEXT: Mission 010 V2 Foundation manifest index portfolio
 
-APPROVAL QUESTION: Approve Mission 010 V2 Foundation and Sequencing Reconciliation? Y/N
+APPROVE: Mission 010 V2 Foundation? Y/N
 
-QUICK LOOKUP:
-- Where? source.path
-- URL? public.url
-- What made it? depends_on or parent outputs
-- Safe to edit? editable true=yes, false=run compiler
-- What uses it? outputs
+LOOKUP: where=source.path url=public.url made-by=depends_on edit=editable uses=outputs

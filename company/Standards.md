@@ -144,6 +144,9 @@ among many (compiler, website, workflow, mission, etc.).
 
 - **`assets.yaml`** is the machine-readable source of truth.
 - **`assets.md`** is the human-readable companion for operator use on mobile.
+- **`gpt-brief.txt`** is the plain-text mobile brief — select all, copy, paste
+  into GPT. Update whenever the registry or organizational state materially
+  changes (same obligation as `assets.yaml`).
 - **`file-index.yaml`** and **`file-index.md`** are legacy compatibility shims
   that point to the Asset Registry (Mission 009 v1 → v2 evolution).
 - Every mission that creates, removes, relocates, or materially changes a major
