@@ -144,13 +144,10 @@ among many (compiler, website, workflow, mission, etc.).
 
 - **`assets.yaml`** is the machine-readable source of truth.
 - **`assets.md`** is the human-readable companion for operator use on mobile.
-- **`file-index.yaml`** and **`file-index.md`** are legacy compatibility shims
-  that point to the Asset Registry (Mission 009 v1 → v2 evolution).
 - Every mission that creates, removes, relocates, or materially changes a major
   asset must update the registry before completion.
 - The Repository Compiler includes an `asset_registry` summary in
-  `site/data/organization.json` and derives a backward-compatible `file_index`
-  view — it does not duplicate canonical registry data.
+  `site/data/organization.json`. Full lookup lives in `site/data/repository.json`.
 
 ## §6 Repository Intelligence
 
@@ -176,3 +173,47 @@ help AI-DOS understand, validate, search, and package repository knowledge.
 - Update `system/manifest.yaml` and `system/context-packages.yaml` when
   intelligence sources change materially.
 - PHP `yaml` extension is required for full manifest/context parsing in CI.
+
+## §7 Deployment
+
+Mission 011 clarified how AI-DOS reaches operators and visitors.
+
+### §7.1 URLs
+
+| Audience | URL | Role |
+|----------|-----|------|
+| **Visitors & operator** | `https://cubixmeow.com/ai-dos/site/` | **Command Center** — public entry point |
+| **Compiler (build)** | `https://cubixmeow.com/ai-dos/compiler/compile.php` | Regenerates `site/` — not the dashboard |
+| **Compiled data** | `https://cubixmeow.com/ai-dos/site/data/*.json` | Disposable views of repository state |
+
+### §7.2 How compile runs
+
+- **Locally:** `php compiler/compile.php` from repository root.
+- **CI:** `.github/workflows/compile-site.yml` on push/PR to `main`.
+- **Production:** Generated `site/` artifacts are committed with mission work;
+  the host serves static files from the repository checkout.
+
+The Command Center is always the public entry point. The compiler URL is for
+build verification only.
+
+## §8 Decision Records
+
+Mission 011 formalized durable **decision records** under `decisions/`.
+
+- Each major architectural decision gets a markdown file: `D###-slug.md`.
+- Required sections: Context, Decision, Alternatives considered, Why chosen,
+  Evidence, Status, Related missions.
+- The Repository Compiler emits `site/data/decisions.json` (disposable view).
+- Mission reports summarize outcomes; decisions hold durable rationale.
+
+## §9 Execution Engine (Foundation)
+
+Mission 011 documented the **Execution Engine** as the next architectural
+layer — see `system/execution-engine.md`.
+
+- **Status:** Planned — not implemented in Mission 011.
+- **Purpose:** Future mission decomposition, context generation, agent routing,
+  execution tracking, and merge readiness — all merge-governed.
+- **Rule:** Command Center must never imply orchestration capabilities that do
+  not exist. Execution is shown as "Planned / Foundation only" until Mission
+  012+ delivers real data.

@@ -43,25 +43,37 @@ citing specific files, that a fresh session could pick up from here.
 |---|---|
 | `company/` | Identity, Principles, and Standards — who we are, how we work |
 | `missions/` | One folder per mission: brief + report |
+| `decisions/` | Durable architectural decision records |
+| `system/` | Asset Registry, manifest, context packages, execution-engine contract |
+| `compiler/` | Repository Compiler (PHP) — generates `site/` |
+| `site/` | Mission Control — public entry point (`/site/`) |
 | `tasks/Backlog.md` | The queue of upcoming missions |
 | `workflow/Templates/` | Templates for recurring artifacts (missions) |
+| `architecture-audit.md` | Independent architecture review (input, not governance) |
+
+**Canonical URLs:** Command Center `https://cubixmeow.com/ai-dos/site/` ·
+Compiler `https://cubixmeow.com/ai-dos/compiler/compile.php` (build tool only).
 
 ## §4 Current state
 
-- **Mission 001 (Bootstrap)** — complete. See
-  [missions/001-bootstrap/report.md](missions/001-bootstrap/report.md).
-- **Mission 002 (Formalize the Knowledge Preservation Standard)** —
-  complete. See
-  [missions/002-knowledge-preservation/report.md](missions/002-knowledge-preservation/report.md).
-- **Mission 003 (Prove the Loop)** — complete. First full research cycle;
-  recommended a freelancer invoice follow-up tool at Medium confidence. See
-  [missions/003-prove-the-loop/report.md](missions/003-prove-the-loop/report.md).
-- **Mission 004 (Close the Governance Loop)** — complete. It verifies `main`
-  as canonical and formalizes merge-based mission approval.
-- **Mission 005 (Build the AI-DOS Showcase Page)** — complete. Added a static
-  visual reader at [site/index.html](site/index.html) and
-  [site/styles.css](site/styles.css).
-- **Mission 006 (Validate the Recommendation)** — next up, pending operator
-  approval. See [tasks/Backlog.md](tasks/Backlog.md).
-- **Mission 007 (Build the Benchmark MVP)** — conditional on Mission 006
-  passing validation thresholds.
+Missions **001–005** established governance, showcase, and merge-based approval.
+**Mission 006** (portfolio validation) is **paused** at Phase B.
+**Missions 007–011** built AI-DOS V2 foundations:
+
+- **Mission 007** — V2 architecture approved. See
+  [missions/007-design-v2/report.md](missions/007-design-v2/report.md).
+- **Mission 008** — Repository Compiler (PHP). See
+  [missions/008-repository-compiler/report.md](missions/008-repository-compiler/report.md).
+- **Mission 009** — Asset Registry (`system/assets.yaml`). See
+  [missions/009-file-index-foundation/report.md](missions/009-file-index-foundation/report.md).
+- **Mission 010** — Repository Intelligence Layer. See
+  [missions/010-repository-intelligence/report.md](missions/010-repository-intelligence/report.md).
+- **Mission 011** — Architecture audit integration; decision records;
+  Execution Engine foundation (documented, not implemented). See
+  [missions/011-architecture-integration/report.md](missions/011-architecture-integration/report.md).
+
+**Next:** Mission 012 — Execution Engine Foundation. See
+[tasks/Backlog.md](tasks/Backlog.md).
+
+**Mission Control:** [site/index.html](site/index.html) — compile with
+`php compiler/compile.php` after source changes.

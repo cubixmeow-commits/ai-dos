@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI-DOS | Mission Control</title>
   <meta name="description" content="AI-DOS Mission Control — compiled from repository source." />
-  <link rel="stylesheet" href="styles.css?v=mission010" />
+  <link rel="stylesheet" href="styles.css?v=mission011" />
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
@@ -20,6 +20,17 @@
   </header>
 
   <main>
+    <section class="frame" id="architecture-stack">
+      <h2>Architecture</h2>
+      <p class="lead">Repository memory → intelligence → execution (planned) → compilation → operator.</p>
+      <ol class="arch-stack" id="arch-stack"></ol>
+    </section>
+
+    <section class="frame" id="deployment-section">
+      <h2>Deployment</h2>
+      <div class="deploy-grid" id="deploy-grid"></div>
+    </section>
+
     <section class="frame" id="compiler-concept">
       <h2>Repository Compiler (PHP)</h2>
       <p class="lead" id="compiler-lead"></p>
@@ -59,9 +70,15 @@
       <div class="next-card" id="next-card"></div>
     </section>
 
+    <section class="frame" id="decisions-section">
+      <h2>Decision Records</h2>
+      <p class="lead">Durable architectural decisions in <code>decisions/</code> — compiled to decisions.json.</p>
+      <ul class="decision-list" id="decision-list"></ul>
+    </section>
+
     <section class="frame" id="intelligence-section">
       <h2>Repository Intelligence</h2>
-      <p class="lead">Mission 010 — manifest, context packages, dependency health, and asset relationships. All data from generated JSON.</p>
+      <p class="lead">Manifest, context packages, dependency health, and asset lookup — all from compiled JSON.</p>
       <div class="intel-grid" id="intel-grid"></div>
     </section>
 
@@ -89,7 +106,7 @@
 
   <footer>
     <p class="canonical-line">Generated view only. Repository artifacts remain canonical.</p>
-    <p>Compiled at <span id="compiled-at">2026-07-07 21:52:07 UTC</span> by Repository Compiler (PHP)</p>
+    <p>Compiled at <span id="compiled-at">2026-07-07 22:15:14 UTC</span> by Repository Compiler (PHP)</p>
     <p>Source: <code>/missions/</code>, <code>/company/</code>, <code>/tasks/Backlog.md</code></p>
   </footer>
 
@@ -122,7 +139,8 @@
         'data/manifest.json',
         'data/context-packages.json',
         'data/dependency-report.json',
-        'data/repository.json'
+        'data/repository.json',
+        'data/decisions.json'
       ];
 
       const responses = await Promise.all(endpoints.map((e) => fetch(e)));
@@ -138,6 +156,43 @@
       const contextPkgs = responses[3].ok ? await responses[3].json() : null;
       const depReport = responses[4].ok ? await responses[4].json() : null;
       const repository = responses[5].ok ? await responses[5].json() : null;
+
+      const repository = responses[5].ok ? await responses[5].json() : null;
+      const decisions = responses[6].ok ? await responses[6].json() : null;
+
+      const stack = document.getElementById('arch-stack');
+      const layers = [
+        { name: 'Repository', detail: 'Git on main — canonical source of truth', status: 'active' },
+        { name: 'Knowledge', detail: 'Missions, decisions, commits, company docs', status: 'active' },
+        { name: 'Intelligence', detail: 'Manifest, lookup, context packages, validation', status: 'active' },
+        { name: 'Execution', detail: 'Mission decomposition, routing, tracking — foundation only', status: 'planned' },
+        { name: 'Compilation', detail: 'PHP Repository Compiler → site/', status: 'active' },
+        { name: 'Operator', detail: 'Mission Control — merge-based approval', status: 'active' }
+      ];
+      layers.forEach((layer) => {
+        const li = el('li', layer.status === 'planned' ? 'arch-planned' : 'arch-active');
+        li.appendChild(el('strong', null, layer.name));
+        if (layer.status === 'planned') {
+          li.appendChild(el('span', 'arch-badge', 'Planned'));
+        }
+        li.appendChild(el('p', 'muted', layer.detail));
+        stack.appendChild(li);
+      });
+
+      const deployGrid = document.getElementById('deploy-grid');
+      const addDeploy = (label, value, note) => {
+        const row = el('p');
+        row.appendChild(el('span', null, label));
+        const strong = el('strong', null, value);
+        row.appendChild(strong);
+        deployGrid.appendChild(row);
+        if (note) {
+          deployGrid.appendChild(el('p', 'muted', note));
+        }
+      };
+      addDeploy('Visitors & operator', org.command_center_url || 'https://cubixmeow.com/ai-dos/site/', 'Public entry point — bookmark this URL.');
+      addDeploy('Compiler (build)', org.compiler_url || 'https://cubixmeow.com/ai-dos/compiler/compile.php', org.deployment_note || 'CLI/CI build tool — not the dashboard.');
+      addDeploy('How compile runs', 'php compiler/compile.php or GitHub Actions on push/PR', 'Regenerates site/data/*.json and Mission Control HTML.');
 
       document.getElementById('compiler-lead').innerHTML = markdownish(org.repository_compiler_concept || '');
       document.getElementById('source-truth').textContent = org.source_of_truth_statement || '';
@@ -214,6 +269,20 @@
         nextCard.appendChild(el('p', null, 'No next mission declared in Backlog.md'));
       }
 
+      if (decisions && decisions.decisions) {
+        const dList = document.getElementById('decision-list');
+        decisions.decisions.slice(0, 7).forEach((d) => {
+          const li = el('li');
+          li.appendChild(el('strong', null, d.id + ' — ' + (d.title || d.slug)));
+          li.appendChild(document.createTextNode(' [' + (d.status || 'unknown') + ']'));
+          if (d.decision) {
+            const summary = d.decision.split('\n')[0].slice(0, 120);
+            li.appendChild(el('p', 'muted', summary + (d.decision.length > 120 ? '…' : '')));
+          }
+          dList.appendChild(li);
+        });
+      }
+
       if (manifest) {
         const intelGrid = document.getElementById('intel-grid');
         const addIntel = (label, value) => {
@@ -227,6 +296,7 @@
         addIntel('Asset registry', String(manifest.asset_registry_version ?? 'unknown'));
         addIntel('Architecture', manifest.architecture_version || 'unknown');
         addIntel('Context packages', contextPkgs ? String(contextPkgs.package_count) : '—');
+        addIntel('Decisions', decisions ? String(decisions.decision_count ?? 0) : '—');
 
         const mCard = document.getElementById('manifest-card');
         mCard.appendChild(el('p', null, 'Completed: ' + (manifest.completed_missions ? manifest.completed_missions.length : 0)));

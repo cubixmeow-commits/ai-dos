@@ -1,16 +1,18 @@
 {
-    "compiled_at": "2026-07-07T21:52:07+00:00",
+    "compiled_at": "2026-07-07T22:15:14+00:00",
     "subsystem": "repository-intelligence",
     "capabilities": [
         "repository_manifest",
         "context_packages",
         "dependency_validation",
-        "repository_lookup"
+        "repository_lookup",
+        "decision_records"
     ],
     "sources": {
         "manifest": "system/manifest.yaml",
         "assets": "system/assets.yaml",
-        "context_packages": "system/context-packages.yaml"
+        "context_packages": "system/context-packages.yaml",
+        "decisions": "decisions/*.md"
     },
     "manifest_summary": {
         "repository_health": {
@@ -18,13 +20,14 @@
             "issue_count": 0,
             "error_count": 0,
             "warning_count": 0,
-            "asset_count": 56
+            "asset_count": 62
         },
-        "compiler_version": "1.3.0-mission-010",
+        "compiler_version": "1.4.0-mission-011",
         "asset_registry_version": 2
     },
     "dependency_status": "healthy",
     "context_package_count": 5,
+    "decision_count": 7,
     "lookup": {
         "by_id": {
             "readme-md": {
@@ -36,8 +39,14 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 001",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "governance-context"
+                ]
             },
             "company-identity-md": {
                 "id": "company-identity-md",
@@ -48,8 +57,17 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 001",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [
+                    "compiler-compile-php"
+                ],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "architecture-context",
+                    "governance-context"
+                ]
             },
             "company-principles-md": {
                 "id": "company-principles-md",
@@ -60,8 +78,16 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 001",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context",
+                    "architecture-context",
+                    "governance-context"
+                ]
             },
             "company-standards-md": {
                 "id": "company-standards-md",
@@ -72,8 +98,18 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 002",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [
+                    "compiler-compile-php"
+                ],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context",
+                    "compiler-context",
+                    "governance-context"
+                ]
             },
             "tasks-backlog-md": {
                 "id": "tasks-backlog-md",
@@ -84,8 +120,17 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 001",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [
+                    "compiler-compile-php"
+                ],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context",
+                    "governance-context"
+                ]
             },
             "workflow-templates-missiontemplate-md": {
                 "id": "workflow-templates-missiontemplate-md",
@@ -96,8 +141,14 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 001",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "asset-registry": {
                 "id": "asset-registry",
@@ -108,11 +159,23 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 009",
                 "depends_on": [],
+                "depended_on_by": [
+                    "asset-registry-md",
+                    "repository-intelligence-php",
+                    "context-packages-yaml",
+                    "repository-manifest",
+                    "compiler-compile-php",
+                    "site-data-organization-json"
+                ],
                 "outputs": [
-                    "file-index-legacy-shim",
-                    "file-index-md-legacy",
                     "asset-registry-md"
+                ],
+                "generated_by": [],
+                "context_packages": [
+                    "compiler-context",
+                    "website-context"
                 ]
             },
             "asset-registry-md": {
@@ -124,10 +187,16 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 009",
                 "depends_on": [
                     "asset-registry"
                 ],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "asset-registry"
+                ],
+                "context_packages": []
             },
             "repository-intelligence-php": {
                 "id": "repository-intelligence-php",
@@ -138,15 +207,24 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 010",
                 "depends_on": [
-                    "compiler-compile-php",
-                    "asset-registry"
+                    "asset-registry",
+                    "repository-manifest",
+                    "context-packages-yaml"
+                ],
+                "depended_on_by": [
+                    "compiler-compile-php"
                 ],
                 "outputs": [
                     "site-data-manifest-json",
                     "site-data-context-packages-json",
                     "site-data-dependency-report-json",
                     "site-data-repository-json"
+                ],
+                "generated_by": [],
+                "context_packages": [
+                    "compiler-context"
                 ]
             },
             "context-packages-yaml": {
@@ -158,11 +236,19 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 010",
                 "depends_on": [
                     "asset-registry"
                 ],
+                "depended_on_by": [
+                    "repository-intelligence-php"
+                ],
                 "outputs": [
                     "site-data-context-packages-json"
+                ],
+                "generated_by": [],
+                "context_packages": [
+                    "compiler-context"
                 ]
             },
             "repository-manifest": {
@@ -174,40 +260,21 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 010",
                 "depends_on": [
                     "asset-registry"
+                ],
+                "depended_on_by": [
+                    "repository-intelligence-php"
                 ],
                 "outputs": [
                     "site-data-manifest-json"
+                ],
+                "generated_by": [],
+                "context_packages": [
+                    "architecture-context",
+                    "compiler-context"
                 ]
-            },
-            "file-index-legacy-shim": {
-                "id": "file-index-legacy-shim",
-                "type": "file",
-                "name": "file-index.yaml (legacy shim)",
-                "path": "system/file-index.yaml",
-                "public_url": null,
-                "editable": true,
-                "generated": false,
-                "status": "deprecated",
-                "depends_on": [
-                    "asset-registry"
-                ],
-                "outputs": []
-            },
-            "file-index-md-legacy": {
-                "id": "file-index-md-legacy",
-                "type": "file",
-                "name": "file-index.md (legacy companion)",
-                "path": "system/file-index.md",
-                "public_url": null,
-                "editable": true,
-                "generated": false,
-                "status": "deprecated",
-                "depends_on": [
-                    "asset-registry-md"
-                ],
-                "outputs": []
             },
             "compiler-compile-php": {
                 "id": "compiler-compile-php",
@@ -218,17 +285,63 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 008",
                 "depends_on": [
                     "asset-registry",
                     "company-standards-md",
                     "company-identity-md",
-                    "tasks-backlog-md"
+                    "tasks-backlog-md",
+                    "repository-intelligence-php",
+                    "decision-records-php"
+                ],
+                "depended_on_by": [
+                    "site-data-missions-json",
+                    "site-data-organization-json",
+                    "github-workflows-compile-site-yml",
+                    "site-data-manifest-json",
+                    "site-data-context-packages-json",
+                    "site-data-dependency-report-json",
+                    "site-data-repository-json",
+                    "site-data-decisions-json"
                 ],
                 "outputs": [
                     "site-data-organization-json",
                     "site-data-missions-json",
+                    "site-data-manifest-json",
+                    "site-data-context-packages-json",
+                    "site-data-dependency-report-json",
+                    "site-data-repository-json",
+                    "site-data-decisions-json",
                     "site-index-html",
                     "site-styles-css"
+                ],
+                "generated_by": [],
+                "context_packages": [
+                    "compiler-context"
+                ]
+            },
+            "decision-records-php": {
+                "id": "decision-records-php",
+                "type": "compiler",
+                "name": "DecisionRecords.php",
+                "path": "compiler/DecisionRecords.php",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 011",
+                "depends_on": [
+                    "decisions-directory"
+                ],
+                "depended_on_by": [
+                    "compiler-compile-php"
+                ],
+                "outputs": [
+                    "site-data-decisions-json"
+                ],
+                "generated_by": [],
+                "context_packages": [
+                    "compiler-context"
                 ]
             },
             "compiler-readme-md": {
@@ -240,8 +353,14 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 008",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "compiler-context"
+                ]
             },
             "site-index-html": {
                 "id": "site-index-html",
@@ -252,12 +371,25 @@
                 "editable": false,
                 "generated": true,
                 "status": "active",
+                "created_by": "Mission 005",
                 "depends_on": [
                     "site-data-organization-json",
                     "site-data-missions-json",
+                    "site-data-manifest-json",
+                    "site-data-context-packages-json",
+                    "site-data-dependency-report-json",
+                    "site-data-repository-json",
+                    "site-data-decisions-json",
                     "site-styles-css"
                 ],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "compiler-compile-php"
+                ],
+                "context_packages": [
+                    "website-context"
+                ]
             },
             "site-styles-css": {
                 "id": "site-styles-css",
@@ -268,8 +400,18 @@
                 "editable": false,
                 "generated": true,
                 "status": "active",
+                "created_by": "Mission 005",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [
+                    "site-index-html"
+                ],
+                "outputs": [],
+                "generated_by": [
+                    "compiler-compile-php"
+                ],
+                "context_packages": [
+                    "website-context"
+                ]
             },
             "site-data-missions-json": {
                 "id": "site-data-missions-json",
@@ -280,10 +422,20 @@
                 "editable": false,
                 "generated": true,
                 "status": "active",
+                "created_by": "Mission 008",
                 "depends_on": [
                     "compiler-compile-php"
                 ],
-                "outputs": []
+                "depended_on_by": [
+                    "site-index-html"
+                ],
+                "outputs": [],
+                "generated_by": [
+                    "compiler-compile-php"
+                ],
+                "context_packages": [
+                    "website-context"
+                ]
             },
             "site-data-organization-json": {
                 "id": "site-data-organization-json",
@@ -294,11 +446,21 @@
                 "editable": false,
                 "generated": true,
                 "status": "active",
+                "created_by": "Mission 008",
                 "depends_on": [
                     "compiler-compile-php",
                     "asset-registry"
                 ],
-                "outputs": []
+                "depended_on_by": [
+                    "site-index-html"
+                ],
+                "outputs": [],
+                "generated_by": [
+                    "compiler-compile-php"
+                ],
+                "context_packages": [
+                    "website-context"
+                ]
             },
             "site-validation-invoice-tool-html": {
                 "id": "site-validation-invoice-tool-html",
@@ -309,8 +471,14 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 006",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "website-context"
+                ]
             },
             "github-workflows-compile-site-yml": {
                 "id": "github-workflows-compile-site-yml",
@@ -321,10 +489,16 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 008",
                 "depends_on": [
                     "compiler-compile-php"
                 ],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "compiler-context"
+                ]
             },
             "missions-001-bootstrap": {
                 "id": "missions-001-bootstrap",
@@ -335,10 +509,16 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 001",
                 "depends_on": [],
+                "depended_on_by": [
+                    "missions-001-bootstrap-report-md"
+                ],
                 "outputs": [
                     "missions-001-bootstrap-report-md"
-                ]
+                ],
+                "generated_by": [],
+                "context_packages": []
             },
             "missions-001-bootstrap-mission-md": {
                 "id": "missions-001-bootstrap-mission-md",
@@ -349,8 +529,14 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 001",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "missions-001-bootstrap-report-md": {
                 "id": "missions-001-bootstrap-report-md",
@@ -361,10 +547,18 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 001",
                 "depends_on": [
                     "missions-001-bootstrap"
                 ],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-001-bootstrap"
+                ],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "missions-002-knowledge-preservation": {
                 "id": "missions-002-knowledge-preservation",
@@ -375,10 +569,16 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 002",
                 "depends_on": [],
+                "depended_on_by": [
+                    "missions-002-knowledge-preservation-report-md"
+                ],
                 "outputs": [
                     "missions-002-knowledge-preservation-report-md"
-                ]
+                ],
+                "generated_by": [],
+                "context_packages": []
             },
             "missions-002-knowledge-preservation-mission-md": {
                 "id": "missions-002-knowledge-preservation-mission-md",
@@ -389,8 +589,14 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 002",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "missions-002-knowledge-preservation-report-md": {
                 "id": "missions-002-knowledge-preservation-report-md",
@@ -401,10 +607,18 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 002",
                 "depends_on": [
                     "missions-002-knowledge-preservation"
                 ],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-002-knowledge-preservation"
+                ],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "missions-003-prove-the-loop": {
                 "id": "missions-003-prove-the-loop",
@@ -415,10 +629,16 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 003",
                 "depends_on": [],
+                "depended_on_by": [
+                    "missions-003-prove-the-loop-report-md"
+                ],
                 "outputs": [
                     "missions-003-prove-the-loop-report-md"
-                ]
+                ],
+                "generated_by": [],
+                "context_packages": []
             },
             "missions-003-prove-the-loop-mission-md": {
                 "id": "missions-003-prove-the-loop-mission-md",
@@ -429,8 +649,14 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 003",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "missions-003-prove-the-loop-report-md": {
                 "id": "missions-003-prove-the-loop-report-md",
@@ -441,10 +667,18 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 003",
                 "depends_on": [
                     "missions-003-prove-the-loop"
                 ],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-003-prove-the-loop"
+                ],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "missions-003-prove-the-loop-research-md": {
                 "id": "missions-003-prove-the-loop-research-md",
@@ -455,8 +689,12 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 003",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": []
             },
             "missions-003-prove-the-loop-evaluation-md": {
                 "id": "missions-003-prove-the-loop-evaluation-md",
@@ -467,8 +705,12 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 003",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": []
             },
             "missions-004-close-governance-loop": {
                 "id": "missions-004-close-governance-loop",
@@ -479,10 +721,16 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 004",
                 "depends_on": [],
+                "depended_on_by": [
+                    "missions-004-close-governance-loop-report-md"
+                ],
                 "outputs": [
                     "missions-004-close-governance-loop-report-md"
-                ]
+                ],
+                "generated_by": [],
+                "context_packages": []
             },
             "missions-004-close-governance-loop-mission-md": {
                 "id": "missions-004-close-governance-loop-mission-md",
@@ -493,8 +741,14 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 004",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "missions-004-close-governance-loop-report-md": {
                 "id": "missions-004-close-governance-loop-report-md",
@@ -505,10 +759,18 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 004",
                 "depends_on": [
                     "missions-004-close-governance-loop"
                 ],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-004-close-governance-loop"
+                ],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "missions-005-showcase-page": {
                 "id": "missions-005-showcase-page",
@@ -519,10 +781,16 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 005",
                 "depends_on": [],
+                "depended_on_by": [
+                    "missions-005-showcase-page-report-md"
+                ],
                 "outputs": [
                     "missions-005-showcase-page-report-md"
-                ]
+                ],
+                "generated_by": [],
+                "context_packages": []
             },
             "missions-005-showcase-page-mission-md": {
                 "id": "missions-005-showcase-page-mission-md",
@@ -533,8 +801,14 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 005",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "missions-005-showcase-page-report-md": {
                 "id": "missions-005-showcase-page-report-md",
@@ -545,10 +819,18 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 005",
                 "depends_on": [
                     "missions-005-showcase-page"
                 ],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-005-showcase-page"
+                ],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "missions-006-validate-recommendation": {
                 "id": "missions-006-validate-recommendation",
@@ -559,8 +841,12 @@
                 "editable": true,
                 "generated": false,
                 "status": "paused",
+                "created_by": "Mission 006",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": []
             },
             "missions-006-validate-recommendation-mission-md": {
                 "id": "missions-006-validate-recommendation-mission-md",
@@ -571,8 +857,14 @@
                 "editable": true,
                 "generated": false,
                 "status": "paused",
+                "created_by": "Mission 006",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "missions-006-validate-recommendation-phase-a-thresholds-md": {
                 "id": "missions-006-validate-recommendation-phase-a-thresholds-md",
@@ -583,8 +875,12 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 006",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": []
             },
             "missions-006-validate-recommendation-evidence-ledger-md": {
                 "id": "missions-006-validate-recommendation-evidence-ledger-md",
@@ -595,8 +891,12 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 006",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": []
             },
             "missions-007-design-v2": {
                 "id": "missions-007-design-v2",
@@ -607,10 +907,16 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 007",
                 "depends_on": [],
+                "depended_on_by": [
+                    "missions-007-design-v2-report-md"
+                ],
                 "outputs": [
                     "missions-007-design-v2-report-md"
-                ]
+                ],
+                "generated_by": [],
+                "context_packages": []
             },
             "missions-007-design-v2-mission-md": {
                 "id": "missions-007-design-v2-mission-md",
@@ -621,8 +927,14 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 007",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "missions-007-design-v2-report-md": {
                 "id": "missions-007-design-v2-report-md",
@@ -633,10 +945,19 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 007",
                 "depends_on": [
                     "missions-007-design-v2"
                 ],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-007-design-v2"
+                ],
+                "context_packages": [
+                    "mission-context",
+                    "architecture-context"
+                ]
             },
             "missions-007-design-v2-architecture-md": {
                 "id": "missions-007-design-v2-architecture-md",
@@ -647,8 +968,14 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 007",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "architecture-context"
+                ]
             },
             "missions-008-repository-compiler": {
                 "id": "missions-008-repository-compiler",
@@ -659,10 +986,16 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 008",
                 "depends_on": [],
+                "depended_on_by": [
+                    "missions-008-repository-compiler-report-md"
+                ],
                 "outputs": [
                     "missions-008-repository-compiler-report-md"
-                ]
+                ],
+                "generated_by": [],
+                "context_packages": []
             },
             "missions-008-repository-compiler-mission-md": {
                 "id": "missions-008-repository-compiler-mission-md",
@@ -673,8 +1006,14 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 008",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "missions-008-repository-compiler-report-md": {
                 "id": "missions-008-repository-compiler-report-md",
@@ -685,10 +1024,18 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 008",
                 "depends_on": [
                     "missions-008-repository-compiler"
                 ],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-008-repository-compiler"
+                ],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "missions-009-file-index-foundation": {
                 "id": "missions-009-file-index-foundation",
@@ -699,10 +1046,16 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 009",
                 "depends_on": [],
+                "depended_on_by": [
+                    "missions-009-file-index-foundation-report-md"
+                ],
                 "outputs": [
                     "missions-009-file-index-foundation-report-md"
-                ]
+                ],
+                "generated_by": [],
+                "context_packages": []
             },
             "missions-009-file-index-foundation-mission-md": {
                 "id": "missions-009-file-index-foundation-mission-md",
@@ -713,8 +1066,14 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 009",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "missions-009-file-index-foundation-report-md": {
                 "id": "missions-009-file-index-foundation-report-md",
@@ -725,10 +1084,18 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 009",
                 "depends_on": [
                     "missions-009-file-index-foundation"
                 ],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-009-file-index-foundation"
+                ],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "site-data-manifest-json": {
                 "id": "site-data-manifest-json",
@@ -739,10 +1106,22 @@
                 "editable": false,
                 "generated": true,
                 "status": "active",
+                "created_by": "Mission 010",
                 "depends_on": [
                     "compiler-compile-php"
                 ],
-                "outputs": []
+                "depended_on_by": [
+                    "site-index-html"
+                ],
+                "outputs": [],
+                "generated_by": [
+                    "repository-intelligence-php",
+                    "repository-manifest",
+                    "compiler-compile-php"
+                ],
+                "context_packages": [
+                    "website-context"
+                ]
             },
             "site-data-context-packages-json": {
                 "id": "site-data-context-packages-json",
@@ -753,10 +1132,22 @@
                 "editable": false,
                 "generated": true,
                 "status": "active",
+                "created_by": "Mission 010",
                 "depends_on": [
                     "compiler-compile-php"
                 ],
-                "outputs": []
+                "depended_on_by": [
+                    "site-index-html"
+                ],
+                "outputs": [],
+                "generated_by": [
+                    "repository-intelligence-php",
+                    "context-packages-yaml",
+                    "compiler-compile-php"
+                ],
+                "context_packages": [
+                    "website-context"
+                ]
             },
             "site-data-dependency-report-json": {
                 "id": "site-data-dependency-report-json",
@@ -767,10 +1158,21 @@
                 "editable": false,
                 "generated": true,
                 "status": "active",
+                "created_by": "Mission 010",
                 "depends_on": [
                     "compiler-compile-php"
                 ],
-                "outputs": []
+                "depended_on_by": [
+                    "site-index-html"
+                ],
+                "outputs": [],
+                "generated_by": [
+                    "repository-intelligence-php",
+                    "compiler-compile-php"
+                ],
+                "context_packages": [
+                    "website-context"
+                ]
             },
             "site-data-repository-json": {
                 "id": "site-data-repository-json",
@@ -781,10 +1183,167 @@
                 "editable": false,
                 "generated": true,
                 "status": "active",
+                "created_by": "Mission 010",
                 "depends_on": [
                     "compiler-compile-php"
                 ],
-                "outputs": []
+                "depended_on_by": [
+                    "site-index-html"
+                ],
+                "outputs": [],
+                "generated_by": [
+                    "repository-intelligence-php",
+                    "compiler-compile-php"
+                ],
+                "context_packages": [
+                    "website-context"
+                ]
+            },
+            "site-data-decisions-json": {
+                "id": "site-data-decisions-json",
+                "type": "generated-file",
+                "name": "decisions.json",
+                "path": "site/data/decisions.json",
+                "public_url": "https://cubixmeow.com/ai-dos/site/data/decisions.json",
+                "editable": false,
+                "generated": true,
+                "status": "active",
+                "created_by": "Mission 011",
+                "depends_on": [
+                    "compiler-compile-php"
+                ],
+                "depended_on_by": [
+                    "site-index-html"
+                ],
+                "outputs": [],
+                "generated_by": [
+                    "compiler-compile-php",
+                    "decision-records-php",
+                    "decisions-directory"
+                ],
+                "context_packages": [
+                    "website-context"
+                ]
+            },
+            "decisions-directory": {
+                "id": "decisions-directory",
+                "type": "directory",
+                "name": "decisions/",
+                "path": "decisions/",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 011",
+                "depends_on": [],
+                "depended_on_by": [
+                    "decision-records-php"
+                ],
+                "outputs": [
+                    "site-data-decisions-json"
+                ],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "execution-engine-md": {
+                "id": "execution-engine-md",
+                "type": "file",
+                "name": "execution-engine.md",
+                "path": "system/execution-engine.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 011",
+                "depends_on": [],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context",
+                    "architecture-context"
+                ]
+            },
+            "architecture-audit-md": {
+                "id": "architecture-audit-md",
+                "type": "file",
+                "name": "architecture-audit.md",
+                "path": "architecture-audit.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 011",
+                "depends_on": [],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "architecture-context"
+                ]
+            },
+            "missions-011-architecture-integration": {
+                "id": "missions-011-architecture-integration",
+                "type": "mission",
+                "name": "Mission folder: missions/011-architecture-integration",
+                "path": "missions/011-architecture-integration/",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 011",
+                "depends_on": [],
+                "depended_on_by": [
+                    "missions-011-architecture-integration-mission-md",
+                    "missions-011-architecture-integration-report-md"
+                ],
+                "outputs": [
+                    "missions-011-architecture-integration-report-md"
+                ],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "missions-011-architecture-integration-mission-md": {
+                "id": "missions-011-architecture-integration-mission-md",
+                "type": "file",
+                "name": "mission.md",
+                "path": "missions/011-architecture-integration/mission.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 011",
+                "depends_on": [
+                    "missions-011-architecture-integration"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
+            },
+            "missions-011-architecture-integration-report-md": {
+                "id": "missions-011-architecture-integration-report-md",
+                "type": "file",
+                "name": "report.md",
+                "path": "missions/011-architecture-integration/report.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 011",
+                "depends_on": [
+                    "missions-011-architecture-integration"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-011-architecture-integration"
+                ],
+                "context_packages": [
+                    "mission-context"
+                ]
             }
         },
         "by_path": {
@@ -797,8 +1356,14 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 001",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "governance-context"
+                ]
             },
             "company/Identity.md": {
                 "id": "company-identity-md",
@@ -809,8 +1374,17 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 001",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [
+                    "compiler-compile-php"
+                ],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "architecture-context",
+                    "governance-context"
+                ]
             },
             "company/Principles.md": {
                 "id": "company-principles-md",
@@ -821,8 +1395,16 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 001",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context",
+                    "architecture-context",
+                    "governance-context"
+                ]
             },
             "company/Standards.md": {
                 "id": "company-standards-md",
@@ -833,8 +1415,18 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 002",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [
+                    "compiler-compile-php"
+                ],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context",
+                    "compiler-context",
+                    "governance-context"
+                ]
             },
             "tasks/Backlog.md": {
                 "id": "tasks-backlog-md",
@@ -845,8 +1437,17 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 001",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [
+                    "compiler-compile-php"
+                ],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context",
+                    "governance-context"
+                ]
             },
             "workflow/Templates/MissionTemplate.md": {
                 "id": "workflow-templates-missiontemplate-md",
@@ -857,8 +1458,14 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 001",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "system/assets.yaml": {
                 "id": "asset-registry",
@@ -869,11 +1476,23 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 009",
                 "depends_on": [],
+                "depended_on_by": [
+                    "asset-registry-md",
+                    "repository-intelligence-php",
+                    "context-packages-yaml",
+                    "repository-manifest",
+                    "compiler-compile-php",
+                    "site-data-organization-json"
+                ],
                 "outputs": [
-                    "file-index-legacy-shim",
-                    "file-index-md-legacy",
                     "asset-registry-md"
+                ],
+                "generated_by": [],
+                "context_packages": [
+                    "compiler-context",
+                    "website-context"
                 ]
             },
             "system/assets.md": {
@@ -885,10 +1504,16 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 009",
                 "depends_on": [
                     "asset-registry"
                 ],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "asset-registry"
+                ],
+                "context_packages": []
             },
             "compiler/RepositoryIntelligence.php": {
                 "id": "repository-intelligence-php",
@@ -899,15 +1524,24 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 010",
                 "depends_on": [
-                    "compiler-compile-php",
-                    "asset-registry"
+                    "asset-registry",
+                    "repository-manifest",
+                    "context-packages-yaml"
+                ],
+                "depended_on_by": [
+                    "compiler-compile-php"
                 ],
                 "outputs": [
                     "site-data-manifest-json",
                     "site-data-context-packages-json",
                     "site-data-dependency-report-json",
                     "site-data-repository-json"
+                ],
+                "generated_by": [],
+                "context_packages": [
+                    "compiler-context"
                 ]
             },
             "system/context-packages.yaml": {
@@ -919,11 +1553,19 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 010",
                 "depends_on": [
                     "asset-registry"
                 ],
+                "depended_on_by": [
+                    "repository-intelligence-php"
+                ],
                 "outputs": [
                     "site-data-context-packages-json"
+                ],
+                "generated_by": [],
+                "context_packages": [
+                    "compiler-context"
                 ]
             },
             "system/manifest.yaml": {
@@ -935,40 +1577,21 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 010",
                 "depends_on": [
                     "asset-registry"
+                ],
+                "depended_on_by": [
+                    "repository-intelligence-php"
                 ],
                 "outputs": [
                     "site-data-manifest-json"
+                ],
+                "generated_by": [],
+                "context_packages": [
+                    "architecture-context",
+                    "compiler-context"
                 ]
-            },
-            "system/file-index.yaml": {
-                "id": "file-index-legacy-shim",
-                "type": "file",
-                "name": "file-index.yaml (legacy shim)",
-                "path": "system/file-index.yaml",
-                "public_url": null,
-                "editable": true,
-                "generated": false,
-                "status": "deprecated",
-                "depends_on": [
-                    "asset-registry"
-                ],
-                "outputs": []
-            },
-            "system/file-index.md": {
-                "id": "file-index-md-legacy",
-                "type": "file",
-                "name": "file-index.md (legacy companion)",
-                "path": "system/file-index.md",
-                "public_url": null,
-                "editable": true,
-                "generated": false,
-                "status": "deprecated",
-                "depends_on": [
-                    "asset-registry-md"
-                ],
-                "outputs": []
             },
             "compiler/compile.php": {
                 "id": "compiler-compile-php",
@@ -979,17 +1602,63 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 008",
                 "depends_on": [
                     "asset-registry",
                     "company-standards-md",
                     "company-identity-md",
-                    "tasks-backlog-md"
+                    "tasks-backlog-md",
+                    "repository-intelligence-php",
+                    "decision-records-php"
+                ],
+                "depended_on_by": [
+                    "site-data-missions-json",
+                    "site-data-organization-json",
+                    "github-workflows-compile-site-yml",
+                    "site-data-manifest-json",
+                    "site-data-context-packages-json",
+                    "site-data-dependency-report-json",
+                    "site-data-repository-json",
+                    "site-data-decisions-json"
                 ],
                 "outputs": [
                     "site-data-organization-json",
                     "site-data-missions-json",
+                    "site-data-manifest-json",
+                    "site-data-context-packages-json",
+                    "site-data-dependency-report-json",
+                    "site-data-repository-json",
+                    "site-data-decisions-json",
                     "site-index-html",
                     "site-styles-css"
+                ],
+                "generated_by": [],
+                "context_packages": [
+                    "compiler-context"
+                ]
+            },
+            "compiler/DecisionRecords.php": {
+                "id": "decision-records-php",
+                "type": "compiler",
+                "name": "DecisionRecords.php",
+                "path": "compiler/DecisionRecords.php",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 011",
+                "depends_on": [
+                    "decisions-directory"
+                ],
+                "depended_on_by": [
+                    "compiler-compile-php"
+                ],
+                "outputs": [
+                    "site-data-decisions-json"
+                ],
+                "generated_by": [],
+                "context_packages": [
+                    "compiler-context"
                 ]
             },
             "compiler/README.md": {
@@ -1001,8 +1670,14 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 008",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "compiler-context"
+                ]
             },
             "site/index.html": {
                 "id": "site-index-html",
@@ -1013,12 +1688,25 @@
                 "editable": false,
                 "generated": true,
                 "status": "active",
+                "created_by": "Mission 005",
                 "depends_on": [
                     "site-data-organization-json",
                     "site-data-missions-json",
+                    "site-data-manifest-json",
+                    "site-data-context-packages-json",
+                    "site-data-dependency-report-json",
+                    "site-data-repository-json",
+                    "site-data-decisions-json",
                     "site-styles-css"
                 ],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "compiler-compile-php"
+                ],
+                "context_packages": [
+                    "website-context"
+                ]
             },
             "site/styles.css": {
                 "id": "site-styles-css",
@@ -1029,8 +1717,18 @@
                 "editable": false,
                 "generated": true,
                 "status": "active",
+                "created_by": "Mission 005",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [
+                    "site-index-html"
+                ],
+                "outputs": [],
+                "generated_by": [
+                    "compiler-compile-php"
+                ],
+                "context_packages": [
+                    "website-context"
+                ]
             },
             "site/data/missions.json": {
                 "id": "site-data-missions-json",
@@ -1041,10 +1739,20 @@
                 "editable": false,
                 "generated": true,
                 "status": "active",
+                "created_by": "Mission 008",
                 "depends_on": [
                     "compiler-compile-php"
                 ],
-                "outputs": []
+                "depended_on_by": [
+                    "site-index-html"
+                ],
+                "outputs": [],
+                "generated_by": [
+                    "compiler-compile-php"
+                ],
+                "context_packages": [
+                    "website-context"
+                ]
             },
             "site/data/organization.json": {
                 "id": "site-data-organization-json",
@@ -1055,11 +1763,21 @@
                 "editable": false,
                 "generated": true,
                 "status": "active",
+                "created_by": "Mission 008",
                 "depends_on": [
                     "compiler-compile-php",
                     "asset-registry"
                 ],
-                "outputs": []
+                "depended_on_by": [
+                    "site-index-html"
+                ],
+                "outputs": [],
+                "generated_by": [
+                    "compiler-compile-php"
+                ],
+                "context_packages": [
+                    "website-context"
+                ]
             },
             "site/validation/invoice-tool.html": {
                 "id": "site-validation-invoice-tool-html",
@@ -1070,8 +1788,14 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 006",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "website-context"
+                ]
             },
             ".github/workflows/compile-site.yml": {
                 "id": "github-workflows-compile-site-yml",
@@ -1082,10 +1806,16 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 008",
                 "depends_on": [
                     "compiler-compile-php"
                 ],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "compiler-context"
+                ]
             },
             "missions/001-bootstrap/": {
                 "id": "missions-001-bootstrap",
@@ -1096,10 +1826,16 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 001",
                 "depends_on": [],
+                "depended_on_by": [
+                    "missions-001-bootstrap-report-md"
+                ],
                 "outputs": [
                     "missions-001-bootstrap-report-md"
-                ]
+                ],
+                "generated_by": [],
+                "context_packages": []
             },
             "missions/001-bootstrap/mission.md": {
                 "id": "missions-001-bootstrap-mission-md",
@@ -1110,8 +1846,14 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 001",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "missions/001-bootstrap/report.md": {
                 "id": "missions-001-bootstrap-report-md",
@@ -1122,10 +1864,18 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 001",
                 "depends_on": [
                     "missions-001-bootstrap"
                 ],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-001-bootstrap"
+                ],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "missions/002-knowledge-preservation/": {
                 "id": "missions-002-knowledge-preservation",
@@ -1136,10 +1886,16 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 002",
                 "depends_on": [],
+                "depended_on_by": [
+                    "missions-002-knowledge-preservation-report-md"
+                ],
                 "outputs": [
                     "missions-002-knowledge-preservation-report-md"
-                ]
+                ],
+                "generated_by": [],
+                "context_packages": []
             },
             "missions/002-knowledge-preservation/mission.md": {
                 "id": "missions-002-knowledge-preservation-mission-md",
@@ -1150,8 +1906,14 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 002",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "missions/002-knowledge-preservation/report.md": {
                 "id": "missions-002-knowledge-preservation-report-md",
@@ -1162,10 +1924,18 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 002",
                 "depends_on": [
                     "missions-002-knowledge-preservation"
                 ],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-002-knowledge-preservation"
+                ],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "missions/003-prove-the-loop/": {
                 "id": "missions-003-prove-the-loop",
@@ -1176,10 +1946,16 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 003",
                 "depends_on": [],
+                "depended_on_by": [
+                    "missions-003-prove-the-loop-report-md"
+                ],
                 "outputs": [
                     "missions-003-prove-the-loop-report-md"
-                ]
+                ],
+                "generated_by": [],
+                "context_packages": []
             },
             "missions/003-prove-the-loop/mission.md": {
                 "id": "missions-003-prove-the-loop-mission-md",
@@ -1190,8 +1966,14 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 003",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "missions/003-prove-the-loop/report.md": {
                 "id": "missions-003-prove-the-loop-report-md",
@@ -1202,10 +1984,18 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 003",
                 "depends_on": [
                     "missions-003-prove-the-loop"
                 ],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-003-prove-the-loop"
+                ],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "missions/003-prove-the-loop/research.md": {
                 "id": "missions-003-prove-the-loop-research-md",
@@ -1216,8 +2006,12 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 003",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": []
             },
             "missions/003-prove-the-loop/evaluation.md": {
                 "id": "missions-003-prove-the-loop-evaluation-md",
@@ -1228,8 +2022,12 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 003",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": []
             },
             "missions/004-close-governance-loop/": {
                 "id": "missions-004-close-governance-loop",
@@ -1240,10 +2038,16 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 004",
                 "depends_on": [],
+                "depended_on_by": [
+                    "missions-004-close-governance-loop-report-md"
+                ],
                 "outputs": [
                     "missions-004-close-governance-loop-report-md"
-                ]
+                ],
+                "generated_by": [],
+                "context_packages": []
             },
             "missions/004-close-governance-loop/mission.md": {
                 "id": "missions-004-close-governance-loop-mission-md",
@@ -1254,8 +2058,14 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 004",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "missions/004-close-governance-loop/report.md": {
                 "id": "missions-004-close-governance-loop-report-md",
@@ -1266,10 +2076,18 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 004",
                 "depends_on": [
                     "missions-004-close-governance-loop"
                 ],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-004-close-governance-loop"
+                ],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "missions/005-showcase-page/": {
                 "id": "missions-005-showcase-page",
@@ -1280,10 +2098,16 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 005",
                 "depends_on": [],
+                "depended_on_by": [
+                    "missions-005-showcase-page-report-md"
+                ],
                 "outputs": [
                     "missions-005-showcase-page-report-md"
-                ]
+                ],
+                "generated_by": [],
+                "context_packages": []
             },
             "missions/005-showcase-page/mission.md": {
                 "id": "missions-005-showcase-page-mission-md",
@@ -1294,8 +2118,14 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 005",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "missions/005-showcase-page/report.md": {
                 "id": "missions-005-showcase-page-report-md",
@@ -1306,10 +2136,18 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 005",
                 "depends_on": [
                     "missions-005-showcase-page"
                 ],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-005-showcase-page"
+                ],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "missions/006-validate-recommendation/": {
                 "id": "missions-006-validate-recommendation",
@@ -1320,8 +2158,12 @@
                 "editable": true,
                 "generated": false,
                 "status": "paused",
+                "created_by": "Mission 006",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": []
             },
             "missions/006-validate-recommendation/mission.md": {
                 "id": "missions-006-validate-recommendation-mission-md",
@@ -1332,8 +2174,14 @@
                 "editable": true,
                 "generated": false,
                 "status": "paused",
+                "created_by": "Mission 006",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "missions/006-validate-recommendation/phase-a-thresholds.md": {
                 "id": "missions-006-validate-recommendation-phase-a-thresholds-md",
@@ -1344,8 +2192,12 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 006",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": []
             },
             "missions/006-validate-recommendation/evidence-ledger.md": {
                 "id": "missions-006-validate-recommendation-evidence-ledger-md",
@@ -1356,8 +2208,12 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 006",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": []
             },
             "missions/007-design-v2/": {
                 "id": "missions-007-design-v2",
@@ -1368,10 +2224,16 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 007",
                 "depends_on": [],
+                "depended_on_by": [
+                    "missions-007-design-v2-report-md"
+                ],
                 "outputs": [
                     "missions-007-design-v2-report-md"
-                ]
+                ],
+                "generated_by": [],
+                "context_packages": []
             },
             "missions/007-design-v2/mission.md": {
                 "id": "missions-007-design-v2-mission-md",
@@ -1382,8 +2244,14 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 007",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "missions/007-design-v2/report.md": {
                 "id": "missions-007-design-v2-report-md",
@@ -1394,10 +2262,19 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 007",
                 "depends_on": [
                     "missions-007-design-v2"
                 ],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-007-design-v2"
+                ],
+                "context_packages": [
+                    "mission-context",
+                    "architecture-context"
+                ]
             },
             "missions/007-design-v2/architecture.md": {
                 "id": "missions-007-design-v2-architecture-md",
@@ -1408,8 +2285,14 @@
                 "editable": true,
                 "generated": false,
                 "status": "active",
+                "created_by": "Mission 007",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "architecture-context"
+                ]
             },
             "missions/008-repository-compiler/": {
                 "id": "missions-008-repository-compiler",
@@ -1420,10 +2303,16 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 008",
                 "depends_on": [],
+                "depended_on_by": [
+                    "missions-008-repository-compiler-report-md"
+                ],
                 "outputs": [
                     "missions-008-repository-compiler-report-md"
-                ]
+                ],
+                "generated_by": [],
+                "context_packages": []
             },
             "missions/008-repository-compiler/mission.md": {
                 "id": "missions-008-repository-compiler-mission-md",
@@ -1434,8 +2323,14 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 008",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "missions/008-repository-compiler/report.md": {
                 "id": "missions-008-repository-compiler-report-md",
@@ -1446,10 +2341,18 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 008",
                 "depends_on": [
                     "missions-008-repository-compiler"
                 ],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-008-repository-compiler"
+                ],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "missions/009-file-index-foundation/": {
                 "id": "missions-009-file-index-foundation",
@@ -1460,10 +2363,16 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 009",
                 "depends_on": [],
+                "depended_on_by": [
+                    "missions-009-file-index-foundation-report-md"
+                ],
                 "outputs": [
                     "missions-009-file-index-foundation-report-md"
-                ]
+                ],
+                "generated_by": [],
+                "context_packages": []
             },
             "missions/009-file-index-foundation/mission.md": {
                 "id": "missions-009-file-index-foundation-mission-md",
@@ -1474,8 +2383,14 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 009",
                 "depends_on": [],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "missions/009-file-index-foundation/report.md": {
                 "id": "missions-009-file-index-foundation-report-md",
@@ -1486,10 +2401,18 @@
                 "editable": true,
                 "generated": false,
                 "status": "complete",
+                "created_by": "Mission 009",
                 "depends_on": [
                     "missions-009-file-index-foundation"
                 ],
-                "outputs": []
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-009-file-index-foundation"
+                ],
+                "context_packages": [
+                    "mission-context"
+                ]
             },
             "site/data/manifest.json": {
                 "id": "site-data-manifest-json",
@@ -1500,10 +2423,22 @@
                 "editable": false,
                 "generated": true,
                 "status": "active",
+                "created_by": "Mission 010",
                 "depends_on": [
                     "compiler-compile-php"
                 ],
-                "outputs": []
+                "depended_on_by": [
+                    "site-index-html"
+                ],
+                "outputs": [],
+                "generated_by": [
+                    "repository-intelligence-php",
+                    "repository-manifest",
+                    "compiler-compile-php"
+                ],
+                "context_packages": [
+                    "website-context"
+                ]
             },
             "site/data/context-packages.json": {
                 "id": "site-data-context-packages-json",
@@ -1514,10 +2449,22 @@
                 "editable": false,
                 "generated": true,
                 "status": "active",
+                "created_by": "Mission 010",
                 "depends_on": [
                     "compiler-compile-php"
                 ],
-                "outputs": []
+                "depended_on_by": [
+                    "site-index-html"
+                ],
+                "outputs": [],
+                "generated_by": [
+                    "repository-intelligence-php",
+                    "context-packages-yaml",
+                    "compiler-compile-php"
+                ],
+                "context_packages": [
+                    "website-context"
+                ]
             },
             "site/data/dependency-report.json": {
                 "id": "site-data-dependency-report-json",
@@ -1528,10 +2475,21 @@
                 "editable": false,
                 "generated": true,
                 "status": "active",
+                "created_by": "Mission 010",
                 "depends_on": [
                     "compiler-compile-php"
                 ],
-                "outputs": []
+                "depended_on_by": [
+                    "site-index-html"
+                ],
+                "outputs": [],
+                "generated_by": [
+                    "repository-intelligence-php",
+                    "compiler-compile-php"
+                ],
+                "context_packages": [
+                    "website-context"
+                ]
             },
             "site/data/repository.json": {
                 "id": "site-data-repository-json",
@@ -1542,10 +2500,167 @@
                 "editable": false,
                 "generated": true,
                 "status": "active",
+                "created_by": "Mission 010",
                 "depends_on": [
                     "compiler-compile-php"
                 ],
-                "outputs": []
+                "depended_on_by": [
+                    "site-index-html"
+                ],
+                "outputs": [],
+                "generated_by": [
+                    "repository-intelligence-php",
+                    "compiler-compile-php"
+                ],
+                "context_packages": [
+                    "website-context"
+                ]
+            },
+            "site/data/decisions.json": {
+                "id": "site-data-decisions-json",
+                "type": "generated-file",
+                "name": "decisions.json",
+                "path": "site/data/decisions.json",
+                "public_url": "https://cubixmeow.com/ai-dos/site/data/decisions.json",
+                "editable": false,
+                "generated": true,
+                "status": "active",
+                "created_by": "Mission 011",
+                "depends_on": [
+                    "compiler-compile-php"
+                ],
+                "depended_on_by": [
+                    "site-index-html"
+                ],
+                "outputs": [],
+                "generated_by": [
+                    "compiler-compile-php",
+                    "decision-records-php",
+                    "decisions-directory"
+                ],
+                "context_packages": [
+                    "website-context"
+                ]
+            },
+            "decisions/": {
+                "id": "decisions-directory",
+                "type": "directory",
+                "name": "decisions/",
+                "path": "decisions/",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 011",
+                "depends_on": [],
+                "depended_on_by": [
+                    "decision-records-php"
+                ],
+                "outputs": [
+                    "site-data-decisions-json"
+                ],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "system/execution-engine.md": {
+                "id": "execution-engine-md",
+                "type": "file",
+                "name": "execution-engine.md",
+                "path": "system/execution-engine.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 011",
+                "depends_on": [],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context",
+                    "architecture-context"
+                ]
+            },
+            "architecture-audit.md": {
+                "id": "architecture-audit-md",
+                "type": "file",
+                "name": "architecture-audit.md",
+                "path": "architecture-audit.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 011",
+                "depends_on": [],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "architecture-context"
+                ]
+            },
+            "missions/011-architecture-integration/": {
+                "id": "missions-011-architecture-integration",
+                "type": "mission",
+                "name": "Mission folder: missions/011-architecture-integration",
+                "path": "missions/011-architecture-integration/",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 011",
+                "depends_on": [],
+                "depended_on_by": [
+                    "missions-011-architecture-integration-mission-md",
+                    "missions-011-architecture-integration-report-md"
+                ],
+                "outputs": [
+                    "missions-011-architecture-integration-report-md"
+                ],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "missions/011-architecture-integration/mission.md": {
+                "id": "missions-011-architecture-integration-mission-md",
+                "type": "file",
+                "name": "mission.md",
+                "path": "missions/011-architecture-integration/mission.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 011",
+                "depends_on": [
+                    "missions-011-architecture-integration"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
+            },
+            "missions/011-architecture-integration/report.md": {
+                "id": "missions-011-architecture-integration-report-md",
+                "type": "file",
+                "name": "report.md",
+                "path": "missions/011-architecture-integration/report.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 011",
+                "depends_on": [
+                    "missions-011-architecture-integration"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-011-architecture-integration"
+                ],
+                "context_packages": [
+                    "mission-context"
+                ]
             }
         },
         "by_type": {
@@ -1559,8 +2674,6 @@
                 "asset-registry-md",
                 "context-packages-yaml",
                 "repository-manifest",
-                "file-index-legacy-shim",
-                "file-index-md-legacy",
                 "compiler-readme-md",
                 "missions-001-bootstrap-mission-md",
                 "missions-001-bootstrap-report-md",
@@ -1583,14 +2696,19 @@
                 "missions-008-repository-compiler-mission-md",
                 "missions-008-repository-compiler-report-md",
                 "missions-009-file-index-foundation-mission-md",
-                "missions-009-file-index-foundation-report-md"
+                "missions-009-file-index-foundation-report-md",
+                "execution-engine-md",
+                "architecture-audit-md",
+                "missions-011-architecture-integration-mission-md",
+                "missions-011-architecture-integration-report-md"
             ],
             "template": [
                 "workflow-templates-missiontemplate-md"
             ],
             "compiler": [
                 "repository-intelligence-php",
-                "compiler-compile-php"
+                "compiler-compile-php",
+                "decision-records-php"
             ],
             "website": [
                 "site-index-html",
@@ -1603,7 +2721,8 @@
                 "site-data-manifest-json",
                 "site-data-context-packages-json",
                 "site-data-dependency-report-json",
-                "site-data-repository-json"
+                "site-data-repository-json",
+                "site-data-decisions-json"
             ],
             "github-action": [
                 "github-workflows-compile-site-yml"
@@ -1617,17 +2736,22 @@
                 "missions-006-validate-recommendation",
                 "missions-007-design-v2",
                 "missions-008-repository-compiler",
-                "missions-009-file-index-foundation"
+                "missions-009-file-index-foundation",
+                "decisions-directory"
+            ],
+            "mission": [
+                "missions-011-architecture-integration"
             ]
         }
     },
     "query_support": {
-        "where_is": "lookup.by_path or lookup.by_id",
-        "what_generates": "asset.outputs or reverse depends_on",
-        "created_by_mission": "asset.created_by in assets.yaml (use by_id)",
-        "what_depends_on": "asset.depends_on and reverse outputs",
-        "is_editable": "asset.editable",
-        "public_url": "asset.public_url"
+        "where_is": "lookup.by_path[path] or lookup.by_id[id] — path, type, status",
+        "what_generates_this": "lookup.*.generated_by — assets whose outputs include this id",
+        "what_depends_on_this": "lookup.*.depended_on_by — assets that list this id in depends_on",
+        "who_created_this": "lookup.*.created_by — mission or actor from assets.yaml",
+        "is_editable": "lookup.*.editable — safe_to_edit mirror",
+        "public_url": "lookup.*.public_url — null when not public",
+        "context_package_contains": "lookup.*.context_packages — package ids from context-packages.yaml"
     },
     "query_examples": {
         "where_is_the_compiler": {
@@ -1650,14 +2774,14 @@
         "what_depends_on_compiler": {
             "asset_id": "compiler-compile-php",
             "depended_on_by": [
-                "repository-intelligence-php",
                 "site-data-missions-json",
                 "site-data-organization-json",
                 "github-workflows-compile-site-yml",
                 "site-data-manifest-json",
                 "site-data-context-packages-json",
                 "site-data-dependency-report-json",
-                "site-data-repository-json"
+                "site-data-repository-json",
+                "site-data-decisions-json"
             ]
         },
         "is_organization_json_editable": {

@@ -3,21 +3,32 @@
 The queue of upcoming missions, in order. The top item is next. A mission
 starts only after the operator approves the previous mission's report.
 
-## Next: Mission 011 — Decision Intelligence Layer
+## Next: Mission 012 — Execution Engine Foundation
 
-**Goal:** Bootstrap the Decision Engine — queryable decision records derived
-from mission artifacts, per V2 architecture (Mission 007).
+**Goal:** Implement the first concrete pieces of the Execution Engine
+architectural contract defined in Mission 011 — still no cloud orchestration,
+background services, or fabricated automation.
 
-**Scope** (from [Mission 007 architecture](../missions/007-design-v2/architecture.md)):
+**Scope** (from [system/execution-engine.md](../system/execution-engine.md)):
 
-- Decision record format and storage under repository (no database)
-- Compiler integration for decision lookup
-- Coordinate with Repository Intelligence lookup (Mission 010)
+- `system/execution-engine.yaml` interface sketch (if approved)
+- Compiler exposure of execution-plan placeholders derived only from repository state
+- Command Center Execution card (foundation only — never imply live orchestration)
 
-**Explicitly out of scope:** Mission 006 artifact changes; full Mission Engine.
+**Explicitly out of scope:** External APIs, agent spawning, databases, auto-merge.
 
-**Note:** Operator requested a **full architecture review** after Mission 010
-before major new capability work. Mission 011 should begin only after that review.
+## Mission 011 Record — Architecture Integration
+
+Mission 011 integrated the independent architecture audit without redesigning V2:
+
+- Reconciled README, Standards, deployment URLs, and entry points
+- Removed legacy `file-index` shims; `system/assets.yaml` is sole registry
+- Created `decisions/` with seven decision records + `decisions.json`
+- Documented Execution Engine foundation (`system/execution-engine.md`)
+- Strengthened Repository Intelligence lookup (context packages, reverse deps)
+- Updated Mission Control architecture stack and deployment clarity
+
+See [missions/011-architecture-integration/report.md](../missions/011-architecture-integration/report.md).
 
 ## Mission 010 Record — Repository Intelligence Foundation
 
@@ -39,9 +50,10 @@ same mission from a file index to the **Asset Registry**:
 
 - `system/assets.yaml` — canonical Asset Registry (v2 schema)
 - `system/assets.md` — iPhone-friendly companion
-- `system/file-index.yaml` / `file-index.md` — legacy compatibility shims
 - Standards §5 — asset registry maintenance rules
-- Compiler `asset_registry` + derived `file_index` in `organization.json`
+- Compiler `asset_registry` summary in `organization.json`; full lookup in `repository.json`
+
+Legacy `file-index` shims were removed in Mission 011.
 
 See [missions/009-file-index-foundation/report.md](../missions/009-file-index-foundation/report.md).
 
@@ -54,6 +66,5 @@ Phase C begins when raw results return.
 
 ## Later
 
-- **Mission 012 — Mission Engine & Queue Migration**
 - **Mission 013 — Derived Artifact Generation** (expand compiler outputs)
 - Full V2 sequence: [missions/007-design-v2/report.md](../missions/007-design-v2/report.md)

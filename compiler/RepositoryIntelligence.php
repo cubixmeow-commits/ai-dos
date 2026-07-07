@@ -195,26 +195,44 @@ final class RepositoryIntelligence
      * @param array<string, mixed> $manifest
      * @param array<string, mixed> $contextPackages
      * @param array<string, mixed> $dependencyReport
+     * @param array<string, mixed>|null $decisions
      * @return array<string, mixed>
      */
-    public function compileRepository(array $manifest, array $contextPackages, array $dependencyReport): array
-    {
+    public function compileRepository(
+        array $manifest,
+        array $contextPackages,
+        array $dependencyReport,
+        ?array $decisions = null
+    ): array {
+        $pathToPackages = $this->buildPathToPackagesIndex($contextPackages);
+        $generatedBy = $this->buildReverseOutputsIndex();
+        $dependedOnBy = $this->buildReverseDependsOnIndex();
+
         $byId = [];
         $byPath = [];
         $byType = [];
 
         foreach ($this->assets as $asset) {
             $id = (string) ($asset['id'] ?? '');
+            $path = is_string($asset['path'] ?? null) ? (string) $asset['path'] : null;
+            $record = $this->lookupRecord(
+                $asset,
+                $path !== null ? ($pathToPackages[$path] ?? []) : [],
+                $generatedBy[$id] ?? [],
+                $dependedOnBy[$id] ?? []
+            );
+
             if ($id !== '') {
-                $byId[$id] = $this->lookupRecord($asset);
+                $byId[$id] = $record;
             }
-            $path = $asset['path'] ?? null;
-            if (is_string($path) && $path !== '') {
-                $byPath[$path] = $byId[$id] ?? $this->lookupRecord($asset);
+            if ($path !== null && $path !== '') {
+                $byPath[$path] = $record;
             }
             $type = (string) ($asset['type'] ?? 'unknown');
             $byType[$type] ??= [];
-            $byType[$type][] = $id;
+            if ($id !== '') {
+                $byType[$type][] = $id;
+            }
         }
 
         return [
@@ -225,11 +243,13 @@ final class RepositoryIntelligence
                 'context_packages',
                 'dependency_validation',
                 'repository_lookup',
+                'decision_records',
             ],
             'sources' => [
                 'manifest' => 'system/manifest.yaml',
                 'assets' => 'system/assets.yaml',
                 'context_packages' => 'system/context-packages.yaml',
+                'decisions' => 'decisions/*.md',
             ],
             'manifest_summary' => [
                 'repository_health' => $manifest['repository_health'] ?? null,
@@ -238,18 +258,20 @@ final class RepositoryIntelligence
             ],
             'dependency_status' => $dependencyReport['status'] ?? 'unknown',
             'context_package_count' => $contextPackages['package_count'] ?? 0,
+            'decision_count' => $decisions['decision_count'] ?? 0,
             'lookup' => [
                 'by_id' => $byId,
                 'by_path' => $byPath,
                 'by_type' => $byType,
             ],
             'query_support' => [
-                'where_is' => 'lookup.by_path or lookup.by_id',
-                'what_generates' => 'asset.outputs or reverse depends_on',
-                'created_by_mission' => 'asset.created_by in assets.yaml (use by_id)',
-                'what_depends_on' => 'asset.depends_on and reverse outputs',
-                'is_editable' => 'asset.editable',
-                'public_url' => 'asset.public_url',
+                'where_is' => 'lookup.by_path[path] or lookup.by_id[id] — path, type, status',
+                'what_generates_this' => 'lookup.*.generated_by — assets whose outputs include this id',
+                'what_depends_on_this' => 'lookup.*.depended_on_by — assets that list this id in depends_on',
+                'who_created_this' => 'lookup.*.created_by — mission or actor from assets.yaml',
+                'is_editable' => 'lookup.*.editable — safe_to_edit mirror',
+                'public_url' => 'lookup.*.public_url — null when not public',
+                'context_package_contains' => 'lookup.*.context_packages — package ids from context-packages.yaml',
             ],
             'query_examples' => $this->buildQueryExamples(),
         ];
@@ -372,6 +394,7 @@ final class RepositoryIntelligence
             'context-packages.json' => 'site/data/context-packages.json',
             'dependency-report.json' => 'site/data/dependency-report.json',
             'repository.json' => 'site/data/repository.json',
+            'decisions.json' => 'site/data/decisions.json',
             'index.html' => 'site/index.html',
             'styles.css' => 'site/styles.css',
         ];
@@ -465,9 +488,21 @@ final class RepositoryIntelligence
         return ['asset_id' => $targetId, 'depended_on_by' => $dependents];
     }
 
-    /** @param array<string, mixed> $asset @return array<string, mixed> */
-    private function lookupRecord(array $asset): array
-    {
+    /**
+     * @param array<string, mixed> $asset
+     * @param list<string> $contextPackages
+     * @param list<string> $generatedBy
+     * @param list<string> $dependedOnBy
+     * @return array<string, mixed>
+     */
+    private function lookupRecord(
+        array $asset,
+        array $contextPackages = [],
+        array $generatedBy = [],
+        array $dependedOnBy = []
+    ): array {
+        $createdBy = $asset['created_by'] ?? $asset['created_by_mission'] ?? null;
+
         return [
             'id' => $asset['id'] ?? null,
             'type' => $asset['type'] ?? null,
@@ -477,9 +512,88 @@ final class RepositoryIntelligence
             'editable' => $asset['editable'] ?? null,
             'generated' => $asset['generated'] ?? null,
             'status' => $asset['status'] ?? null,
+            'created_by' => $createdBy,
             'depends_on' => $asset['depends_on'] ?? [],
+            'depended_on_by' => $dependedOnBy,
             'outputs' => $asset['outputs'] ?? [],
+            'generated_by' => $generatedBy,
+            'context_packages' => $contextPackages,
         ];
+    }
+
+    /**
+     * @param array<string, mixed> $contextPackages
+     * @return array<string, list<string>>
+     */
+    private function buildPathToPackagesIndex(array $contextPackages): array
+    {
+        $index = [];
+        foreach ($contextPackages['packages'] ?? [] as $pkg) {
+            if (!is_array($pkg)) {
+                continue;
+            }
+            $pkgId = (string) ($pkg['id'] ?? '');
+            if ($pkgId === '') {
+                continue;
+            }
+            foreach ($pkg['files'] ?? [] as $file) {
+                if (!is_string($file) || $file === '') {
+                    continue;
+                }
+                $index[$file] ??= [];
+                if (!in_array($pkgId, $index[$file], true)) {
+                    $index[$file][] = $pkgId;
+                }
+            }
+        }
+
+        return $index;
+    }
+
+    /** @return array<string, list<string>> */
+    private function buildReverseOutputsIndex(): array
+    {
+        $index = [];
+        foreach ($this->assets as $asset) {
+            $generatorId = (string) ($asset['id'] ?? '');
+            if ($generatorId === '') {
+                continue;
+            }
+            foreach ($asset['outputs'] ?? [] as $outputId) {
+                if (!is_string($outputId) || $outputId === '') {
+                    continue;
+                }
+                $index[$outputId] ??= [];
+                if (!in_array($generatorId, $index[$outputId], true)) {
+                    $index[$outputId][] = $generatorId;
+                }
+            }
+        }
+
+        return $index;
+    }
+
+    /** @return array<string, list<string>> */
+    private function buildReverseDependsOnIndex(): array
+    {
+        $index = [];
+        foreach ($this->assets as $asset) {
+            $dependentId = (string) ($asset['id'] ?? '');
+            if ($dependentId === '') {
+                continue;
+            }
+            foreach ($asset['depends_on'] ?? [] as $targetId) {
+                if (!is_string($targetId) || $targetId === '') {
+                    continue;
+                }
+                $index[$targetId] ??= [];
+                if (!in_array($dependentId, $index[$targetId], true)) {
+                    $index[$targetId][] = $dependentId;
+                }
+            }
+        }
+
+        return $index;
     }
 
   /** @return array<string, mixed> */

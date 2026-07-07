@@ -11,6 +11,7 @@ declare(strict_types=1);
  */
 
 require_once __DIR__ . '/RepositoryIntelligence.php';
+require_once __DIR__ . '/DecisionRecords.php';
 
 final class RepositoryCompiler
 {
@@ -56,7 +57,8 @@ final class RepositoryCompiler
         $dependencyReport = $intelligence->compileDependencyReport();
         $manifest = $intelligence->compileManifest($dependencyReport);
         $contextPackages = $intelligence->compileContextPackages();
-        $repository = $intelligence->compileRepository($manifest, $contextPackages, $dependencyReport);
+        $decisions = (new DecisionRecords($this->root))->compile();
+        $repository = $intelligence->compileRepository($manifest, $contextPackages, $dependencyReport, $decisions);
 
         $this->missions = $this->sanitizeForJson($this->missions);
         $organization = $this->sanitizeForJson($organization);
@@ -64,6 +66,7 @@ final class RepositoryCompiler
         $contextPackages = $this->sanitizeForJson($contextPackages);
         $dependencyReport = $this->sanitizeForJson($dependencyReport);
         $repository = $this->sanitizeForJson($repository);
+        $decisions = $this->sanitizeForJson($decisions);
 
         $writes = [
             'missions.json' => $this->missions,
@@ -72,6 +75,7 @@ final class RepositoryCompiler
             'context-packages.json' => $contextPackages,
             'dependency-report.json' => $dependencyReport,
             'repository.json' => $repository,
+            'decisions.json' => $decisions,
         ];
 
         foreach ($writes as $file => $data) {
@@ -87,7 +91,7 @@ final class RepositoryCompiler
         file_put_contents($this->siteDir . '/styles.css', $this->renderStylesCss());
 
         $this->writeln('Compiled ' . count($this->missions) . ' missions to site/data/');
-        $this->writeln('Generated repository intelligence artifacts (manifest, context-packages, dependency-report, repository)');
+        $this->writeln('Generated repository intelligence + decisions.json');
         $this->writeln('Generated site/index.html and site/styles.css');
 
         return 0;
@@ -221,13 +225,6 @@ final class RepositoryCompiler
         }
 
         $nextMission = $nextFromBacklog;
-        if ($nextMission === null && $mission008 !== null) {
-            $nextMission = [
-                'id' => '009',
-                'title' => 'V2 Foundation & Sequencing Reconciliation',
-                'source' => 'missions/007-design-v2/report.md',
-            ];
-        }
 
         $mission007Approval = 'unknown';
         if ($mission007 !== null) {
@@ -246,7 +243,7 @@ final class RepositoryCompiler
         $organization = [
             'compiled_at' => gmdate('c'),
             'compiler' => 'Repository Compiler (PHP)',
-            'compiler_version' => '1.3.0-mission-010',
+            'compiler_version' => '1.4.0-mission-011',
             'current_mission' => $currentMission,
             'next_mission' => $nextMission,
             'completed_mission_count' => count($completed),
@@ -270,38 +267,46 @@ final class RepositoryCompiler
             ],
             'strategic_pivot' => 'AI-DOS itself is the primary product. Portfolio Projects use a product-agnostic workflow; Mission 006 validates the first candidate (P001).',
             'repository_compiler_concept' => 'The repository is the source code of the organization. The Repository Compiler (PHP) transforms that source into human-readable Mission Control interfaces.',
+            'command_center_url' => $this->deploymentUrl('site/'),
+            'compiler_url' => $this->deploymentUrl('compiler/compile.php'),
+            'deployment_note' => 'Command Center is the public entry point. Compiler is CLI/CI build tool — not the dashboard.',
         ];
 
         if ($registry !== null) {
-            $organization['asset_registry'] = $registry['asset_registry'];
-            $organization['file_index'] = $registry['file_index'];
+            $organization['asset_registry'] = [
+                'source' => $registry['asset_registry']['source'] ?? 'system/assets.yaml',
+                'version' => $registry['asset_registry']['version'] ?? null,
+                'asset_count' => $registry['asset_registry']['asset_count'] ?? 0,
+                'full_lookup' => 'site/data/repository.json',
+            ];
         }
 
         return $organization;
     }
 
+    private function deploymentUrl(string $path): string
+    {
+        $base = 'https://cubixmeow.com/ai-dos/';
+        if ($path === 'site/') {
+            return $base . 'site/';
+        }
+
+        return $base . ltrim($path, '/');
+    }
+
     /**
-     * Load Asset Registry (system/assets.yaml) with legacy file_index compat.
+     * Load Asset Registry (system/assets.yaml).
      *
-     * @return array{asset_registry: array<string, mixed>, file_index: array<string, mixed>}|null
+     * @return array{asset_registry: array<string, mixed>}|null
      */
     private function loadAssetRegistry(): ?array
     {
         $assetsFile = $this->root . '/system/assets.yaml';
-        $legacyFile = $this->root . '/system/file-index.yaml';
-
-        $parsed = null;
-        $source = 'system/assets.yaml';
-
-        if (is_file($assetsFile)) {
-            $parsed = $this->parseRegistryYaml((string) file_get_contents($assetsFile));
+        if (!is_file($assetsFile)) {
+            return null;
         }
 
-        if ($parsed === null && is_file($legacyFile)) {
-            $parsed = $this->parseRegistryYaml((string) file_get_contents($legacyFile));
-            $source = 'system/file-index.yaml';
-        }
-
+        $parsed = $this->parseRegistryYaml((string) file_get_contents($assetsFile));
         if ($parsed === null) {
             return null;
         }
@@ -325,7 +330,7 @@ final class RepositoryCompiler
         }
 
         $assetRegistry = [
-            'source' => $source,
+            'source' => 'system/assets.yaml',
             'registry' => (string) ($meta['registry'] ?? 'asset-registry'),
             'parse_status' => count($assets) > 0 ? 'ok' : 'empty',
             'version' => $meta['version'] ?? null,
@@ -335,10 +340,7 @@ final class RepositoryCompiler
             'assets' => $assets,
         ];
 
-        return [
-            'asset_registry' => $assetRegistry,
-            'file_index' => $this->legacyFileIndexFromAssets($assetRegistry),
-        ];
+        return ['asset_registry' => $assetRegistry];
     }
 
     /**
@@ -354,6 +356,7 @@ final class RepositoryCompiler
         $publicUrl = $asset['public']['url'] ?? $asset['public_url'] ?? null;
         $editable = $asset['editable'] ?? $asset['safe_to_edit'] ?? true;
         $generated = $asset['generated'] ?? (($asset['source_or_generated'] ?? '') === 'generated');
+        $createdBy = $asset['created_by'] ?? $asset['created_by_mission'] ?? null;
 
         return [
             'id' => (string) ($asset['id'] ?? ''),
@@ -364,6 +367,7 @@ final class RepositoryCompiler
             'public_url' => $publicUrl,
             'editable' => (bool) $editable,
             'generated' => (bool) $generated,
+            'created_by' => $createdBy !== null ? (string) $createdBy : null,
             'depends_on' => array_values(array_filter(
                 is_array($asset['depends_on'] ?? null) ? $asset['depends_on'] : [],
                 static fn(mixed $v): bool => is_string($v) && $v !== ''
@@ -372,42 +376,6 @@ final class RepositoryCompiler
                 is_array($asset['outputs'] ?? null) ? $asset['outputs'] : [],
                 static fn(mixed $v): bool => is_string($v) && $v !== ''
             )),
-        ];
-    }
-
-    /**
-     * Derive v1 file_index shape from asset registry — no duplicate canonical data.
-     *
-     * @param array<string, mixed> $assetRegistry
-     * @return array<string, mixed>
-     */
-    private function legacyFileIndexFromAssets(array $assetRegistry): array
-    {
-        $entries = [];
-        foreach ($assetRegistry['assets'] ?? [] as $asset) {
-            if (!is_array($asset) || empty($asset['path'])) {
-                continue;
-            }
-
-            $entries[] = [
-                'path' => $asset['path'],
-                'type' => $asset['type'] ?? '',
-                'status' => $asset['status'] ?? '',
-                'public_url' => $asset['public_url'] ?? null,
-                'safe_to_edit' => $asset['editable'] ?? true,
-                'source_or_generated' => !empty($asset['generated']) ? 'generated' : 'source',
-            ];
-        }
-
-        return [
-            'source' => 'derived from ' . ($assetRegistry['source'] ?? 'asset registry'),
-            'parse_status' => $assetRegistry['parse_status'] ?? 'ok',
-            'version' => $assetRegistry['version'] ?? null,
-            'deployment_root' => $assetRegistry['deployment_root'] ?? null,
-            'last_updated' => $assetRegistry['last_updated'] ?? null,
-            'entry_count' => count($entries),
-            'entries' => $entries,
-            'legacy_note' => 'Backward-compat view. Use asset_registry for full schema.',
         ];
     }
 
@@ -914,7 +882,7 @@ final class RepositoryCompiler
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI-DOS | Mission Control</title>
   <meta name="description" content="AI-DOS Mission Control — compiled from repository source." />
-  <link rel="stylesheet" href="styles.css?v=mission010" />
+  <link rel="stylesheet" href="styles.css?v=mission011" />
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
@@ -929,6 +897,17 @@ final class RepositoryCompiler
   </header>
 
   <main>
+    <section class="frame" id="architecture-stack">
+      <h2>Architecture</h2>
+      <p class="lead">Repository memory → intelligence → execution (planned) → compilation → operator.</p>
+      <ol class="arch-stack" id="arch-stack"></ol>
+    </section>
+
+    <section class="frame" id="deployment-section">
+      <h2>Deployment</h2>
+      <div class="deploy-grid" id="deploy-grid"></div>
+    </section>
+
     <section class="frame" id="compiler-concept">
       <h2>Repository Compiler (PHP)</h2>
       <p class="lead" id="compiler-lead"></p>
@@ -968,9 +947,15 @@ final class RepositoryCompiler
       <div class="next-card" id="next-card"></div>
     </section>
 
+    <section class="frame" id="decisions-section">
+      <h2>Decision Records</h2>
+      <p class="lead">Durable architectural decisions in <code>decisions/</code> — compiled to decisions.json.</p>
+      <ul class="decision-list" id="decision-list"></ul>
+    </section>
+
     <section class="frame" id="intelligence-section">
       <h2>Repository Intelligence</h2>
-      <p class="lead">Mission 010 — manifest, context packages, dependency health, and asset relationships. All data from generated JSON.</p>
+      <p class="lead">Manifest, context packages, dependency health, and asset lookup — all from compiled JSON.</p>
       <div class="intel-grid" id="intel-grid"></div>
     </section>
 
@@ -1031,7 +1016,8 @@ final class RepositoryCompiler
         'data/manifest.json',
         'data/context-packages.json',
         'data/dependency-report.json',
-        'data/repository.json'
+        'data/repository.json',
+        'data/decisions.json'
       ];
 
       const responses = await Promise.all(endpoints.map((e) => fetch(e)));
@@ -1047,6 +1033,43 @@ final class RepositoryCompiler
       const contextPkgs = responses[3].ok ? await responses[3].json() : null;
       const depReport = responses[4].ok ? await responses[4].json() : null;
       const repository = responses[5].ok ? await responses[5].json() : null;
+
+      const repository = responses[5].ok ? await responses[5].json() : null;
+      const decisions = responses[6].ok ? await responses[6].json() : null;
+
+      const stack = document.getElementById('arch-stack');
+      const layers = [
+        { name: 'Repository', detail: 'Git on main — canonical source of truth', status: 'active' },
+        { name: 'Knowledge', detail: 'Missions, decisions, commits, company docs', status: 'active' },
+        { name: 'Intelligence', detail: 'Manifest, lookup, context packages, validation', status: 'active' },
+        { name: 'Execution', detail: 'Mission decomposition, routing, tracking — foundation only', status: 'planned' },
+        { name: 'Compilation', detail: 'PHP Repository Compiler → site/', status: 'active' },
+        { name: 'Operator', detail: 'Mission Control — merge-based approval', status: 'active' }
+      ];
+      layers.forEach((layer) => {
+        const li = el('li', layer.status === 'planned' ? 'arch-planned' : 'arch-active');
+        li.appendChild(el('strong', null, layer.name));
+        if (layer.status === 'planned') {
+          li.appendChild(el('span', 'arch-badge', 'Planned'));
+        }
+        li.appendChild(el('p', 'muted', layer.detail));
+        stack.appendChild(li);
+      });
+
+      const deployGrid = document.getElementById('deploy-grid');
+      const addDeploy = (label, value, note) => {
+        const row = el('p');
+        row.appendChild(el('span', null, label));
+        const strong = el('strong', null, value);
+        row.appendChild(strong);
+        deployGrid.appendChild(row);
+        if (note) {
+          deployGrid.appendChild(el('p', 'muted', note));
+        }
+      };
+      addDeploy('Visitors & operator', org.command_center_url || 'https://cubixmeow.com/ai-dos/site/', 'Public entry point — bookmark this URL.');
+      addDeploy('Compiler (build)', org.compiler_url || 'https://cubixmeow.com/ai-dos/compiler/compile.php', org.deployment_note || 'CLI/CI build tool — not the dashboard.');
+      addDeploy('How compile runs', 'php compiler/compile.php or GitHub Actions on push/PR', 'Regenerates site/data/*.json and Mission Control HTML.');
 
       document.getElementById('compiler-lead').innerHTML = markdownish(org.repository_compiler_concept || '');
       document.getElementById('source-truth').textContent = org.source_of_truth_statement || '';
@@ -1123,6 +1146,20 @@ final class RepositoryCompiler
         nextCard.appendChild(el('p', null, 'No next mission declared in Backlog.md'));
       }
 
+      if (decisions && decisions.decisions) {
+        const dList = document.getElementById('decision-list');
+        decisions.decisions.slice(0, 7).forEach((d) => {
+          const li = el('li');
+          li.appendChild(el('strong', null, d.id + ' — ' + (d.title || d.slug)));
+          li.appendChild(document.createTextNode(' [' + (d.status || 'unknown') + ']'));
+          if (d.decision) {
+            const summary = d.decision.split('\\n')[0].slice(0, 120);
+            li.appendChild(el('p', 'muted', summary + (d.decision.length > 120 ? '…' : '')));
+          }
+          dList.appendChild(li);
+        });
+      }
+
       if (manifest) {
         const intelGrid = document.getElementById('intel-grid');
         const addIntel = (label, value) => {
@@ -1136,6 +1173,7 @@ final class RepositoryCompiler
         addIntel('Asset registry', String(manifest.asset_registry_version ?? 'unknown'));
         addIntel('Architecture', manifest.architecture_version || 'unknown');
         addIntel('Context packages', contextPkgs ? String(contextPkgs.package_count) : '—');
+        addIntel('Decisions', decisions ? String(decisions.decision_count ?? 0) : '—');
 
         const mCard = document.getElementById('manifest-card');
         mCard.appendChild(el('p', null, 'Completed: ' + (manifest.completed_missions ? manifest.completed_missions.length : 0)));
@@ -1242,6 +1280,14 @@ HTML;
 .context-list li, .relation-list li, .issue-list li { margin-bottom: 0.5rem; }
 .issue-error { color: #ff6b6b; }
 .issue-warn { color: var(--warn); }
+.arch-stack { margin: 0; padding-left: 1.1rem; list-style: decimal; }
+.arch-stack li { margin-bottom: 0.65rem; color: var(--text); }
+.arch-planned { opacity: 0.85; }
+.arch-badge { margin-left: 0.5rem; font-size: 0.72rem; color: var(--warn); border: 1px solid var(--warn); padding: 0.1rem 0.4rem; border-radius: 4px; text-transform: uppercase; }
+.deploy-grid p { margin: 0.35rem 0; color: var(--text); }
+.deploy-grid span { display: block; font-size: 0.82rem; color: var(--muted); margin-bottom: 0.15rem; }
+.decision-list { margin: 0; padding-left: 1.1rem; color: var(--muted); }
+.decision-list li { margin-bottom: 0.55rem; }
 .muted { color: var(--muted); font-size: 0.88rem; margin: 0.25rem 0 0; }
 CSS;
 

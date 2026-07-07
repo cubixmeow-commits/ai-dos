@@ -5,7 +5,7 @@
 meta:
   version: 1
   subsystem: context-packages
-  maintained_by: Mission 010
+  maintained_by: Mission 011
   last_updated: 2026-07-07
 
 packages:
@@ -18,9 +18,11 @@ packages:
       - company/Principles.md
       - company/Standards.md
       - system/gpt-brief.txt
+      - system/execution-engine.md
     globs:
       - missions/*/mission.md
       - missions/*/report.md
+      - decisions/*.md
 
   - id: architecture-context
     name: Architecture Context
@@ -31,18 +33,26 @@ packages:
       - company/Identity.md
       - company/Principles.md
       - system/manifest.yaml
+      - system/execution-engine.md
+      - architecture-audit.md
+    globs:
+      - decisions/*.md
 
   - id: compiler-context
     name: Compiler Context
     purpose: Modify or extend the Repository Compiler and generated artifacts.
     includes:
       - compiler/compile.php
+      - compiler/RepositoryIntelligence.php
+      - compiler/DecisionRecords.php
       - compiler/README.md
       - company/Standards.md
       - system/assets.yaml
       - system/manifest.yaml
       - system/context-packages.yaml
       - .github/workflows/compile-site.yml
+    globs:
+      - decisions/*.md
 
   - id: website-context
     name: Website Context
@@ -64,3 +74,5 @@ packages:
       - company/Standards.md
       - tasks/Backlog.md
       - README.md
+    globs:
+      - decisions/*.md

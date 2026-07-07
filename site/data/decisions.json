@@ -1,0 +1,115 @@
+{
+    "compiled_at": "2026-07-07T22:15:14+00:00",
+    "source": "decisions/*.md",
+    "decision_count": 7,
+    "decisions": [
+        {
+            "id": "D001",
+            "slug": "D001-repository-as-source",
+            "title": "Repository as Organizational Source Code",
+            "status": "accepted",
+            "path": "decisions/D001-repository-as-source.md",
+            "context": "AI-DOS V1 proved that a Git repository can hold organizational memory. V2 asked whether the repository should remain a documentation store or become something stronger.",
+            "decision": "The repository is **organizational source code**. Missions, decisions, evidence, principles, standards, and governance artifacts are versioned source. Human and agent interfaces are **compiled disposable views** under `site/`.",
+            "alternatives": "- **Documentation-only repo** — markdown files without a compiler layer.\n- **External database of record** — SQLite or SaaS for organizational state.\n- **Chat-as-memory** — rely on agent session history.",
+            "why_chosen": "Git on `main` already governs approval. A compiler model makes “generated vs canonical” enforceable (Standards §4). No external database preserves solo-operator simplicity and iPhone-readable source files.",
+            "evidence": "- [missions/007-design-v2/architecture.md](../missions/007-design-v2/architecture.md) §0.1, §3.4\n- [company/Identity.md](../company/Identity.md) §1\n- [missions/008-repository-compiler/report.md](../missions/008-repository-compiler/report.md)",
+            "related_missions": [
+                "007",
+                "008"
+            ]
+        },
+        {
+            "id": "D002",
+            "slug": "D002-php-repository-compiler",
+            "title": "PHP Repository Compiler",
+            "status": "accepted",
+            "path": "decisions/D002-php-repository-compiler.md",
+            "context": "V2 requires a compiler to transform organizational source into Mission Control, JSON indexes, and agent context packages. A language and runtime had to be chosen.",
+            "decision": "Implement the **Repository Compiler in PHP** at `compiler/compile.php`, runnable via CLI (`php compiler/compile.php`) and verified in GitHub Actions. PHP matches the operator's deployment host (cubixmeow.com).",
+            "alternatives": "- **Node.js compiler** — better AI-toolchain fit, extra runtime on host.\n- **Python compiler** — common in AI workflows, not native to current host.\n- **No compiler** — manual HTML/JSON maintenance (Mission 005 proved drift-prone).",
+            "why_chosen": "One language ecosystem with deploy target; GitHub Actions support; no application server required. Mission 008 delivered a working compiler without overbuilding.",
+            "evidence": "- [missions/007-design-v2/report.md](../missions/007-design-v2/report.md) — operator approved PHP\n- [compiler/README.md](../compiler/README.md)\n- [company/Standards.md](../company/Standards.md) §4",
+            "related_missions": [
+                "007",
+                "008"
+            ]
+        },
+        {
+            "id": "D003",
+            "slug": "D003-merge-as-approval",
+            "title": "Merge-to-Main as Durable Approval",
+            "status": "accepted",
+            "path": "decisions/D003-merge-as-approval.md",
+            "context": "Mission approvals could be recorded in chat, in report headers, or only when merged to `main`. Inconsistent approval created governance drift.",
+            "decision": "Operator approval is **durable only when mission work is merged into `main`**. Chat approval is advisory. The merge commit is the permanent organizational record.",
+            "alternatives": "- **Chat-only approval** — fast but not versioned.\n- **Report header \"approved\" without merge** — stale if branch never merges.\n- **External approval tool** — violates repository-canonical constraint.",
+            "why_chosen": "Aligns approval with Git audit trail. Supports cold-start: `main` always reflects approved state. Principles §6: operator reviews one question, merge completes the loop.",
+            "evidence": "- [company/Standards.md](../company/Standards.md) §2\n- [missions/004-close-governance-loop/report.md](../missions/004-close-governance-loop/report.md)",
+            "related_missions": [
+                "004"
+            ]
+        },
+        {
+            "id": "D004",
+            "slug": "D004-asset-registry",
+            "title": "Asset Registry Over File Index",
+            "status": "accepted",
+            "path": "decisions/D004-asset-registry.md",
+            "context": "Mission 009 introduced a flat file index. The audit noted AI-DOS owns compilers, workflows, websites, and missions — not just files. Legacy `file-index` shims duplicated the canonical registry.",
+            "decision": "Maintain **`system/assets.yaml`** as the canonical Asset Registry. A file is one asset type among many. Legacy `file-index` files were removed in Mission 011. Lookup and Command Center read compiled `repository.json` and `assets.yaml`.",
+            "alternatives": "- **Keep parallel file-index.yaml** — backward compat but operator confusion.\n- **Filesystem-only discovery** — no relationships or edit-safety metadata.\n- **External asset CMDB** — rejected (repository-canonical).",
+            "why_chosen": "`depends_on` / `outputs` enable dependency validation and lookup without a graph database. Evolving Mission 009 in place avoided mission sprawl for schema upgrades.",
+            "evidence": "- [missions/009-file-index-foundation/report.md](../missions/009-file-index-foundation/report.md) addendum\n- [architecture-audit.md](../architecture-audit.md) Part 5, Part 13\n- [company/Standards.md](../company/Standards.md) §5",
+            "related_missions": [
+                "009"
+            ]
+        },
+        {
+            "id": "D005",
+            "slug": "D005-repository-intelligence",
+            "title": "Repository Intelligence Layer",
+            "status": "accepted",
+            "path": "decisions/D005-repository-intelligence.md",
+            "context": "Mission 009 answered \"what exists.\" Agents still scanned the full repository for context, dependencies, and navigation. Mission 010 audit recommended intelligence data structures before more registry files.",
+            "decision": "Add a permanent **Repository Intelligence** layer: manifest pointer graph, context packages, dependency validation (report-only), and repository lookup indexes. Implemented in `compiler/RepositoryIntelligence.php`; compiled to `site/data/manifest.json`, `context-packages.json`, `dependency-report.json`, `repository.json`.",
+            "alternatives": "- **More YAML registries first** (`index.yaml`, `portfolio.yaml`) — audit said reconcile and decide before multiplying registries.\n- **Live PHP query API** — requires runtime server; violates static hosting model.\n- **Agent-side grep only** — does not scale; wastes context window.",
+            "why_chosen": "Teaches AI-DOS how to think about what exists without fabricating behavior. Pointer manifest avoids duplicating mission state. Context packages reduce scan surface for agents.",
+            "evidence": "- [missions/010-repository-intelligence/report.md](../missions/010-repository-intelligence/report.md)\n- [company/Standards.md](../company/Standards.md) §6\n- [architecture-audit.md](../architecture-audit.md) Part 7",
+            "related_missions": [
+                "010"
+            ]
+        },
+        {
+            "id": "D006",
+            "slug": "D006-validation-before-build",
+            "title": "Validate Before Build (Invoice Tool)",
+            "status": "accepted — validation in progress (Mission 006 Phase B paused)",
+            "path": "decisions/D006-validation-before-build.md",
+            "context": "Mission 003 recommended a freelancer invoice follow-up tool at **Medium** confidence. Principles §5 and Mission 003 explicitly routed product build to validation, not immediate implementation.",
+            "decision": "Run **Mission 006 validation** (evidence ledger, locked thresholds, operator interviews, smoke test) before any Portfolio Project build. A \"do not build\" outcome is a successful Mission 006.",
+            "alternatives": "- **Build immediately after Mission 003** — faster but violates evidence routing.\n- **Abandon candidate without validation** — loses learning opportunity.\n- **Merge P001 into AI-DOS repo** — rejected; Portfolio Projects stay product-agnostic per Mission 007.",
+            "why_chosen": "Confidence routing is a core OS behavior. Mission 006 Phase model becomes template for future validation missions.",
+            "evidence": "- [missions/003-prove-the-loop/report.md](../missions/003-prove-the-loop/report.md) — Medium confidence\n- [missions/006-validate-recommendation/phase-a-thresholds.md](../missions/006-validate-recommendation/phase-a-thresholds.md)\n- [missions/007-design-v2/architecture.md](../missions/007-design-v2/architecture.md) §4.11 Portfolio Projects",
+            "related_missions": [
+                "003",
+                "006"
+            ]
+        },
+        {
+            "id": "D007",
+            "slug": "D007-execution-engine-foundation",
+            "title": "Execution Engine as Next Layer (Foundation Only)",
+            "status": "accepted — architectural contract; not implemented",
+            "path": "decisions/D007-execution-engine-foundation.md",
+            "context": "After Mission 010, AI-DOS has Repository → Memory → Asset Registry → Intelligence → Compiler → Command Center. The architecture audit and operator direction require preparation for **cloud agent orchestration from iPhone** without claiming capabilities that do not exist.",
+            "decision": "Define an **Execution Engine** subsystem as the next architectural layer — documented in `system/execution-engine.md`, **not implemented** in Mission 011. Decision records (`decisions/`) are one input to future execution planning. Mission 012 may implement foundation pieces.",
+            "alternatives": "- **Implement orchestration in Mission 011** — audit warned against drift; too much too soon.\n- **Skip Execution Engine; more registries** — misaligns with operator goal (coordinate AI work).\n- **External orchestration SaaS as source of truth** — violates repository-canonical.",
+            "why_chosen": "Separates **memory + intelligence** (built) from **execution** (planned). Command Center shows Execution as \"Foundation only / Planned.\" Preserves merge-based governance.",
+            "evidence": "- [architecture-audit.md](../architecture-audit.md) Part 14, Part 16\n- [system/execution-engine.md](../system/execution-engine.md)\n- Mission 011 report — audit adoption record",
+            "related_missions": [
+                "011"
+            ]
+        }
+    ]
+}
