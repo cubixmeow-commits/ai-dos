@@ -21,6 +21,12 @@ final class RepositoryCompiler
     /** @var list<array<string, mixed>> */
     private array $missions = [];
 
+    /** @var list<string> */
+    private array $webLog = [];
+
+    /** @var list<string> */
+    private array $webErrors = [];
+
     public function __construct(?string $root = null)
     {
         $this->root = $root ?? dirname(__DIR__);
@@ -71,7 +77,7 @@ final class RepositoryCompiler
         foreach ($writes as $file => $data) {
             $json = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
             if ($json === false) {
-                fwrite(STDERR, "Failed to encode {$file}: " . json_last_error_msg() . "\n");
+                $this->errorln("Failed to encode {$file}: " . json_last_error_msg());
                 return 1;
             }
             file_put_contents($this->dataDir . '/' . $file, $json . "\n");
@@ -80,11 +86,43 @@ final class RepositoryCompiler
         file_put_contents($this->siteDir . '/index.html', $this->renderIndexHtml());
         file_put_contents($this->siteDir . '/styles.css', $this->renderStylesCss());
 
-        fwrite(STDOUT, "Compiled " . count($this->missions) . " missions to site/data/\n");
-        fwrite(STDOUT, "Generated repository intelligence artifacts (manifest, context-packages, dependency-report, repository)\n");
-        fwrite(STDOUT, "Generated site/index.html and site/styles.css\n");
+        $this->writeln('Compiled ' . count($this->missions) . ' missions to site/data/');
+        $this->writeln('Generated repository intelligence artifacts (manifest, context-packages, dependency-report, repository)');
+        $this->writeln('Generated site/index.html and site/styles.css');
 
         return 0;
+    }
+
+    private function writeln(string $message): void
+    {
+        if (PHP_SAPI === 'cli') {
+            fwrite(STDOUT, $message . "\n");
+            return;
+        }
+
+        $this->webLog[] = $message;
+    }
+
+    private function errorln(string $message): void
+    {
+        if (PHP_SAPI === 'cli') {
+            fwrite(STDERR, $message . "\n");
+            return;
+        }
+
+        $this->webErrors[] = $message;
+    }
+
+    /** @return list<string> */
+    public function getWebLog(): array
+    {
+        return $this->webLog;
+    }
+
+    /** @return list<string> */
+    public function getWebErrors(): array
+    {
+        return $this->webErrors;
     }
 
     /** @return list<array<string, mixed>> */
@@ -577,7 +615,7 @@ final class RepositoryCompiler
     {
         foreach ([$this->siteDir, $this->dataDir] as $dir) {
             if (!is_dir($dir) && !mkdir($dir, 0755, true)) {
-                fwrite(STDERR, "Failed to create directory: {$dir}\n");
+                $this->errorln("Failed to create directory: {$dir}");
                 return false;
             }
         }
@@ -1215,4 +1253,37 @@ CSS;
     }
 }
 
-exit((new RepositoryCompiler())->run());
+$compiler = new RepositoryCompiler();
+$exitCode = $compiler->run();
+
+if (PHP_SAPI !== 'cli') {
+    header('Content-Type: text/html; charset=utf-8');
+    $siteUrl = '../site/';
+    if ($exitCode === 0) {
+        $lines = array_map(
+            static fn(string $line): string => '<li>' . htmlspecialchars($line, ENT_QUOTES, 'UTF-8') . '</li>',
+            $compiler->getWebLog()
+        );
+        echo '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" />';
+        echo '<meta name="viewport" content="width=device-width, initial-scale=1.0" />';
+        echo '<title>AI-DOS Compiler</title>';
+        echo '<style>body{font-family:system-ui,sans-serif;max-width:36rem;margin:2rem auto;padding:0 1rem;line-height:1.5}';
+        echo 'a.btn{display:inline-block;margin-top:1rem;padding:.75rem 1rem;background:#0a2540;color:#fff;text-decoration:none;border-radius:8px}';
+        echo 'ul{padding-left:1.2rem}</style></head><body>';
+        echo '<h1>Repository Compiler</h1><p>Compile succeeded.</p><ul>' . implode('', $lines) . '</ul>';
+        echo '<p><strong>Command Center (dashboard):</strong></p>';
+        echo '<p><a class="btn" href="' . htmlspecialchars($siteUrl, ENT_QUOTES, 'UTF-8') . '">Open Mission Control</a></p>';
+        echo '<p style="color:#666;font-size:.9rem">Bookmark <code>/ai-dos/site/</code> — not this compiler URL.</p>';
+        echo '</body></html>';
+    } else {
+        $errors = $compiler->getWebErrors();
+        echo '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><title>Compile failed</title></head><body>';
+        echo '<h1>Compile failed</h1>';
+        foreach ($errors as $err) {
+            echo '<p>' . htmlspecialchars($err, ENT_QUOTES, 'UTF-8') . '</p>';
+        }
+        echo '</body></html>';
+    }
+}
+
+exit($exitCode);
