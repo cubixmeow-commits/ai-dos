@@ -5,7 +5,7 @@
 meta:
   version: 1
   subsystem: repository-manifest
-  maintained_by: Mission 010
+  maintained_by: Mission 011
   canonical_compiled: site/data/manifest.json
   last_updated: 2026-07-07
 
@@ -46,6 +46,16 @@ references:
   repository_intelligence:
     description: Lookup indexes and intelligence umbrella
     compiled: site/data/repository.json
+  decisions:
+    description: Durable architectural decision records
+    source_glob: decisions/*.md
+    compiled: site/data/decisions.json
+  execution_engine:
+    description: Execution Engine architectural contract (planned)
+    path: system/execution-engine.md
+  architecture_audit:
+    description: Independent architecture review (Mission 011 input)
+    path: architecture-audit.md
 
 computed_at_compile:
   - ai_dos_version

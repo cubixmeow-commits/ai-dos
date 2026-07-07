@@ -4,10 +4,8 @@
 
 Canonical machine-readable source: [assets.yaml](assets.yaml)
 
-Legacy file index (deprecated): [file-index.yaml](file-index.yaml) → redirects here.
-
 The Asset Registry is AI-DOS's canonical understanding of everything it owns.
-A **file** is one asset type among many.
+A **file** is one asset type among many. Full lookup: `site/data/repository.json`.
 
 ---
 

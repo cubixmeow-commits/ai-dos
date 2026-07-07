@@ -1,6 +1,5 @@
 # AI-DOS Asset Registry — canonical machine-readable registry
 # Human-readable companion: system/assets.md
-# Legacy compat: system/file-index.yaml (shim)
 # Evolved in Mission 009 from file index to asset registry (v2)
 
 meta:
@@ -8,8 +7,7 @@ meta:
   registry: asset-registry
   deployment_root: https://cubixmeow.com/ai-dos/
   canonical_source: system/assets.yaml
-  legacy_compat: system/file-index.yaml
-  maintained_by: Mission 009
+  maintained_by: Mission 011
   last_updated: '2026-07-07'
   schema:
     asset_types:
@@ -175,16 +173,14 @@ assets: &id001
   public:
     url: null
   created_by: Mission 009
-  updated_by: Mission 009
+  updated_by: Mission 011
   depends_on: []
   outputs:
-  - file-index-legacy-shim
-  - file-index-md-legacy
   - asset-registry-md
   editable: true
   generated: false
   status: active
-  notes: Evolved from file-index.yaml in Mission 009 follow-up. A file is one asset type among many.
+  notes: Canonical registry; legacy file-index shims removed in Mission 011.
   path: system/assets.yaml
   safe_to_edit: true
   source_or_generated: source
@@ -227,8 +223,9 @@ assets: &id001
   created_by: Mission 010
   updated_by: Mission 010
   depends_on:
-  - compiler-compile-php
   - asset-registry
+  - repository-manifest
+  - context-packages-yaml
   outputs:
   - site-data-manifest-json
   - site-data-context-packages-json
@@ -294,54 +291,6 @@ assets: &id001
   public_url: null
   created_by_mission: Mission 010
   last_major_update: Mission 010
-- id: file-index-legacy-shim
-  type: file
-  name: file-index.yaml (legacy shim)
-  purpose: Backward-compatibility pointer to the canonical asset registry.
-  short_description: Legacy file index shim — use assets.yaml.
-  source:
-    path: system/file-index.yaml
-  public:
-    url: null
-  created_by: Mission 009
-  updated_by: Mission 009
-  depends_on:
-  - asset-registry
-  outputs: []
-  editable: true
-  generated: false
-  status: deprecated
-  notes: Canonical registry is system/assets.yaml.
-  path: system/file-index.yaml
-  safe_to_edit: true
-  source_or_generated: source
-  public_url: null
-  created_by_mission: Mission 009
-  last_major_update: Mission 009
-- id: file-index-md-legacy
-  type: file
-  name: file-index.md (legacy companion)
-  purpose: Redirects readers to system/assets.md.
-  short_description: Legacy human index — use assets.md.
-  source:
-    path: system/file-index.md
-  public:
-    url: null
-  created_by: Mission 009
-  updated_by: Mission 009
-  depends_on:
-  - asset-registry-md
-  outputs: []
-  editable: true
-  generated: false
-  status: deprecated
-  notes: Generated from same data as YAML; keep in sync.
-  path: system/file-index.md
-  safe_to_edit: true
-  source_or_generated: source
-  public_url: null
-  created_by_mission: Mission 009
-  last_major_update: Mission 009
 - id: compiler-compile-php
   type: compiler
   name: compile.php
@@ -352,15 +301,22 @@ assets: &id001
   public:
     url: https://cubixmeow.com/ai-dos/compiler/compile.php
   created_by: Mission 008
-  updated_by: Mission 009
+  updated_by: Mission 011
   depends_on:
   - asset-registry
   - company-standards-md
   - company-identity-md
   - tasks-backlog-md
+  - repository-intelligence-php
+  - decision-records-php
   outputs:
   - site-data-organization-json
   - site-data-missions-json
+  - site-data-manifest-json
+  - site-data-context-packages-json
+  - site-data-dependency-report-json
+  - site-data-repository-json
+  - site-data-decisions-json
   - site-index-html
   - site-styles-css
   editable: true
@@ -372,7 +328,32 @@ assets: &id001
   source_or_generated: source
   public_url: https://cubixmeow.com/ai-dos/compiler/compile.php
   created_by_mission: Mission 008
-  last_major_update: Mission 009
+  last_major_update: Mission 011
+- id: decision-records-php
+  type: compiler
+  name: DecisionRecords.php
+  purpose: Parses decisions/*.md into site/data/decisions.json.
+  short_description: Decision records compiler module.
+  source:
+    path: compiler/DecisionRecords.php
+  public:
+    url: null
+  created_by: Mission 011
+  updated_by: Mission 011
+  depends_on:
+  - decisions-directory
+  outputs:
+  - site-data-decisions-json
+  editable: true
+  generated: false
+  status: active
+  notes: null
+  path: compiler/DecisionRecords.php
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 011
+  last_major_update: Mission 011
 - id: compiler-readme-md
   type: file
   name: README.md
@@ -406,10 +387,15 @@ assets: &id001
   public:
     url: https://cubixmeow.com/ai-dos/site/
   created_by: Mission 005
-  updated_by: Mission 008
+  updated_by: Mission 011
   depends_on:
   - site-data-organization-json
   - site-data-missions-json
+  - site-data-manifest-json
+  - site-data-context-packages-json
+  - site-data-dependency-report-json
+  - site-data-repository-json
+  - site-data-decisions-json
   - site-styles-css
   outputs: []
   editable: false
@@ -421,7 +407,7 @@ assets: &id001
   source_or_generated: generated
   public_url: https://cubixmeow.com/ai-dos/site/
   created_by_mission: Mission 005
-  last_major_update: Mission 008
+  last_major_update: Mission 011
 - id: site-styles-css
   type: generated-file
   name: styles.css
@@ -472,14 +458,14 @@ assets: &id001
 - id: site-data-organization-json
   type: generated-file
   name: organization.json
-  purpose: Organization state compiled from company docs, Backlog, missions, and file index.
+  purpose: Organization state compiled from company docs, Backlog, missions, and asset registry.
   short_description: Compiled organization state JSON.
   source:
     path: site/data/organization.json
   public:
     url: https://cubixmeow.com/ai-dos/site/data/organization.json
   created_by: Mission 008
-  updated_by: Mission 009
+  updated_by: Mission 011
   depends_on:
   - compiler-compile-php
   - asset-registry
@@ -487,13 +473,13 @@ assets: &id001
   editable: false
   generated: true
   status: active
-  notes: Includes file_index summary when system/file-index.yaml exists.
+  notes: Slim asset_registry summary; full lookup in repository.json.
   path: site/data/organization.json
   safe_to_edit: false
   source_or_generated: generated
   public_url: https://cubixmeow.com/ai-dos/site/data/organization.json
   created_by_mission: Mission 008
-  last_major_update: Mission 009
+  last_major_update: Mission 011
 - id: site-validation-invoice-tool-html
   type: website
   name: invoice-tool.html
@@ -1365,5 +1351,171 @@ assets: &id001
   source_or_generated: generated
   public_url: https://cubixmeow.com/ai-dos/site/data/repository.json
   created_by_mission: Mission 010
-  last_major_update: Mission 010
+  last_major_update: Mission 011
+- id: site-data-decisions-json
+  type: generated-file
+  name: decisions.json
+  purpose: Compiled decision records from decisions/*.md.
+  short_description: decisions.json
+  source:
+    path: site/data/decisions.json
+  public:
+    url: https://cubixmeow.com/ai-dos/site/data/decisions.json
+  created_by: Mission 011
+  updated_by: Mission 011
+  depends_on:
+  - compiler-compile-php
+  outputs: []
+  editable: false
+  generated: true
+  status: active
+  notes: null
+  path: site/data/decisions.json
+  safe_to_edit: false
+  source_or_generated: generated
+  public_url: https://cubixmeow.com/ai-dos/site/data/decisions.json
+  created_by_mission: Mission 011
+  last_major_update: Mission 011
+- id: decisions-directory
+  type: directory
+  name: decisions/
+  purpose: Durable architectural decision records (ADR-style).
+  short_description: Decision records source directory.
+  source:
+    path: decisions/
+  public:
+    url: null
+  created_by: Mission 011
+  updated_by: Mission 011
+  depends_on: []
+  outputs:
+  - site-data-decisions-json
+  editable: true
+  generated: false
+  status: active
+  notes: One markdown file per decision; compiled to decisions.json.
+  path: decisions/
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 011
+  last_major_update: Mission 011
+- id: execution-engine-md
+  type: file
+  name: execution-engine.md
+  purpose: Execution Engine architectural contract (planned, not implemented).
+  short_description: Execution Engine foundation document.
+  source:
+    path: system/execution-engine.md
+  public:
+    url: null
+  created_by: Mission 011
+  updated_by: Mission 011
+  depends_on: []
+  outputs: []
+  editable: true
+  generated: false
+  status: active
+  notes: Foundation only — no orchestration in Mission 011.
+  path: system/execution-engine.md
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 011
+  last_major_update: Mission 011
+- id: architecture-audit-md
+  type: file
+  name: architecture-audit.md
+  purpose: Independent Principal Architect review of AI-DOS V2.
+  short_description: Architecture audit report.
+  source:
+    path: architecture-audit.md
+  public:
+    url: null
+  created_by: Mission 011
+  updated_by: Mission 011
+  depends_on: []
+  outputs: []
+  editable: true
+  generated: false
+  status: active
+  notes: Input to Mission 011 integration; not canonical governance.
+  path: architecture-audit.md
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 011
+  last_major_update: Mission 011
+- id: missions-011-architecture-integration
+  type: mission
+  name: 'Mission folder: missions/011-architecture-integration'
+  purpose: Mission 011 — integrate architecture audit findings.
+  short_description: Architecture Integration mission folder.
+  source:
+    path: missions/011-architecture-integration/
+  public:
+    url: null
+  created_by: Mission 011
+  updated_by: Mission 011
+  depends_on: []
+  outputs:
+  - missions-011-architecture-integration-report-md
+  editable: true
+  generated: false
+  status: complete
+  notes: null
+  path: missions/011-architecture-integration/
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 011
+  last_major_update: Mission 011
+- id: missions-011-architecture-integration-mission-md
+  type: file
+  name: mission.md
+  purpose: Mission 011 brief.
+  short_description: Architecture Integration mission brief.
+  source:
+    path: missions/011-architecture-integration/mission.md
+  public:
+    url: null
+  created_by: Mission 011
+  updated_by: Mission 011
+  depends_on:
+  - missions-011-architecture-integration
+  outputs: []
+  editable: true
+  generated: false
+  status: complete
+  notes: null
+  path: missions/011-architecture-integration/mission.md
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 011
+  last_major_update: Mission 011
+- id: missions-011-architecture-integration-report-md
+  type: file
+  name: report.md
+  purpose: Mission 011 outcome and audit adoption record.
+  short_description: Architecture Integration mission report.
+  source:
+    path: missions/011-architecture-integration/report.md
+  public:
+    url: null
+  created_by: Mission 011
+  updated_by: Mission 011
+  depends_on:
+  - missions-011-architecture-integration
+  outputs: []
+  editable: true
+  generated: false
+  status: complete
+  notes: null
+  path: missions/011-architecture-integration/report.md
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 011
+  last_major_update: Mission 011
 entries: *id001

@@ -1,25 +1,25 @@
 AI-DOS MOBILE GPT BRIEF (select all, copy, paste into GPT)
 
-STATUS: Mission 010 complete. Repository Intelligence Layer operational.
+STATUS: Mission 011 complete. Architecture integrated; Execution Engine documented (not implemented).
 
-FILES: system/assets.yaml system/manifest.yaml system/context-packages.yaml system/gpt-brief.txt
+FILES: system/assets.yaml system/manifest.yaml system/context-packages.yaml system/execution-engine.md system/gpt-brief.txt decisions/*.md
 
-INTELLIGENCE JSON: site/data/manifest.json context-packages.json dependency-report.json repository.json
+INTELLIGENCE JSON: site/data/manifest.json context-packages.json dependency-report.json repository.json decisions.json
 
 ROOT: https://cubixmeow.com/ai-dos/
 
-URLS: /site/ | /site/data/missions.json | /site/data/organization.json | /site/data/manifest.json | /site/data/repository.json
+URLS: /site/ (Command Center — bookmark this) | /compiler/compile.php (build only) | /site/data/repository.json
 
-CAPABILITIES: manifest | context packages (5) | dependency validation | repository lookup
+CAPABILITIES: manifest | context packages (5) | dependency validation | repository lookup | decision records (7)
 
-COMPILER: php compiler/compile.php v1.3.0-mission-010 | requires PHP yaml extension
+COMPILER: php compiler/compile.php v1.4.0-mission-011 | requires PHP yaml extension
 
-STANDARDS: company/Standards.md sections 4-6
+STANDARDS: company/Standards.md sections 4-9
 
-MISSION: missions/010-repository-intelligence/
+MISSION: missions/011-architecture-integration/
 
-NEXT: Mission 011 Decision Intelligence Layer (after architecture review)
+NEXT: Mission 012 Execution Engine Foundation
 
-APPROVE: Mission 011 Decision Intelligence Layer? Y/N
+APPROVE: Mission 012 Execution Engine Foundation? Y/N
 
-LOOKUP: site/data/repository.json query_examples and lookup.by_id
+LOOKUP: site/data/repository.json — where_is, what_generates_this, what_depends_on_this, who_created_this, is_editable, public_url, context_package_contains
