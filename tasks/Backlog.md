@@ -3,48 +3,49 @@
 The queue of upcoming missions, in order. The top item is next. A mission
 starts only after the operator approves the previous mission's report.
 
-## Next: Mission 006 — Validate the Recommendation
+## Next: Mission 009 — V2 Foundation & Sequencing Reconciliation
 
-**Goal:** Close the confidence gaps behind Mission 003's Medium-confidence
-recommendation (a standalone invoice follow-up tool for freelancers) before
-committing to a build.
+**Goal:** Create the `system/` registry layer (`manifest.yaml`, `index.yaml`,
+`portfolio.yaml`) and reconcile README.md with approved V2 architecture
+(Mission 007). Retroactively index Missions 001–008.
 
-**Scope** (from the [Mission 003
-report](../missions/003-prove-the-loop/report.md) §"What would increase
-confidence"):
+**Scope** (from [Mission 007 report](../missions/007-design-v2/report.md)):
 
-- Independently verify the core late-payment statistics (Bonsai, IPSE
-  studies) — upgrade them from search-snippet to verified evidence.
-- 5–10 short freelancer interviews: how they chase invoices today; would
-  they trust a standalone tool to email their clients.
-- Pricing/feature teardown of the three small competitors found
-  (Landolio, autoremind.ai, InvoicifyAI).
-- Landing-page smoke test with a pass/fail signup threshold **agreed with
-  the operator before launch**.
-- Report ends with one evidence-supported approval question for the next
-  mission: Mission 007 (Build the Benchmark MVP) if validation passes;
-  additional validation if evidence is inconclusive; or return to the
-  Mission 003 shortlist if validation fails.
+- `system/manifest.yaml` — pointer graph to canonical entry points
+- `system/index.yaml` — machine-readable mission registry
+- `system/portfolio.yaml` — Portfolio Projects registry (P001 candidate)
+- Reconcile README.md mission numbering and current state
+- Add renumbering protocol to Standards
+- No compiler changes required — Mission 008 compiler already operational
 
-**Decision rule:** if validation passes, Mission 007 = Build the Benchmark
-MVP; if it fails, return to Mission 003's shortlist with the new evidence.
+**Explicitly out of scope:** full V2 capability implementation; Mission 006
+artifact changes.
 
-**Explicitly out of scope:** building the product, writing application
-code.
+## Mission 008 Record — Build the Repository Compiler
 
-## Mission 005 Record — Build the AI-DOS Showcase Page
+Mission 008 built the first **Repository Compiler (PHP)** at
+`compiler/compile.php`. It reads mission and company artifacts and generates:
 
-Mission 005 created a static, GitHub Pages-friendly visual reader at
-`/site/index.html` and `/site/styles.css`.
+- `site/data/missions.json`
+- `site/data/organization.json`
+- `site/index.html` (Mission Control interface)
+- `site/styles.css`
 
-Purpose:
+The repository is organizational source code. Compiler outputs are
+disposable views. See [company/Standards.md](../company/Standards.md) §4.
 
-- Explain AI-DOS to outside readers in under two minutes.
-- Summarize missions, governance, and current state without replacing
-  canonical mission/report artifacts.
-- Keep the repository as source of truth; the showcase is a presentation layer.
+## Paused: Mission 006 — Validate the Recommendation
+
+Mission 006 remains **paused at Phase B** — operator-executed freelancer
+interviews and landing-page smoke test. Thresholds locked per
+[phase-a-thresholds.md](../missions/006-validate-recommendation/phase-a-thresholds.md).
+Phase C begins when raw results return. This backlog entry is unchanged;
+only compiler-generated status reflects the pause.
 
 ## Later
 
-- **Mission 007 — Build the Benchmark MVP** (conditional on Mission 006
-  passing its validation thresholds).
+- **Mission 010 — Derived Artifact Generation** (expand compiler outputs per V2 architecture)
+- **Mission 011 — Decision Engine Bootstrap**
+- **Mission 012 — Mission Engine & Queue Migration**
+
+Full V2 sequence: [missions/007-design-v2/report.md](../missions/007-design-v2/report.md)

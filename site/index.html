@@ -3,137 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI-DOS | Mission Archive</title>
-  <meta
-    name="description"
-    content="AI-DOS mission archive: a software organization that remembers in Git."
-  />
-  <link rel="stylesheet" href="styles.css?v=20260707-3" />
+  <title>AI-DOS | Mission Control</title>
+  <meta name="description" content="AI-DOS Mission Control — compiled from repository source." />
+  <link rel="stylesheet" href="styles.css?v=mission008" />
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
   <div class="grid-overlay" aria-hidden="true"></div>
 
-  <header class="hero">
-    <p class="kicker">ARCHIVE NODE // MAIN</p>
+  <header class="hero" id="hero">
+    <p class="kicker">MISSION CONTROL // COMPILED</p>
     <h1>AI-DOS</h1>
-    <p class="subtitle">A software organization that remembers.</p>
-    <p class="support">Git-native operating system for AI-assisted development.</p>
-    <p class="hero-copy">
-      This is not an app landing page. This is a black box recorder for an
-      organization that learns in commits, missions, and merge history.
-    </p>
-    <div class="hero-badges">
-      <span class="badge">CANONICAL</span>
-      <span class="badge">MERGED</span>
-      <span class="badge">ACTIVE: M006</span>
-    </div>
+    <p class="subtitle">Repository source → PHP compiler → this interface.</p>
+    <p class="support" id="strategy-line">Loading organization state…</p>
+    <div class="hero-badges" id="hero-badges"></div>
   </header>
 
   <main>
-    <section class="frame">
-      <h2>System Premise</h2>
-      <div class="premise-grid">
-        <article class="tile">
-          <h3>Repository = Product</h3>
-          <p>The organization ships intelligence into files, not chat memory.</p>
-        </article>
-        <article class="tile">
-          <h3>Git = Memory</h3>
-          <p>Approval lives in Git, not chat. Merge-to-main is the durable record.</p>
-        </article>
-        <article class="tile">
-          <h3>Missions = Learning Cycles</h3>
-          <p>Each mission leaves behind decisions, evidence, and the next step.</p>
-        </article>
-      </div>
-      <p class="quote">Never make a future agent guess.</p>
+    <section class="frame" id="compiler-concept">
+      <h2>Repository Compiler (PHP)</h2>
+      <p class="lead" id="compiler-lead"></p>
+      <p class="canonical-note" id="source-truth"></p>
     </section>
 
-    <section class="frame">
+    <section class="frame" id="current-state">
+      <h2>Current State</h2>
+      <div class="state-grid" id="state-grid"></div>
+    </section>
+
+    <section class="frame" id="timeline-section">
       <h2>Mission Timeline</h2>
-      <ol class="timeline">
-        <li class="dossier">
-          <div class="meta">
-            <span class="mission-id">M001</span>
-            <span class="status">MERGED</span>
-          </div>
-          <h3>Bootstrap</h3>
-          <p class="outcome">Created the minimum repository structure and cold-start baseline.</p>
-          <p class="learned"><strong>Learned:</strong> Start lean; every file must earn its place.</p>
-        </li>
-        <li class="dossier">
-          <div class="meta">
-            <span class="mission-id">M002</span>
-            <span class="status">CANONICAL</span>
-          </div>
-          <h3>Knowledge Preservation</h3>
-          <p class="outcome">Formalized commit/report memory standards and mission templates.</p>
-          <p class="learned"><strong>Learned:</strong> The repository must preserve both mission-level and change-level reasoning.</p>
-        </li>
-        <li class="dossier critical">
-          <div class="meta">
-            <span class="mission-id">M003</span>
-            <span class="status warning">MEDIUM CONFIDENCE</span>
-          </div>
-          <h3>Prove the Loop</h3>
-          <p class="outcome">Recommended an invoice follow-up tool through evidence-based evaluation.</p>
-          <p class="learned"><strong>Learned:</strong> Evidence changes the roadmap.</p>
-        </li>
-        <li class="dossier">
-          <div class="meta">
-            <span class="mission-id">M004</span>
-            <span class="status">MERGED</span>
-          </div>
-          <h3>Close Governance Loop</h3>
-          <p class="outcome">Formalized merge-to-main as durable approval and canonical state.</p>
-          <p class="learned"><strong>Learned:</strong> Approval lives in Git, not chat.</p>
-        </li>
-        <li class="dossier">
-          <div class="meta">
-            <span class="mission-id">M005</span>
-            <span class="status">MERGED</span>
-          </div>
-          <h3>Showcase Page</h3>
-          <p class="outcome">Built this mission archive to make AI-DOS legible in under two minutes.</p>
-          <p class="learned"><strong>Learned:</strong> The visual reader can clarify, but canonical truth stays in repository artifacts.</p>
-        </li>
-        <li class="dossier active">
-          <div class="meta">
-            <span class="mission-id">M006</span>
-            <span class="status next">PHASE B ACTIVE</span>
-          </div>
-          <h3>Validate the Recommendation</h3>
-          <p class="outcome">Pre-registered pass/fail thresholds, competitor teardown, and validation instruments for the invoice follow-up recommendation. Thresholds confirmed and locked; operator is running the interviews and smoke test (Phase B).</p>
-          <p class="learned"><strong>Learned:</strong> The most direct competitor is free — thresholds must test willingness to pay, not just pain.</p>
-        </li>
-      </ol>
+      <ol class="timeline" id="mission-timeline"></ol>
     </section>
 
-    <section class="frame">
-      <h2>Evidence Engine</h2>
-      <div class="evidence-grid">
-        <article class="metric">
-          <span class="metric-label">CANDIDATES SCANNED</span>
-          <strong>17</strong>
-        </article>
-        <article class="metric">
-          <span class="metric-label">SHORTLISTED</span>
-          <strong>3</strong>
-        </article>
-        <article class="metric">
-          <span class="metric-label">RECOMMENDED</span>
-          <strong>1</strong>
-        </article>
-        <article class="metric">
-          <span class="metric-label">CONFIDENCE</span>
-          <strong>MEDIUM</strong>
-        </article>
-      </div>
-      <p class="decision">
-        Decision path: validate before build. Confidence was not high enough to
-        skip evidence gathering.
-      </p>
+    <section class="frame" id="paused-section" hidden>
+      <h2>Paused Missions</h2>
+      <ul class="paused-list" id="paused-list"></ul>
     </section>
 
     <section class="frame">
@@ -146,30 +51,135 @@
         <li>Merged</li>
         <li>Canonical</li>
       </ul>
+      <p class="governance-note" id="governance-note"></p>
     </section>
 
-    <section class="frame state">
-      <h2>Current State</h2>
-      <div class="state-grid">
-        <p><span>Governance</span><strong>Complete</strong></p>
-        <p><span>Showcase</span><strong>Active</strong></p>
-        <p><span>Recommendation</span><strong>Invoice follow-up tool</strong></p>
-        <p><span>Confidence</span><strong>Medium</strong></p>
-        <p><span>Active mission</span><strong>Mission 006: Validate the Recommendation — thresholds confirmed and locked</strong></p>
-        <p><span>Next step</span><strong>Phase B underway: operator runs freelancer interviews + landing-page smoke test, then Phase C scores the results</strong></p>
-      </div>
+    <section class="frame" id="next-section">
+      <h2>Next Mission</h2>
+      <div class="next-card" id="next-card"></div>
     </section>
   </main>
 
   <footer>
-    <p class="canonical-line">This page is a visual reader. Repository artifacts remain canonical.</p>
-    <p>
-      Source of truth:
-      <code>/missions/</code>,
-      <code>/company/Standards.md</code>,
-      <code>/tasks/Backlog.md</code>
-    </p>
-    <a href="../README.md">Open repository root</a>
+    <p class="canonical-line">Generated view only. Repository artifacts remain canonical.</p>
+    <p>Compiled at <span id="compiled-at">2026-07-07 20:23:21 UTC</span> by Repository Compiler (PHP)</p>
+    <p>Source: <code>/missions/</code>, <code>/company/</code>, <code>/tasks/Backlog.md</code></p>
   </footer>
+
+  <script>
+    const categoryClass = {
+      complete: 'status-complete',
+      paused: 'status-paused',
+      in_progress: 'status-active',
+      active: 'status-active',
+      planned: 'status-planned',
+      unknown: 'status-unknown'
+    };
+
+    function el(tag, className, text) {
+      const node = document.createElement(tag);
+      if (className) node.className = className;
+      if (text !== undefined) node.textContent = text;
+      return node;
+    }
+
+    function markdownish(text) {
+      if (!text) return '';
+      return text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    }
+
+    async function loadMissionControl() {
+      const [missionsRes, orgRes] = await Promise.all([
+        fetch('data/missions.json'),
+        fetch('data/organization.json')
+      ]);
+
+      if (!missionsRes.ok || !orgRes.ok) {
+        document.getElementById('strategy-line').textContent =
+          'Failed to load compiled data. Run: php compiler/compile.php';
+        return;
+      }
+
+      const missions = await missionsRes.json();
+      const org = await orgRes.json();
+
+      document.getElementById('compiler-lead').innerHTML = markdownish(org.repository_compiler_concept || '');
+      document.getElementById('source-truth').textContent = org.source_of_truth_statement || '';
+      document.getElementById('strategy-line').textContent = org.strategic_pivot || org.active_strategy || '';
+      document.getElementById('governance-note').textContent = org.governance_model || '';
+      if (org.compiled_at) {
+        document.getElementById('compiled-at').textContent = org.compiled_at;
+      }
+
+      const badges = document.getElementById('hero-badges');
+      badges.appendChild(el('span', 'badge', 'CANONICAL: REPOSITORY'));
+      badges.appendChild(el('span', 'badge', 'BRANCH: ' + (org.canonical_branch || 'main')));
+      if (org.current_mission) {
+        badges.appendChild(el('span', 'badge badge-active', 'ACTIVE: M' + org.current_mission.id));
+      }
+
+      const stateGrid = document.getElementById('state-grid');
+      const addState = (label, value) => {
+        const row = el('p');
+        row.appendChild(el('span', null, label));
+        row.appendChild(el('strong', null, value));
+        stateGrid.appendChild(row);
+      };
+
+      addState('Completed missions', String(org.completed_mission_count ?? missions.filter(m => m.status_category === 'complete').length));
+      addState('Governance', 'Merge-to-main approval');
+      addState('Mission 007 V2 architecture', (org.mission_007_v2_architecture && org.mission_007_v2_architecture.status) || 'unknown');
+      if (org.current_mission) {
+        addState('Current mission', 'M' + org.current_mission.id + ' — ' + org.current_mission.title);
+      }
+      if (org.next_mission) {
+        addState('Next mission', 'M' + org.next_mission.id + ' — ' + org.next_mission.title);
+      }
+
+      const timeline = document.getElementById('mission-timeline');
+      missions.forEach((mission) => {
+        const item = el('li', 'dossier ' + (categoryClass[mission.status_category] || 'status-unknown'));
+        const meta = el('div', 'meta');
+        meta.appendChild(el('span', 'mission-id', 'M' + mission.id));
+        meta.appendChild(el('span', 'status', mission.status || 'Unknown'));
+        item.appendChild(meta);
+        item.appendChild(el('h3', null, mission.title));
+        if (mission.summary) {
+          item.appendChild(el('p', 'outcome', mission.summary));
+        }
+        if (mission.what_ai_dos_learned) {
+          const learned = el('p', 'learned');
+          learned.innerHTML = '<strong>Learned:</strong> ' + markdownish(mission.what_ai_dos_learned.split('\n')[0].replace(/^[-*]\s*/, ''));
+          item.appendChild(learned);
+        }
+        if (mission.confidence) {
+          item.appendChild(el('p', 'confidence-tag', 'Decision confidence: ' + mission.confidence));
+        }
+        timeline.appendChild(item);
+      });
+
+      if (org.paused_missions && org.paused_missions.length > 0) {
+        document.getElementById('paused-section').hidden = false;
+        const list = document.getElementById('paused-list');
+        org.paused_missions.forEach((paused) => {
+          const li = el('li');
+          li.appendChild(el('strong', null, 'M' + paused.id + ' — ' + paused.title));
+          li.appendChild(document.createTextNode(': ' + (paused.reason || paused.status)));
+          list.appendChild(li);
+        });
+      }
+
+      const nextCard = document.getElementById('next-card');
+      if (org.next_mission) {
+        nextCard.appendChild(el('p', 'next-id', 'Mission ' + org.next_mission.id));
+        nextCard.appendChild(el('p', 'next-title', org.next_mission.title));
+        nextCard.appendChild(el('p', 'next-source', 'Source: ' + (org.next_mission.source || 'tasks/Backlog.md')));
+      } else {
+        nextCard.appendChild(el('p', null, 'No next mission declared in Backlog.md'));
+      }
+    }
+
+    loadMissionControl();
+  </script>
 </body>
 </html>

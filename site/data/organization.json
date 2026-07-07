@@ -1,0 +1,30 @@
+{
+    "compiled_at": "2026-07-07T20:23:21+00:00",
+    "compiler": "Repository Compiler (PHP)",
+    "compiler_version": "1.0.0-mission-008",
+    "current_mission": null,
+    "next_mission": {
+        "id": "009",
+        "title": "V2 Foundation & Sequencing Reconciliation",
+        "source": "tasks/Backlog.md"
+    },
+    "completed_mission_count": 7,
+    "paused_missions": [
+        {
+            "id": "006",
+            "title": "Validate the Recommendation",
+            "status": "Paused — Phase B (operator validation)",
+            "reason": "Phase B — operator-executed validation (interviews and smoke test)"
+        }
+    ],
+    "active_strategy": "AI-DOS is a Git-native operating system for AI-assisted software development.",
+    "canonical_branch": "main",
+    "governance_model": "Merge-to-main is durable approval; chat approval is advisory only (Standards §2).",
+    "source_of_truth_statement": "Repository artifacts are canonical. Compiler outputs under site/ are generated views and must not invent facts.",
+    "mission_007_v2_architecture": {
+        "status": "approved",
+        "title": "Design AI-DOS V2"
+    },
+    "strategic_pivot": "AI-DOS itself is the primary product. Portfolio Projects use a product-agnostic workflow; Mission 006 validates the first candidate (P001).",
+    "repository_compiler_concept": "The repository is the source code of the organization. The Repository Compiler (PHP) transforms that source into human-readable Mission Control interfaces."
+}

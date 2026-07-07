@@ -1,0 +1,41 @@
+name: Compile Mission Control Site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          coverage: none
+
+      - name: Run Repository Compiler (PHP)
+        run: php compiler/compile.php
+
+      - name: Verify generated JSON exists
+        run: |
+          test -f site/data/missions.json
+          test -f site/data/organization.json
+          test -f site/index.html
+          php -r 'json_decode(file_get_contents("site/data/missions.json")); if (json_last_error()) exit(1);'
+          php -r 'json_decode(file_get_contents("site/data/organization.json")); if (json_last_error()) exit(1);'
+
+# Deployment note (Mission 008):
+# This workflow verifies the compiler runs successfully on push/PR.
+# Generated site artifacts are committed as part of mission work.
+# Full auto-commit of compiler output back to main on every merge is
+# deferred — operator merges include regenerated site/ when missions
+# change organizational state. GitHub Pages can serve /site from main.
