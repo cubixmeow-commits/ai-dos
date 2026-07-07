@@ -47,6 +47,28 @@ explain mission-level reasoning, but should reference commits for
 change-level rationale rather than restating it — if the same change-level
 reasoning appears in both places, the separation has broken down.
 
+### §1.3 Evidence tiers (research)
+
+Every externally sourced claim in a research artifact carries an evidence
+tier:
+
+- **[V] Verified** — the source page was fetched directly and the claim
+  read from its content.
+- **[S] Search-accessed** — the claim comes from a search result tied to a
+  specific URL, but the page itself could not be fetched. Real source,
+  unconfirmed content.
+- **[U] Unverified** — the claim appeared without a clearly attributable
+  URL, or is secondhand. Context only.
+
+Rules: no claim is ever cited from memory; every URL is recorded,
+including blocked fetch attempts; [U] claims must never carry a decision;
+sources with a commercial interest in the claim get an explicit bias flag.
+Research missions consolidate claims into a single evidence ledger
+(Claim / Source / Tier / URL / Verified / Used by).
+
+First used in Mission 003 (research.md §1); formalized here on its second
+use, in Mission 006.
+
 ## §2 Mission Approval
 
 Mission reports conclude with one approval question. Operator approval

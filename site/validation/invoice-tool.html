@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  MISSION 006 VALIDATION TEST ARTIFACT — NOT A PRODUCT PAGE
+  ============================================================
+  This is a landing-page smoke test drafted in Mission 006 Phase A
+  (missions/006-validate-recommendation/phase-a-thresholds.md §3.2).
+  It exists to measure email-signup conversion against pre-registered
+  thresholds. Do not link it from the main showcase.
+
+  OPERATOR TODO before launch (page will not collect signups until #1):
+  1. FORM ENDPOINT: replace the form's action="#" with a real endpoint
+     (e.g., Formspree, Tally, Buttondown). Until then, submissions show
+     an honest "not collecting signups yet" notice — no fake success.
+  2. ANALYTICS: add a privacy-friendly visitor counter (GoatCounter /
+     Plausible) in the commented slot near </body>. Threshold S1 cannot
+     be scored without a unique-visitor count.
+  3. Record which channels traffic comes from.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get paid on time — early access</title>
+  <meta name="description" content="A standalone tool that politely chases your late invoices until they're paid. Early-access list." />
+  <meta name="robots" content="noindex" />
+  <!-- OPERATOR NOTE: remove noindex only if you want search traffic in the test window; record the choice. -->
+  <style>
+    :root {
+      --ink: #1c2330;
+      --muted: #5b6675;
+      --accent: #0f7b5f;
+      --accent-ink: #ffffff;
+      --bg: #f7f6f2;
+      --card: #ffffff;
+      --line: #e3e0d8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+    main { max-width: 40rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.2rem 0.75rem;
+      margin-bottom: 1.5rem;
+      background: var(--card);
+    }
+    h1 { font-size: 2rem; line-height: 1.2; margin-bottom: 1rem; }
+    .sub { font-size: 1.125rem; color: var(--muted); margin-bottom: 2rem; }
+    .steps { display: grid; gap: 0.75rem; margin: 0 0 2rem; list-style: none; counter-reset: step; }
+    .steps li {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 0.6rem;
+      padding: 0.9rem 1rem 0.9rem 3rem;
+      position: relative;
+      counter-increment: step;
+    }
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 1rem; top: 0.95rem;
+      width: 1.4rem; height: 1.4rem;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--accent-ink);
+      font-size: 0.8rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .stat {
+      border-left: 3px solid var(--accent);
+      padding: 0.25rem 0 0.25rem 1rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+    .signup {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .signup h2 { font-size: 1.2rem; margin-bottom: 0.35rem; }
+    .signup .price { color: var(--muted); font-size: 0.95rem; margin-bottom: 1rem; }
+    .row { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    input[type="email"] {
+      flex: 1 1 14rem;
+      padding: 0.7rem 0.9rem;
+      font-size: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 0.5rem;
+      background: var(--bg);
+      color: var(--ink);
+    }
+    button {
+      padding: 0.7rem 1.3rem;
+      font-size: 1rem; font-weight: 600;
+      border: 0; border-radius: 0.5rem;
+      background: var(--accent);
+      color: var(--accent-ink);
+      cursor: pointer;
+    }
+    button:hover { filter: brightness(1.08); }
+    .notice {
+      display: none;
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+      color: #8a4b12;
+      background: #fdf1e2;
+      border: 1px solid #f0d9bd;
+      border-radius: 0.5rem;
+      padding: 0.6rem 0.8rem;
+    }
+    .trust { font-size: 0.95rem; color: var(--muted); }
+    .trust li { margin: 0.35rem 0 0.35rem 1.2rem; }
+    footer {
+      max-width: 40rem; margin: 0 auto; padding: 0 1.25rem 3rem;
+      font-size: 0.8rem; color: var(--muted);
+      border-top: 1px solid var(--line);
+      padding-top: 1rem;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink: #e8e6e1; --muted: #a3a89f; --accent: #34b48f;
+        --accent-ink: #0d1512; --bg: #14171c; --card: #1c2027; --line: #2a2f38;
+      }
+      .notice { color: #e8b57d; background: #2a2117; border-color: #4a3a26; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <span class="badge">Early access — research preview</span>
+    <h1>Get paid on time, without writing another awkward email.</h1>
+    <p class="sub">
+      A standalone tool for freelancers that chases your late invoices for
+      you: polite, escalating reminders with a payment link — sent in your
+      name — until the invoice is paid.
+    </p>
+
+    <ol class="steps">
+      <li>Register an invoice (or connect Stripe — no switching your invoicing app).</li>
+      <li>Approve the tone: friendly nudge first, firmer as it gets later.</li>
+      <li>Reminders stop automatically the moment payment lands.</li>
+    </ol>
+
+    <p class="stat">
+      In a Bonsai analysis of three years of invoices across 100,000+
+      freelancers, <strong>29% were paid at least a day late</strong>.
+      Chasing them is unpaid work.
+    </p>
+
+    <section class="signup">
+      <h2>Join the early-access list</h2>
+      <p class="price">Planned pricing: simple, around <strong>$9/month</strong>. Early list gets the beta free.</p>
+      <!-- OPERATOR TODO #1: replace action="#" with your form endpoint before launch. -->
+      <form id="signup-form" action="#" method="POST">
+        <div class="row">
+          <input type="email" name="email" required placeholder="you@example.com" aria-label="Email address" />
+          <button type="submit">Request access</button>
+        </div>
+        <p class="notice" id="not-wired">
+          This test page isn't collecting signups yet — the form hasn't
+          been connected. Nothing was sent.
+        </p>
+      </form>
+    </section>
+
+    <ul class="trust">
+      <li>Emails send from your name — your client never sees a third-party dunning service.</li>
+      <li>You see and approve every sequence before it starts.</li>
+      <li>Pause any client, any time. Relationships outrank reminders.</li>
+    </ul>
+  </main>
+
+  <footer>
+    <p>
+      This is an early-access research page for a product under validation
+      — not a finished product. We'll only email you about the beta.
+    </p>
+  </footer>
+
+  <script>
+    // Honest-failure guard: refuse to pretend a signup happened while the
+    // form endpoint is still the "#" placeholder (OPERATOR TODO #1).
+    document.getElementById('signup-form').addEventListener('submit', function (e) {
+      var action = this.getAttribute('action');
+      if (!action || action === '#') {
+        e.preventDefault();
+        document.getElementById('not-wired').style.display = 'block';
+      }
+    });
+  </script>
+  <!-- OPERATOR TODO #2: analytics snippet goes here (GoatCounter / Plausible).
+       Threshold S1 needs a unique-visitor count for the 14-day window. -->
+</body>
+</html>
