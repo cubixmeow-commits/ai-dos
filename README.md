@@ -50,5 +50,8 @@ citing specific files, that a fresh session could pick up from here.
 - **Mission 002 (Formalize the Knowledge Preservation Standard)** —
   complete. See
   [missions/002-knowledge-preservation/report.md](missions/002-knowledge-preservation/report.md).
-- **Mission 003 (Prove the Loop)** — next up, pending operator approval.
-  See [tasks/Backlog.md](tasks/Backlog.md).
+- **Mission 003 (Prove the Loop)** — complete. First full research cycle;
+  recommended a freelancer invoice follow-up tool at Medium confidence. See
+  [missions/003-prove-the-loop/report.md](missions/003-prove-the-loop/report.md).
+- **Mission 004 (Validate the Recommendation)** — next up, pending operator
+  approval. See [tasks/Backlog.md](tasks/Backlog.md).
