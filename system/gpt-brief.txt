@@ -1,25 +1,27 @@
 AI-DOS MOBILE GPT BRIEF (select all, copy, paste into GPT)
 
-STATUS: Mission 011 complete. Architecture integrated; Execution Engine documented (not implemented).
+STATUS: Mission 012 complete. Minimal Execution Engine operational. No autonomous execution.
 
-FILES: system/assets.yaml system/manifest.yaml system/context-packages.yaml system/execution-engine.md system/gpt-brief.txt decisions/*.md
+FILES: system/execution-engine.yaml system/worker-roles.yaml system/execution-plans/ system/assets.yaml system/manifest.yaml
 
-INTELLIGENCE JSON: site/data/manifest.json context-packages.json dependency-report.json repository.json decisions.json
+INTELLIGENCE JSON: site/data/execution-engine.json repository.json manifest.json context-packages.json decisions.json
 
 ROOT: https://cubixmeow.com/ai-dos/
 
-URLS: /site/ (Command Center — bookmark this) | /compiler/compile.php (build only) | /site/data/repository.json
+URLS: /site/ (Command Center) | /site/data/execution-engine.json | /site/data/repository.json
 
-CAPABILITIES: manifest | context packages (5) | dependency validation | repository lookup | decision records (7)
+EXECUTION: plans only | roles not brands | Cursor=implementation | Claude Code=architecture/review
 
-COMPILER: php compiler/compile.php v1.4.0-mission-011 | requires PHP yaml extension
+WORKER ROLES: principal-architect research-specialist implementation-engineer backend-engineer frontend-builder reviewer qa-engineer documentation-writer
 
-STANDARDS: company/Standards.md sections 4-9
+COMPILER: php compiler/compile.php v1.5.0-mission-012
 
-MISSION: missions/011-architecture-integration/
+STANDARDS: company/Standards.md sections 4-10
 
-NEXT: Mission 012 Execution Engine Foundation
+MISSION: missions/012-execution-engine-foundation/
 
-APPROVE: Mission 012 Execution Engine Foundation? Y/N
+NEXT: Mission 013 Build the First External Product Using AI-DOS
 
-LOOKUP: site/data/repository.json — where_is, what_generates_this, what_depends_on_this, who_created_this, is_editable, public_url, context_package_contains
+APPROVE: Mission 013 Build the First External Product Using AI-DOS? Y/N
+
+PLANS: system/execution-plans/mission-013-first-external-product.yaml

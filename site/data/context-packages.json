@@ -1,5 +1,5 @@
 {
-    "compiled_at": "2026-07-07T22:15:14+00:00",
+    "compiled_at": "2026-07-07T23:15:57+00:00",
     "source": "system/context-packages.yaml",
     "package_count": 5,
     "packages": [
@@ -7,7 +7,7 @@
             "id": "mission-context",
             "name": "Mission Context",
             "purpose": "Execute, review, or approve missions without scanning the full repository.",
-            "file_count": 34,
+            "file_count": 40,
             "files": [
                 "company/Principles.md",
                 "company/Standards.md",
@@ -39,8 +39,14 @@
                 "missions/010-repository-intelligence/report.md",
                 "missions/011-architecture-integration/mission.md",
                 "missions/011-architecture-integration/report.md",
+                "missions/012-execution-engine-foundation/mission.md",
+                "missions/012-execution-engine-foundation/report.md",
                 "system/execution-engine.md",
+                "system/execution-engine.yaml",
+                "system/execution-plans/example-inventory-saas.yaml",
+                "system/execution-plans/mission-013-first-external-product.yaml",
                 "system/gpt-brief.txt",
+                "system/worker-roles.yaml",
                 "tasks/Backlog.md",
                 "workflow/Templates/MissionTemplate.md"
             ]
@@ -71,11 +77,12 @@
             "id": "compiler-context",
             "name": "Compiler Context",
             "purpose": "Modify or extend the Repository Compiler and generated artifacts.",
-            "file_count": 16,
+            "file_count": 21,
             "files": [
                 ".github/workflows/compile-site.yml",
                 "company/Standards.md",
                 "compiler/DecisionRecords.php",
+                "compiler/ExecutionEngine.php",
                 "compiler/README.md",
                 "compiler/RepositoryIntelligence.php",
                 "compiler/compile.php",
@@ -88,7 +95,11 @@
                 "decisions/D007-execution-engine-foundation.md",
                 "system/assets.yaml",
                 "system/context-packages.yaml",
-                "system/manifest.yaml"
+                "system/execution-engine.yaml",
+                "system/execution-plans/example-inventory-saas.yaml",
+                "system/execution-plans/mission-013-first-external-product.yaml",
+                "system/manifest.yaml",
+                "system/worker-roles.yaml"
             ]
         },
         {

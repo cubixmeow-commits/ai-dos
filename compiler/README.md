@@ -29,11 +29,12 @@ site/data/context-packages.json
 site/data/dependency-report.json
 site/data/repository.json
 site/data/decisions.json
+site/data/execution-engine.json
 site/index.html
 site/styles.css
 ```
 
-Modules: `RepositoryIntelligence.php`, `DecisionRecords.php`.
+Modules: `RepositoryIntelligence.php`, `DecisionRecords.php`, `ExecutionEngine.php`.
 
 Requires PHP 8.1+ with `yaml` extension for manifest and context package parsing.
 

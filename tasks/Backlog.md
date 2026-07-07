@@ -3,19 +3,34 @@
 The queue of upcoming missions, in order. The top item is next. A mission
 starts only after the operator approves the previous mission's report.
 
-## Next: Mission 012 — Execution Engine Foundation
+## Next: Mission 013 — Build the First External Product Using AI-DOS
 
-**Goal:** Implement the first concrete pieces of the Execution Engine
-architectural contract defined in Mission 011 — still no cloud orchestration,
-background services, or fabricated automation.
+**Goal:** Use the Execution Engine to build a **real software product** — not
+more AI-DOS infrastructure.
 
-**Scope** (from [system/execution-engine.md](../system/execution-engine.md)):
+**Scope:**
 
-- `system/execution-engine.yaml` interface sketch (if approved)
-- Compiler exposure of execution-plan placeholders derived only from repository state
-- Command Center Execution card (foundation only — never imply live orchestration)
+- Operator selects product candidate (e.g. invoice follow-up from Mission 003/006
+  or a new MVP) in `missions/013-*/mission.md`
+- Execute via execution plan work units routed to Cursor and Claude Code
+- Mission report proves cold-start continuity and product deliverable
 
-**Explicitly out of scope:** External APIs, agent spawning, databases, auto-merge.
+**Execution plan (proposed):** [system/execution-plans/mission-013-first-external-product.yaml](../system/execution-plans/mission-013-first-external-product.yaml)
+
+**Explicitly out of scope:** AI-DOS infrastructure unless blocking the product.
+
+## Mission 012 Record — Execution Engine Foundation
+
+Mission 012 implemented the minimal Execution Engine:
+
+- `system/execution-engine.yaml` — coordination model
+- `system/worker-roles.yaml` — capability roles + Cursor/Claude Code mapping
+- `system/execution-plans/` — sample plans including Mission 013 proposal
+- `compiler/ExecutionEngine.php` → `site/data/execution-engine.json`
+- Command Center Execution section
+- Standards §10
+
+See [missions/012-execution-engine-foundation/report.md](../missions/012-execution-engine-foundation/report.md).
 
 ## Mission 011 Record — Architecture Integration
 
@@ -30,41 +45,12 @@ Mission 011 integrated the independent architecture audit without redesigning V2
 
 See [missions/011-architecture-integration/report.md](../missions/011-architecture-integration/report.md).
 
-## Mission 010 Record — Repository Intelligence Foundation
-
-Mission 010 created the Repository Intelligence Layer:
-
-- `system/manifest.yaml` — pointer graph (source)
-- `system/context-packages.yaml` — five agent context packages
-- `compiler/RepositoryIntelligence.php` — manifest, packages, validation, lookup
-- `site/data/manifest.json`, `context-packages.json`, `dependency-report.json`, `repository.json`
-- Command Center Repository Intelligence cards
-- Standards §6
-
-See [missions/010-repository-intelligence/report.md](../missions/010-repository-intelligence/report.md).
-
-## Mission 009 Record — File Index Foundation → Asset Registry
-
-Mission 009 created the canonical registry layer, which evolved within the
-same mission from a file index to the **Asset Registry**:
-
-- `system/assets.yaml` — canonical Asset Registry (v2 schema)
-- `system/assets.md` — iPhone-friendly companion
-- Standards §5 — asset registry maintenance rules
-- Compiler `asset_registry` summary in `organization.json`; full lookup in `repository.json`
-
-Legacy `file-index` shims were removed in Mission 011.
-
-See [missions/009-file-index-foundation/report.md](../missions/009-file-index-foundation/report.md).
-
 ## Paused: Mission 006 — Validate the Recommendation
 
 Mission 006 remains **paused at Phase B** — operator-executed freelancer
-interviews and landing-page smoke test. Thresholds locked per
-[phase-a-thresholds.md](../missions/006-validate-recommendation/phase-a-thresholds.md).
-Phase C begins when raw results return.
+interviews and landing-page smoke test. Mission 013 may resume validation
+evidence or choose another product candidate.
 
 ## Later
 
-- **Mission 013 — Derived Artifact Generation** (expand compiler outputs)
 - Full V2 sequence: [missions/007-design-v2/report.md](../missions/007-design-v2/report.md)

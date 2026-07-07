@@ -1,0 +1,146 @@
+# Proposed execution plan — Mission 013 (source recommendation, not executed)
+# AI-DOS uses this to show how the next mission routes work to Cursor + Claude Code.
+
+id: mission-013-first-external-product
+title: Build the First External Product Using AI-DOS
+status: proposed
+created_by: Mission 012
+related_mission: "013"
+operator_request: >
+  Use AI-DOS Execution Engine to build a real software product — not more
+  AI-DOS infrastructure.
+
+objective: >
+  Prove AI-DOS can coordinate product-building work by shipping the first
+  external product using role-based plans, context packages, and merge-based
+  governance.
+
+scope:
+  in:
+    - one focused MVP product (operator selects candidate at mission start)
+    - execution plan driven development via Cursor and Claude Code
+    - mission report with cold-start proof
+  out:
+    - AI-DOS infrastructure changes unless required for the product
+    - autonomous multi-agent orchestration
+    - fabricated execution history
+
+product_candidates:
+  - id: invoice-follow-up
+    source: missions/003-prove-the-loop/report.md
+    note: Mission 006 validation paused; operator may resume or choose another MVP
+  - id: operator-choice
+    note: Operator defines product in Mission 013 mission.md before execution
+
+work_units:
+  - id: m13-w1-research
+    type: research
+    title: Confirm product scope and validation evidence
+    role: research-specialist
+    practical_tool: claude-code
+    context_packages:
+      - mission-context
+      - governance-context
+    expected_outputs:
+      - scoped MVP definition
+      - evidence tier summary for key claims
+    depends_on: []
+
+  - id: m13-w2-architecture
+    type: architecture
+    title: Product architecture and repo layout
+    role: principal-architect
+    practical_tool: claude-code
+    context_packages:
+      - architecture-context
+      - governance-context
+    expected_outputs:
+      - architecture.md in mission folder
+      - tech stack decision record if needed
+    depends_on:
+      - m13-w1-research
+
+  - id: m13-w3-backend
+    type: backend
+    title: Core product backend
+    role: backend-engineer
+    practical_tool: cursor
+    context_packages:
+      - architecture-context
+      - compiler-context
+    expected_outputs:
+      - working API or server logic per architecture
+    depends_on:
+      - m13-w2-architecture
+
+  - id: m13-w4-frontend
+    type: ui
+    title: Product UI for operator and users
+    role: frontend-builder
+    practical_tool: cursor
+    context_packages:
+      - website-context
+      - architecture-context
+    expected_outputs:
+      - deployable UI matching MVP scope
+    depends_on:
+      - m13-w2-architecture
+
+  - id: m13-w5-testing
+    type: testing
+    title: Smoke test and acceptance criteria
+    role: qa-engineer
+    practical_tool: cursor
+    context_packages:
+      - mission-context
+    expected_outputs:
+      - test results in mission report
+    depends_on:
+      - m13-w3-backend
+      - m13-w4-frontend
+
+  - id: m13-w6-docs
+    type: documentation
+    title: Operator README and deployment notes
+    role: documentation-writer
+    practical_tool: cursor
+    context_packages:
+      - mission-context
+      - governance-context
+    expected_outputs:
+      - product README
+      - how to run / deploy
+    depends_on:
+      - m13-w5-testing
+
+  - id: m13-w7-review
+    type: review
+    title: Pre-merge review and approval question
+    role: reviewer
+    practical_tool: claude-code
+    context_packages:
+      - governance-context
+      - mission-context
+    expected_outputs:
+      - report.md with approval question
+    depends_on:
+      - m13-w6-docs
+
+operator_approval_point: >
+  Operator approves Mission 013 mission.md, then reviews report.md and merges
+  to main. No product work is canonical until merged.
+
+routing_summary:
+  claude_code:
+    units:
+      - m13-w1-research
+      - m13-w2-architecture
+      - m13-w7-review
+    why: architecture, synthesis, governance review
+  cursor:
+    units:
+      - m13-w3-backend
+      - m13-w4-frontend
+      - m13-w5-testing
+      - m13-w6-docs
+    why: implementation, UI, tests, documentation

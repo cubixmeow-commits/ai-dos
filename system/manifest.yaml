@@ -5,7 +5,7 @@
 meta:
   version: 1
   subsystem: repository-manifest
-  maintained_by: Mission 011
+  maintained_by: Mission 012
   canonical_compiled: site/data/manifest.json
   last_updated: 2026-07-07
 
@@ -51,8 +51,15 @@ references:
     source_glob: decisions/*.md
     compiled: site/data/decisions.json
   execution_engine:
-    description: Execution Engine architectural contract (planned)
-    path: system/execution-engine.md
+    description: Execution Engine coordination model (implemented minimal)
+    path: system/execution-engine.yaml
+    compiled: site/data/execution-engine.json
+  worker_roles:
+    description: Worker capability roles (not brands)
+    path: system/worker-roles.yaml
+  execution_plans:
+    description: Structured mission execution plans
+    source_glob: system/execution-plans/*.yaml
   architecture_audit:
     description: Independent architecture review (Mission 011 input)
     path: architecture-audit.md

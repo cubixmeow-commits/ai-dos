@@ -1,5 +1,5 @@
 {
-    "compiled_at": "2026-07-07T22:15:14+00:00",
+    "compiled_at": "2026-07-07T23:15:57+00:00",
     "source": "system/manifest.yaml",
     "subsystem": "repository-manifest",
     "ai_dos_version": "V2-in-progress",
@@ -57,8 +57,17 @@
             "compiled": "site/data/decisions.json"
         },
         "execution_engine": {
-            "description": "Execution Engine architectural contract (planned)",
-            "path": "system/execution-engine.md"
+            "description": "Execution Engine coordination model (implemented minimal)",
+            "path": "system/execution-engine.yaml",
+            "compiled": "site/data/execution-engine.json"
+        },
+        "worker_roles": {
+            "description": "Worker capability roles (not brands)",
+            "path": "system/worker-roles.yaml"
+        },
+        "execution_plans": {
+            "description": "Structured mission execution plans",
+            "source_glob": "system/execution-plans/*.yaml"
         },
         "architecture_audit": {
             "description": "Independent architecture review (Mission 011 input)",
@@ -67,8 +76,8 @@
     },
     "current_mission": null,
     "next_mission": {
-        "id": "012",
-        "title": "Execution Engine Foundation",
+        "id": "013",
+        "title": "Build the First External Product Using AI-DOS",
         "source": "tasks/Backlog.md"
     },
     "completed_missions": [
@@ -121,6 +130,11 @@
             "id": "011",
             "title": "Integrate the Architecture Audit",
             "path": "missions/011-architecture-integration"
+        },
+        {
+            "id": "012",
+            "title": "Execution Engine Foundation",
+            "path": "missions/012-execution-engine-foundation"
         }
     ],
     "active_missions": [],
@@ -132,59 +146,63 @@
         }
     ],
     "architecture_version": "0.2 (approved — operator decisions incorporated)",
-    "compiler_version": "1.4.0-mission-011",
+    "compiler_version": "1.5.0-mission-012",
     "asset_registry_version": 2,
     "repository_health": {
         "status": "healthy",
         "issue_count": 0,
         "error_count": 0,
         "warning_count": 0,
-        "asset_count": 62
+        "asset_count": 70
     },
     "generated_artifact_versions": {
         "missions.json": {
             "path": "site/data/missions.json",
-            "modified_at": "2026-07-07T22:15:09+00:00",
+            "modified_at": "2026-07-07T22:15:14+00:00",
             "bytes": 14945
         },
         "organization.json": {
             "path": "site/data/organization.json",
-            "modified_at": "2026-07-07T22:15:09+00:00",
+            "modified_at": "2026-07-07T22:15:14+00:00",
             "bytes": 1921
         },
         "manifest.json": {
             "path": "site/data/manifest.json",
-            "modified_at": "2026-07-07T22:15:09+00:00",
+            "modified_at": "2026-07-07T22:15:14+00:00",
             "bytes": 6364
         },
         "context-packages.json": {
             "path": "site/data/context-packages.json",
-            "modified_at": "2026-07-07T22:15:09+00:00",
+            "modified_at": "2026-07-07T22:15:14+00:00",
             "bytes": 6026
         },
         "dependency-report.json": {
             "path": "site/data/dependency-report.json",
-            "modified_at": "2026-07-07T22:15:09+00:00",
+            "modified_at": "2026-07-07T22:15:14+00:00",
             "bytes": 257
         },
         "repository.json": {
             "path": "site/data/repository.json",
-            "modified_at": "2026-07-07T22:15:09+00:00",
+            "modified_at": "2026-07-07T22:15:14+00:00",
             "bytes": 107706
         },
         "decisions.json": {
             "path": "site/data/decisions.json",
-            "modified_at": "2026-07-07T22:15:09+00:00",
+            "modified_at": "2026-07-07T22:15:14+00:00",
             "bytes": 11009
+        },
+        "execution-engine.json": {
+            "path": "site/data/execution-engine.json",
+            "status": "not_yet_generated"
         },
         "index.html": {
             "path": "site/index.html",
-            "modified_at": "2026-07-07T22:15:09+00:00",
+            "modified_at": "2026-07-07T22:15:14+00:00",
             "bytes": 16362
         },
         "styles.css": {
             "path": "site/styles.css",
-            "modified_at": "2026-07-07T22:15:09+00:00",
+            "modified_at": "2026-07-07T22:15:14+00:00",
             "bytes": 8288
         }
     }

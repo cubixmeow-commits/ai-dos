@@ -1,0 +1,156 @@
+# AI-DOS Worker Roles — capabilities, not brands (source)
+# Compiled into site/data/execution-engine.json
+# Mission 012: roles describe what work gets done; tools are practical mappings only.
+
+meta:
+  version: 1
+  subsystem: worker-roles
+  maintained_by: Mission 012
+  last_updated: 2026-07-07
+
+roles:
+  - id: principal-architect
+    name: Principal Architect
+    capabilities:
+      - system design
+      - architecture decisions
+      - complex reasoning
+      - technical reviews
+      - trade-off analysis
+    practical_tools:
+      - id: claude-code
+        fit: preferred
+        use_for:
+          - architecture
+          - review
+          - complex reasoning
+
+  - id: research-specialist
+    name: Research Specialist
+    capabilities:
+      - market research
+      - evidence gathering
+      - competitor analysis
+      - validation design
+    practical_tools:
+      - id: claude-code
+        fit: preferred
+        use_for:
+          - synthesis
+          - evaluation
+      - id: cursor
+        fit: acceptable
+        use_for:
+          - structured research artifacts
+
+  - id: implementation-engineer
+    name: Implementation Engineer
+    capabilities:
+      - routine coding
+      - refactoring
+      - feature implementation
+      - integration work
+    practical_tools:
+      - id: cursor
+        fit: preferred
+        use_for:
+          - implementation
+          - refactoring
+          - feature work
+
+  - id: backend-engineer
+    name: Backend Engineer
+    capabilities:
+      - APIs
+      - data models
+      - server logic
+      - database integration
+    practical_tools:
+      - id: cursor
+        fit: preferred
+        use_for:
+          - backend implementation
+      - id: claude-code
+        fit: acceptable
+        use_for:
+          - schema design review
+
+  - id: frontend-builder
+    name: Frontend Builder
+    capabilities:
+      - UI implementation
+      - responsive layouts
+      - client-side logic
+      - component work
+    practical_tools:
+      - id: cursor
+        fit: preferred
+        use_for:
+          - UI implementation
+          - frontend features
+
+  - id: reviewer
+    name: Reviewer
+    capabilities:
+      - code review
+      - standards compliance
+      - governance checks
+      - cold-start readability
+    practical_tools:
+      - id: claude-code
+        fit: preferred
+        use_for:
+          - review
+          - governance analysis
+
+  - id: qa-engineer
+    name: QA Engineer
+    capabilities:
+      - test planning
+      - smoke tests
+      - regression checks
+      - acceptance criteria
+    practical_tools:
+      - id: cursor
+        fit: preferred
+        use_for:
+          - test implementation
+      - id: claude-code
+        fit: acceptable
+        use_for:
+          - test strategy
+
+  - id: documentation-writer
+    name: Documentation Writer
+    capabilities:
+      - operator docs
+      - mission reports
+      - README updates
+      - runbooks
+    practical_tools:
+      - id: cursor
+        fit: preferred
+        use_for:
+          - documentation commits
+      - id: claude-code
+        fit: acceptable
+        use_for:
+          - clarity review
+
+tool_summary:
+  cursor:
+    label: Cursor
+    primary_roles:
+      - implementation-engineer
+      - backend-engineer
+      - frontend-builder
+      - qa-engineer
+      - documentation-writer
+    operator_note: Routine build work, refactoring, feature implementation.
+  claude-code:
+    label: Claude Code
+    primary_roles:
+      - principal-architect
+      - research-specialist
+      - reviewer
+    operator_note: Architecture, complex reasoning, reviews.

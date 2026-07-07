@@ -1,0 +1,159 @@
+# AI-DOS Execution Engine — coordination model (source)
+# Compiled view: site/data/execution-engine.json (disposable)
+# Mission 012: minimal implementation — plans only, no autonomous execution.
+
+meta:
+  version: 1
+  subsystem: execution-engine
+  status: minimal-implementation
+  maintained_by: Mission 012
+  last_updated: 2026-07-07
+  canonical_compiled: site/data/execution-engine.json
+  companion_doc: system/execution-engine.md
+
+philosophy:
+  summary: >
+    Turn one operator request into a structured execution plan for cloud AI workers.
+    The operator works from an iPhone. Plans are advisory; merge remains approval.
+  governance: Merge-to-main is durable approval. Execution Engine never auto-executes.
+  product_direction: AI-DOS manages software companies — not more AI-DOS infrastructure after M012.
+
+capabilities:
+  - id: mission_intake
+    description: Convert operator request into structured mission proposal (no execution)
+  - id: work_decomposition
+    description: Break mission into work units — no scheduling, no autonomous runs
+  - id: worker_assignment
+    description: Assign work units to capability roles (not brand names)
+  - id: context_routing
+    description: Select context packages per work unit from context-packages.yaml
+  - id: execution_plans
+    description: Publish plans under system/execution-plans/ for paste into workers
+  - id: operator_approval
+    description: Stop after plan; operator approves missions and merges
+
+work_unit_types:
+  - id: research
+    label: Research
+  - id: architecture
+    label: Architecture
+  - id: backend
+    label: Backend
+  - id: frontend
+    label: Frontend
+  - id: database
+    label: Database
+  - id: ui
+    label: UI
+  - id: testing
+    label: Testing
+  - id: documentation
+    label: Documentation
+  - id: deployment
+    label: Deployment
+  - id: review
+    label: Review
+
+execution_flow:
+  - step: 1
+    name: Operator request
+    actor: operator
+    output: plain-language objective
+  - step: 2
+    name: Mission intake
+    actor: execution-engine
+    output: structured scope and constraints
+  - step: 3
+    name: Work decomposition
+    actor: execution-engine
+    output: work units with dependencies
+  - step: 4
+    name: Role assignment
+    actor: execution-engine
+    source: system/worker-roles.yaml
+    output: role per work unit
+  - step: 5
+    name: Context routing
+    actor: execution-engine
+    source: system/context-packages.yaml
+    output: context package ids per work unit
+  - step: 6
+    name: Plan publication
+    actor: execution-engine
+    output: system/execution-plans/*.yaml
+  - step: 7
+    name: Operator approval
+    actor: operator
+    output: mission approved via merge to main
+  - step: 8
+    name: Worker execution
+    actor: assigned-role
+    note: Manual — paste plan into Cursor or Claude Code; not automated by AI-DOS
+
+context_routing:
+  research:
+    context_packages:
+      - mission-context
+      - governance-context
+    typical_role: research-specialist
+  architecture:
+    context_packages:
+      - architecture-context
+      - governance-context
+    typical_role: principal-architect
+  backend:
+    context_packages:
+      - compiler-context
+      - architecture-context
+    typical_role: backend-engineer
+  frontend:
+    context_packages:
+      - website-context
+      - architecture-context
+    typical_role: frontend-builder
+  database:
+    context_packages:
+      - architecture-context
+      - compiler-context
+    typical_role: backend-engineer
+  ui:
+    context_packages:
+      - website-context
+    typical_role: frontend-builder
+  testing:
+    context_packages:
+      - mission-context
+      - compiler-context
+    typical_role: qa-engineer
+  documentation:
+    context_packages:
+      - mission-context
+      - governance-context
+    typical_role: documentation-writer
+  deployment:
+    context_packages:
+      - compiler-context
+      - website-context
+    typical_role: implementation-engineer
+  review:
+    context_packages:
+      - governance-context
+      - architecture-context
+    typical_role: reviewer
+
+sources:
+  worker_roles: system/worker-roles.yaml
+  context_packages: system/context-packages.yaml
+  execution_plans: system/execution-plans/
+  decisions: decisions/*.md
+  backlog: tasks/Backlog.md
+
+explicit_non_goals:
+  - autonomous agent spawning
+  - background workers
+  - external APIs
+  - cloud execution
+  - task queues
+  - databases
+  - orchestration servers
+  - fabricated worker history

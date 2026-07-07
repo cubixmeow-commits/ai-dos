@@ -7,7 +7,7 @@ meta:
   registry: asset-registry
   deployment_root: https://cubixmeow.com/ai-dos/
   canonical_source: system/assets.yaml
-  maintained_by: Mission 011
+  maintained_by: Mission 012
   last_updated: '2026-07-07'
   schema:
     asset_types:
@@ -301,7 +301,7 @@ assets: &id001
   public:
     url: https://cubixmeow.com/ai-dos/compiler/compile.php
   created_by: Mission 008
-  updated_by: Mission 011
+  updated_by: Mission 012
   depends_on:
   - asset-registry
   - company-standards-md
@@ -309,6 +309,7 @@ assets: &id001
   - tasks-backlog-md
   - repository-intelligence-php
   - decision-records-php
+  - execution-engine-php
   outputs:
   - site-data-organization-json
   - site-data-missions-json
@@ -317,6 +318,7 @@ assets: &id001
   - site-data-dependency-report-json
   - site-data-repository-json
   - site-data-decisions-json
+  - site-data-execution-engine-json
   - site-index-html
   - site-styles-css
   editable: true
@@ -328,7 +330,34 @@ assets: &id001
   source_or_generated: source
   public_url: https://cubixmeow.com/ai-dos/compiler/compile.php
   created_by_mission: Mission 008
-  last_major_update: Mission 011
+  last_major_update: Mission 012
+- id: execution-engine-php
+  type: compiler
+  name: ExecutionEngine.php
+  purpose: Compiles execution-engine.yaml, worker-roles.yaml, and execution plans.
+  short_description: Execution Engine compiler module.
+  source:
+    path: compiler/ExecutionEngine.php
+  public:
+    url: null
+  created_by: Mission 012
+  updated_by: Mission 012
+  depends_on:
+  - execution-engine-yaml
+  - worker-roles-yaml
+  - execution-plans-directory
+  outputs:
+  - site-data-execution-engine-json
+  editable: true
+  generated: false
+  status: active
+  notes: Plans only — no autonomous execution.
+  path: compiler/ExecutionEngine.php
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 012
+  last_major_update: Mission 012
 - id: decision-records-php
   type: compiler
   name: DecisionRecords.php
@@ -396,6 +425,7 @@ assets: &id001
   - site-data-dependency-report-json
   - site-data-repository-json
   - site-data-decisions-json
+  - site-data-execution-engine-json
   - site-styles-css
   outputs: []
   editable: false
@@ -407,7 +437,7 @@ assets: &id001
   source_or_generated: generated
   public_url: https://cubixmeow.com/ai-dos/site/
   created_by_mission: Mission 005
-  last_major_update: Mission 011
+  last_major_update: Mission 012
 - id: site-styles-css
   type: generated-file
   name: styles.css
@@ -1403,26 +1433,124 @@ assets: &id001
 - id: execution-engine-md
   type: file
   name: execution-engine.md
-  purpose: Execution Engine architectural contract (planned, not implemented).
-  short_description: Execution Engine foundation document.
+  purpose: Execution Engine human companion and limitations.
+  short_description: Execution Engine documentation.
   source:
     path: system/execution-engine.md
   public:
     url: null
   created_by: Mission 011
-  updated_by: Mission 011
-  depends_on: []
+  updated_by: Mission 012
+  depends_on:
+  - execution-engine-yaml
   outputs: []
   editable: true
   generated: false
   status: active
-  notes: Foundation only — no orchestration in Mission 011.
+  notes: Minimal implementation Mission 012.
   path: system/execution-engine.md
   safe_to_edit: true
   source_or_generated: source
   public_url: null
   created_by_mission: Mission 011
-  last_major_update: Mission 011
+  last_major_update: Mission 012
+- id: execution-engine-yaml
+  type: file
+  name: execution-engine.yaml
+  purpose: Execution Engine coordination model (source).
+  short_description: Execution Engine YAML config.
+  source:
+    path: system/execution-engine.yaml
+  public:
+    url: null
+  created_by: Mission 012
+  updated_by: Mission 012
+  depends_on:
+  - worker-roles-yaml
+  outputs:
+  - site-data-execution-engine-json
+  editable: true
+  generated: false
+  status: active
+  notes: null
+  path: system/execution-engine.yaml
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 012
+  last_major_update: Mission 012
+- id: worker-roles-yaml
+  type: file
+  name: worker-roles.yaml
+  purpose: Worker capability roles and practical tool mappings.
+  short_description: Worker roles source.
+  source:
+    path: system/worker-roles.yaml
+  public:
+    url: null
+  created_by: Mission 012
+  updated_by: Mission 012
+  depends_on: []
+  outputs: []
+  editable: true
+  generated: false
+  status: active
+  notes: Roles not brands.
+  path: system/worker-roles.yaml
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 012
+  last_major_update: Mission 012
+- id: execution-plans-directory
+  type: directory
+  name: execution-plans/
+  purpose: Canonical execution plans for operator-approved missions.
+  short_description: Execution plans directory.
+  source:
+    path: system/execution-plans/
+  public:
+    url: null
+  created_by: Mission 012
+  updated_by: Mission 012
+  depends_on:
+  - execution-engine-yaml
+  outputs:
+  - site-data-execution-engine-json
+  editable: true
+  generated: false
+  status: active
+  notes: At least one sample plan required.
+  path: system/execution-plans/
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 012
+  last_major_update: Mission 012
+- id: site-data-execution-engine-json
+  type: generated-file
+  name: execution-engine.json
+  purpose: Compiled execution engine state and plans.
+  short_description: execution-engine.json
+  source:
+    path: site/data/execution-engine.json
+  public:
+    url: https://cubixmeow.com/ai-dos/site/data/execution-engine.json
+  created_by: Mission 012
+  updated_by: Mission 012
+  depends_on:
+  - compiler-compile-php
+  outputs: []
+  editable: false
+  generated: true
+  status: active
+  notes: Never fabricate worker history.
+  path: site/data/execution-engine.json
+  safe_to_edit: false
+  source_or_generated: generated
+  public_url: https://cubixmeow.com/ai-dos/site/data/execution-engine.json
+  created_by_mission: Mission 012
+  last_major_update: Mission 012
 - id: architecture-audit-md
   type: file
   name: architecture-audit.md
@@ -1518,4 +1646,76 @@ assets: &id001
   public_url: null
   created_by_mission: Mission 011
   last_major_update: Mission 011
+- id: missions-012-execution-engine-foundation
+  type: mission
+  name: 'Mission folder: missions/012-execution-engine-foundation'
+  purpose: Mission 012 — minimal Execution Engine implementation.
+  short_description: Execution Engine Foundation mission folder.
+  source:
+    path: missions/012-execution-engine-foundation/
+  public:
+    url: null
+  created_by: Mission 012
+  updated_by: Mission 012
+  depends_on: []
+  outputs:
+  - missions-012-execution-engine-foundation-report-md
+  editable: true
+  generated: false
+  status: complete
+  notes: null
+  path: missions/012-execution-engine-foundation/
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 012
+  last_major_update: Mission 012
+- id: missions-012-execution-engine-foundation-mission-md
+  type: file
+  name: mission.md
+  purpose: Mission 012 brief.
+  short_description: Execution Engine Foundation mission brief.
+  source:
+    path: missions/012-execution-engine-foundation/mission.md
+  public:
+    url: null
+  created_by: Mission 012
+  updated_by: Mission 012
+  depends_on:
+  - missions-012-execution-engine-foundation
+  outputs: []
+  editable: true
+  generated: false
+  status: complete
+  notes: null
+  path: missions/012-execution-engine-foundation/mission.md
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 012
+  last_major_update: Mission 012
+- id: missions-012-execution-engine-foundation-report-md
+  type: file
+  name: report.md
+  purpose: Mission 012 outcome and execution model documentation.
+  short_description: Execution Engine Foundation mission report.
+  source:
+    path: missions/012-execution-engine-foundation/report.md
+  public:
+    url: null
+  created_by: Mission 012
+  updated_by: Mission 012
+  depends_on:
+  - missions-012-execution-engine-foundation
+  outputs: []
+  editable: true
+  generated: false
+  status: complete
+  notes: null
+  path: missions/012-execution-engine-foundation/report.md
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 012
+  last_major_update: Mission 012
 entries: *id001

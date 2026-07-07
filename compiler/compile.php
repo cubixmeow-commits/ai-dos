@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/RepositoryIntelligence.php';
 require_once __DIR__ . '/DecisionRecords.php';
+require_once __DIR__ . '/ExecutionEngine.php';
 
 final class RepositoryCompiler
 {
@@ -58,7 +59,8 @@ final class RepositoryCompiler
         $manifest = $intelligence->compileManifest($dependencyReport);
         $contextPackages = $intelligence->compileContextPackages();
         $decisions = (new DecisionRecords($this->root))->compile();
-        $repository = $intelligence->compileRepository($manifest, $contextPackages, $dependencyReport, $decisions);
+        $executionEngine = (new ExecutionEngine($this->root))->compile($contextPackages, $organization);
+        $repository = $intelligence->compileRepository($manifest, $contextPackages, $dependencyReport, $decisions, $executionEngine);
 
         $this->missions = $this->sanitizeForJson($this->missions);
         $organization = $this->sanitizeForJson($organization);
@@ -67,6 +69,7 @@ final class RepositoryCompiler
         $dependencyReport = $this->sanitizeForJson($dependencyReport);
         $repository = $this->sanitizeForJson($repository);
         $decisions = $this->sanitizeForJson($decisions);
+        $executionEngine = $this->sanitizeForJson($executionEngine);
 
         $writes = [
             'missions.json' => $this->missions,
@@ -76,6 +79,7 @@ final class RepositoryCompiler
             'dependency-report.json' => $dependencyReport,
             'repository.json' => $repository,
             'decisions.json' => $decisions,
+            'execution-engine.json' => $executionEngine,
         ];
 
         foreach ($writes as $file => $data) {
@@ -91,7 +95,7 @@ final class RepositoryCompiler
         file_put_contents($this->siteDir . '/styles.css', $this->renderStylesCss());
 
         $this->writeln('Compiled ' . count($this->missions) . ' missions to site/data/');
-        $this->writeln('Generated repository intelligence + decisions.json');
+        $this->writeln('Generated repository intelligence, decisions, execution-engine.json');
         $this->writeln('Generated site/index.html and site/styles.css');
 
         return 0;
@@ -243,7 +247,7 @@ final class RepositoryCompiler
         $organization = [
             'compiled_at' => gmdate('c'),
             'compiler' => 'Repository Compiler (PHP)',
-            'compiler_version' => '1.4.0-mission-011',
+            'compiler_version' => '1.5.0-mission-012',
             'current_mission' => $currentMission,
             'next_mission' => $nextMission,
             'completed_mission_count' => count($completed),
@@ -882,7 +886,7 @@ final class RepositoryCompiler
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI-DOS | Mission Control</title>
   <meta name="description" content="AI-DOS Mission Control — compiled from repository source." />
-  <link rel="stylesheet" href="styles.css?v=mission011" />
+  <link rel="stylesheet" href="styles.css?v=mission012" />
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
@@ -945,6 +949,20 @@ final class RepositoryCompiler
     <section class="frame" id="next-section">
       <h2>Next Mission</h2>
       <div class="next-card" id="next-card"></div>
+    </section>
+
+    <section class="frame" id="execution-section">
+      <h2>Execution Engine</h2>
+      <p class="lead" id="execution-lead">Plans only — operator approves; workers execute manually.</p>
+      <div class="intel-grid" id="execution-grid"></div>
+      <h3 class="subhead">Worker Roles</h3>
+      <ul class="role-list" id="role-list"></ul>
+      <h3 class="subhead">Execution Flow</h3>
+      <ol class="flow-list" id="execution-flow"></ol>
+      <h3 class="subhead">Latest Execution Plan</h3>
+      <div class="intel-card" id="execution-plan-card"></div>
+      <h3 class="subhead">Build Status</h3>
+      <div class="intel-card" id="build-status-card"></div>
     </section>
 
     <section class="frame" id="decisions-section">
@@ -1017,7 +1035,8 @@ final class RepositoryCompiler
         'data/context-packages.json',
         'data/dependency-report.json',
         'data/repository.json',
-        'data/decisions.json'
+        'data/decisions.json',
+        'data/execution-engine.json'
       ];
 
       const responses = await Promise.all(endpoints.map((e) => fetch(e)));
@@ -1033,16 +1052,15 @@ final class RepositoryCompiler
       const contextPkgs = responses[3].ok ? await responses[3].json() : null;
       const depReport = responses[4].ok ? await responses[4].json() : null;
       const repository = responses[5].ok ? await responses[5].json() : null;
-
-      const repository = responses[5].ok ? await responses[5].json() : null;
       const decisions = responses[6].ok ? await responses[6].json() : null;
+      const execution = responses[7].ok ? await responses[7].json() : null;
 
       const stack = document.getElementById('arch-stack');
       const layers = [
         { name: 'Repository', detail: 'Git on main — canonical source of truth', status: 'active' },
         { name: 'Knowledge', detail: 'Missions, decisions, commits, company docs', status: 'active' },
         { name: 'Intelligence', detail: 'Manifest, lookup, context packages, validation', status: 'active' },
-        { name: 'Execution', detail: 'Mission decomposition, routing, tracking — foundation only', status: 'planned' },
+        { name: 'Execution', detail: 'Mission plans, roles, context routing — no auto-run', status: 'active' },
         { name: 'Compilation', detail: 'PHP Repository Compiler → site/', status: 'active' },
         { name: 'Operator', detail: 'Mission Control — merge-based approval', status: 'active' }
       ];
@@ -1144,6 +1162,73 @@ final class RepositoryCompiler
         nextCard.appendChild(el('p', 'next-source', 'Source: ' + (org.next_mission.source || 'tasks/Backlog.md')));
       } else {
         nextCard.appendChild(el('p', null, 'No next mission declared in Backlog.md'));
+      }
+
+      if (execution) {
+        const eGrid = document.getElementById('execution-grid');
+        const addExec = (label, value) => {
+          const row = el('p');
+          row.appendChild(el('span', null, label));
+          row.appendChild(el('strong', null, value));
+          eGrid.appendChild(row);
+        };
+        addExec('Status', execution.status || 'unknown');
+        addExec('Capabilities', String((execution.capabilities || []).length));
+        addExec('Work unit types', String((execution.work_unit_types || []).length));
+        addExec('Execution plans', String(execution.execution_plans?.plan_count ?? 0));
+        if (execution.routing_guide?.cursor) {
+          addExec('Cursor', (execution.routing_guide.cursor.operator_note || 'implementation'));
+        }
+        if (execution.routing_guide?.claude_code) {
+          addExec('Claude Code', (execution.routing_guide.claude_code.operator_note || 'architecture'));
+        }
+
+        const roleList = document.getElementById('role-list');
+        (execution.worker_roles?.roles || []).forEach((role) => {
+          const li = el('li');
+          li.appendChild(el('strong', null, role.name || role.id));
+          const tools = (role.practical_tools || []).map((t) => t.id).join(', ');
+          li.appendChild(document.createTextNode(' — ' + (role.capabilities || []).slice(0, 2).join(', ') + (tools ? ' [' + tools + ']' : '')));
+          roleList.appendChild(li);
+        });
+
+        const flowList = document.getElementById('execution-flow');
+        (execution.execution_flow || []).forEach((step) => {
+          const li = el('li');
+          li.appendChild(el('strong', null, (step.step || '') + '. ' + (step.name || '')));
+          li.appendChild(document.createTextNode(' — ' + (step.actor || step.output || '')));
+          flowList.appendChild(li);
+        });
+
+        const planCard = document.getElementById('execution-plan-card');
+        const plan = execution.latest_execution_plan;
+        if (plan) {
+          planCard.appendChild(el('p', null, plan.title || plan.id));
+          planCard.appendChild(el('p', 'muted', 'Status: ' + (plan.status || 'unknown') + ' · ' + (plan.work_units || []).length + ' work units'));
+          if (plan.routing_summary) {
+            const cc = (plan.routing_summary.claude_code?.units || []).length;
+            const cu = (plan.routing_summary.cursor?.units || []).length;
+            planCard.appendChild(el('p', null, 'Routing: Claude Code ' + cc + ' units · Cursor ' + cu + ' units'));
+          }
+          if (plan.source_path) {
+            planCard.appendChild(el('p', 'muted', 'Source: ' + plan.source_path));
+          }
+        } else {
+          planCard.appendChild(el('p', 'muted', 'No execution plan in repository.'));
+        }
+
+        const buildCard = document.getElementById('build-status-card');
+        const bs = execution.build_status || {};
+        buildCard.appendChild(el('p', null, 'Engine: ' + (bs.execution_engine || 'unknown')));
+        buildCard.appendChild(el('p', null, 'Autonomous execution: ' + (bs.autonomous_execution ? 'yes' : 'no')));
+        buildCard.appendChild(el('p', null, 'Multi-agent history: ' + (bs.multi_agent_execution_occurred ? 'yes' : 'no')));
+        if (execution.next_product_mission) {
+          const npm = execution.next_product_mission;
+          buildCard.appendChild(el('p', null, 'Next product mission: M' + (npm.mission_id || '?') + ' — ' + (npm.title || '')));
+        }
+        if (bs.note) {
+          buildCard.appendChild(el('p', 'muted', bs.note));
+        }
       }
 
       if (decisions && decisions.decisions) {
@@ -1288,6 +1373,9 @@ HTML;
 .deploy-grid span { display: block; font-size: 0.82rem; color: var(--muted); margin-bottom: 0.15rem; }
 .decision-list { margin: 0; padding-left: 1.1rem; color: var(--muted); }
 .decision-list li { margin-bottom: 0.55rem; }
+.role-list, .flow-list { margin: 0; padding-left: 1.1rem; color: var(--muted); }
+.role-list li, .flow-list li { margin-bottom: 0.45rem; }
+.subhead { margin: 1rem 0 0.5rem; font-size: 0.95rem; color: var(--cyan); }
 .muted { color: var(--muted); font-size: 0.88rem; margin: 0.25rem 0 0; }
 CSS;
 

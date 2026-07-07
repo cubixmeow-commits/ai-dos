@@ -1,0 +1,117 @@
+# Sample execution plan — illustrates mission intake (NOT a committed mission)
+# Mission 012 example: operator request → structured plan. No execution occurred.
+
+id: example-inventory-saas
+title: Inventory Management SaaS (example intake)
+status: example
+created_by: Mission 012
+operator_request: Build an inventory management SaaS.
+
+objective: >
+  Produce a structured plan for a multi-tenant inventory management SaaS
+  without building it. Demonstrates mission intake and work decomposition.
+
+scope:
+  in:
+    - research competitive landscape
+    - define MVP architecture
+    - outline backend, frontend, and deployment work units
+  out:
+    - actual product code
+    - autonomous agent execution
+    - external API integration
+
+work_units:
+  - id: w1-research
+    type: research
+    title: Market and competitor scan
+    role: research-specialist
+    practical_tool: claude-code
+    context_packages:
+      - mission-context
+      - governance-context
+    expected_outputs:
+      - evidence-backed problem statement
+      - competitor shortlist
+    depends_on: []
+
+  - id: w2-architecture
+    type: architecture
+    title: MVP system design
+    role: principal-architect
+    practical_tool: claude-code
+    context_packages:
+      - architecture-context
+      - governance-context
+    expected_outputs:
+      - data model sketch
+      - API surface outline
+      - deployment approach
+    depends_on:
+      - w1-research
+
+  - id: w3-backend
+    type: backend
+    title: Core inventory API
+    role: backend-engineer
+    practical_tool: cursor
+    context_packages:
+      - architecture-context
+      - compiler-context
+    expected_outputs:
+      - API routes for SKUs, stock levels, locations
+    depends_on:
+      - w2-architecture
+
+  - id: w4-frontend
+    type: frontend
+    title: Operator dashboard UI
+    role: frontend-builder
+    practical_tool: cursor
+    context_packages:
+      - website-context
+      - architecture-context
+    expected_outputs:
+      - inventory list and adjust-stock flows
+    depends_on:
+      - w2-architecture
+
+  - id: w5-testing
+    type: testing
+    title: Smoke and acceptance tests
+    role: qa-engineer
+    practical_tool: cursor
+    context_packages:
+      - mission-context
+      - compiler-context
+    expected_outputs:
+      - test checklist
+      - critical path smoke tests
+    depends_on:
+      - w3-backend
+      - w4-frontend
+
+  - id: w6-review
+    type: review
+    title: Architecture and governance review
+    role: reviewer
+    practical_tool: claude-code
+    context_packages:
+      - governance-context
+      - architecture-context
+    expected_outputs:
+      - review notes
+      - merge readiness assessment
+    depends_on:
+      - w5-testing
+
+operator_approval_point: >
+  Operator reviews this plan, defines Mission 013 (or other mission), merges
+  mission brief — then pastes work units to assigned tools manually.
+
+paste_instructions: |
+  1. Copy one work unit block into Claude Code (architecture/research/review)
+     or Cursor (implementation/testing/docs).
+  2. Attach listed context package files from the repository.
+  3. Commit results per Knowledge Preservation standard.
+  4. Merge only after operator approval.

@@ -196,13 +196,15 @@ final class RepositoryIntelligence
      * @param array<string, mixed> $contextPackages
      * @param array<string, mixed> $dependencyReport
      * @param array<string, mixed>|null $decisions
+     * @param array<string, mixed>|null $executionEngine
      * @return array<string, mixed>
      */
     public function compileRepository(
         array $manifest,
         array $contextPackages,
         array $dependencyReport,
-        ?array $decisions = null
+        ?array $decisions = null,
+        ?array $executionEngine = null
     ): array {
         $pathToPackages = $this->buildPathToPackagesIndex($contextPackages);
         $generatedBy = $this->buildReverseOutputsIndex();
@@ -244,12 +246,14 @@ final class RepositoryIntelligence
                 'dependency_validation',
                 'repository_lookup',
                 'decision_records',
+                'execution_engine',
             ],
             'sources' => [
                 'manifest' => 'system/manifest.yaml',
                 'assets' => 'system/assets.yaml',
                 'context_packages' => 'system/context-packages.yaml',
                 'decisions' => 'decisions/*.md',
+                'execution_engine' => 'system/execution-engine.yaml',
             ],
             'manifest_summary' => [
                 'repository_health' => $manifest['repository_health'] ?? null,
@@ -259,6 +263,13 @@ final class RepositoryIntelligence
             'dependency_status' => $dependencyReport['status'] ?? 'unknown',
             'context_package_count' => $contextPackages['package_count'] ?? 0,
             'decision_count' => $decisions['decision_count'] ?? 0,
+            'execution_engine' => $executionEngine !== null ? [
+                'source' => 'system/execution-engine.yaml',
+                'compiled' => 'site/data/execution-engine.json',
+                'status' => $executionEngine['status'] ?? null,
+                'plan_count' => $executionEngine['execution_plans']['plan_count'] ?? 0,
+                'role_count' => $executionEngine['worker_roles']['role_count'] ?? 0,
+            ] : null,
             'lookup' => [
                 'by_id' => $byId,
                 'by_path' => $byPath,
@@ -273,6 +284,7 @@ final class RepositoryIntelligence
                 'public_url' => 'lookup.*.public_url — null when not public',
                 'context_package_contains' => 'lookup.*.context_packages — package ids from context-packages.yaml',
             ],
+            'execution_queries' => $executionEngine['query_answers'] ?? null,
             'query_examples' => $this->buildQueryExamples(),
         ];
     }
@@ -395,6 +407,7 @@ final class RepositoryIntelligence
             'dependency-report.json' => 'site/data/dependency-report.json',
             'repository.json' => 'site/data/repository.json',
             'decisions.json' => 'site/data/decisions.json',
+            'execution-engine.json' => 'site/data/execution-engine.json',
             'index.html' => 'site/index.html',
             'styles.css' => 'site/styles.css',
         ];

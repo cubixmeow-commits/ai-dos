@@ -1,14 +1,14 @@
 {
-    "compiled_at": "2026-07-07T22:15:14+00:00",
+    "compiled_at": "2026-07-07T23:15:57+00:00",
     "compiler": "Repository Compiler (PHP)",
-    "compiler_version": "1.4.0-mission-011",
+    "compiler_version": "1.5.0-mission-012",
     "current_mission": null,
     "next_mission": {
-        "id": "012",
-        "title": "Execution Engine Foundation",
+        "id": "013",
+        "title": "Build the First External Product Using AI-DOS",
         "source": "tasks/Backlog.md"
     },
-    "completed_mission_count": 10,
+    "completed_mission_count": 11,
     "paused_missions": [
         {
             "id": "006",
@@ -33,7 +33,7 @@
     "asset_registry": {
         "source": "system/assets.yaml",
         "version": 2,
-        "asset_count": 62,
+        "asset_count": 70,
         "full_lookup": "site/data/repository.json"
     }
 }
