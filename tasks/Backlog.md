@@ -3,7 +3,10 @@
 The queue of upcoming missions, in order. The top item is next. A mission
 starts only after the operator approves the previous mission's report.
 
-## Next: Mission 002 — Prove the Loop
+## Next: Mission 003 — Prove the Loop
+
+*(Renumbered from "Mission 002" when the operator inserted Mission 002:
+Formalize the Knowledge Preservation Standard. Scope unchanged.)*
 
 **Goal:** Run one full research cycle end-to-end and select the first
 benchmark app AI-DOS will build against.
@@ -19,8 +22,9 @@ report](../missions/001-bootstrap/report.md)):
   criteria, with the comparison written down.
 - Produce a decision record naming the selected benchmark app and the
   rejected alternatives, with reasons.
-- Write `missions/002-prove-the-loop/mission.md` and `report.md`, ending
-  with a single Y/N approval question for Mission 003.
+- Write `missions/003-prove-the-loop/mission.md` and `report.md` from
+  [the mission template](../workflow/Templates/MissionTemplate.md), ending
+  with a single Y/N approval question for Mission 004.
 
 **Explicitly out of scope:** building the app, writing application code,
 creating any agent other than the Researcher.

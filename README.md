@@ -21,7 +21,9 @@ live in [company/Principles.md](company/Principles.md).
 1. A **mission** is defined in `/missions/<number>-<name>/mission.md` — the
    brief an agent executes against.
 2. An AI agent executes the mission, committing small, purposeful commits
-   (`M<number>: <what> — <why>`). Git history is part of the record.
+   that follow the commit standard in
+   [company/Standards.md](company/Standards.md). Git history is part of the
+   record.
 3. The agent writes `report.md` in the same folder: what was created, what
    was decided, what was rejected, risks found, and a recommended next
    mission — readable in under five minutes on a phone.
@@ -36,13 +38,17 @@ citing specific files, that a fresh session could pick up from here.
 
 | Path | Purpose |
 |---|---|
-| `company/` | Identity and Principles — who we are, how we work |
+| `company/` | Identity, Principles, and Standards — who we are, how we work |
 | `missions/` | One folder per mission: brief + report |
 | `tasks/Backlog.md` | The queue of upcoming missions |
+| `workflow/Templates/` | Templates for recurring artifacts (missions) |
 
 ## §4 Current state
 
 - **Mission 001 (Bootstrap)** — complete. See
   [missions/001-bootstrap/report.md](missions/001-bootstrap/report.md).
-- **Mission 002 (Prove the Loop)** — next up, pending operator approval.
+- **Mission 002 (Formalize the Knowledge Preservation Standard)** —
+  complete. See
+  [missions/002-knowledge-preservation/report.md](missions/002-knowledge-preservation/report.md).
+- **Mission 003 (Prove the Loop)** — next up, pending operator approval.
   See [tasks/Backlog.md](tasks/Backlog.md).
