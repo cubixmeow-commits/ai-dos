@@ -2,6 +2,11 @@
 
 **Status:** Complete — see [report.md](report.md)
 
+> **Note (added in Mission 002):** references to "Mission 002" in this brief
+> predate a renumbering. The Prove-the-Loop research cycle described below
+> is now **Mission 003**; Mission 002 became "Formalize the Knowledge
+> Preservation Standard." This brief is preserved as written.
+
 ## Objective
 
 Create the smallest useful repository structure required to run Mission 002

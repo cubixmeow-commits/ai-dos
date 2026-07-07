@@ -69,4 +69,27 @@ the chosen app — no application code.
 
 ---
 
-Approve Mission 002: Prove the Loop? Y/N
+~~Approve Mission 002: Prove the Loop? Y/N~~
+*(Resolved: the operator responded by inserting a standards mission as
+Mission 002 and renumbering Prove the Loop to Mission 003 — see addendum.)*
+
+---
+
+## Addendum (added during Mission 002)
+
+Two notes, recorded here rather than by rewriting the report above:
+
+1. **The Knowledge Preservation Standard was formalized in Mission 002**,
+   based on an emergent pattern observed during this mission: commit
+   messages carrying change-level "why" worked as organizational memory in
+   their own right. The formal standard lives in
+   [company/Standards.md §1](../../company/Standards.md). Mission 001's
+   commits are deliberately left in their original `M001: <what> — <why>`
+   format — they are evidence of how the standard was discovered, and
+   rewriting Git history to fit the later standard would destroy that
+   record.
+
+2. **Renumbering:** references to "Mission 002" in the report above predate
+   the renumbering and mean the Prove-the-Loop research cycle, which is now
+   **Mission 003** (see [tasks/Backlog.md](../../tasks/Backlog.md)). Its
+   scope is unchanged.
