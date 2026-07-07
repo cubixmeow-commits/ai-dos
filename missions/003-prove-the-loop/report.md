@@ -167,4 +167,10 @@ forward-looking missions so repository references are consistent:
 All references above in this historical report to "Mission 004" as
 validation should now be read as "Mission 005."
 
+## Addendum (added 2026-07-07 in Mission 005)
+
+This historical report and its Mission 004 addendum are preserved as written.
+Mission 005 was reassigned to "Build the AI-DOS Showcase Page." Validation
+moved to Mission 006 and Build the Benchmark MVP moved to Mission 007.
+
 ~~Approve Mission 004: Validate the Recommendation? Y/N~~

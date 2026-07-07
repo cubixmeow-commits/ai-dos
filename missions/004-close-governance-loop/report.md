@@ -107,6 +107,12 @@ This mission changed AI-DOS itself in the following ways:
 - Cold-start safety depends on treating `main` as canonical and continuously
   auditing forward-looking references for drift.
 
+## Addendum (added 2026-07-07 in Mission 005)
+
+This report is preserved as written. Mission 005 was later reassigned to
+"Build the AI-DOS Showcase Page." Validation moved to Mission 006, and Build
+the Benchmark MVP moved to Mission 007.
+
 ---
 
 Approve Mission 005: Validate the Recommendation? Y/N

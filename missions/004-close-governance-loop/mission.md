@@ -3,6 +3,11 @@
 **Status:** Complete — see [report.md](report.md)
 **Executed by:** Codex 5.3
 
+> **Note (added 2026-07-07 in Mission 005):** this brief is preserved as
+> written. After Mission 004, Mission 005 was reassigned to "Build the AI-DOS
+> Showcase Page." Validation moved to Mission 006, and Build the Benchmark MVP
+> moved to Mission 007.
+
 ## Why this mission exists
 
 An external audit found a governance gap: approved mission work lived on a

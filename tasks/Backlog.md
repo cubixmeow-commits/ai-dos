@@ -3,7 +3,7 @@
 The queue of upcoming missions, in order. The top item is next. A mission
 starts only after the operator approves the previous mission's report.
 
-## Next: Mission 005 — Validate the Recommendation
+## Next: Mission 006 — Validate the Recommendation
 
 **Goal:** Close the confidence gaps behind Mission 003's Medium-confidence
 recommendation (a standalone invoice follow-up tool for freelancers) before
@@ -22,17 +22,29 @@ confidence"):
 - Landing-page smoke test with a pass/fail signup threshold **agreed with
   the operator before launch**.
 - Report ends with one evidence-supported approval question for the next
-  mission: Mission 006 (Build the Benchmark MVP) if validation passes;
+  mission: Mission 007 (Build the Benchmark MVP) if validation passes;
   additional validation if evidence is inconclusive; or return to the
   Mission 003 shortlist if validation fails.
 
-**Decision rule:** if validation passes, Mission 006 = Build the Benchmark
+**Decision rule:** if validation passes, Mission 007 = Build the Benchmark
 MVP; if it fails, return to Mission 003's shortlist with the new evidence.
 
 **Explicitly out of scope:** building the product, writing application
 code.
 
+## Mission 005 Record — Build the AI-DOS Showcase Page
+
+Mission 005 created a static, GitHub Pages-friendly visual reader at
+`/site/index.html` and `/site/styles.css`.
+
+Purpose:
+
+- Explain AI-DOS to outside readers in under two minutes.
+- Summarize missions, governance, and current state without replacing
+  canonical mission/report artifacts.
+- Keep the repository as source of truth; the showcase is a presentation layer.
+
 ## Later
 
-- **Mission 006 — Build the Benchmark MVP** (conditional on Mission 005
+- **Mission 007 — Build the Benchmark MVP** (conditional on Mission 006
   passing its validation thresholds).
