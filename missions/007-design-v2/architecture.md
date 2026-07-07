@@ -1,9 +1,9 @@
 # AI-DOS V2 Architecture
 
-**Version:** 0.1 (design draft — Mission 007)
-**Status:** Proposed — not implemented
+**Version:** 0.2 (approved — operator decisions incorporated)
+**Status:** Approved — implementation begins Mission 008
 **Author:** Principal architect mission (GPT-5.5, Cursor Cloud Agent)
-**Canonical until:** operator merges Mission 007 and approves this document
+**Approved:** 2026-07-07 — operator decisions recorded in §13
 
 ---
 
@@ -32,6 +32,21 @@ One independent software developer, directing cloud AI agents primarily
 from an iPhone. Every subsystem must make that person more effective per
 minute of attention spent.
 
+### §0.1 The central innovation: organizational source code
+
+AI-DOS is not just a collection of markdown files.
+
+**The repository is the source code of the organization.** Missions,
+decisions, evidence, principles, standards, and governance artifacts are
+**organizational source code** — versioned, reviewable, merge-governed.
+
+The **Repository Compiler (PHP)** transforms that source into human-
+friendly and agent-friendly representations. Nothing compiled is
+canonical. The repository is canonical. Everything else is compiled from it.
+
+This is one of the central innovations of AI-DOS V2: AI-DOS treats an
+organization the way a traditional compiler treats source code.
+
 ---
 
 ## §1 Vision: AI-DOS two years from now
@@ -56,10 +71,13 @@ The operator, reviewing from a phone during a commute, sees:
 - One **status surface** — compiled, current, under two minutes to read
 - Clear **blockers** — what requires human action vs. what agents can continue
 
-The repository contains no application server. It contains **typed
-artifacts**, **capability definitions**, and a **compiler** that turns
-canonical state into disposable views. Multiple products (repos) can sit
-under one portfolio without merging their histories.
+The repository contains no application server. It contains **organizational
+source code** — typed artifacts, capability definitions, governance —
+and a **Repository Compiler (PHP)** that transforms repository state into
+disposable views: static website, mission timeline, decision timeline,
+knowledge graph, operator dashboard, AI agent context packages, repository
+analytics, status reports, and more. Multiple **Portfolio Projects** can
+sit under one operator without merging their histories into the OS repo.
 
 ---
 
@@ -130,11 +148,12 @@ drifted once (Mission 006 Phase A updates required explicit commits).
 
 **6. Single-repo assumption.**
 
-AI-DOS discusses "benchmark apps" as future products but has no model for
-operating multiple repositories under one operator. The invoice tool
-(Mission 006 track) and AI-DOS itself will eventually be separate concerns.
+AI-DOS has no abstraction for operating multiple products under one
+operator. Mission 006's validation work happens to concern one candidate
+product, but the OS needs a product-agnostic model for all future work.
 
-*V2 fix:* Portfolio Management capability.
+*V2 fix:* Portfolio Projects capability — generic workflow, not
+product-specific architecture.
 
 **7. No automation surface.**
 
@@ -147,8 +166,8 @@ recorded intent in Principles.md.
 **8. Backlog is not a queue — it is a paragraph.**
 
 [tasks/Backlog.md](../tasks/Backlog.md) holds one "Next" item and a
-"Later" section. It cannot express parallel tracks (AI-DOS vs. benchmark),
-dependencies, or blocked missions.
+"Later" section. It cannot express parallel tracks (AI-DOS vs. Portfolio
+Projects), dependencies, or blocked missions.
 
 *V2 fix:* Mission Engine queue artifact with structured entries.
 
@@ -187,19 +206,21 @@ ergonomics. Capabilities are how agents *think* about the system.
   ▼         ▼         ▼         ▼         ▼         ▼
 ┌────┐  ┌────────┐ ┌──────┐ ┌────────┐ ┌───────┐ ┌──────────┐
 │Org │  │Decision│ │Evid- │ │Knowledge│ │Agent  │ │Portfolio │
-│Mem │  │Engine  │ │ence  │ │System   │ │Coord  │ │Mgmt      │
+│Mem │  │Engine  │ │ence  │ │System   │ │Coord  │ │Projects  │
 └─┬──┘  └───┬────┘ └──┬───┘ └────┬───┘ └───┬───┘ └────┬─────┘
   │         │         │          │         │          │
   └─────────┴─────────┴──────────┴─────────┴──────────┘
                           │
               ┌───────────▼───────────┐
-              │  REPOSITORY COMPILER   │
-              │  canonical → disposable │
+              │ REPOSITORY COMPILER   │
+              │        (PHP)          │
+              │  source → disposable  │
               └───────────┬───────────┘
                           │
               ┌───────────▼───────────┐
-              │  SHOWCASE · INBOX ·    │
-              │  INDEX · HEALTH        │
+              │  WEBSITE · TIMELINES · │
+              │  DASHBOARD · CONTEXT · │
+              │  ANALYTICS · REPORTS   │
               │  (all disposable)      │
               └───────────────────────┘
                           │
@@ -215,7 +236,7 @@ ergonomics. Capabilities are how agents *think* about the system.
 |---|---|---|
 | **Artifacts** | Typed markdown + YAML files committed to Git | Yes |
 | **System registry** | Schemas, capability defs, manifest | Yes |
-| **Compiler** | Reads artifacts → writes disposable outputs | Tooling (not in repo runtime) |
+| **Compiler** | Repository Compiler (PHP) reads source → writes disposable outputs | Tooling in `tools/compiler/` |
 | **Control plane** | Static HTML or GitHub-native UI reading compiled state | Disposable views |
 | **Agents** | Stateless workers; read registry + artifacts | External |
 
@@ -235,6 +256,26 @@ No layer above Git becomes source of truth.
 5. **Compiler failure is visible.** If canonical artifacts are
    inconsistent, compiler emits errors into `dist/compile-report.md` —
    not silent drift.
+
+### §3.4 Repository Compiler (PHP) as defining subsystem
+
+V2 is not "markdown files plus a website." It is **organizational source
+code plus a compiler.**
+
+| Organizational source code | Compiled output (disposable) |
+|---|---|
+| Missions, phases, queue state | Mission timeline |
+| Decisions + alternatives | Decision timeline |
+| Evidence ledgers | Evidence summaries |
+| Principles, standards, playbooks | Knowledge graph, architecture docs |
+| Portfolio Project registry | Portfolio pages |
+| Manifest + index | Operator dashboard, status reports |
+| Full repository state | AI agent context packages, repository analytics |
+| All of the above | Static website (showcase) |
+
+The Repository Compiler (PHP) is implemented entirely in PHP because
+AI-DOS itself is built in PHP: one language, one development ecosystem,
+deployable anywhere AI-DOS runs, executable directly in GitHub Actions.
 
 ---
 
@@ -274,14 +315,17 @@ entry_points:
       path: missions/006-validate-recommendation/
       phase: B
       blocked_on: operator
-  portfolio:
+  portfolio_projects:
     - id: aidos
       repo: .
       role: operating_system
-    - id: invoice-benchmark
-      repo: null  # not created yet
-      role: benchmark_product
-      gated_by: mission-006
+      status: active
+    - id: P001
+      name: null  # assigned when validation passes
+      role: portfolio_project
+      status: candidate
+      origin_mission: "006"
+      note: First candidate Portfolio Project; product-agnostic workflow applies to all future projects
 ```
 
 **Interfaces:**
@@ -354,18 +398,20 @@ tracks:
       - id: "008"
         title: V2 Foundation
         blocked_by: mission-007-merge
-  - id: benchmark-product
-    description: Invoice follow-up benchmark (Mission 006 track)
+  - id: portfolio-projects
+    description: Portfolio Projects — products AI-DOS manages for the operator
     next:
       - id: "006"
         title: Validate the Recommendation
         state: in_progress
         phase: B
         blocked_on: operator
+        note: Mission 006 validates the first candidate Portfolio Project
     gated:
-      - id: TBD
-        title: Build Benchmark MVP
+      - id: P001-build
+        title: Build Portfolio Project MVP
         gated_by: mission-006-pass
+        note: First project only; future projects use the same workflow
 ```
 
 **Interfaces:**
@@ -533,7 +579,7 @@ V2 extracts recurring patterns into `knowledge/playbooks/`:
 - `research-mission.md` — evidence tiers, rubric, confidence routing
 - `validation-mission.md` — Phase A/B/C, pre-registered thresholds
 - `governance-mission.md` — standards changes, renumbering protocol
-- `implementation-mission.md` — TBD when benchmark build starts
+- `implementation-mission.md` — Portfolio Project build pattern
 
 **Interfaces:**
 
@@ -552,43 +598,74 @@ extracting patterns from missions 002–006.
 
 ---
 
-### §4.6 Repository Compiler
+### §4.6 Repository Compiler (PHP)
 
-**Purpose:** Transform canonical artifacts into disposable, human-friendly
-views. Eliminate manual showcase drift. Make cold-start verification
-mechanical.
+**Purpose:** Transform organizational source code (canonical repository
+state) into disposable, human-friendly and agent-friendly representations.
+Eliminate manual showcase drift. Make cold-start verification mechanical.
+This is a **defining subsystem** of AI-DOS V2 — not an accessory tool.
 
-**Inputs (canonical):**
+**The compiler metaphor:**
+
+```
+Organizational source code          Repository Compiler (PHP)
+(missions, decisions, evidence,  →   transforms repository state  →  Disposable artifacts
+ governance, portfolio registry)        into outputs
+```
+
+**Inputs (organizational source code — canonical):**
 
 - `system/manifest.yaml`, `system/index.yaml`, `system/queue.yaml`
-- `company/*`, `missions/*`, `decisions/*`
+- `company/*`, `missions/*`, `decisions/*`, `system/portfolio.yaml`
 - Git log (for recent activity)
 
-**Outputs (disposable — `dist/` or `site/` generated sections):**
+**Outputs (disposable — none are canonical):**
 
 | Output | Consumer | Regenerated when |
 |---|---|---|
+| Static website (`site/`) | Public, operator | Any canonical change |
+| Mission timeline | Showcase, dashboard | Mission state changes |
+| Decision timeline | Showcase, agents | Decision artifacts change |
+| Knowledge graph | Agents, architecture docs | Knowledge artifacts change |
+| Architecture documentation | Agents, outsiders | Registry or standards change |
+| Portfolio pages | Operator, outsiders | Portfolio registry changes |
+| Operator dashboard (`site/inbox.html`) | iPhone operator | Gate reached |
+| AI agent context packages (`dist/context/`) | Cloud agents | Any canonical change |
+| Repository analytics (`dist/analytics.json`) | Operator, automation | Any canonical change |
+| Status reports (`dist/status-report.md`) | Operator | Any canonical change |
 | `dist/state.json` | Agents, automation | Any canonical change |
-| `dist/operator-inbox.json` | Operator control plane | Gate reached |
 | `dist/compile-report.md` | Agents fixing drift | Compile errors |
-| `site/index.html` | Public showcase | Mission completes |
-| `site/inbox.html` | Operator phone view | Gate reached |
 | `dist/cold-start-answers.md` | Fresh agent onboarding | Any canonical change |
 
 **Compiler properties:**
 
-- **Idempotent:** same inputs → same outputs
+- **Language:** PHP — AI-DOS is built in PHP; one ecosystem, one deploy target
+- **Idempotent:** same source → same outputs
 - **Fail-loud:** broken pointers → non-zero exit + report
 - **No network:** compiles from repo only
-- **Sub-5-second:** must run on phone-triggered CI (GitHub Action)
+- **Sub-5-second:** runs in GitHub Actions on merge to `main`
+- **Deployable anywhere AI-DOS runs** — no Node, Python, or SaaS dependency
 
-**Implementation shape (for Mission 009):**
+**Implementation shape (Mission 009):**
 
-Python or Node script in `tools/compiler/` — not a framework. Single
-command: `make compile` or `npm run compile`.
+PHP application in `tools/compiler/` — not a framework. Single entry
+point:
+
+```bash
+php tools/compiler/compile.php
+```
+
+GitHub Actions executes PHP directly. No build step beyond `composer
+install` if dependencies are needed.
 
 **V1 migration:** Existing `site/index.html` becomes compiler template
 output. Manual CSS may remain hand-edited until Mission 010 styling pass.
+
+**Alternative considered:** *Python or Node for the compiler.*
+
+Rejected. Operator decision: AI-DOS is built in PHP. A second language
+splits the development ecosystem, complicates deployment, and prevents the
+compiler from running anywhere AI-DOS runs without additional tooling.
 
 **Alternative considered:** *Keep manual showcase forever.*
 
@@ -597,8 +674,9 @@ required manual showcase commits. Drift is not theoretical — it happened.
 
 **Alternative considered:** *Full static site generator (Hugo, Astro).*
 
-Rejected. Over-engineering for current scale (Principles §7). A 500-line
-script matches actual complexity. Revisit if portfolio exceeds ~20 missions.
+Rejected. Over-engineering for current scale (Principles §7). A focused
+PHP compiler matches actual complexity. Revisit if portfolio exceeds ~20
+missions.
 
 ---
 
@@ -632,7 +710,7 @@ operator_inputs_expected:
 done_when:
   - report.md complete with verdict
   - decision D003 updated or superseded
-  - queue.yaml benchmark track updated
+  - queue.yaml portfolio-projects track updated
 do_not:
   - adjust thresholds in phase-a-thresholds.md
   - begin product implementation
@@ -777,52 +855,67 @@ proves human-in-the-loop is load-bearing for real-world validation.
 
 ---
 
-### §4.11 Portfolio Management
+### §4.11 Portfolio Projects
 
-**Purpose:** Operate multiple products/repos under one operator without
-merging unrelated histories.
+**Purpose:** AI-DOS manages **Portfolio Projects** — products the operator
+builds under AI-DOS governance. Each project uses the same workflow:
+research → decision → validation → build. The architecture is
+product-agnostic; no project-specific subsystems.
+
+Mission 006 happens to validate the **first candidate** Portfolio Project
+(origin: Mission 003 decision D003). Future projects follow exactly the
+same pattern with new Portfolio Project IDs.
 
 **Model:**
 
 ```
-Portfolio (operator)
-├── AI-DOS (this repo) — operating system
-├── invoice-benchmark (future repo) — product under validation
-└── future products...
+Operator
+├── AI-DOS (this repo) — operating system, organizational source code
+└── Portfolio Projects
+    ├── P001 (candidate — validation in Mission 006)
+    ├── P002 (future)
+    └── ...
 ```
+
+Each Portfolio Project with application code lives in its **own
+repository**. AI-DOS tracks projects in `system/portfolio.yaml`; it does
+not host product code.
 
 **Canonical artifacts (in AI-DOS repo):**
 
 ```yaml
 # system/portfolio.yaml
-products:
+projects:
   - id: aidos
     repo: github.com/org/ai-dos
     role: operating_system
     status: active
-  - id: invoice-chaser
+  - id: P001
+    name: null  # assigned when project graduates from candidate
     repo: null
-    role: benchmark_product
-    status: gated
-    gated_by:
+    role: portfolio_project
+    status: candidate
+    workflow_stage: validation
+    origin:
       decision: D003
       mission: "006"
-      condition: pass
 ```
+
+**Workflow stages (same for every Portfolio Project):**
+
+```
+Candidate → Validation → Approved → Build → Active → Archived
+```
+
+Mission 006 is at `validation` for P001. Mission 008+ does not special-
+case P001 in the architecture — only in the registry data.
 
 **Interfaces:**
 
-- **Register product:** decision + queue entry
-- **Spawn product repo:** Mission creates new repo with AI-DOS submodule or sync
-- **Cross-repo missions:** AI-DOS missions may reference product repos
-
-**Benchmark track resolution:**
-
-Mission 006 validation continues unchanged. If it passes, **Build Benchmark
-MVP** becomes a Portfolio product mission (proposed ID: `P001` or
-Mission 015 in AI-DOS queue track `benchmark-product`) in a **separate
-repository**, not a subdirectory of AI-DOS. AI-DOS is the OS, not a
-monorepo of every product.
+- **Register candidate:** decision + queue entry in `portfolio-projects` track
+- **Advance stage:** validation mission completes → registry update
+- **Spawn project repo:** mission creates repo when project reaches `build`
+- **Cross-repo missions:** AI-DOS missions reference project repos by ID
 
 **Alternative considered:** *Monorepo — all products in `/products/`.*
 
@@ -831,8 +924,14 @@ agents working on AI-DOS itself; git clone weight grows unbounded.
 
 **Alternative considered:** *No portfolio — stay single-repo forever.*
 
-Rejected. Operator strategy explicitly makes AI-DOS the primary product;
-benchmark is a separate concern already (Mission 003–006 track).
+Rejected. Operator strategy makes AI-DOS the primary product; Portfolio
+Projects are how the operator runs a software company, not just one app.
+
+**Alternative considered:** *Invoice-tool-specific architecture in AI-DOS.*
+
+Rejected. Operator decision: Mission 006's invoice tool is the first
+candidate Portfolio Project, not a special case. Product-specific logic
+belongs in the project's own repo, not the OS.
 
 ---
 
@@ -878,8 +977,9 @@ Capabilities, not folders. But folders persist for Git ergonomics:
 ├── evidence/             # Evidence System bundles — NEW (optional per mission)
 ├── tasks/                # DEPRECATED after Mission 009 — kept as redirect
 ├── workflow/             # Templates
-├── tools/                # Repository Compiler — NEW
+├── tools/                # Repository Compiler (PHP) — NEW
 │   └── compiler/
+│       └── compile.php
 ├── dist/                 # DISPOSABLE compiler output — gitignored
 └── site/                 # Showcase (generated HTML + hand CSS)
 ```
@@ -930,10 +1030,40 @@ Fail → new decision supersedes D003
 ```
 git clone → read system/manifest.yaml
         ↓
-Optional: make compile → dist/cold-start-answers.md
+php tools/compiler/compile.php → dist/cold-start-answers.md
         ↓
 Agent has full organizational context in < 30 seconds
 ```
+
+### §6.4 Compile-on-merge (GitHub Actions — approved)
+
+Operator approved compile-on-merge. Governance is unchanged: only
+**generated artifacts** are automated. Operator approval is never
+automated.
+
+```
+Merge to main
+        ↓
+GitHub Actions (trigger: push to main)
+        ↓
+Run Repository Compiler (PHP)
+  php tools/compiler/compile.php
+        ↓
+Generate all derived artifacts
+  (website, timelines, dashboard, context packages, analytics, reports)
+        ↓
+Commit dist/ + site/ outputs (or publish to GitHub Pages)
+        ↓
+Website updated — operator reviews via GitHub Mobile as today
+```
+
+**What automation does:** recompile disposable outputs from canonical source.
+
+**What automation never does:** merge missions, approve decisions, spawn
+agents without operator action, or modify organizational source code.
+
+Mission 009 implements the workflow. Mission 016 formalizes it in
+`system/automation.yaml`.
 
 ---
 
@@ -999,16 +1129,18 @@ Phased. No big-bang rewrite.
 | Phase | Missions | Outcome |
 |---|---|---|
 | **Foundation** | 008–009 | `system/` registry + retroactive index |
-| **Compiler** | 009–010 | Automated showcase + inbox |
+| **Compiler** | 009–010 | Repository Compiler (PHP): showcase, dashboard, all derived artifacts |
 | **Decisions** | 011 | `decisions/D003` retroactive + template |
 | **Mission Engine** | 012 | `queue.yaml` replaces Backlog |
 | **Playbooks** | 013 | Extract 002–006 patterns |
 | **Agent handoffs** | 014 | handoff.yaml template + Mission 006 Phase C |
-| **Portfolio** | 015 | portfolio.yaml; benchmark repo decision |
-| **Automation** | 016–017 | CI compile + health proposals |
+| **Portfolio Projects** | 015 | `portfolio.yaml` registry; generic project workflow |
+| **Automation** | 016–017 | Compile-on-merge CI + health proposals |
 | **RIS** | 018 | Intelligence score |
 
-**Parallel track:** Mission 006 → (if pass) Benchmark MVP in separate repo.
+**Parallel track:** Mission 006 validates first candidate Portfolio Project
+(P001). If validation passes, build happens in a separate project repo
+using the standard Portfolio Project workflow — not special-case architecture.
 
 **Compatibility:** V1 agents can still read markdown during migration.
 `manifest.yaml` is additive. Compiler warnings guide transition.
@@ -1023,10 +1155,12 @@ Phased. No big-bang rewrite.
 | Missions | GitHub Issues | Split truth; cold-start failure |
 | Showcase | Manual forever | Drift already observed (M005 risk, M006 updates) |
 | Products | Monorepo | OS/product concern collision; clone bloat |
+| Products | Invoice-specific OS architecture | Product-agnostic Portfolio Projects (operator decision) |
 | Agents | Persona files | Mission 001/003 rejected; handoffs > personas |
+| Compiler language | Python or Node | Operator chose PHP — AI-DOS is PHP; one ecosystem |
 | Compiler | Hugo/Astro SSG | Over-engineering for current scale |
 | Approval | Chat bot canonical | Standards §2 — merge only is durable |
-| Control plane | Native mobile app | Friction; static HTML sufficient |
+| Control plane | Native mobile app | Friction; GitHub Mobile sufficient |
 | Automation | Full autonomy | Operator authority; M006 human loop |
 | Decisions | Embedded in reports only | Renumbering pain; cross-mission pointers fragile |
 
@@ -1037,6 +1171,8 @@ Phased. No big-bang rewrite.
 - Becoming a chat interface
 - Replacing Git with a custom VCS
 - Multi-tenant SaaS AI-DOS hosting
+- Python or Node runtimes for core subsystems
+- External databases as canonical state
 - Real-time collaborative editing
 - Agent marketplace
 - Built-in LLM inference
@@ -1044,14 +1180,20 @@ Phased. No big-bang rewrite.
 
 ---
 
-## §13 Open questions for operator
+## §13 Operator decisions (recorded 2026-07-07)
 
-1. **Benchmark repo naming/ownership** — when Mission 006 passes, does the
-   operator want a separate GitHub org or a repo under the same account?
-2. **Compiler language** — Python vs. Node: operator preference?
-3. **Mission 007 renumbering** — confirm reclaim of 007 for V2 design;
-   benchmark build moves to Mission 015 or Portfolio P001?
-4. **GitHub Actions budget** — compile-on-merge acceptable?
+The operator approved the V2 architecture with these binding decisions:
+
+| # | Decision | Resolution |
+|---|---|---|
+| 1 | Repository Compiler language | **PHP** — AI-DOS is built in PHP; one language, one ecosystem; GitHub Actions runs PHP directly; deployable anywhere AI-DOS runs |
+| 2 | Repository Compiler concept | **Organizational source code → compiler → disposable artifacts.** Central innovation of V2. Repository is canonical; everything else is compiled |
+| 3 | Portfolio Projects | **Product-agnostic abstraction.** AI-DOS manages Portfolio Projects. Mission 006's invoice tool is the first candidate only — same workflow for all future projects |
+| 4 | Mission 007 identity | **Officially: Design AI-DOS V2.** Benchmark application moves into Portfolio Projects; no longer the repository's primary focus |
+| 5 | GitHub Actions | **Compile-on-merge approved.** Merge → Actions → PHP compiler → derived artifacts → website updated. Governance unchanged; approval never automated |
+| 6 | Operator interface | **GitHub Mobile preserved.** Compiled dashboard and inbox serve the iPhone operator |
+
+No open architectural questions remain. Mission 008 implements.
 
 ---
 
@@ -1064,8 +1206,9 @@ V2 architecture succeeds when:
 3. Showcase never drifts from canonical state (compiler enforced)
 4. Mission 006 Phase C can execute using V2 handoff artifacts
 5. Decision D003 is queryable without opening Mission 003 report
-6. Parallel tracks (AI-DOS + benchmark) visible in queue without confusion
-7. No capability requires runtime infrastructure beyond Git + CI compile
+6. Parallel tracks (AI-DOS + Portfolio Projects) visible in queue without confusion
+7. Repository Compiler (PHP) runs in GitHub Actions with no extra language runtimes
+8. No capability requires infrastructure beyond Git + PHP compile-on-merge
 
 ---
 

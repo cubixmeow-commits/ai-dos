@@ -6,14 +6,16 @@
 ## Why this mission exists
 
 The operator made a strategic decision: **AI-DOS itself is now the primary
-product.** The invoice-follow-up benchmark (Mission 006) continues
-independently as validation work and is intentionally left untouched by
-this mission.
+product.** Mission 006 continues independently as validation of the first
+candidate Portfolio Project and is intentionally left untouched by this
+mission.
 
 Missions 001–006 grew AI-DOS organically — principles, standards, governance,
 evidence tiering, a showcase reader — but the system still behaves like a
-convention-heavy folder of markdown files. That worked for bootstrap. It
-will not scale to an operating system for an AI software company.
+convention-heavy folder of markdown files. V2 reframes the repository as
+**organizational source code** compiled by the **Repository Compiler (PHP)**
+into disposable artifacts. That worked-for-bootstrap shape will not scale
+to an operating system for an AI software company.
 
 This mission designs Version 2: the architecture AI-DOS should grow into
 over the next two years, working backwards from that future state.
@@ -33,11 +35,14 @@ deserves to exist.
 - The repository is the source of truth — not this brief.
 - Mission 006 (Validate the Recommendation) is **out of scope** and must
   not be modified.
+- **Operator decision (2026-07-07):** Mission 007 is officially **Design
+  AI-DOS V2.** The first candidate Portfolio Project (origin: Mission 003
+  recommendation, validation: Mission 006) is no longer the repository's
+  primary focus. Portfolio Projects use a product-agnostic workflow defined
+  in [architecture.md](architecture.md) §4.11.
 - Mission numbering collision: Backlog still lists "Mission 007 = Build the
   Benchmark MVP." This mission **reclaims Mission 007** for V2 design.
-  The benchmark build, if Mission 006 passes, will receive a new number
-  during Mission 008 planning (proposed: Mission 015 or a Portfolio
-  sub-mission — see architecture.md §Portfolio).
+  Mission 008 reconciles Backlog and README.
 
 ## Design philosophy
 
@@ -71,6 +76,18 @@ deserves to exist.
    008. Describe what each accomplishes. Do not gate them. Do not build them.
 5. **Mission report** — summarize audit findings, key architectural bets,
    migration risks, and cold-start verification.
+
+## Operator decisions (approved 2026-07-07)
+
+The operator approved V2 architecture with these binding decisions,
+incorporated into [architecture.md](architecture.md):
+
+1. **Repository Compiler (PHP)** — not Python or Node; one language ecosystem
+2. **Organizational source code** — repository is canonical; compiler output is disposable
+3. **Portfolio Projects** — product-agnostic; Mission 006 validates first candidate only
+4. **Mission 007 = Design AI-DOS V2** — official identity
+5. **Compile-on-merge** — GitHub Actions runs PHP compiler; approval never automated
+6. **GitHub Mobile** — operator interface preserved
 
 ## Constraints
 
