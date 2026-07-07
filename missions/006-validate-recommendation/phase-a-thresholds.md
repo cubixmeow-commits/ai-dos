@@ -5,6 +5,11 @@ between Phase A (agent desk work) and Phase B (operator-executed
 interviews + smoke test). Once the operator confirms, the thresholds in
 §4 are **locked** and cannot be adjusted after seeing results.
 
+> **Gate result: CONFIRMED — thresholds locked.** The operator answered
+> **Y** to the §6 question on 2026-07-07. Per Standards §2 the merge of
+> this branch into `main` is the permanent record of that approval. From
+> this point, §4 may not be edited; Phase C scores against it verbatim.
+
 Evidence backing every claim referenced here:
 [evidence-ledger.md](evidence-ledger.md) (cited below as L#).
 Tiers per [Standards §1.3](../../company/Standards.md).

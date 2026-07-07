@@ -1,7 +1,10 @@
 # Mission 006: Validate the Recommendation
 
-**Status:** In progress — Phase A complete; awaiting operator confirmation
-of thresholds (see [phase-a-thresholds.md](phase-a-thresholds.md))
+**Status:** In progress — Phase B. Thresholds confirmed by the operator
+on 2026-07-07 and locked (see
+[phase-a-thresholds.md](phase-a-thresholds.md)); the operator is now
+running the interviews and smoke test. Phase C (scoring + report.md)
+starts when raw results return.
 **Executed by:** Claude Fable 5
 
 ## Why this mission exists
