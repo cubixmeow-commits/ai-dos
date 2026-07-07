@@ -1,5 +1,5 @@
 {
-    "compiled_at": "2026-07-07T21:48:47+00:00",
+    "compiled_at": "2026-07-07T21:52:07+00:00",
     "source": "system/manifest.yaml",
     "subsystem": "repository-manifest",
     "ai_dos_version": "V2-in-progress",
@@ -126,42 +126,42 @@
     "generated_artifact_versions": {
         "missions.json": {
             "path": "site/data/missions.json",
-            "modified_at": "2026-07-07T21:38:53+00:00",
+            "modified_at": "2026-07-07T21:48:47+00:00",
             "bytes": 13993
         },
         "organization.json": {
             "path": "site/data/organization.json",
-            "modified_at": "2026-07-07T21:38:53+00:00",
+            "modified_at": "2026-07-07T21:48:47+00:00",
             "bytes": 46347
         },
         "manifest.json": {
             "path": "site/data/manifest.json",
-            "modified_at": "2026-07-07T21:38:53+00:00",
+            "modified_at": "2026-07-07T21:48:47+00:00",
             "bytes": 5493
         },
         "context-packages.json": {
             "path": "site/data/context-packages.json",
-            "modified_at": "2026-07-07T21:38:53+00:00",
+            "modified_at": "2026-07-07T21:48:47+00:00",
             "bytes": 3956
         },
         "dependency-report.json": {
             "path": "site/data/dependency-report.json",
-            "modified_at": "2026-07-07T21:38:53+00:00",
+            "modified_at": "2026-07-07T21:48:47+00:00",
             "bytes": 257
         },
         "repository.json": {
             "path": "site/data/repository.json",
-            "modified_at": "2026-07-07T21:38:53+00:00",
+            "modified_at": "2026-07-07T21:48:47+00:00",
             "bytes": 65611
         },
         "index.html": {
             "path": "site/index.html",
-            "modified_at": "2026-07-07T21:38:53+00:00",
+            "modified_at": "2026-07-07T21:48:47+00:00",
             "bytes": 12792
         },
         "styles.css": {
             "path": "site/styles.css",
-            "modified_at": "2026-07-07T21:38:53+00:00",
+            "modified_at": "2026-07-07T21:48:47+00:00",
             "bytes": 8288
         }
     }
