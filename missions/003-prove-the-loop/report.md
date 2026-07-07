@@ -154,4 +154,17 @@ This mission changed AI-DOS itself in the following ways:
 
 ---
 
-Approve Mission 004: Validate the Recommendation? Y/N
+## Addendum (added 2026-07-07 in Mission 004)
+
+This report is preserved as written. During Mission 004 ("Close the
+Governance Loop"), AI-DOS formalized merge-based approval and resequenced
+forward-looking missions so repository references are consistent:
+
+- Mission 004 = Close the Governance Loop
+- Mission 005 = Validate the Recommendation
+- Mission 006 = Build the Benchmark MVP (conditional on Mission 005 passing)
+
+All references above in this historical report to "Mission 004" as
+validation should now be read as "Mission 005."
+
+~~Approve Mission 004: Validate the Recommendation? Y/N~~
