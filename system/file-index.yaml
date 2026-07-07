@@ -1,0 +1,590 @@
+# AI-DOS Master File Index — machine-readable canonical registry
+# Human-readable companion: system/file-index.md
+# Updated by Mission 009 (File Index Foundation)
+
+meta:
+  version: 1
+  deployment_root: https://cubixmeow.com/ai-dos/
+  canonical_source: true
+  maintained_by: Mission 009
+  last_updated: 2026-07-07
+
+entries:
+  # --- Root & company ---
+  - path: README.md
+    type: readme
+    status: active
+    purpose: Cold-start entry point for strangers and agents cloning the repository.
+    short_description: Repository overview, operating model, and current mission state.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 001
+    last_major_update: Mission 001
+    notes: Mission numbering in §4 may lag Backlog; Backlog is authoritative for queue.
+
+  - path: company/Identity.md
+    type: company
+    status: active
+    purpose: Defines what AI-DOS is and why it exists.
+    short_description: Organizational identity and rationale.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 001
+    last_major_update: Mission 001
+    notes: Compiler reads §1 for active_strategy text.
+
+  - path: company/Principles.md
+    type: company
+    status: active
+    purpose: Constitutional rules every agent follows before work.
+    short_description: Beliefs and decision hierarchy for AI-DOS.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 001
+    last_major_update: Mission 002
+    notes: Changes rarely; operational detail belongs in Standards.
+
+  - path: company/Standards.md
+    type: company
+    status: active
+    purpose: Operational standards that evolve as AI-DOS learns.
+    short_description: Commit standard, governance, showcase, compiler, and file index rules.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 002
+    last_major_update: Mission 009
+    notes: File Index section added in Mission 009.
+
+  # --- Tasks & workflow ---
+  - path: tasks/Backlog.md
+    type: tasks
+    status: active
+    purpose: Ordered queue of upcoming missions; top item is next after operator approval.
+    short_description: Mission queue and paused/later work.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 001
+    last_major_update: Mission 009
+    notes: Compiler extracts next mission from ## Next header.
+
+  - path: workflow/Templates/MissionTemplate.md
+    type: template
+    status: active
+    purpose: Copy template for new mission.md and report.md files.
+    short_description: Standard mission and report structure.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 001
+    last_major_update: Mission 002
+    notes: null
+
+  # --- System registry ---
+  - path: system/file-index.yaml
+    type: system
+    status: active
+    purpose: Canonical machine-readable map of important files and public URLs.
+    short_description: Master file registry (this file).
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 009
+    last_major_update: Mission 009
+    notes: Update when creating, removing, or materially changing major files.
+
+  - path: system/file-index.md
+    type: system
+    status: active
+    purpose: Human-readable companion to file-index.yaml for mobile operator use.
+    short_description: iPhone-friendly file index.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 009
+    last_major_update: Mission 009
+    notes: Generated from same data as YAML; keep in sync.
+
+  # --- Compiler ---
+  - path: compiler/compile.php
+    type: compiler
+    status: active
+    purpose: Runs the PHP Repository Compiler; scans repository and emits site artifacts.
+    short_description: Repository Compiler entry point.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: https://cubixmeow.com/ai-dos/compiler/compile.php
+    created_by_mission: Mission 008
+    last_major_update: Mission 009
+    notes: Public URL assumes PHP execution on host; may 403 if not configured.
+
+  - path: compiler/README.md
+    type: compiler
+    status: active
+    purpose: Documents compiler inputs, outputs, and how to run locally.
+    short_description: Compiler operator guide.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 008
+    last_major_update: Mission 008
+    notes: null
+
+  # --- Site (generated views) ---
+  - path: site/index.html
+    type: site
+    status: active
+    purpose: Mission Control showcase UI; loads compiled JSON client-side.
+    short_description: Public Mission Control page.
+    source_or_generated: generated
+    safe_to_edit: false
+    public_url: https://cubixmeow.com/ai-dos/site/
+    created_by_mission: Mission 005
+    last_major_update: Mission 008
+    notes: Regenerated by compiler; manual edits overwritten.
+
+  - path: site/styles.css
+    type: site
+    status: active
+    purpose: Visual styles for Mission Control; preserves Mission 005 identity.
+    short_description: Showcase stylesheet.
+    source_or_generated: generated
+    safe_to_edit: false
+    public_url: https://cubixmeow.com/ai-dos/site/styles.css
+    created_by_mission: Mission 005
+    last_major_update: Mission 008
+    notes: Compiler appends Mission Control rules once; do not hand-edit.
+
+  - path: site/data/missions.json
+    type: site-data
+    status: active
+    purpose: Structured mission data compiled from missions/*/mission.md and report.md.
+    short_description: Compiled mission registry JSON.
+    source_or_generated: generated
+    safe_to_edit: false
+    public_url: https://cubixmeow.com/ai-dos/site/data/missions.json
+    created_by_mission: Mission 008
+    last_major_update: Mission 008
+    notes: Source wins on conflict; regenerate via compile.php.
+
+  - path: site/data/organization.json
+    type: site-data
+    status: active
+    purpose: Organization state compiled from company docs, Backlog, missions, and file index.
+    short_description: Compiled organization state JSON.
+    source_or_generated: generated
+    safe_to_edit: false
+    public_url: https://cubixmeow.com/ai-dos/site/data/organization.json
+    created_by_mission: Mission 008
+    last_major_update: Mission 009
+    notes: Includes file_index summary when system/file-index.yaml exists.
+
+  - path: site/validation/invoice-tool.html
+    type: validation
+    status: active
+    purpose: Mission 006 Phase B landing-page smoke test for invoice follow-up validation.
+    short_description: Validation test page — not a product page.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: https://cubixmeow.com/ai-dos/site/validation/invoice-tool.html
+    created_by_mission: Mission 006
+    last_major_update: Mission 006
+    notes: Do not link from main showcase; operator must configure form endpoint before launch.
+
+  # --- GitHub workflow ---
+  - path: .github/workflows/compile-site.yml
+    type: workflow
+    status: active
+    purpose: CI job that runs Repository Compiler on push/PR to main.
+    short_description: Compile-on-merge verification workflow.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 008
+    last_major_update: Mission 008
+    notes: Verifies compile success; does not auto-commit or deploy.
+
+  # --- Mission 001 ---
+  - path: missions/001-bootstrap/
+    type: mission
+    status: complete
+    purpose: Bootstrap repository structure and first mission loop.
+    short_description: Mission 001 folder — Bootstrap the Repository.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 001
+    last_major_update: Mission 001
+    notes: Historical brief references pre-renumbering Mission 002/003.
+
+  - path: missions/001-bootstrap/mission.md
+    type: mission-artifact
+    status: complete
+    purpose: Mission 001 brief — smallest useful repository structure.
+    short_description: Bootstrap mission definition.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 001
+    last_major_update: Mission 001
+    notes: null
+
+  - path: missions/001-bootstrap/report.md
+    type: mission-artifact
+    status: complete
+    purpose: Mission 001 outcome and cold-start proof.
+    short_description: Bootstrap mission report.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 001
+    last_major_update: Mission 001
+    notes: Predates What AI-DOS Learned template.
+
+  # --- Mission 002 ---
+  - path: missions/002-knowledge-preservation/
+    type: mission
+    status: complete
+    purpose: Formalize Knowledge Preservation commit standard.
+    short_description: Mission 002 folder — Knowledge Preservation.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 002
+    last_major_update: Mission 002
+    notes: null
+
+  - path: missions/002-knowledge-preservation/mission.md
+    type: mission-artifact
+    status: complete
+    purpose: Mission 002 brief.
+    short_description: Knowledge Preservation mission definition.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 002
+    last_major_update: Mission 002
+    notes: null
+
+  - path: missions/002-knowledge-preservation/report.md
+    type: mission-artifact
+    status: complete
+    purpose: Mission 002 outcome; Standards §1 commit format.
+    short_description: Knowledge Preservation mission report.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 002
+    last_major_update: Mission 002
+    notes: null
+
+  # --- Mission 003 ---
+  - path: missions/003-prove-the-loop/
+    type: mission
+    status: complete
+    purpose: First full research cycle; recommended invoice follow-up tool.
+    short_description: Mission 003 folder — Prove the Loop.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 003
+    last_major_update: Mission 003
+    notes: null
+
+  - path: missions/003-prove-the-loop/mission.md
+    type: mission-artifact
+    status: complete
+    purpose: Mission 003 brief — research and product recommendation.
+    short_description: Prove the Loop mission definition.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 003
+    last_major_update: Mission 003
+    notes: null
+
+  - path: missions/003-prove-the-loop/report.md
+    type: mission-artifact
+    status: complete
+    purpose: Mission 003 outcome and Medium-confidence recommendation.
+    short_description: Prove the Loop mission report.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 003
+    last_major_update: Mission 003
+    notes: null
+
+  - path: missions/003-prove-the-loop/research.md
+    type: mission-artifact
+    status: complete
+    purpose: Research artifact with evidence tiers for Mission 003 claims.
+    short_description: Prove the Loop research document.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 003
+    last_major_update: Mission 003
+    notes: Listed in compiler mission artifacts when present.
+
+  - path: missions/003-prove-the-loop/evaluation.md
+    type: mission-artifact
+    status: complete
+    purpose: Evaluation criteria and scoring for Mission 003 research.
+    short_description: Prove the Loop evaluation document.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 003
+    last_major_update: Mission 003
+    notes: null
+
+  # --- Mission 004 ---
+  - path: missions/004-close-governance-loop/
+    type: mission
+    status: complete
+    purpose: Formalize merge-to-main as durable mission approval.
+    short_description: Mission 004 folder — Close the Governance Loop.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 004
+    last_major_update: Mission 004
+    notes: null
+
+  - path: missions/004-close-governance-loop/mission.md
+    type: mission-artifact
+    status: complete
+    purpose: Mission 004 brief.
+    short_description: Governance loop mission definition.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 004
+    last_major_update: Mission 004
+    notes: null
+
+  - path: missions/004-close-governance-loop/report.md
+    type: mission-artifact
+    status: complete
+    purpose: Mission 004 outcome; Standards §2 mission approval.
+    short_description: Governance loop mission report.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 004
+    last_major_update: Mission 004
+    notes: null
+
+  # --- Mission 005 ---
+  - path: missions/005-showcase-page/
+    type: mission
+    status: complete
+    purpose: Build static visual reader at site/index.html.
+    short_description: Mission 005 folder — Showcase Page.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 005
+    last_major_update: Mission 005
+    notes: Showcase now compiler-generated per Mission 008.
+
+  - path: missions/005-showcase-page/mission.md
+    type: mission-artifact
+    status: complete
+    purpose: Mission 005 brief.
+    short_description: Showcase page mission definition.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 005
+    last_major_update: Mission 005
+    notes: null
+
+  - path: missions/005-showcase-page/report.md
+    type: mission-artifact
+    status: complete
+    purpose: Mission 005 outcome; Standards §3 showcase maintenance.
+    short_description: Showcase page mission report.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 005
+    last_major_update: Mission 005
+    notes: null
+
+  # --- Mission 006 ---
+  - path: missions/006-validate-recommendation/
+    type: mission
+    status: paused
+    purpose: Validate Mission 003 invoice tool recommendation with real evidence.
+    short_description: Mission 006 folder — Validate the Recommendation (Phase B).
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 006
+    last_major_update: Mission 006
+    notes: Paused at Phase B — operator interviews and smoke test.
+
+  - path: missions/006-validate-recommendation/mission.md
+    type: mission-artifact
+    status: paused
+    purpose: Mission 006 brief and phase definitions.
+    short_description: Validation mission definition.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 006
+    last_major_update: Mission 006
+    notes: Do not modify per Mission 008 constraint unless Phase C resumes.
+
+  - path: missions/006-validate-recommendation/phase-a-thresholds.md
+    type: mission-artifact
+    status: complete
+    purpose: Pre-registered pass/fail thresholds for validation phases.
+    short_description: Locked validation thresholds.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 006
+    last_major_update: Mission 006
+    notes: Thresholds locked by operator 2026-07-07.
+
+  - path: missions/006-validate-recommendation/evidence-ledger.md
+    type: mission-artifact
+    status: active
+    purpose: Consolidated external claims with evidence tiers for Mission 006.
+    short_description: Validation evidence ledger.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 006
+    last_major_update: Mission 006
+    notes: Phase C scoring uses this ledger.
+
+  # --- Mission 007 ---
+  - path: missions/007-design-v2/
+    type: mission
+    status: complete
+    purpose: Design AI-DOS V2 architecture and implementation sequencing.
+    short_description: Mission 007 folder — Design AI-DOS V2.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 007
+    last_major_update: Mission 007
+    notes: V2 architecture approved; implementation spans M008+.
+
+  - path: missions/007-design-v2/mission.md
+    type: mission-artifact
+    status: complete
+    purpose: Mission 007 brief — principal architect mission.
+    short_description: V2 design mission definition.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 007
+    last_major_update: Mission 007
+    notes: null
+
+  - path: missions/007-design-v2/report.md
+    type: mission-artifact
+    status: complete
+    purpose: Mission 007 outcome and approved V2 sequencing.
+    short_description: V2 design mission report.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 007
+    last_major_update: Mission 007
+    notes: null
+
+  - path: missions/007-design-v2/architecture.md
+    type: architecture
+    status: active
+    purpose: Approved blueprint for AI-DOS V2 capabilities and compiler model.
+    short_description: V2 architecture document (v0.2 approved).
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 007
+    last_major_update: Mission 007
+    notes: Describes system/ registry layer planned for post-M009 missions.
+
+  # --- Mission 008 ---
+  - path: missions/008-repository-compiler/
+    type: mission
+    status: complete
+    purpose: Build first PHP Repository Compiler and Mission Control site.
+    short_description: Mission 008 folder — Repository Compiler.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 008
+    last_major_update: Mission 008
+    notes: null
+
+  - path: missions/008-repository-compiler/mission.md
+    type: mission-artifact
+    status: complete
+    purpose: Mission 008 brief.
+    short_description: Repository Compiler mission definition.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 008
+    last_major_update: Mission 008
+    notes: null
+
+  - path: missions/008-repository-compiler/report.md
+    type: mission-artifact
+    status: complete
+    purpose: Mission 008 outcome; compiler truth rules and limitations.
+    short_description: Repository Compiler mission report.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 008
+    last_major_update: Mission 008
+    notes: null
+
+  # --- Mission 009 ---
+  - path: missions/009-file-index-foundation/
+    type: mission
+    status: complete
+    purpose: Create canonical master file index for operator mobile lookup.
+    short_description: Mission 009 folder — File Index Foundation.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 009
+    last_major_update: Mission 009
+    notes: null
+
+  - path: missions/009-file-index-foundation/mission.md
+    type: mission-artifact
+    status: complete
+    purpose: Mission 009 brief.
+    short_description: File Index Foundation mission definition.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 009
+    last_major_update: Mission 009
+    notes: null
+
+  - path: missions/009-file-index-foundation/report.md
+    type: mission-artifact
+    status: complete
+    purpose: Mission 009 outcome and usage guide.
+    short_description: File Index Foundation mission report.
+    source_or_generated: source
+    safe_to_edit: true
+    public_url: null
+    created_by_mission: Mission 009
+    last_major_update: Mission 009
+    notes: null

@@ -131,7 +131,23 @@
         "what_ai_dos_learned": "- **First Repository Compiler (PHP) is operational** — organizational\n  source code compiles into Mission Control.\n- **Showcase is no longer hand-maintained** — Standards §3 notes compiler\n  ownership; generated views replace manual HTML edits.\n- **Compile-on-merge CI exists** — GitHub Actions verifies compiler on\n  every push to `main` (Standards §4.2).\n- **Paused mission state is machine-readable** — Mission 006 Phase B\n  appears in `organization.json` without modifying Mission 006 artifacts.\n- **Fabricated metrics removed from public site** — compiler only emits\n  fields traceable to repository files.",
         "executed_by": "GPT-5.5 (Cursor Cloud Agent)",
         "confidence": null,
-        "next_mission": "Mission 009: V2 Foundation & Sequencing Reconciliation",
+        "next_mission": "Mission 009: File Index Foundation",
+        "has_report": true,
+        "artifacts": []
+    },
+    {
+        "id": "009",
+        "slug": "file-index-foundation",
+        "title": "File Index Foundation",
+        "status": "Complete",
+        "status_category": "complete",
+        "path": "missions/009-file-index-foundation",
+        "summary": "Mission 009 creates AI-DOS's permanent master file index — a single canonical registry so the operator can find any important file and its public URL from a phone.",
+        "approval_question": "Approve Mission 010: V2 Foundation & Sequencing Reconciliation? Y/N",
+        "what_ai_dos_learned": "- **Permanent file registry exists** — `system/file-index.yaml` answers what exists, where, and is it safe to edit without grepping the repo.\n- **Mobile operator path** — `file-index.md` is structured for iPhone review with a public-URL quick table at the top.\n- **Compiler exposes file index** — Mission Control JSON now carries file index metadata for programmatic lookup.\n- **Maintenance is standardized** — Standards §5 requires index updates when major files are created, removed, or materially changed.\n- **V2 registry sequencing clarified** — file index is the first `system/` artifact; manifest/index/portfolio registries remain Mission 010 scope.",
+        "executed_by": "Composer (Cursor Cloud Agent)",
+        "confidence": null,
+        "next_mission": "Mission 010: V2 Foundation & Sequencing Reconciliation",
         "has_report": true,
         "artifacts": []
     }

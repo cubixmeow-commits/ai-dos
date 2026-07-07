@@ -174,10 +174,12 @@ final class RepositoryCompiler
             }
         }
 
-        return [
+        $fileIndex = $this->loadFileIndex();
+
+        $organization = [
             'compiled_at' => gmdate('c'),
             'compiler' => 'Repository Compiler (PHP)',
-            'compiler_version' => '1.0.0-mission-008',
+            'compiler_version' => '1.1.0-mission-009',
             'current_mission' => $currentMission,
             'next_mission' => $nextMission,
             'completed_mission_count' => count($completed),
@@ -202,6 +204,164 @@ final class RepositoryCompiler
             'strategic_pivot' => 'AI-DOS itself is the primary product. Portfolio Projects use a product-agnostic workflow; Mission 006 validates the first candidate (P001).',
             'repository_compiler_concept' => 'The repository is the source code of the organization. The Repository Compiler (PHP) transforms that source into human-readable Mission Control interfaces.',
         ];
+
+        if ($fileIndex !== null) {
+            $organization['file_index'] = $fileIndex;
+        }
+
+        return $organization;
+    }
+
+    /**
+     * Load and summarize system/file-index.yaml for organization.json.
+     *
+     * Uses the PHP yaml extension when available; otherwise a minimal subset
+     * parser for this repository's flat entry list (no nested structures).
+     *
+     * @return array<string, mixed>|null
+     */
+    private function loadFileIndex(): ?array
+    {
+        $file = $this->root . '/system/file-index.yaml';
+        if (!is_file($file)) {
+            return null;
+        }
+
+        $content = (string) file_get_contents($file);
+        $parsed = null;
+
+        if (function_exists('yaml_parse')) {
+            $yaml = yaml_parse($content);
+            if (is_array($yaml)) {
+                $parsed = $yaml;
+            }
+        }
+
+        if ($parsed === null) {
+            $parsed = $this->parseFileIndexYamlSubset($content);
+        }
+
+        if ($parsed === null || !isset($parsed['entries']) || !is_array($parsed['entries'])) {
+            return [
+                'source' => 'system/file-index.yaml',
+                'parse_status' => 'failed',
+                'entry_count' => 0,
+                'entries' => [],
+            ];
+        }
+
+        $meta = is_array($parsed['meta'] ?? null) ? $parsed['meta'] : [];
+        $entries = [];
+
+        foreach ($parsed['entries'] as $entry) {
+            if (!is_array($entry) || !isset($entry['path'])) {
+                continue;
+            }
+
+            $entries[] = [
+                'path' => (string) $entry['path'],
+                'type' => (string) ($entry['type'] ?? ''),
+                'status' => (string) ($entry['status'] ?? ''),
+                'public_url' => $entry['public_url'] ?? null,
+                'safe_to_edit' => (bool) ($entry['safe_to_edit'] ?? true),
+                'source_or_generated' => (string) ($entry['source_or_generated'] ?? ''),
+            ];
+        }
+
+        return [
+            'source' => 'system/file-index.yaml',
+            'parse_status' => 'ok',
+            'version' => $meta['version'] ?? null,
+            'deployment_root' => $meta['deployment_root'] ?? null,
+            'last_updated' => $meta['last_updated'] ?? null,
+            'entry_count' => count($entries),
+            'entries' => $entries,
+        ];
+    }
+
+    /**
+     * Minimal YAML parser for AI-DOS file-index.yaml (flat maps only).
+     *
+     * @return array<string, mixed>|null
+     */
+    private function parseFileIndexYamlSubset(string $content): ?array
+    {
+        $meta = [];
+        $entries = [];
+        $current = null;
+        $section = null;
+
+        foreach (preg_split('/\r\n|\r|\n/', $content) ?: [] as $line) {
+            if (preg_match('/^\s*#/', $line)) {
+                continue;
+            }
+
+            if (preg_match('/^meta:\s*$/', $line)) {
+                $section = 'meta';
+                $current = null;
+                continue;
+            }
+
+            if (preg_match('/^entries:\s*$/', $line)) {
+                $section = 'entries';
+                $current = null;
+                continue;
+            }
+
+            if (preg_match('/^\s*-\s+path:\s*(.+)$/', $line, $m)) {
+                if ($current !== null && $section === 'entries') {
+                    $entries[] = $current;
+                }
+                $current = ['path' => $this->parseYamlScalar(trim($m[1]))];
+                continue;
+            }
+
+            if (preg_match('/^\s{2,}([a-z_]+):\s*(.*)$/', $line, $m)) {
+                $key = $m[1];
+                $value = $this->parseYamlScalar(trim($m[2]));
+
+                if ($section === 'meta') {
+                    $meta[$key] = $value;
+                } elseif ($section === 'entries' && $current !== null) {
+                    if ($key === 'safe_to_edit') {
+                        $current[$key] = $value === true || $value === 'true';
+                    } else {
+                        $current[$key] = $value;
+                    }
+                }
+            }
+        }
+
+        if ($current !== null && $section === 'entries') {
+            $entries[] = $current;
+        }
+
+        return ['meta' => $meta, 'entries' => $entries];
+    }
+
+    /** @return string|bool|null */
+    private function parseYamlScalar(string $raw): string|bool|null
+    {
+        if ($raw === 'null' || $raw === '') {
+            return null;
+        }
+
+        if ($raw === 'true') {
+            return true;
+        }
+
+        if ($raw === 'false') {
+            return false;
+        }
+
+        if (
+            (str_starts_with($raw, '"') && str_ends_with($raw, '"'))
+            || (str_starts_with($raw, "'") && str_ends_with($raw, "'"))
+        ) {
+            return substr($raw, 1, -1);
+        }
+
+        return $raw;
     }
 
     /** @param mixed $value */
