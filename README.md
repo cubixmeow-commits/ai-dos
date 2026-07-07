@@ -8,7 +8,7 @@ people's heads or chat logs — goals, rules, decisions, history, next steps —
 is committed as versioned files instead. The test of success is simple: a
 complete stranger (human or AI) can clone this repository cold and continue
 the work, and a human operator can steer the whole thing from a phone by
-answering one approval question per mission.
+reviewing one approval question per mission.
 
 ## §1 What is this?
 
@@ -27,9 +27,12 @@ live in [company/Principles.md](company/Principles.md).
 3. The agent writes `report.md` in the same folder: what was created, what
    was decided, what was rejected, risks found, and a recommended next
    mission — readable in under five minutes on a phone.
-4. The report ends with a single **Y/N approval question**. The human
-   operator answers it; that answer starts the next mission.
+4. The report ends with a single **approval question**. Approval becomes
+   official only when the operator merges the mission work into `main`.
+   Chat approval is advisory and temporary.
 5. Upcoming work waits in [tasks/Backlog.md](tasks/Backlog.md).
+
+`main` is the canonical source of truth for approved organizational state.
 
 Every mission must pass the **cold-start test**: its report must prove, by
 citing specific files, that a fresh session could pick up from here.
@@ -53,8 +56,8 @@ citing specific files, that a fresh session could pick up from here.
 - **Mission 003 (Prove the Loop)** — complete. First full research cycle;
   recommended a freelancer invoice follow-up tool at Medium confidence. See
   [missions/003-prove-the-loop/report.md](missions/003-prove-the-loop/report.md).
-- **Mission 004 (Close the Governance Loop)** — complete in this branch. It
-  verifies `main` as canonical and formalizes merge-based mission approval.
+- **Mission 004 (Close the Governance Loop)** — complete. It verifies `main`
+  as canonical and formalizes merge-based mission approval.
 - **Mission 005 (Validate the Recommendation)** — next up, pending operator
   approval. See [tasks/Backlog.md](tasks/Backlog.md).
 - **Mission 006 (Build the Benchmark MVP)** — conditional on Mission 005

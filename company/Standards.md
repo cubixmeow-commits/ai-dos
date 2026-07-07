@@ -21,7 +21,6 @@ Every commit message follows:
 
 ```
 <Mission ID>: <what changed>
-
 Why: <why this change was made — the decision, not just the action>
 Future benefit: <who or what this helps later, and how>
 ```

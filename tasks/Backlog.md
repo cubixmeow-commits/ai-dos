@@ -21,7 +21,10 @@ confidence"):
   (Landolio, autoremind.ai, InvoicifyAI).
 - Landing-page smoke test with a pass/fail signup threshold **agreed with
   the operator before launch**.
-- Report ends with a single Y/N question for Mission 005.
+- Report ends with one evidence-supported approval question for the next
+  mission: Mission 006 (Build the Benchmark MVP) if validation passes;
+  additional validation if evidence is inconclusive; or return to the
+  Mission 003 shortlist if validation fails.
 
 **Decision rule:** if validation passes, Mission 006 = Build the Benchmark
 MVP; if it fails, return to Mission 003's shortlist with the new evidence.
