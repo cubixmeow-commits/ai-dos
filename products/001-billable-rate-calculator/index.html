@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Billable Rate Calculator — what to charge</title>
+  <meta name="description" content="Calculate your minimum freelance hourly rate from take-home goals, taxes, expenses, and real billable hours." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <p class="eyebrow">Portfolio Project 001</p>
+    <h1>Billable Rate Calculator</h1>
+    <p class="lede">Find the hourly rate you need to hit your take-home target — after taxes, expenses, and non-billable time.</p>
+  </header>
+
+  <main>
+    <form id="calculator" class="card" novalidate>
+      <fieldset>
+        <legend>Income goal</legend>
+        <label>
+          <span>Desired take-home per year</span>
+          <input type="number" id="takeHome" name="takeHome" min="0" step="1000" value="80000" required />
+        </label>
+        <label>
+          <span>Estimated tax rate (%)</span>
+          <input type="number" id="taxRate" name="taxRate" min="0" max="60" step="0.5" value="28" required />
+        </label>
+        <label>
+          <span>Annual business expenses</span>
+          <input type="number" id="expenses" name="expenses" min="0" step="500" value="6000" required />
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Time you can sell</legend>
+        <label>
+          <span>Billable hours per week</span>
+          <input type="number" id="hoursWeek" name="hoursWeek" min="1" max="80" step="1" value="30" required />
+        </label>
+        <label>
+          <span>Weeks off per year</span>
+          <input type="number" id="weeksOff" name="weeksOff" min="0" max="20" step="1" value="4" required />
+        </label>
+        <label>
+          <span>Billable % of client time</span>
+          <input type="number" id="utilization" name="utilization" min="50" max="100" step="1" value="85" required />
+          <small>Accounts for meetings, revisions, and scope creep inside client work.</small>
+        </label>
+      </fieldset>
+
+      <button type="submit" class="primary">Calculate my rate</button>
+    </form>
+
+    <section id="results" class="card results" hidden aria-live="polite">
+      <h2>Your numbers</h2>
+      <dl class="stat-grid">
+        <div>
+          <dt>Minimum hourly rate</dt>
+          <dd id="hourlyRate">—</dd>
+        </div>
+        <div>
+          <dt>Day rate (8 h)</dt>
+          <dd id="dayRate">—</dd>
+        </div>
+        <div>
+          <dt>Gross revenue needed</dt>
+          <dd id="grossRevenue">—</dd>
+        </div>
+        <div>
+          <dt>Billable hours / year</dt>
+          <dd id="billableHours">—</dd>
+        </div>
+      </dl>
+      <p class="note" id="summaryText"></p>
+      <details class="breakdown">
+        <summary>How this was calculated</summary>
+        <ol id="breakdownList"></ol>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <p>Built with <a href="https://github.com/cubixmeow-commits/ai-dos">AI-DOS</a> · Mission 013 · No accounts, no tracking.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

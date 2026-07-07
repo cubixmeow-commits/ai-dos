@@ -7,7 +7,7 @@ meta:
   registry: asset-registry
   deployment_root: https://cubixmeow.com/ai-dos/
   canonical_source: system/assets.yaml
-  maintained_by: Mission 012
+  maintained_by: Mission 013
   last_updated: '2026-07-07'
   schema:
     asset_types:
@@ -1718,4 +1718,197 @@ assets: &id001
   public_url: null
   created_by_mission: Mission 012
   last_major_update: Mission 012
+- id: portfolio-p001-billable-rate-calculator
+  type: directory
+  name: products/001-billable-rate-calculator
+  purpose: Portfolio Project 001 — Billable Rate Calculator MVP (Mission 013).
+  short_description: First external product built with AI-DOS.
+  source:
+    path: products/001-billable-rate-calculator/
+  public:
+    url: https://cubixmeow.com/ai-dos/products/001-billable-rate-calculator/
+  created_by: Mission 013
+  updated_by: Mission 013
+  depends_on: []
+  outputs:
+  - portfolio-p001-index-html
+  editable: true
+  generated: false
+  status: active
+  notes: V2 prefers separate repo at graduation; MVP staged here per Mission 013.
+  path: products/001-billable-rate-calculator/
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: https://cubixmeow.com/ai-dos/products/001-billable-rate-calculator/
+  created_by_mission: Mission 013
+  last_major_update: Mission 013
+- id: portfolio-p001-index-html
+  type: website
+  name: index.html
+  purpose: Billable Rate Calculator — main UI.
+  short_description: Product homepage and calculator.
+  source:
+    path: products/001-billable-rate-calculator/index.html
+  public:
+    url: https://cubixmeow.com/ai-dos/products/001-billable-rate-calculator/
+  created_by: Mission 013
+  updated_by: Mission 013
+  depends_on:
+  - portfolio-p001-billable-rate-calculator
+  outputs: []
+  editable: true
+  generated: false
+  status: active
+  notes: Static HTML; no server required.
+  path: products/001-billable-rate-calculator/index.html
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: https://cubixmeow.com/ai-dos/products/001-billable-rate-calculator/
+  created_by_mission: Mission 013
+  last_major_update: Mission 013
+- id: portfolio-p001-styles-css
+  type: file
+  name: styles.css
+  purpose: Product stylesheet.
+  short_description: Billable Rate Calculator styles.
+  source:
+    path: products/001-billable-rate-calculator/styles.css
+  public:
+    url: https://cubixmeow.com/ai-dos/products/001-billable-rate-calculator/styles.css
+  created_by: Mission 013
+  updated_by: Mission 013
+  depends_on:
+  - portfolio-p001-index-html
+  outputs: []
+  editable: true
+  generated: false
+  status: active
+  notes: null
+  path: products/001-billable-rate-calculator/styles.css
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: https://cubixmeow.com/ai-dos/products/001-billable-rate-calculator/styles.css
+  created_by_mission: Mission 013
+  last_major_update: Mission 013
+- id: portfolio-p001-app-js
+  type: file
+  name: app.js
+  purpose: Client-side rate calculation logic.
+  short_description: Calculator JavaScript.
+  source:
+    path: products/001-billable-rate-calculator/app.js
+  public:
+    url: https://cubixmeow.com/ai-dos/products/001-billable-rate-calculator/app.js
+  created_by: Mission 013
+  updated_by: Mission 013
+  depends_on:
+  - portfolio-p001-index-html
+  outputs: []
+  editable: true
+  generated: false
+  status: active
+  notes: null
+  path: products/001-billable-rate-calculator/app.js
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: https://cubixmeow.com/ai-dos/products/001-billable-rate-calculator/app.js
+  created_by_mission: Mission 013
+  last_major_update: Mission 013
+- id: portfolio-p001-readme-md
+  type: file
+  name: README.md
+  purpose: Product usage and deployment notes.
+  short_description: Product README.
+  source:
+    path: products/001-billable-rate-calculator/README.md
+  public:
+    url: null
+  created_by: Mission 013
+  updated_by: Mission 013
+  depends_on:
+  - portfolio-p001-billable-rate-calculator
+  outputs: []
+  editable: true
+  generated: false
+  status: active
+  notes: null
+  path: products/001-billable-rate-calculator/README.md
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 013
+  last_major_update: Mission 013
+- id: missions-013-first-external-product
+  type: mission
+  name: 'Mission folder: missions/013-first-external-product'
+  purpose: Mission 013 — first external product.
+  short_description: First External Product mission folder.
+  source:
+    path: missions/013-first-external-product/
+  public:
+    url: null
+  created_by: Mission 013
+  updated_by: Mission 013
+  depends_on: []
+  outputs:
+  - missions-013-first-external-product-report-md
+  - portfolio-p001-billable-rate-calculator
+  editable: true
+  generated: false
+  status: complete
+  notes: null
+  path: missions/013-first-external-product/
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 013
+  last_major_update: Mission 013
+- id: missions-013-first-external-product-mission-md
+  type: file
+  name: mission.md
+  purpose: Mission 013 brief.
+  short_description: First External Product mission brief.
+  source:
+    path: missions/013-first-external-product/mission.md
+  public:
+    url: null
+  created_by: Mission 013
+  updated_by: Mission 013
+  depends_on:
+  - missions-013-first-external-product
+  outputs: []
+  editable: true
+  generated: false
+  status: complete
+  notes: null
+  path: missions/013-first-external-product/mission.md
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 013
+  last_major_update: Mission 013
+- id: missions-013-first-external-product-report-md
+  type: file
+  name: report.md
+  purpose: Mission 013 outcome — ideas, selection, product built.
+  short_description: First External Product mission report.
+  source:
+    path: missions/013-first-external-product/report.md
+  public:
+    url: null
+  created_by: Mission 013
+  updated_by: Mission 013
+  depends_on:
+  - missions-013-first-external-product
+  outputs: []
+  editable: true
+  generated: false
+  status: complete
+  notes: null
+  path: missions/013-first-external-product/report.md
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 013
+  last_major_update: Mission 013
 entries: *id001

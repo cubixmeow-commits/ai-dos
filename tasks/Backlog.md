@@ -3,53 +3,39 @@
 The queue of upcoming missions, in order. The top item is next. A mission
 starts only after the operator approves the previous mission's report.
 
-## Next: Mission 013 — Build the First External Product Using AI-DOS
+## Next: Mission 014 — Improve or Launch First External Product
 
-**Goal:** Use the Execution Engine to build a **real software product** — not
-more AI-DOS infrastructure.
+**Goal:** Polish Portfolio Project 001 (Billable Rate Calculator) for public
+launch **or** improve core UX based on operator feedback — not more AI-DOS
+infrastructure.
 
-**Scope:**
+**Options for operator:**
 
-- Operator selects product candidate (e.g. invoice follow-up from Mission 003/006
-  or a new MVP) in `missions/013-*/mission.md`
-- Execute via execution plan work units routed to Cursor and Claude Code
-- Mission report proves cold-start continuity and product deliverable
+- Deploy to production URL and add analytics
+- Multi-currency / save scenarios (revenue path)
+- Spin product to separate repository (per V2 architecture)
+- Resume invoice follow-up product (Mission 003 candidate) as P002
 
-**Execution plan (proposed):** [system/execution-plans/mission-013-first-external-product.yaml](../system/execution-plans/mission-013-first-external-product.yaml)
+**Product:** [products/001-billable-rate-calculator/](../products/001-billable-rate-calculator/)
 
-**Explicitly out of scope:** AI-DOS infrastructure unless blocking the product.
+## Mission 013 Record — First External Product
+
+Mission 013 built **Billable Rate Calculator** — Portfolio Project 001:
+
+- Five ideas proposed; Billable Rate Calculator selected (34/35 max score)
+- MVP at `products/001-billable-rate-calculator/` (static HTML/CSS/JS)
+- No AI-DOS compiler changes
+
+See [missions/013-first-external-product/report.md](../missions/013-first-external-product/report.md).
 
 ## Mission 012 Record — Execution Engine Foundation
 
-Mission 012 implemented the minimal Execution Engine:
-
-- `system/execution-engine.yaml` — coordination model
-- `system/worker-roles.yaml` — capability roles + Cursor/Claude Code mapping
-- `system/execution-plans/` — sample plans including Mission 013 proposal
-- `compiler/ExecutionEngine.php` → `site/data/execution-engine.json`
-- Command Center Execution section
-- Standards §10
-
 See [missions/012-execution-engine-foundation/report.md](../missions/012-execution-engine-foundation/report.md).
-
-## Mission 011 Record — Architecture Integration
-
-Mission 011 integrated the independent architecture audit without redesigning V2:
-
-- Reconciled README, Standards, deployment URLs, and entry points
-- Removed legacy `file-index` shims; `system/assets.yaml` is sole registry
-- Created `decisions/` with seven decision records + `decisions.json`
-- Documented Execution Engine foundation (`system/execution-engine.md`)
-- Strengthened Repository Intelligence lookup (context packages, reverse deps)
-- Updated Mission Control architecture stack and deployment clarity
-
-See [missions/011-architecture-integration/report.md](../missions/011-architecture-integration/report.md).
 
 ## Paused: Mission 006 — Validate the Recommendation
 
-Mission 006 remains **paused at Phase B** — operator-executed freelancer
-interviews and landing-page smoke test. Mission 013 may resume validation
-evidence or choose another product candidate.
+Mission 006 remains **paused at Phase B**. Invoice follow-up remains a
+Portfolio candidate for a future mission — not blocked by Mission 013.
 
 ## Later
 
