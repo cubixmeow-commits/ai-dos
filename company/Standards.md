@@ -135,3 +135,15 @@ On merge to `main`, GitHub Actions runs the Repository Compiler and verifies
 successful output (`.github/workflows/compile-site.yml`). Governance is
 unchanged: only generated artifacts are automated. Operator approval is
 never automated.
+
+## §5 File Index
+
+AI-DOS maintains `/system/file-index.yaml` as the canonical map of important
+files, generated locations, and public URLs.
+
+- **`file-index.yaml`** is the machine-readable source of truth for the index.
+- **`file-index.md`** is the human-readable companion for operator use on mobile.
+- Every mission that creates, removes, relocates, or materially changes a major
+  file must update the file index before completion.
+- The Repository Compiler may include a summary of the file index in
+  `site/data/organization.json` when the YAML source is present.

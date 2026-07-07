@@ -3,11 +3,11 @@
 The queue of upcoming missions, in order. The top item is next. A mission
 starts only after the operator approves the previous mission's report.
 
-## Next: Mission 009 — V2 Foundation & Sequencing Reconciliation
+## Next: Mission 010 — V2 Foundation & Sequencing Reconciliation
 
-**Goal:** Create the `system/` registry layer (`manifest.yaml`, `index.yaml`,
-`portfolio.yaml`) and reconcile README.md with approved V2 architecture
-(Mission 007). Retroactively index Missions 001–008.
+**Goal:** Create the remaining `system/` registry layer (`manifest.yaml`,
+`index.yaml`, `portfolio.yaml`) and reconcile README.md with approved V2
+architecture (Mission 007). Retroactively align mission numbering in README.
 
 **Scope** (from [Mission 007 report](../missions/007-design-v2/report.md)):
 
@@ -16,10 +16,21 @@ starts only after the operator approves the previous mission's report.
 - `system/portfolio.yaml` — Portfolio Projects registry (P001 candidate)
 - Reconcile README.md mission numbering and current state
 - Add renumbering protocol to Standards
-- No compiler changes required — Mission 008 compiler already operational
+- Coordinate with `system/file-index.yaml` (Mission 009) — no duplicate registries
 
 **Explicitly out of scope:** full V2 capability implementation; Mission 006
 artifact changes.
+
+## Mission 009 Record — File Index Foundation
+
+Mission 009 created the canonical master file index:
+
+- `system/file-index.yaml` — machine-readable map of important files and URLs
+- `system/file-index.md` — iPhone-friendly companion
+- Standards §5 — file index maintenance rules
+- Compiler `file_index` summary in `organization.json`
+
+See [missions/009-file-index-foundation/report.md](../missions/009-file-index-foundation/report.md).
 
 ## Mission 008 Record — Build the Repository Compiler
 
@@ -44,8 +55,8 @@ only compiler-generated status reflects the pause.
 
 ## Later
 
-- **Mission 010 — Derived Artifact Generation** (expand compiler outputs per V2 architecture)
-- **Mission 011 — Decision Engine Bootstrap**
-- **Mission 012 — Mission Engine & Queue Migration**
+- **Mission 011 — Derived Artifact Generation** (expand compiler outputs per V2 architecture)
+- **Mission 012 — Decision Engine Bootstrap**
+- **Mission 013 — Mission Engine & Queue Migration**
 
 Full V2 sequence: [missions/007-design-v2/report.md](../missions/007-design-v2/report.md)
