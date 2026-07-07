@@ -21,6 +21,7 @@ jobs:
         with:
           php-version: '8.2'
           coverage: none
+          extensions: yaml
 
       - name: Run Repository Compiler (PHP)
         run: php compiler/compile.php
@@ -29,9 +30,12 @@ jobs:
         run: |
           test -f site/data/missions.json
           test -f site/data/organization.json
+          test -f site/data/manifest.json
+          test -f site/data/context-packages.json
+          test -f site/data/dependency-report.json
+          test -f site/data/repository.json
           test -f site/index.html
-          php -r 'json_decode(file_get_contents("site/data/missions.json")); if (json_last_error()) exit(1);'
-          php -r 'json_decode(file_get_contents("site/data/organization.json")); if (json_last_error()) exit(1);'
+          php -r 'foreach (["missions","organization","manifest","context-packages","dependency-report","repository"] as $f) { json_decode(file_get_contents("site/data/$f.json")); if (json_last_error()) { fwrite(STDERR, $f); exit(1); } }'
 
 # Deployment note (Mission 008):
 # This workflow verifies the compiler runs successfully on push/PR.

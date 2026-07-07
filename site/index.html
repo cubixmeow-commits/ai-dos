@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI-DOS | Mission Control</title>
   <meta name="description" content="AI-DOS Mission Control — compiled from repository source." />
-  <link rel="stylesheet" href="styles.css?v=mission008" />
+  <link rel="stylesheet" href="styles.css?v=mission010" />
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
@@ -58,11 +58,38 @@
       <h2>Next Mission</h2>
       <div class="next-card" id="next-card"></div>
     </section>
+
+    <section class="frame" id="intelligence-section">
+      <h2>Repository Intelligence</h2>
+      <p class="lead">Mission 010 — manifest, context packages, dependency health, and asset relationships. All data from generated JSON.</p>
+      <div class="intel-grid" id="intel-grid"></div>
+    </section>
+
+    <section class="frame" id="manifest-section">
+      <h2>Repository Manifest</h2>
+      <div class="intel-card" id="manifest-card"></div>
+    </section>
+
+    <section class="frame" id="context-section">
+      <h2>Context Packages</h2>
+      <ul class="context-list" id="context-list"></ul>
+    </section>
+
+    <section class="frame" id="dependency-section">
+      <h2>Dependency Health</h2>
+      <div class="intel-card" id="dependency-card"></div>
+      <ul class="issue-list" id="issue-list"></ul>
+    </section>
+
+    <section class="frame" id="relationships-section">
+      <h2>Asset Relationships</h2>
+      <ul class="relation-list" id="relation-list"></ul>
+    </section>
   </main>
 
   <footer>
     <p class="canonical-line">Generated view only. Repository artifacts remain canonical.</p>
-    <p>Compiled at <span id="compiled-at">2026-07-07 20:23:21 UTC</span> by Repository Compiler (PHP)</p>
+    <p>Compiled at <span id="compiled-at">2026-07-07 21:38:53 UTC</span> by Repository Compiler (PHP)</p>
     <p>Source: <code>/missions/</code>, <code>/company/</code>, <code>/tasks/Backlog.md</code></p>
   </footer>
 
@@ -89,19 +116,28 @@
     }
 
     async function loadMissionControl() {
-      const [missionsRes, orgRes] = await Promise.all([
-        fetch('data/missions.json'),
-        fetch('data/organization.json')
-      ]);
+      const endpoints = [
+        'data/missions.json',
+        'data/organization.json',
+        'data/manifest.json',
+        'data/context-packages.json',
+        'data/dependency-report.json',
+        'data/repository.json'
+      ];
 
-      if (!missionsRes.ok || !orgRes.ok) {
+      const responses = await Promise.all(endpoints.map((e) => fetch(e)));
+      if (!responses[0].ok || !responses[1].ok) {
         document.getElementById('strategy-line').textContent =
           'Failed to load compiled data. Run: php compiler/compile.php';
         return;
       }
 
-      const missions = await missionsRes.json();
-      const org = await orgRes.json();
+      const missions = await responses[0].json();
+      const org = await responses[1].json();
+      const manifest = responses[2].ok ? await responses[2].json() : null;
+      const contextPkgs = responses[3].ok ? await responses[3].json() : null;
+      const depReport = responses[4].ok ? await responses[4].json() : null;
+      const repository = responses[5].ok ? await responses[5].json() : null;
 
       document.getElementById('compiler-lead').innerHTML = markdownish(org.repository_compiler_concept || '');
       document.getElementById('source-truth').textContent = org.source_of_truth_statement || '';
@@ -176,6 +212,85 @@
         nextCard.appendChild(el('p', 'next-source', 'Source: ' + (org.next_mission.source || 'tasks/Backlog.md')));
       } else {
         nextCard.appendChild(el('p', null, 'No next mission declared in Backlog.md'));
+      }
+
+      if (manifest) {
+        const intelGrid = document.getElementById('intel-grid');
+        const addIntel = (label, value) => {
+          const row = el('p');
+          row.appendChild(el('span', null, label));
+          row.appendChild(el('strong', null, value));
+          intelGrid.appendChild(row);
+        };
+        addIntel('Repository health', (manifest.repository_health && manifest.repository_health.status) || 'unknown');
+        addIntel('Compiler', manifest.compiler_version || 'unknown');
+        addIntel('Asset registry', String(manifest.asset_registry_version ?? 'unknown'));
+        addIntel('Architecture', manifest.architecture_version || 'unknown');
+        addIntel('Context packages', contextPkgs ? String(contextPkgs.package_count) : '—');
+
+        const mCard = document.getElementById('manifest-card');
+        mCard.appendChild(el('p', null, 'Completed: ' + (manifest.completed_missions ? manifest.completed_missions.length : 0)));
+        if (manifest.current_mission) {
+          mCard.appendChild(el('p', null, 'Current: M' + manifest.current_mission.id + ' — ' + manifest.current_mission.title));
+        }
+        if (manifest.next_mission) {
+          mCard.appendChild(el('p', null, 'Next: M' + manifest.next_mission.id + ' — ' + manifest.next_mission.title));
+        }
+        mCard.appendChild(el('p', 'muted', 'Source: system/manifest.yaml → manifest.json'));
+      }
+
+      if (contextPkgs && contextPkgs.packages) {
+        const list = document.getElementById('context-list');
+        contextPkgs.packages.forEach((pkg) => {
+          const li = el('li');
+          li.appendChild(el('strong', null, pkg.name || pkg.id));
+          li.appendChild(document.createTextNode(' — ' + (pkg.file_count || 0) + ' files'));
+          if (pkg.purpose) {
+            li.appendChild(el('p', 'muted', pkg.purpose));
+          }
+          list.appendChild(li);
+        });
+      }
+
+      if (depReport) {
+        const dCard = document.getElementById('dependency-card');
+        dCard.appendChild(el('p', null, 'Status: ' + (depReport.status || 'unknown')));
+        dCard.appendChild(el('p', null, 'Issues: ' + (depReport.issue_count || 0) + ' (' + (depReport.error_count || 0) + ' errors)'));
+        dCard.appendChild(el('p', 'muted', depReport.repair_policy || 'report_only'));
+        const issueList = document.getElementById('issue-list');
+        (depReport.issues || []).slice(0, 8).forEach((issue) => {
+          const li = el('li', issue.severity === 'error' ? 'issue-error' : 'issue-warn');
+          li.textContent = (issue.asset_id || '?') + ': ' + issue.message;
+          issueList.appendChild(li);
+        });
+        if ((depReport.issues || []).length > 8) {
+          issueList.appendChild(el('li', 'muted', '…and ' + (depReport.issues.length - 8) + ' more in dependency-report.json'));
+        }
+      }
+
+      if (repository && repository.lookup && repository.lookup.by_id) {
+        const relList = document.getElementById('relation-list');
+        const compiler = repository.lookup.by_id['compiler-compile-php'];
+        if (compiler) {
+          const li = el('li');
+          li.appendChild(el('strong', null, 'compiler-compile-php'));
+          li.appendChild(document.createTextNode(' → outputs: ' + (compiler.outputs || []).join(', ')));
+          relList.appendChild(li);
+        }
+        const orgAsset = repository.lookup.by_id['site-data-organization-json'];
+        if (orgAsset) {
+          const li = el('li');
+          li.appendChild(el('strong', null, 'site-data-organization-json'));
+          li.appendChild(document.createTextNode(' ← depends on: ' + (orgAsset.depends_on || []).join(', ')));
+          relList.appendChild(li);
+        }
+        const site = repository.lookup.by_id['site-index-html'];
+        if (site) {
+          const li = el('li');
+          li.appendChild(el('strong', null, 'site-index-html'));
+          li.appendChild(document.createTextNode(' ← depends on: ' + (site.depends_on || []).join(', ')));
+          relList.appendChild(li);
+        }
       }
     }
 

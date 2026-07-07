@@ -1,0 +1,25 @@
+AI-DOS MOBILE GPT BRIEF (select all, copy, paste into GPT)
+
+STATUS: Mission 010 complete. Repository Intelligence Layer operational.
+
+FILES: system/assets.yaml system/manifest.yaml system/context-packages.yaml system/gpt-brief.txt
+
+INTELLIGENCE JSON: site/data/manifest.json context-packages.json dependency-report.json repository.json
+
+ROOT: https://cubixmeow.com/ai-dos/
+
+URLS: /site/ | /site/data/missions.json | /site/data/organization.json | /site/data/manifest.json | /site/data/repository.json
+
+CAPABILITIES: manifest | context packages (5) | dependency validation | repository lookup
+
+COMPILER: php compiler/compile.php v1.3.0-mission-010 | requires PHP yaml extension
+
+STANDARDS: company/Standards.md sections 4-6
+
+MISSION: missions/010-repository-intelligence/
+
+NEXT: Mission 011 Decision Intelligence Layer (after architecture review)
+
+APPROVE: Mission 011 Decision Intelligence Layer? Y/N
+
+LOOKUP: site/data/repository.json query_examples and lookup.by_id
