@@ -53,5 +53,9 @@ citing specific files, that a fresh session could pick up from here.
 - **Mission 003 (Prove the Loop)** — complete. First full research cycle;
   recommended a freelancer invoice follow-up tool at Medium confidence. See
   [missions/003-prove-the-loop/report.md](missions/003-prove-the-loop/report.md).
-- **Mission 004 (Validate the Recommendation)** — next up, pending operator
+- **Mission 004 (Close the Governance Loop)** — complete in this branch. It
+  verifies `main` as canonical and formalizes merge-based mission approval.
+- **Mission 005 (Validate the Recommendation)** — next up, pending operator
   approval. See [tasks/Backlog.md](tasks/Backlog.md).
+- **Mission 006 (Build the Benchmark MVP)** — conditional on Mission 005
+  passing validation thresholds.

@@ -3,6 +3,12 @@
 **Status:** Complete — see [report.md](report.md)
 **Executed by:** Claude Fable 5
 
+> **Note (added 2026-07-07 in Mission 004):** references in this historical
+> brief to Mission 004 as "Validate the Recommendation" predate a governance
+> repair renumbering. Mission 004 became "Close the Governance Loop," Mission
+> 005 became "Validate the Recommendation," and Mission 006 became "Build the
+> Benchmark MVP."
+
 ## Why this mission exists
 
 AI-DOS has rules (Missions 001–002) but has never run a full research cycle

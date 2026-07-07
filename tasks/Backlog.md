@@ -3,7 +3,7 @@
 The queue of upcoming missions, in order. The top item is next. A mission
 starts only after the operator approves the previous mission's report.
 
-## Next: Mission 004 — Validate the Recommendation
+## Next: Mission 005 — Validate the Recommendation
 
 **Goal:** Close the confidence gaps behind Mission 003's Medium-confidence
 recommendation (a standalone invoice follow-up tool for freelancers) before
@@ -23,7 +23,7 @@ confidence"):
   the operator before launch**.
 - Report ends with a single Y/N question for Mission 005.
 
-**Decision rule:** if validation passes, Mission 005 = Build the Benchmark
+**Decision rule:** if validation passes, Mission 006 = Build the Benchmark
 MVP; if it fails, return to Mission 003's shortlist with the new evidence.
 
 **Explicitly out of scope:** building the product, writing application
@@ -31,5 +31,5 @@ code.
 
 ## Later
 
-- **Mission 005 — Build the Benchmark MVP** (conditional on Mission 004
+- **Mission 006 — Build the Benchmark MVP** (conditional on Mission 005
   passing its validation thresholds).

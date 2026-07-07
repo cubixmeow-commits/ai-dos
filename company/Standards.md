@@ -47,3 +47,29 @@ commit log preserves the rationale at the change level.** Reports may
 explain mission-level reasoning, but should reference commits for
 change-level rationale rather than restating it — if the same change-level
 reasoning appears in both places, the separation has broken down.
+
+## §2 Mission Approval
+
+Mission reports conclude with one approval question. Operator approval
+becomes official only after the mission's work is merged into `main`.
+The merge commit is the permanent organizational record of approval.
+Chat approvals are advisory and temporary.
+
+A mission is not complete until merged. AI-DOS preserves institutional
+memory inside Git, not conversations.
+
+Lifecycle:
+
+```text
+Mission proposed
+        ↓
+Mission executed
+        ↓
+Mission reviewed
+        ↓
+Operator approves
+        ↓
+Merged into main
+        ↓
+Repository becomes canonical
+```
