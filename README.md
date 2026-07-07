@@ -58,7 +58,10 @@ citing specific files, that a fresh session could pick up from here.
   [missions/003-prove-the-loop/report.md](missions/003-prove-the-loop/report.md).
 - **Mission 004 (Close the Governance Loop)** — complete. It verifies `main`
   as canonical and formalizes merge-based mission approval.
-- **Mission 005 (Validate the Recommendation)** — next up, pending operator
+- **Mission 005 (Build the AI-DOS Showcase Page)** — complete. Added a static
+  visual reader at [site/index.html](site/index.html) and
+  [site/styles.css](site/styles.css).
+- **Mission 006 (Validate the Recommendation)** — next up, pending operator
   approval. See [tasks/Backlog.md](tasks/Backlog.md).
-- **Mission 006 (Build the Benchmark MVP)** — conditional on Mission 005
+- **Mission 007 (Build the Benchmark MVP)** — conditional on Mission 006
   passing validation thresholds.

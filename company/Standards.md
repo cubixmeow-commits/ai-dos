@@ -72,3 +72,12 @@ Merged into main
         ↓
 Repository becomes canonical
 ```
+
+## §3 Showcase Maintenance
+
+The showcase page (`/site/index.html`) is a visual reader, not the source of
+truth. Mission files, reports, Standards, and Backlog remain canonical.
+
+If a mission changes AI-DOS history, current status, next mission, standards,
+or product direction, it updates the showcase before completion. The mission
+report remains canonical; the showcase summarizes it for outside readers.

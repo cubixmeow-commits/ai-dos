@@ -8,6 +8,10 @@
 > repair renumbering. Mission 004 became "Close the Governance Loop," Mission
 > 005 became "Validate the Recommendation," and Mission 006 became "Build the
 > Benchmark MVP."
+>
+> **Note (added 2026-07-07 in Mission 005):** Mission 005 was later reassigned
+> to "Build the AI-DOS Showcase Page." Validation moved to Mission 006, and
+> Build the Benchmark MVP moved to Mission 007.
 
 ## Why this mission exists
 
