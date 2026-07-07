@@ -1,5 +1,5 @@
 {
-    "compiled_at": "2026-07-07T23:26:31+00:00",
+    "compiled_at": "2026-07-07T23:41:11+00:00",
     "source": "system/manifest.yaml",
     "subsystem": "repository-manifest",
     "ai_dos_version": "V2-in-progress",
@@ -65,9 +65,10 @@
             "description": "Worker capability roles (not brands)",
             "path": "system/worker-roles.yaml"
         },
-        "execution_plans": {
-            "description": "Structured mission execution plans",
-            "source_glob": "system/execution-plans/*.yaml"
+        "portfolio": {
+            "description": "External products built by AI-DOS",
+            "path": "system/portfolio.yaml",
+            "compiled": "site/data/portfolio.json"
         },
         "architecture_audit": {
             "description": "Independent architecture review (Mission 011 input)",
@@ -76,8 +77,8 @@
     },
     "current_mission": null,
     "next_mission": {
-        "id": "014",
-        "title": "Improve or Launch First External Product",
+        "id": "015",
+        "title": "Continue Product Portfolio",
         "source": "tasks/Backlog.md"
     },
     "completed_missions": [
@@ -140,6 +141,11 @@
             "id": "013",
             "title": "Build the First External Product Using AI-DOS",
             "path": "missions/013-first-external-product"
+        },
+        {
+            "id": "014",
+            "title": "AI-DOS Independent Product Test",
+            "path": "missions/014-ai-dos-independent-product-test"
         }
     ],
     "active_missions": [],
@@ -151,64 +157,69 @@
         }
     ],
     "architecture_version": "0.2 (approved — operator decisions incorporated)",
-    "compiler_version": "1.5.0-mission-012",
+    "compiler_version": "1.6.0-mission-014",
     "asset_registry_version": 2,
     "repository_health": {
         "status": "healthy",
         "issue_count": 0,
         "error_count": 0,
         "warning_count": 0,
-        "asset_count": 78
+        "asset_count": 90
     },
     "generated_artifact_versions": {
         "missions.json": {
             "path": "site/data/missions.json",
-            "modified_at": "2026-07-07T23:15:57+00:00",
-            "bytes": 15769
+            "modified_at": "2026-07-07T23:41:08+00:00",
+            "bytes": 17460
         },
         "organization.json": {
             "path": "site/data/organization.json",
-            "modified_at": "2026-07-07T23:15:57+00:00",
-            "bytes": 1939
+            "modified_at": "2026-07-07T23:41:08+00:00",
+            "bytes": 1920
         },
         "manifest.json": {
             "path": "site/data/manifest.json",
-            "modified_at": "2026-07-07T23:15:57+00:00",
-            "bytes": 7070
+            "modified_at": "2026-07-07T23:41:08+00:00",
+            "bytes": 7594
         },
         "context-packages.json": {
             "path": "site/data/context-packages.json",
-            "modified_at": "2026-07-07T23:15:57+00:00",
-            "bytes": 6703
+            "modified_at": "2026-07-07T23:41:08+00:00",
+            "bytes": 7260
         },
         "dependency-report.json": {
             "path": "site/data/dependency-report.json",
-            "modified_at": "2026-07-07T23:15:57+00:00",
+            "modified_at": "2026-07-07T23:41:08+00:00",
             "bytes": 257
         },
         "repository.json": {
             "path": "site/data/repository.json",
-            "modified_at": "2026-07-07T23:15:57+00:00",
-            "bytes": 124302
+            "modified_at": "2026-07-07T23:41:08+00:00",
+            "bytes": 159293
         },
         "decisions.json": {
             "path": "site/data/decisions.json",
-            "modified_at": "2026-07-07T23:15:57+00:00",
-            "bytes": 11009
+            "modified_at": "2026-07-07T23:41:08+00:00",
+            "bytes": 12863
         },
         "execution-engine.json": {
             "path": "site/data/execution-engine.json",
-            "modified_at": "2026-07-07T23:15:57+00:00",
-            "bytes": 38469
+            "modified_at": "2026-07-07T23:41:08+00:00",
+            "bytes": 36857
+        },
+        "portfolio.json": {
+            "path": "site/data/portfolio.json",
+            "modified_at": "2026-07-07T23:41:08+00:00",
+            "bytes": 1097
         },
         "index.html": {
             "path": "site/index.html",
-            "modified_at": "2026-07-07T23:15:57+00:00",
-            "bytes": 20642
+            "modified_at": "2026-07-07T23:41:08+00:00",
+            "bytes": 21699
         },
         "styles.css": {
             "path": "site/styles.css",
-            "modified_at": "2026-07-07T23:15:57+00:00",
+            "modified_at": "2026-07-07T23:41:08+00:00",
             "bytes": 8288
         }
     }

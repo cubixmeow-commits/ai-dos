@@ -57,9 +57,10 @@ references:
   worker_roles:
     description: Worker capability roles (not brands)
     path: system/worker-roles.yaml
-  execution_plans:
-    description: Structured mission execution plans
-    source_glob: system/execution-plans/*.yaml
+  portfolio:
+    description: External products built by AI-DOS
+    path: system/portfolio.yaml
+    compiled: site/data/portfolio.json
   architecture_audit:
     description: Independent architecture review (Mission 011 input)
     path: architecture-audit.md

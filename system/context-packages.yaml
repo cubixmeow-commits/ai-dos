@@ -48,7 +48,7 @@ packages:
       - compiler/compile.php
       - compiler/RepositoryIntelligence.php
       - compiler/DecisionRecords.php
-      - compiler/ExecutionEngine.php
+      - compiler/PortfolioRegistry.php
       - compiler/README.md
       - company/Standards.md
       - system/assets.yaml

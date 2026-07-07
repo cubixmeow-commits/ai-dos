@@ -30,6 +30,7 @@ site/data/dependency-report.json
 site/data/repository.json
 site/data/decisions.json
 site/data/execution-engine.json
+site/data/portfolio.json
 site/index.html
 site/styles.css
 ```

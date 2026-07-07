@@ -1,7 +1,7 @@
 {
-    "compiled_at": "2026-07-07T23:26:31+00:00",
+    "compiled_at": "2026-07-07T23:41:11+00:00",
     "source": "decisions/*.md",
-    "decision_count": 7,
+    "decision_count": 8,
     "decisions": [
         {
             "id": "D001",
@@ -109,6 +109,21 @@
             "evidence": "- [architecture-audit.md](../architecture-audit.md) Part 14, Part 16\n- [system/execution-engine.md](../system/execution-engine.md)\n- Mission 011 report — audit adoption record",
             "related_missions": [
                 "011"
+            ]
+        },
+        {
+            "id": "D008",
+            "slug": "D008-invoice-chase-p002",
+            "title": "Portfolio Project 002 — Invoice Chase",
+            "status": "accepted",
+            "path": "decisions/D008-invoice-chase-p002.md",
+            "context": "Mission 014 tested whether AI-DOS can **independently** choose and build a\nuseful product without operator design input. Mission 013 shipped a calculator;\nMission 014 must not repeat that pattern. Repository history (Mission 003, 006)\ndocuments freelancer invoice payment pain.",
+            "decision": "Ship **Invoice Chase** (`products/002-invoice-chase/`) — a client-side tool\nthat generates escalating late-invoice reminder emails. No email sending, no\naccounts, static deploy on Hostinger.",
+            "alternatives": "- **JSON explorer** — useful but commoditized; weak portfolio differentiation\n- **Markdown formatter** — dev-tool niche; lower bookmark value for operator audience\n- **Changelog generator** — needs git integration; exceeds static MVP scope\n- **Resume optimizer** — crowded market; unclear autonomous evidence in repo\n- **Full invoice SaaS (M003)** — correct long-term; too large for single-mission proof",
+            "why_chosen": "Repository intelligence pointed to invoice follow-up as validated pain.\nInvoice Chase delivers **immediate utility** (copy-paste emails) without\nbackend complexity — proving autonomous product judgment while aligning with\norganizational memory.",
+            "evidence": "- [missions/003-prove-the-loop/report.md](../missions/003-prove-the-loop/report.md)\n- [missions/014-ai-dos-independent-product-test/report.md](../missions/014-ai-dos-independent-product-test/report.md)\n- Mission 014 independent brainstorm record",
+            "related_missions": [
+                "014"
             ]
         }
     ]

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invoice Chase — polite payment reminders</title>
+  <meta name="description" content="Generate professional, escalating invoice reminder emails. Copy, send, get paid — without awkward guesswork." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <p class="badge">Portfolio · P002</p>
+      <h1>Invoice Chase</h1>
+      <p class="tagline">Write the email you’d send a client who hasn’t paid — without staring at a blank screen.</p>
+    </header>
+
+    <main class="layout">
+      <section class="panel form-panel" aria-labelledby="form-heading">
+        <h2 id="form-heading">Invoice details</h2>
+        <form id="chase-form" novalidate>
+          <div class="field-row">
+            <label>
+              <span>Your name</span>
+              <input type="text" id="senderName" name="senderName" autocomplete="name" required placeholder="Alex Rivera" />
+            </label>
+            <label>
+              <span>Business name <em>(optional)</em></span>
+              <input type="text" id="businessName" name="businessName" autocomplete="organization" placeholder="Rivera Design Co." />
+            </label>
+          </div>
+
+          <div class="field-row">
+            <label>
+              <span>Client name</span>
+              <input type="text" id="clientName" name="clientName" required placeholder="Jordan Lee" />
+            </label>
+            <label>
+              <span>Invoice number</span>
+              <input type="text" id="invoiceNumber" name="invoiceNumber" required placeholder="INV-1042" />
+            </label>
+          </div>
+
+          <div class="field-row">
+            <label>
+              <span>Amount</span>
+              <input type="number" id="amount" name="amount" min="0" step="0.01" required placeholder="2400" />
+            </label>
+            <label>
+              <span>Currency</span>
+              <select id="currency" name="currency">
+                <option value="USD">USD ($)</option>
+                <option value="GBP">GBP (£)</option>
+                <option value="EUR">EUR (€)</option>
+                <option value="CAD">CAD (C$)</option>
+                <option value="AUD">AUD (A$)</option>
+              </select>
+            </label>
+          </div>
+
+          <label>
+            <span>Original due date</span>
+            <input type="date" id="dueDate" name="dueDate" required />
+          </label>
+
+          <label>
+            <span>Payment link <em>(optional)</em></span>
+            <input type="url" id="paymentLink" name="paymentLink" placeholder="https://pay.stripe.com/..." />
+          </label>
+
+          <fieldset class="tone-fieldset">
+            <legend>Default tone</legend>
+            <div class="tone-options">
+              <label class="tone-chip"><input type="radio" name="tone" value="warm" checked /> Warm</label>
+              <label class="tone-chip"><input type="radio" name="tone" value="neutral" /> Neutral</label>
+              <label class="tone-chip"><input type="radio" name="tone" value="direct" /> Direct</label>
+            </div>
+          </fieldset>
+
+          <div class="actions">
+            <button type="submit" class="btn btn-primary">Generate reminders</button>
+            <button type="button" class="btn btn-ghost" id="clearDraft">Clear saved draft</button>
+          </div>
+          <p class="hint" id="draftHint" hidden>Draft restored from this device.</p>
+        </form>
+      </section>
+
+      <section class="panel output-panel" id="output-panel" hidden aria-labelledby="output-heading">
+        <div class="output-header">
+          <h2 id="output-heading">Your reminder sequence</h2>
+          <p class="output-meta" id="outputMeta"></p>
+        </div>
+        <div id="email-list" class="email-list"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Built with <a href="https://github.com/cubixmeow-commits/ai-dos">AI-DOS</a> · Mission 014 · Runs in your browser · Nothing is uploaded.</p>
+    </footer>
+  </div>
+
+  <template id="email-card-template">
+    <article class="email-card">
+      <header class="email-card-header">
+        <div>
+          <p class="stage-label"></p>
+          <h3 class="subject-line"></h3>
+        </div>
+        <button type="button" class="btn btn-copy">Copy</button>
+      </header>
+      <pre class="email-body"></pre>
+      <p class="copy-feedback" hidden>Copied to clipboard</p>
+    </article>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>

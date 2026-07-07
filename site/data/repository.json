@@ -1,5 +1,5 @@
 {
-    "compiled_at": "2026-07-07T23:26:31+00:00",
+    "compiled_at": "2026-07-07T23:41:11+00:00",
     "subsystem": "repository-intelligence",
     "capabilities": [
         "repository_manifest",
@@ -22,20 +22,25 @@
             "issue_count": 0,
             "error_count": 0,
             "warning_count": 0,
-            "asset_count": 78
+            "asset_count": 90
         },
-        "compiler_version": "1.5.0-mission-012",
+        "compiler_version": "1.6.0-mission-014",
         "asset_registry_version": 2
     },
     "dependency_status": "healthy",
     "context_package_count": 5,
-    "decision_count": 7,
+    "decision_count": 8,
     "execution_engine": {
         "source": "system/execution-engine.yaml",
         "compiled": "site/data/execution-engine.json",
         "status": "minimal-implementation",
         "plan_count": 2,
         "role_count": 8
+    },
+    "portfolio": {
+        "source": "system/portfolio.yaml",
+        "compiled": "site/data/portfolio.json",
+        "project_count": 2
     },
     "lookup": {
         "by_id": {
@@ -302,7 +307,8 @@
                     "tasks-backlog-md",
                     "repository-intelligence-php",
                     "decision-records-php",
-                    "execution-engine-php"
+                    "execution-engine-php",
+                    "portfolio-registry-php"
                 ],
                 "depended_on_by": [
                     "site-data-missions-json",
@@ -313,7 +319,8 @@
                     "site-data-dependency-report-json",
                     "site-data-repository-json",
                     "site-data-decisions-json",
-                    "site-data-execution-engine-json"
+                    "site-data-execution-engine-json",
+                    "site-data-portfolio-json"
                 ],
                 "outputs": [
                     "site-data-organization-json",
@@ -324,6 +331,7 @@
                     "site-data-repository-json",
                     "site-data-decisions-json",
                     "site-data-execution-engine-json",
+                    "site-data-portfolio-json",
                     "site-index-html",
                     "site-styles-css"
                 ],
@@ -354,9 +362,7 @@
                     "site-data-execution-engine-json"
                 ],
                 "generated_by": [],
-                "context_packages": [
-                    "compiler-context"
-                ]
+                "context_packages": []
             },
             "decision-records-php": {
                 "id": "decision-records-php",
@@ -1710,6 +1716,259 @@
                 "context_packages": [
                     "mission-context"
                 ]
+            },
+            "portfolio-registry-yaml": {
+                "id": "portfolio-registry-yaml",
+                "type": "file",
+                "name": "portfolio.yaml",
+                "path": "system/portfolio.yaml",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 014",
+                "depends_on": [],
+                "depended_on_by": [
+                    "portfolio-registry-php"
+                ],
+                "outputs": [
+                    "site-data-portfolio-json"
+                ],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "portfolio-registry-php": {
+                "id": "portfolio-registry-php",
+                "type": "compiler",
+                "name": "PortfolioRegistry.php",
+                "path": "compiler/PortfolioRegistry.php",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 014",
+                "depends_on": [
+                    "portfolio-registry-yaml"
+                ],
+                "depended_on_by": [
+                    "compiler-compile-php"
+                ],
+                "outputs": [
+                    "site-data-portfolio-json"
+                ],
+                "generated_by": [],
+                "context_packages": [
+                    "compiler-context"
+                ]
+            },
+            "site-data-portfolio-json": {
+                "id": "site-data-portfolio-json",
+                "type": "generated-file",
+                "name": "portfolio.json",
+                "path": "site/data/portfolio.json",
+                "public_url": "https://cubixmeow.com/ai-dos/site/data/portfolio.json",
+                "editable": false,
+                "generated": true,
+                "status": "active",
+                "created_by": "Mission 014",
+                "depends_on": [
+                    "compiler-compile-php"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "compiler-compile-php",
+                    "portfolio-registry-yaml",
+                    "portfolio-registry-php"
+                ],
+                "context_packages": [
+                    "website-context"
+                ]
+            },
+            "portfolio-p002-invoice-chase": {
+                "id": "portfolio-p002-invoice-chase",
+                "type": "directory",
+                "name": "products/002-invoice-chase",
+                "path": "products/002-invoice-chase/",
+                "public_url": "https://cubixmeow.com/ai-dos/products/002-invoice-chase/",
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 014",
+                "depends_on": [],
+                "depended_on_by": [
+                    "portfolio-p002-index-html",
+                    "portfolio-p002-readme-md"
+                ],
+                "outputs": [
+                    "portfolio-p002-index-html"
+                ],
+                "generated_by": [
+                    "missions-014-ai-dos-independent-product-test"
+                ],
+                "context_packages": []
+            },
+            "portfolio-p002-index-html": {
+                "id": "portfolio-p002-index-html",
+                "type": "website",
+                "name": "index.html",
+                "path": "products/002-invoice-chase/index.html",
+                "public_url": "https://cubixmeow.com/ai-dos/products/002-invoice-chase/",
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 014",
+                "depends_on": [
+                    "portfolio-p002-invoice-chase"
+                ],
+                "depended_on_by": [
+                    "portfolio-p002-styles-css",
+                    "portfolio-p002-app-js"
+                ],
+                "outputs": [],
+                "generated_by": [
+                    "portfolio-p002-invoice-chase"
+                ],
+                "context_packages": []
+            },
+            "portfolio-p002-styles-css": {
+                "id": "portfolio-p002-styles-css",
+                "type": "file",
+                "name": "styles.css",
+                "path": "products/002-invoice-chase/styles.css",
+                "public_url": "https://cubixmeow.com/ai-dos/products/002-invoice-chase/styles.css",
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 014",
+                "depends_on": [
+                    "portfolio-p002-index-html"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "portfolio-p002-app-js": {
+                "id": "portfolio-p002-app-js",
+                "type": "file",
+                "name": "app.js",
+                "path": "products/002-invoice-chase/app.js",
+                "public_url": "https://cubixmeow.com/ai-dos/products/002-invoice-chase/app.js",
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 014",
+                "depends_on": [
+                    "portfolio-p002-index-html"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "portfolio-p002-readme-md": {
+                "id": "portfolio-p002-readme-md",
+                "type": "file",
+                "name": "README.md",
+                "path": "products/002-invoice-chase/README.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 014",
+                "depends_on": [
+                    "portfolio-p002-invoice-chase"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "decision-d008-invoice-chase": {
+                "id": "decision-d008-invoice-chase",
+                "type": "file",
+                "name": "D008-invoice-chase-p002.md",
+                "path": "decisions/D008-invoice-chase-p002.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 014",
+                "depends_on": [],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context",
+                    "architecture-context",
+                    "compiler-context",
+                    "governance-context"
+                ]
+            },
+            "missions-014-ai-dos-independent-product-test": {
+                "id": "missions-014-ai-dos-independent-product-test",
+                "type": "mission",
+                "name": "Mission folder: missions/014-ai-dos-independent-product-test",
+                "path": "missions/014-ai-dos-independent-product-test/",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 014",
+                "depends_on": [],
+                "depended_on_by": [
+                    "missions-014-ai-dos-independent-product-test-mission-md",
+                    "missions-014-ai-dos-independent-product-test-report-md"
+                ],
+                "outputs": [
+                    "missions-014-ai-dos-independent-product-test-report-md",
+                    "portfolio-p002-invoice-chase"
+                ],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "missions-014-ai-dos-independent-product-test-mission-md": {
+                "id": "missions-014-ai-dos-independent-product-test-mission-md",
+                "type": "file",
+                "name": "mission.md",
+                "path": "missions/014-ai-dos-independent-product-test/mission.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 014",
+                "depends_on": [
+                    "missions-014-ai-dos-independent-product-test"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
+            },
+            "missions-014-ai-dos-independent-product-test-report-md": {
+                "id": "missions-014-ai-dos-independent-product-test-report-md",
+                "type": "file",
+                "name": "report.md",
+                "path": "missions/014-ai-dos-independent-product-test/report.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 014",
+                "depends_on": [
+                    "missions-014-ai-dos-independent-product-test"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-014-ai-dos-independent-product-test"
+                ],
+                "context_packages": [
+                    "mission-context"
+                ]
             }
         },
         "by_path": {
@@ -1976,7 +2235,8 @@
                     "tasks-backlog-md",
                     "repository-intelligence-php",
                     "decision-records-php",
-                    "execution-engine-php"
+                    "execution-engine-php",
+                    "portfolio-registry-php"
                 ],
                 "depended_on_by": [
                     "site-data-missions-json",
@@ -1987,7 +2247,8 @@
                     "site-data-dependency-report-json",
                     "site-data-repository-json",
                     "site-data-decisions-json",
-                    "site-data-execution-engine-json"
+                    "site-data-execution-engine-json",
+                    "site-data-portfolio-json"
                 ],
                 "outputs": [
                     "site-data-organization-json",
@@ -1998,6 +2259,7 @@
                     "site-data-repository-json",
                     "site-data-decisions-json",
                     "site-data-execution-engine-json",
+                    "site-data-portfolio-json",
                     "site-index-html",
                     "site-styles-css"
                 ],
@@ -2028,9 +2290,7 @@
                     "site-data-execution-engine-json"
                 ],
                 "generated_by": [],
-                "context_packages": [
-                    "compiler-context"
-                ]
+                "context_packages": []
             },
             "compiler/DecisionRecords.php": {
                 "id": "decision-records-php",
@@ -3384,6 +3644,259 @@
                 "context_packages": [
                     "mission-context"
                 ]
+            },
+            "system/portfolio.yaml": {
+                "id": "portfolio-registry-yaml",
+                "type": "file",
+                "name": "portfolio.yaml",
+                "path": "system/portfolio.yaml",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 014",
+                "depends_on": [],
+                "depended_on_by": [
+                    "portfolio-registry-php"
+                ],
+                "outputs": [
+                    "site-data-portfolio-json"
+                ],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "compiler/PortfolioRegistry.php": {
+                "id": "portfolio-registry-php",
+                "type": "compiler",
+                "name": "PortfolioRegistry.php",
+                "path": "compiler/PortfolioRegistry.php",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 014",
+                "depends_on": [
+                    "portfolio-registry-yaml"
+                ],
+                "depended_on_by": [
+                    "compiler-compile-php"
+                ],
+                "outputs": [
+                    "site-data-portfolio-json"
+                ],
+                "generated_by": [],
+                "context_packages": [
+                    "compiler-context"
+                ]
+            },
+            "site/data/portfolio.json": {
+                "id": "site-data-portfolio-json",
+                "type": "generated-file",
+                "name": "portfolio.json",
+                "path": "site/data/portfolio.json",
+                "public_url": "https://cubixmeow.com/ai-dos/site/data/portfolio.json",
+                "editable": false,
+                "generated": true,
+                "status": "active",
+                "created_by": "Mission 014",
+                "depends_on": [
+                    "compiler-compile-php"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "compiler-compile-php",
+                    "portfolio-registry-yaml",
+                    "portfolio-registry-php"
+                ],
+                "context_packages": [
+                    "website-context"
+                ]
+            },
+            "products/002-invoice-chase/": {
+                "id": "portfolio-p002-invoice-chase",
+                "type": "directory",
+                "name": "products/002-invoice-chase",
+                "path": "products/002-invoice-chase/",
+                "public_url": "https://cubixmeow.com/ai-dos/products/002-invoice-chase/",
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 014",
+                "depends_on": [],
+                "depended_on_by": [
+                    "portfolio-p002-index-html",
+                    "portfolio-p002-readme-md"
+                ],
+                "outputs": [
+                    "portfolio-p002-index-html"
+                ],
+                "generated_by": [
+                    "missions-014-ai-dos-independent-product-test"
+                ],
+                "context_packages": []
+            },
+            "products/002-invoice-chase/index.html": {
+                "id": "portfolio-p002-index-html",
+                "type": "website",
+                "name": "index.html",
+                "path": "products/002-invoice-chase/index.html",
+                "public_url": "https://cubixmeow.com/ai-dos/products/002-invoice-chase/",
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 014",
+                "depends_on": [
+                    "portfolio-p002-invoice-chase"
+                ],
+                "depended_on_by": [
+                    "portfolio-p002-styles-css",
+                    "portfolio-p002-app-js"
+                ],
+                "outputs": [],
+                "generated_by": [
+                    "portfolio-p002-invoice-chase"
+                ],
+                "context_packages": []
+            },
+            "products/002-invoice-chase/styles.css": {
+                "id": "portfolio-p002-styles-css",
+                "type": "file",
+                "name": "styles.css",
+                "path": "products/002-invoice-chase/styles.css",
+                "public_url": "https://cubixmeow.com/ai-dos/products/002-invoice-chase/styles.css",
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 014",
+                "depends_on": [
+                    "portfolio-p002-index-html"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "products/002-invoice-chase/app.js": {
+                "id": "portfolio-p002-app-js",
+                "type": "file",
+                "name": "app.js",
+                "path": "products/002-invoice-chase/app.js",
+                "public_url": "https://cubixmeow.com/ai-dos/products/002-invoice-chase/app.js",
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 014",
+                "depends_on": [
+                    "portfolio-p002-index-html"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "products/002-invoice-chase/README.md": {
+                "id": "portfolio-p002-readme-md",
+                "type": "file",
+                "name": "README.md",
+                "path": "products/002-invoice-chase/README.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 014",
+                "depends_on": [
+                    "portfolio-p002-invoice-chase"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "decisions/D008-invoice-chase-p002.md": {
+                "id": "decision-d008-invoice-chase",
+                "type": "file",
+                "name": "D008-invoice-chase-p002.md",
+                "path": "decisions/D008-invoice-chase-p002.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 014",
+                "depends_on": [],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context",
+                    "architecture-context",
+                    "compiler-context",
+                    "governance-context"
+                ]
+            },
+            "missions/014-ai-dos-independent-product-test/": {
+                "id": "missions-014-ai-dos-independent-product-test",
+                "type": "mission",
+                "name": "Mission folder: missions/014-ai-dos-independent-product-test",
+                "path": "missions/014-ai-dos-independent-product-test/",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 014",
+                "depends_on": [],
+                "depended_on_by": [
+                    "missions-014-ai-dos-independent-product-test-mission-md",
+                    "missions-014-ai-dos-independent-product-test-report-md"
+                ],
+                "outputs": [
+                    "missions-014-ai-dos-independent-product-test-report-md",
+                    "portfolio-p002-invoice-chase"
+                ],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "missions/014-ai-dos-independent-product-test/mission.md": {
+                "id": "missions-014-ai-dos-independent-product-test-mission-md",
+                "type": "file",
+                "name": "mission.md",
+                "path": "missions/014-ai-dos-independent-product-test/mission.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 014",
+                "depends_on": [
+                    "missions-014-ai-dos-independent-product-test"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
+            },
+            "missions/014-ai-dos-independent-product-test/report.md": {
+                "id": "missions-014-ai-dos-independent-product-test-report-md",
+                "type": "file",
+                "name": "report.md",
+                "path": "missions/014-ai-dos-independent-product-test/report.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 014",
+                "depends_on": [
+                    "missions-014-ai-dos-independent-product-test"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-014-ai-dos-independent-product-test"
+                ],
+                "context_packages": [
+                    "mission-context"
+                ]
             }
         },
         "by_type": {
@@ -3432,7 +3945,14 @@
                 "portfolio-p001-app-js",
                 "portfolio-p001-readme-md",
                 "missions-013-first-external-product-mission-md",
-                "missions-013-first-external-product-report-md"
+                "missions-013-first-external-product-report-md",
+                "portfolio-registry-yaml",
+                "portfolio-p002-styles-css",
+                "portfolio-p002-app-js",
+                "portfolio-p002-readme-md",
+                "decision-d008-invoice-chase",
+                "missions-014-ai-dos-independent-product-test-mission-md",
+                "missions-014-ai-dos-independent-product-test-report-md"
             ],
             "template": [
                 "workflow-templates-missiontemplate-md"
@@ -3441,12 +3961,14 @@
                 "repository-intelligence-php",
                 "compiler-compile-php",
                 "execution-engine-php",
-                "decision-records-php"
+                "decision-records-php",
+                "portfolio-registry-php"
             ],
             "website": [
                 "site-index-html",
                 "site-validation-invoice-tool-html",
-                "portfolio-p001-index-html"
+                "portfolio-p001-index-html",
+                "portfolio-p002-index-html"
             ],
             "generated-file": [
                 "site-styles-css",
@@ -3457,7 +3979,8 @@
                 "site-data-dependency-report-json",
                 "site-data-repository-json",
                 "site-data-decisions-json",
-                "site-data-execution-engine-json"
+                "site-data-execution-engine-json",
+                "site-data-portfolio-json"
             ],
             "github-action": [
                 "github-workflows-compile-site-yml"
@@ -3474,12 +3997,14 @@
                 "missions-009-file-index-foundation",
                 "decisions-directory",
                 "execution-plans-directory",
-                "portfolio-p001-billable-rate-calculator"
+                "portfolio-p001-billable-rate-calculator",
+                "portfolio-p002-invoice-chase"
             ],
             "mission": [
                 "missions-011-architecture-integration",
                 "missions-012-execution-engine-foundation",
-                "missions-013-first-external-product"
+                "missions-013-first-external-product",
+                "missions-014-ai-dos-independent-product-test"
             ]
         }
     },
@@ -3545,7 +4070,8 @@
                 "site-data-dependency-report-json",
                 "site-data-repository-json",
                 "site-data-decisions-json",
-                "site-data-execution-engine-json"
+                "site-data-execution-engine-json",
+                "site-data-portfolio-json"
             ]
         },
         "is_organization_json_editable": {
