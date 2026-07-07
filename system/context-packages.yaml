@@ -5,7 +5,7 @@
 meta:
   version: 1
   subsystem: context-packages
-  maintained_by: Mission 011
+  maintained_by: Mission 012
   last_updated: 2026-07-07
 
 packages:
@@ -19,10 +19,13 @@ packages:
       - company/Standards.md
       - system/gpt-brief.txt
       - system/execution-engine.md
+      - system/execution-engine.yaml
+      - system/worker-roles.yaml
     globs:
       - missions/*/mission.md
       - missions/*/report.md
       - decisions/*.md
+      - system/execution-plans/*.yaml
 
   - id: architecture-context
     name: Architecture Context
@@ -45,14 +48,18 @@ packages:
       - compiler/compile.php
       - compiler/RepositoryIntelligence.php
       - compiler/DecisionRecords.php
+      - compiler/ExecutionEngine.php
       - compiler/README.md
       - company/Standards.md
       - system/assets.yaml
       - system/manifest.yaml
       - system/context-packages.yaml
+      - system/execution-engine.yaml
+      - system/worker-roles.yaml
       - .github/workflows/compile-site.yml
     globs:
       - decisions/*.md
+      - system/execution-plans/*.yaml
 
   - id: website-context
     name: Website Context

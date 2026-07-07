@@ -44,7 +44,7 @@ citing specific files, that a fresh session could pick up from here.
 | `company/` | Identity, Principles, and Standards — who we are, how we work |
 | `missions/` | One folder per mission: brief + report |
 | `decisions/` | Durable architectural decision records |
-| `system/` | Asset Registry, manifest, context packages, execution-engine contract |
+| `system/` | Asset Registry, manifest, context packages, execution engine, plans |
 | `compiler/` | Repository Compiler (PHP) — generates `site/` |
 | `site/` | Mission Control — public entry point (`/site/`) |
 | `tasks/Backlog.md` | The queue of upcoming missions |
@@ -71,8 +71,10 @@ Missions **001–005** established governance, showcase, and merge-based approva
 - **Mission 011** — Architecture audit integration; decision records;
   Execution Engine foundation (documented, not implemented). See
   [missions/011-architecture-integration/report.md](missions/011-architecture-integration/report.md).
+- **Mission 012** — Minimal Execution Engine (plans, roles, context routing). See
+  [missions/012-execution-engine-foundation/report.md](missions/012-execution-engine-foundation/report.md).
 
-**Next:** Mission 012 — Execution Engine Foundation. See
+**Next:** Mission 013 — Build the First External Product Using AI-DOS. See
 [tasks/Backlog.md](tasks/Backlog.md).
 
 **Mission Control:** [site/index.html](site/index.html) — compile with

@@ -1,18 +1,20 @@
 {
-    "compiled_at": "2026-07-07T22:15:14+00:00",
+    "compiled_at": "2026-07-07T23:15:57+00:00",
     "subsystem": "repository-intelligence",
     "capabilities": [
         "repository_manifest",
         "context_packages",
         "dependency_validation",
         "repository_lookup",
-        "decision_records"
+        "decision_records",
+        "execution_engine"
     ],
     "sources": {
         "manifest": "system/manifest.yaml",
         "assets": "system/assets.yaml",
         "context_packages": "system/context-packages.yaml",
-        "decisions": "decisions/*.md"
+        "decisions": "decisions/*.md",
+        "execution_engine": "system/execution-engine.yaml"
     },
     "manifest_summary": {
         "repository_health": {
@@ -20,14 +22,21 @@
             "issue_count": 0,
             "error_count": 0,
             "warning_count": 0,
-            "asset_count": 62
+            "asset_count": 70
         },
-        "compiler_version": "1.4.0-mission-011",
+        "compiler_version": "1.5.0-mission-012",
         "asset_registry_version": 2
     },
     "dependency_status": "healthy",
     "context_package_count": 5,
     "decision_count": 7,
+    "execution_engine": {
+        "source": "system/execution-engine.yaml",
+        "compiled": "site/data/execution-engine.json",
+        "status": "minimal-implementation",
+        "plan_count": 2,
+        "role_count": 8
+    },
     "lookup": {
         "by_id": {
             "readme-md": {
@@ -292,7 +301,8 @@
                     "company-identity-md",
                     "tasks-backlog-md",
                     "repository-intelligence-php",
-                    "decision-records-php"
+                    "decision-records-php",
+                    "execution-engine-php"
                 ],
                 "depended_on_by": [
                     "site-data-missions-json",
@@ -302,7 +312,8 @@
                     "site-data-context-packages-json",
                     "site-data-dependency-report-json",
                     "site-data-repository-json",
-                    "site-data-decisions-json"
+                    "site-data-decisions-json",
+                    "site-data-execution-engine-json"
                 ],
                 "outputs": [
                     "site-data-organization-json",
@@ -312,8 +323,35 @@
                     "site-data-dependency-report-json",
                     "site-data-repository-json",
                     "site-data-decisions-json",
+                    "site-data-execution-engine-json",
                     "site-index-html",
                     "site-styles-css"
+                ],
+                "generated_by": [],
+                "context_packages": [
+                    "compiler-context"
+                ]
+            },
+            "execution-engine-php": {
+                "id": "execution-engine-php",
+                "type": "compiler",
+                "name": "ExecutionEngine.php",
+                "path": "compiler/ExecutionEngine.php",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 012",
+                "depends_on": [
+                    "execution-engine-yaml",
+                    "worker-roles-yaml",
+                    "execution-plans-directory"
+                ],
+                "depended_on_by": [
+                    "compiler-compile-php"
+                ],
+                "outputs": [
+                    "site-data-execution-engine-json"
                 ],
                 "generated_by": [],
                 "context_packages": [
@@ -380,6 +418,7 @@
                     "site-data-dependency-report-json",
                     "site-data-repository-json",
                     "site-data-decisions-json",
+                    "site-data-execution-engine-json",
                     "site-styles-css"
                 ],
                 "depended_on_by": [],
@@ -1255,7 +1294,9 @@
                 "generated": false,
                 "status": "active",
                 "created_by": "Mission 011",
-                "depends_on": [],
+                "depends_on": [
+                    "execution-engine-yaml"
+                ],
                 "depended_on_by": [],
                 "outputs": [],
                 "generated_by": [],
@@ -1263,6 +1304,102 @@
                     "mission-context",
                     "architecture-context"
                 ]
+            },
+            "execution-engine-yaml": {
+                "id": "execution-engine-yaml",
+                "type": "file",
+                "name": "execution-engine.yaml",
+                "path": "system/execution-engine.yaml",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 012",
+                "depends_on": [
+                    "worker-roles-yaml"
+                ],
+                "depended_on_by": [
+                    "execution-engine-php",
+                    "execution-engine-md",
+                    "execution-plans-directory"
+                ],
+                "outputs": [
+                    "site-data-execution-engine-json"
+                ],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context",
+                    "compiler-context"
+                ]
+            },
+            "worker-roles-yaml": {
+                "id": "worker-roles-yaml",
+                "type": "file",
+                "name": "worker-roles.yaml",
+                "path": "system/worker-roles.yaml",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 012",
+                "depends_on": [],
+                "depended_on_by": [
+                    "execution-engine-php",
+                    "execution-engine-yaml"
+                ],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context",
+                    "compiler-context"
+                ]
+            },
+            "execution-plans-directory": {
+                "id": "execution-plans-directory",
+                "type": "directory",
+                "name": "execution-plans/",
+                "path": "system/execution-plans/",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 012",
+                "depends_on": [
+                    "execution-engine-yaml"
+                ],
+                "depended_on_by": [
+                    "execution-engine-php"
+                ],
+                "outputs": [
+                    "site-data-execution-engine-json"
+                ],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "site-data-execution-engine-json": {
+                "id": "site-data-execution-engine-json",
+                "type": "generated-file",
+                "name": "execution-engine.json",
+                "path": "site/data/execution-engine.json",
+                "public_url": "https://cubixmeow.com/ai-dos/site/data/execution-engine.json",
+                "editable": false,
+                "generated": true,
+                "status": "active",
+                "created_by": "Mission 012",
+                "depends_on": [
+                    "compiler-compile-php"
+                ],
+                "depended_on_by": [
+                    "site-index-html"
+                ],
+                "outputs": [],
+                "generated_by": [
+                    "compiler-compile-php",
+                    "execution-engine-php",
+                    "execution-engine-yaml",
+                    "execution-plans-directory"
+                ],
+                "context_packages": []
             },
             "architecture-audit-md": {
                 "id": "architecture-audit-md",
@@ -1340,6 +1477,69 @@
                 "outputs": [],
                 "generated_by": [
                     "missions-011-architecture-integration"
+                ],
+                "context_packages": [
+                    "mission-context"
+                ]
+            },
+            "missions-012-execution-engine-foundation": {
+                "id": "missions-012-execution-engine-foundation",
+                "type": "mission",
+                "name": "Mission folder: missions/012-execution-engine-foundation",
+                "path": "missions/012-execution-engine-foundation/",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 012",
+                "depends_on": [],
+                "depended_on_by": [
+                    "missions-012-execution-engine-foundation-mission-md",
+                    "missions-012-execution-engine-foundation-report-md"
+                ],
+                "outputs": [
+                    "missions-012-execution-engine-foundation-report-md"
+                ],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "missions-012-execution-engine-foundation-mission-md": {
+                "id": "missions-012-execution-engine-foundation-mission-md",
+                "type": "file",
+                "name": "mission.md",
+                "path": "missions/012-execution-engine-foundation/mission.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 012",
+                "depends_on": [
+                    "missions-012-execution-engine-foundation"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
+            },
+            "missions-012-execution-engine-foundation-report-md": {
+                "id": "missions-012-execution-engine-foundation-report-md",
+                "type": "file",
+                "name": "report.md",
+                "path": "missions/012-execution-engine-foundation/report.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 012",
+                "depends_on": [
+                    "missions-012-execution-engine-foundation"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-012-execution-engine-foundation"
                 ],
                 "context_packages": [
                     "mission-context"
@@ -1609,7 +1809,8 @@
                     "company-identity-md",
                     "tasks-backlog-md",
                     "repository-intelligence-php",
-                    "decision-records-php"
+                    "decision-records-php",
+                    "execution-engine-php"
                 ],
                 "depended_on_by": [
                     "site-data-missions-json",
@@ -1619,7 +1820,8 @@
                     "site-data-context-packages-json",
                     "site-data-dependency-report-json",
                     "site-data-repository-json",
-                    "site-data-decisions-json"
+                    "site-data-decisions-json",
+                    "site-data-execution-engine-json"
                 ],
                 "outputs": [
                     "site-data-organization-json",
@@ -1629,8 +1831,35 @@
                     "site-data-dependency-report-json",
                     "site-data-repository-json",
                     "site-data-decisions-json",
+                    "site-data-execution-engine-json",
                     "site-index-html",
                     "site-styles-css"
+                ],
+                "generated_by": [],
+                "context_packages": [
+                    "compiler-context"
+                ]
+            },
+            "compiler/ExecutionEngine.php": {
+                "id": "execution-engine-php",
+                "type": "compiler",
+                "name": "ExecutionEngine.php",
+                "path": "compiler/ExecutionEngine.php",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 012",
+                "depends_on": [
+                    "execution-engine-yaml",
+                    "worker-roles-yaml",
+                    "execution-plans-directory"
+                ],
+                "depended_on_by": [
+                    "compiler-compile-php"
+                ],
+                "outputs": [
+                    "site-data-execution-engine-json"
                 ],
                 "generated_by": [],
                 "context_packages": [
@@ -1697,6 +1926,7 @@
                     "site-data-dependency-report-json",
                     "site-data-repository-json",
                     "site-data-decisions-json",
+                    "site-data-execution-engine-json",
                     "site-styles-css"
                 ],
                 "depended_on_by": [],
@@ -2572,7 +2802,9 @@
                 "generated": false,
                 "status": "active",
                 "created_by": "Mission 011",
-                "depends_on": [],
+                "depends_on": [
+                    "execution-engine-yaml"
+                ],
                 "depended_on_by": [],
                 "outputs": [],
                 "generated_by": [],
@@ -2580,6 +2812,102 @@
                     "mission-context",
                     "architecture-context"
                 ]
+            },
+            "system/execution-engine.yaml": {
+                "id": "execution-engine-yaml",
+                "type": "file",
+                "name": "execution-engine.yaml",
+                "path": "system/execution-engine.yaml",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 012",
+                "depends_on": [
+                    "worker-roles-yaml"
+                ],
+                "depended_on_by": [
+                    "execution-engine-php",
+                    "execution-engine-md",
+                    "execution-plans-directory"
+                ],
+                "outputs": [
+                    "site-data-execution-engine-json"
+                ],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context",
+                    "compiler-context"
+                ]
+            },
+            "system/worker-roles.yaml": {
+                "id": "worker-roles-yaml",
+                "type": "file",
+                "name": "worker-roles.yaml",
+                "path": "system/worker-roles.yaml",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 012",
+                "depends_on": [],
+                "depended_on_by": [
+                    "execution-engine-php",
+                    "execution-engine-yaml"
+                ],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context",
+                    "compiler-context"
+                ]
+            },
+            "system/execution-plans/": {
+                "id": "execution-plans-directory",
+                "type": "directory",
+                "name": "execution-plans/",
+                "path": "system/execution-plans/",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 012",
+                "depends_on": [
+                    "execution-engine-yaml"
+                ],
+                "depended_on_by": [
+                    "execution-engine-php"
+                ],
+                "outputs": [
+                    "site-data-execution-engine-json"
+                ],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "site/data/execution-engine.json": {
+                "id": "site-data-execution-engine-json",
+                "type": "generated-file",
+                "name": "execution-engine.json",
+                "path": "site/data/execution-engine.json",
+                "public_url": "https://cubixmeow.com/ai-dos/site/data/execution-engine.json",
+                "editable": false,
+                "generated": true,
+                "status": "active",
+                "created_by": "Mission 012",
+                "depends_on": [
+                    "compiler-compile-php"
+                ],
+                "depended_on_by": [
+                    "site-index-html"
+                ],
+                "outputs": [],
+                "generated_by": [
+                    "compiler-compile-php",
+                    "execution-engine-php",
+                    "execution-engine-yaml",
+                    "execution-plans-directory"
+                ],
+                "context_packages": []
             },
             "architecture-audit.md": {
                 "id": "architecture-audit-md",
@@ -2661,6 +2989,69 @@
                 "context_packages": [
                     "mission-context"
                 ]
+            },
+            "missions/012-execution-engine-foundation/": {
+                "id": "missions-012-execution-engine-foundation",
+                "type": "mission",
+                "name": "Mission folder: missions/012-execution-engine-foundation",
+                "path": "missions/012-execution-engine-foundation/",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 012",
+                "depends_on": [],
+                "depended_on_by": [
+                    "missions-012-execution-engine-foundation-mission-md",
+                    "missions-012-execution-engine-foundation-report-md"
+                ],
+                "outputs": [
+                    "missions-012-execution-engine-foundation-report-md"
+                ],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "missions/012-execution-engine-foundation/mission.md": {
+                "id": "missions-012-execution-engine-foundation-mission-md",
+                "type": "file",
+                "name": "mission.md",
+                "path": "missions/012-execution-engine-foundation/mission.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 012",
+                "depends_on": [
+                    "missions-012-execution-engine-foundation"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
+            },
+            "missions/012-execution-engine-foundation/report.md": {
+                "id": "missions-012-execution-engine-foundation-report-md",
+                "type": "file",
+                "name": "report.md",
+                "path": "missions/012-execution-engine-foundation/report.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 012",
+                "depends_on": [
+                    "missions-012-execution-engine-foundation"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-012-execution-engine-foundation"
+                ],
+                "context_packages": [
+                    "mission-context"
+                ]
             }
         },
         "by_type": {
@@ -2698,9 +3089,13 @@
                 "missions-009-file-index-foundation-mission-md",
                 "missions-009-file-index-foundation-report-md",
                 "execution-engine-md",
+                "execution-engine-yaml",
+                "worker-roles-yaml",
                 "architecture-audit-md",
                 "missions-011-architecture-integration-mission-md",
-                "missions-011-architecture-integration-report-md"
+                "missions-011-architecture-integration-report-md",
+                "missions-012-execution-engine-foundation-mission-md",
+                "missions-012-execution-engine-foundation-report-md"
             ],
             "template": [
                 "workflow-templates-missiontemplate-md"
@@ -2708,6 +3103,7 @@
             "compiler": [
                 "repository-intelligence-php",
                 "compiler-compile-php",
+                "execution-engine-php",
                 "decision-records-php"
             ],
             "website": [
@@ -2722,7 +3118,8 @@
                 "site-data-context-packages-json",
                 "site-data-dependency-report-json",
                 "site-data-repository-json",
-                "site-data-decisions-json"
+                "site-data-decisions-json",
+                "site-data-execution-engine-json"
             ],
             "github-action": [
                 "github-workflows-compile-site-yml"
@@ -2737,10 +3134,12 @@
                 "missions-007-design-v2",
                 "missions-008-repository-compiler",
                 "missions-009-file-index-foundation",
-                "decisions-directory"
+                "decisions-directory",
+                "execution-plans-directory"
             ],
             "mission": [
-                "missions-011-architecture-integration"
+                "missions-011-architecture-integration",
+                "missions-012-execution-engine-foundation"
             ]
         }
     },
@@ -2752,6 +3151,30 @@
         "is_editable": "lookup.*.editable — safe_to_edit mirror",
         "public_url": "lookup.*.public_url — null when not public",
         "context_package_contains": "lookup.*.context_packages — package ids from context-packages.yaml"
+    },
+    "execution_queries": {
+        "how_does_ai_dos_execute_work": {
+            "answer": "Execution Engine produces plans in system/execution-plans/. Operator approves; workers execute manually.",
+            "source": "system/execution-engine.yaml#execution_flow"
+        },
+        "what_worker_should_build_ui": {
+            "answer": "Frontend Builder — practical tool: cursor (preferred)",
+            "source": "system/worker-roles.yaml"
+        },
+        "which_context_package_for_ui": {
+            "answer": [
+                "website-context"
+            ],
+            "source": "system/execution-engine.yaml#context_routing"
+        },
+        "what_execution_plans_exist": {
+            "answer": [
+                "example-inventory-saas",
+                "mission-013-first-external-product"
+            ],
+            "source": "system/execution-plans/"
+        },
+        "context_package_count": 5
     },
     "query_examples": {
         "where_is_the_compiler": {
@@ -2781,7 +3204,8 @@
                 "site-data-context-packages-json",
                 "site-data-dependency-report-json",
                 "site-data-repository-json",
-                "site-data-decisions-json"
+                "site-data-decisions-json",
+                "site-data-execution-engine-json"
             ]
         },
         "is_organization_json_editable": {

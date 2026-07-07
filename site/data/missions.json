@@ -182,5 +182,21 @@
         "next_mission": "Mission 012: Execution Engine Foundation",
         "has_report": true,
         "artifacts": []
+    },
+    {
+        "id": "012",
+        "slug": "execution-engine-foundation",
+        "title": "Execution Engine Foundation",
+        "status": "Complete — pending operator merge approval",
+        "status_category": "complete",
+        "path": "missions/012-execution-engine-foundation",
+        "summary": "Turn one operator request into a structured execution plan for Cursor and Claude Code — without autonomous execution, APIs, or fabricated worker history.",
+        "approval_question": "Approve Mission 013: Build the First External Product Using AI-DOS? Y/N",
+        "what_ai_dos_learned": null,
+        "executed_by": "Cursor Cloud Agent",
+        "confidence": null,
+        "next_mission": "Mission 013: Build the First External Product Using AI-DOS",
+        "has_report": true,
+        "artifacts": []
     }
 ]

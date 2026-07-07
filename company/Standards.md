@@ -217,3 +217,27 @@ layer — see `system/execution-engine.md`.
 - **Rule:** Command Center must never imply orchestration capabilities that do
   not exist. Execution is shown as "Planned / Foundation only" until Mission
   012+ delivers real data.
+
+## §10 Execution Engine
+
+Mission 012 implemented the minimal **Execution Engine** — see
+`system/execution-engine.yaml` and `system/execution-engine.md`.
+
+### §10.1 Capabilities
+
+1. **Mission intake** — structure operator requests (no execution).
+2. **Work decomposition** — work units in `system/execution-plans/*.yaml`.
+3. **Worker roles** — `system/worker-roles.yaml` (capabilities, not brands).
+4. **Context routing** — map work unit types to context packages.
+5. **Execution plans** — canonical under `system/execution-plans/`; compiled to
+   `site/data/execution-engine.json`.
+6. **Operator approval** — plans are advisory; merge-to-main remains approval.
+
+### §10.2 Rules
+
+- Never fabricate worker history, multi-agent execution, or autonomous runs.
+- Cursor and Claude Code are **practical tool mappings** for roles — not stored
+  as the source of truth for capabilities.
+- Command Center Execution section loads from `execution-engine.json` only.
+- Mission 013+ uses execution plans for **external product work** — not more
+  AI-DOS infrastructure unless blocking.
