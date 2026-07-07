@@ -1,12 +1,12 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Repository Intelligence Layer (Mission 010)
  *
  * Manifest compilation, context packages, dependency validation, and lookup.
  * Repository artifacts remain canonical; JSON outputs are disposable views.
  */
-
-declare(strict_types=1);
 
 final class RepositoryIntelligence
 {
