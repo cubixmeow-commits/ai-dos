@@ -1,5 +1,5 @@
 {
-    "compiled_at": "2026-07-08T00:25:37+00:00",
+    "compiled_at": "2026-07-08T00:35:51+00:00",
     "subsystem": "repository-intelligence",
     "capabilities": [
         "repository_manifest",
@@ -22,7 +22,7 @@
             "issue_count": 0,
             "error_count": 0,
             "warning_count": 0,
-            "asset_count": 100
+            "asset_count": 108
         },
         "compiler_version": "1.6.0-mission-014",
         "asset_registry_version": 2
@@ -2176,6 +2176,179 @@
                 "context_packages": [
                     "mission-context"
                 ]
+            },
+            "missions-016-portfolio-intelligence": {
+                "id": "missions-016-portfolio-intelligence",
+                "type": "mission",
+                "name": "Mission folder: missions/016-portfolio-intelligence",
+                "path": "missions/016-portfolio-intelligence/",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 016",
+                "depends_on": [],
+                "depended_on_by": [
+                    "missions-016-portfolio-intelligence-mission-md",
+                    "missions-016-portfolio-intelligence-executive-summary-md",
+                    "missions-016-portfolio-intelligence-portfolio-analysis-md",
+                    "missions-016-portfolio-intelligence-strategy-md",
+                    "missions-016-portfolio-intelligence-product-opportunities-md",
+                    "missions-016-portfolio-intelligence-roadmap-md",
+                    "missions-016-portfolio-intelligence-report-md"
+                ],
+                "outputs": [
+                    "missions-016-portfolio-intelligence-report-md",
+                    "missions-016-portfolio-intelligence-executive-summary-md",
+                    "missions-016-portfolio-intelligence-portfolio-analysis-md",
+                    "missions-016-portfolio-intelligence-strategy-md",
+                    "missions-016-portfolio-intelligence-product-opportunities-md",
+                    "missions-016-portfolio-intelligence-roadmap-md"
+                ],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "missions-016-portfolio-intelligence-mission-md": {
+                "id": "missions-016-portfolio-intelligence-mission-md",
+                "type": "file",
+                "name": "mission.md",
+                "path": "missions/016-portfolio-intelligence/mission.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 016",
+                "depends_on": [
+                    "missions-016-portfolio-intelligence"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
+            },
+            "missions-016-portfolio-intelligence-executive-summary-md": {
+                "id": "missions-016-portfolio-intelligence-executive-summary-md",
+                "type": "file",
+                "name": "executive-summary.md",
+                "path": "missions/016-portfolio-intelligence/executive-summary.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 016",
+                "depends_on": [
+                    "missions-016-portfolio-intelligence"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-016-portfolio-intelligence"
+                ],
+                "context_packages": []
+            },
+            "missions-016-portfolio-intelligence-portfolio-analysis-md": {
+                "id": "missions-016-portfolio-intelligence-portfolio-analysis-md",
+                "type": "file",
+                "name": "portfolio-analysis.md",
+                "path": "missions/016-portfolio-intelligence/portfolio-analysis.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 016",
+                "depends_on": [
+                    "missions-016-portfolio-intelligence"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-016-portfolio-intelligence"
+                ],
+                "context_packages": []
+            },
+            "missions-016-portfolio-intelligence-strategy-md": {
+                "id": "missions-016-portfolio-intelligence-strategy-md",
+                "type": "file",
+                "name": "strategy.md",
+                "path": "missions/016-portfolio-intelligence/strategy.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 016",
+                "depends_on": [
+                    "missions-016-portfolio-intelligence"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-016-portfolio-intelligence"
+                ],
+                "context_packages": []
+            },
+            "missions-016-portfolio-intelligence-product-opportunities-md": {
+                "id": "missions-016-portfolio-intelligence-product-opportunities-md",
+                "type": "file",
+                "name": "product-opportunities.md",
+                "path": "missions/016-portfolio-intelligence/product-opportunities.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 016",
+                "depends_on": [
+                    "missions-016-portfolio-intelligence"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-016-portfolio-intelligence"
+                ],
+                "context_packages": []
+            },
+            "missions-016-portfolio-intelligence-roadmap-md": {
+                "id": "missions-016-portfolio-intelligence-roadmap-md",
+                "type": "file",
+                "name": "roadmap.md",
+                "path": "missions/016-portfolio-intelligence/roadmap.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 016",
+                "depends_on": [
+                    "missions-016-portfolio-intelligence"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-016-portfolio-intelligence"
+                ],
+                "context_packages": []
+            },
+            "missions-016-portfolio-intelligence-report-md": {
+                "id": "missions-016-portfolio-intelligence-report-md",
+                "type": "file",
+                "name": "report.md",
+                "path": "missions/016-portfolio-intelligence/report.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 016",
+                "depends_on": [
+                    "missions-016-portfolio-intelligence"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-016-portfolio-intelligence"
+                ],
+                "context_packages": [
+                    "mission-context"
+                ]
             }
         },
         "by_path": {
@@ -4311,6 +4484,179 @@
                 "context_packages": [
                     "mission-context"
                 ]
+            },
+            "missions/016-portfolio-intelligence/": {
+                "id": "missions-016-portfolio-intelligence",
+                "type": "mission",
+                "name": "Mission folder: missions/016-portfolio-intelligence",
+                "path": "missions/016-portfolio-intelligence/",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 016",
+                "depends_on": [],
+                "depended_on_by": [
+                    "missions-016-portfolio-intelligence-mission-md",
+                    "missions-016-portfolio-intelligence-executive-summary-md",
+                    "missions-016-portfolio-intelligence-portfolio-analysis-md",
+                    "missions-016-portfolio-intelligence-strategy-md",
+                    "missions-016-portfolio-intelligence-product-opportunities-md",
+                    "missions-016-portfolio-intelligence-roadmap-md",
+                    "missions-016-portfolio-intelligence-report-md"
+                ],
+                "outputs": [
+                    "missions-016-portfolio-intelligence-report-md",
+                    "missions-016-portfolio-intelligence-executive-summary-md",
+                    "missions-016-portfolio-intelligence-portfolio-analysis-md",
+                    "missions-016-portfolio-intelligence-strategy-md",
+                    "missions-016-portfolio-intelligence-product-opportunities-md",
+                    "missions-016-portfolio-intelligence-roadmap-md"
+                ],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "missions/016-portfolio-intelligence/mission.md": {
+                "id": "missions-016-portfolio-intelligence-mission-md",
+                "type": "file",
+                "name": "mission.md",
+                "path": "missions/016-portfolio-intelligence/mission.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 016",
+                "depends_on": [
+                    "missions-016-portfolio-intelligence"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
+            },
+            "missions/016-portfolio-intelligence/executive-summary.md": {
+                "id": "missions-016-portfolio-intelligence-executive-summary-md",
+                "type": "file",
+                "name": "executive-summary.md",
+                "path": "missions/016-portfolio-intelligence/executive-summary.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 016",
+                "depends_on": [
+                    "missions-016-portfolio-intelligence"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-016-portfolio-intelligence"
+                ],
+                "context_packages": []
+            },
+            "missions/016-portfolio-intelligence/portfolio-analysis.md": {
+                "id": "missions-016-portfolio-intelligence-portfolio-analysis-md",
+                "type": "file",
+                "name": "portfolio-analysis.md",
+                "path": "missions/016-portfolio-intelligence/portfolio-analysis.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 016",
+                "depends_on": [
+                    "missions-016-portfolio-intelligence"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-016-portfolio-intelligence"
+                ],
+                "context_packages": []
+            },
+            "missions/016-portfolio-intelligence/strategy.md": {
+                "id": "missions-016-portfolio-intelligence-strategy-md",
+                "type": "file",
+                "name": "strategy.md",
+                "path": "missions/016-portfolio-intelligence/strategy.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 016",
+                "depends_on": [
+                    "missions-016-portfolio-intelligence"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-016-portfolio-intelligence"
+                ],
+                "context_packages": []
+            },
+            "missions/016-portfolio-intelligence/product-opportunities.md": {
+                "id": "missions-016-portfolio-intelligence-product-opportunities-md",
+                "type": "file",
+                "name": "product-opportunities.md",
+                "path": "missions/016-portfolio-intelligence/product-opportunities.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 016",
+                "depends_on": [
+                    "missions-016-portfolio-intelligence"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-016-portfolio-intelligence"
+                ],
+                "context_packages": []
+            },
+            "missions/016-portfolio-intelligence/roadmap.md": {
+                "id": "missions-016-portfolio-intelligence-roadmap-md",
+                "type": "file",
+                "name": "roadmap.md",
+                "path": "missions/016-portfolio-intelligence/roadmap.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 016",
+                "depends_on": [
+                    "missions-016-portfolio-intelligence"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-016-portfolio-intelligence"
+                ],
+                "context_packages": []
+            },
+            "missions/016-portfolio-intelligence/report.md": {
+                "id": "missions-016-portfolio-intelligence-report-md",
+                "type": "file",
+                "name": "report.md",
+                "path": "missions/016-portfolio-intelligence/report.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 016",
+                "depends_on": [
+                    "missions-016-portfolio-intelligence"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-016-portfolio-intelligence"
+                ],
+                "context_packages": [
+                    "mission-context"
+                ]
             }
         },
         "by_type": {
@@ -4373,7 +4719,14 @@
                 "decision-d009-payment-terms-studio",
                 "missions-015-organizational-product-strategy-mission-md",
                 "missions-015-organizational-product-strategy-product-recommendation-report-md",
-                "missions-015-organizational-product-strategy-report-md"
+                "missions-015-organizational-product-strategy-report-md",
+                "missions-016-portfolio-intelligence-mission-md",
+                "missions-016-portfolio-intelligence-executive-summary-md",
+                "missions-016-portfolio-intelligence-portfolio-analysis-md",
+                "missions-016-portfolio-intelligence-strategy-md",
+                "missions-016-portfolio-intelligence-product-opportunities-md",
+                "missions-016-portfolio-intelligence-roadmap-md",
+                "missions-016-portfolio-intelligence-report-md"
             ],
             "template": [
                 "workflow-templates-missiontemplate-md"
@@ -4428,7 +4781,8 @@
                 "missions-012-execution-engine-foundation",
                 "missions-013-first-external-product",
                 "missions-014-ai-dos-independent-product-test",
-                "missions-015-organizational-product-strategy"
+                "missions-015-organizational-product-strategy",
+                "missions-016-portfolio-intelligence"
             ]
         }
     },

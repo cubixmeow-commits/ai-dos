@@ -79,8 +79,10 @@ Missions **001–005** established governance, showcase, and merge-based approva
   [missions/014-ai-dos-independent-product-test/report.md](missions/014-ai-dos-independent-product-test/report.md).
 - **Mission 015** — Payment Terms Studio (P003), selected from organizational memory before code. See
   [missions/015-organizational-product-strategy/report.md](missions/015-organizational-product-strategy/report.md).
+- **Mission 016** — Portfolio Intelligence; strategic direction: **Get Paid Toolkit** suite. See
+  [missions/016-portfolio-intelligence/report.md](missions/016-portfolio-intelligence/report.md).
 
-**Next:** Mission 016 — Portfolio Growth From Learned Strategy. See [tasks/Backlog.md](tasks/Backlog.md).
+**Next:** Mission 017 — Execute the Strategic Product Roadmap. See [tasks/Backlog.md](tasks/Backlog.md).
 
 **Portfolio:** [products/001-billable-rate-calculator/](products/001-billable-rate-calculator/) · [products/002-invoice-chase/](products/002-invoice-chase/)
 
