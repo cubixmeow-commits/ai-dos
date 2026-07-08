@@ -1,21 +1,22 @@
 AI-DOS MOBILE GPT BRIEF (select all, copy, paste into GPT)
 
-STATUS: Mission 014 complete. AI-DOS independently built Invoice Chase (P002).
+STATUS: Mission 015 complete. Organizational learning selected Payment Terms Studio (P003).
 
 PRODUCTS:
 P001 Billable Rate Calculator — /products/001-billable-rate-calculator/
 P002 Invoice Chase — /products/002-invoice-chase/
+P003 Payment Terms Studio — /products/003-payment-terms-studio/
 
-P002 URL: https://cubixmeow.com/ai-dos/products/002-invoice-chase/
+P003 URL: https://cubixmeow.com/ai-dos/products/003-payment-terms-studio/
 
 AI-DOS: https://cubixmeow.com/ai-dos/site/
 
-PORTFOLIO JSON: site/data/portfolio.json
+PORTFOLIO JSON: site/data/portfolio.json (3 projects)
 
-MISSION: missions/014-ai-dos-independent-product-test/
+MISSION: missions/015-organizational-product-strategy/
 
-NEXT: Mission 015 Continue Product Portfolio
+NEXT: Mission 016 Portfolio Growth From Learned Strategy
 
-APPROVE: Mission 015 Continue Product Portfolio? Y/N
+APPROVE: Mission 016 Portfolio Growth From Learned Strategy? Y/N
 
-WHAT P002 DOES: generates 5 escalating late-invoice reminder emails — copy and send yourself
+WHAT P003 DOES: generates payment terms — contract clause, invoice footer, client email — copy and use yourself

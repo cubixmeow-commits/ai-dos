@@ -230,5 +230,21 @@
         "next_mission": "Mission 015: Continue Product Portfolio",
         "has_report": true,
         "artifacts": []
+    },
+    {
+        "id": "015",
+        "slug": "organizational-product-strategy",
+        "title": "Organizational Learning & Product Strategy",
+        "status": "Complete — awaiting operator review",
+        "status_category": "complete",
+        "path": "missions/015-organizational-product-strategy",
+        "summary": "Test whether AI-DOS **organizational memory** produces better product decisions than fresh brainstorms. Act as Product Strategy team — operator reviews and merges only.",
+        "approval_question": null,
+        "what_ai_dos_learned": null,
+        "executed_by": null,
+        "confidence": null,
+        "next_mission": null,
+        "has_report": true,
+        "artifacts": []
     }
 ]

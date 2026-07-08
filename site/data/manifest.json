@@ -1,5 +1,5 @@
 {
-    "compiled_at": "2026-07-07T23:41:11+00:00",
+    "compiled_at": "2026-07-08T00:25:37+00:00",
     "source": "system/manifest.yaml",
     "subsystem": "repository-manifest",
     "ai_dos_version": "V2-in-progress",
@@ -77,8 +77,8 @@
     },
     "current_mission": null,
     "next_mission": {
-        "id": "015",
-        "title": "Continue Product Portfolio",
+        "id": "016",
+        "title": "Portfolio Growth From Learned Strategy",
         "source": "tasks/Backlog.md"
     },
     "completed_missions": [
@@ -146,6 +146,11 @@
             "id": "014",
             "title": "AI-DOS Independent Product Test",
             "path": "missions/014-ai-dos-independent-product-test"
+        },
+        {
+            "id": "015",
+            "title": "Organizational Learning & Product Strategy",
+            "path": "missions/015-organizational-product-strategy"
         }
     ],
     "active_missions": [],
@@ -164,62 +169,62 @@
         "issue_count": 0,
         "error_count": 0,
         "warning_count": 0,
-        "asset_count": 90
+        "asset_count": 100
     },
     "generated_artifact_versions": {
         "missions.json": {
             "path": "site/data/missions.json",
-            "modified_at": "2026-07-07T23:41:08+00:00",
+            "modified_at": "2026-07-08T00:22:00+00:00",
             "bytes": 17460
         },
         "organization.json": {
             "path": "site/data/organization.json",
-            "modified_at": "2026-07-07T23:41:08+00:00",
+            "modified_at": "2026-07-08T00:24:02+00:00",
             "bytes": 1920
         },
         "manifest.json": {
             "path": "site/data/manifest.json",
-            "modified_at": "2026-07-07T23:41:08+00:00",
-            "bytes": 7594
+            "modified_at": "2026-07-08T00:24:02+00:00",
+            "bytes": 7634
         },
         "context-packages.json": {
             "path": "site/data/context-packages.json",
-            "modified_at": "2026-07-07T23:41:08+00:00",
-            "bytes": 7260
+            "modified_at": "2026-07-08T00:24:02+00:00",
+            "bytes": 7304
         },
         "dependency-report.json": {
             "path": "site/data/dependency-report.json",
-            "modified_at": "2026-07-07T23:41:08+00:00",
+            "modified_at": "2026-07-08T00:24:02+00:00",
             "bytes": 257
         },
         "repository.json": {
             "path": "site/data/repository.json",
-            "modified_at": "2026-07-07T23:41:08+00:00",
-            "bytes": 159293
+            "modified_at": "2026-07-08T00:24:02+00:00",
+            "bytes": 159615
         },
         "decisions.json": {
             "path": "site/data/decisions.json",
-            "modified_at": "2026-07-07T23:41:08+00:00",
+            "modified_at": "2026-07-08T00:24:02+00:00",
             "bytes": 12863
         },
         "execution-engine.json": {
             "path": "site/data/execution-engine.json",
-            "modified_at": "2026-07-07T23:41:08+00:00",
+            "modified_at": "2026-07-08T00:24:02+00:00",
             "bytes": 36857
         },
         "portfolio.json": {
             "path": "site/data/portfolio.json",
-            "modified_at": "2026-07-07T23:41:08+00:00",
+            "modified_at": "2026-07-08T00:24:02+00:00",
             "bytes": 1097
         },
         "index.html": {
             "path": "site/index.html",
-            "modified_at": "2026-07-07T23:41:08+00:00",
+            "modified_at": "2026-07-08T00:24:02+00:00",
             "bytes": 21699
         },
         "styles.css": {
             "path": "site/styles.css",
-            "modified_at": "2026-07-07T23:41:08+00:00",
+            "modified_at": "2026-07-08T00:22:00+00:00",
             "bytes": 8288
         }
     }

@@ -7,6 +7,8 @@
 Freelancers lose time and relationships rewriting the same late-invoice emails.
 Invoice Chase generates a full escalating reminder sequence — copy, paste, send.
 
+Part of the **Get Paid Toolkit** — set terms first with [Payment Terms Studio](../003-payment-terms-studio/); know your rate with [Billable Rate Calculator](../001-billable-rate-calculator/).
+
 ## Features
 
 - Five-stage email sequence (pre-due → 30 days overdue)

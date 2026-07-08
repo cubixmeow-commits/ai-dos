@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Terms Studio — contract & invoice wording</title>
+  <meta name="description" content="Generate payment terms for freelance contracts, invoice footers, and client emails. Net 15/30/45, deposits, late fees." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <p class="badge">Get Paid Toolkit · P003</p>
+      <h1>Payment Terms Studio</h1>
+      <p class="lede">Set clear payment expectations before the invoice goes out — contract clause, invoice footer, and client email in one pass.</p>
+      <nav class="suite-links" aria-label="Related tools">
+        <a href="../001-billable-rate-calculator/">Rate Calculator</a>
+        <a href="../002-invoice-chase/">Invoice Chase</a>
+      </nav>
+    </header>
+
+    <main class="layout">
+      <section class="panel">
+        <h2>Your terms</h2>
+        <form id="terms-form" novalidate>
+          <label>
+            <span>Your name / business</span>
+            <input type="text" id="businessName" required placeholder="Rivera Design Co." />
+          </label>
+
+          <label>
+            <span>Client name</span>
+            <input type="text" id="clientName" required placeholder="Acme Corp" />
+          </label>
+
+          <div class="field-row">
+            <label>
+              <span>Payment due</span>
+              <select id="netDays" required>
+                <option value="15">Net 15</option>
+                <option value="30" selected>Net 30</option>
+                <option value="45">Net 45</option>
+                <option value="0">Due on receipt</option>
+                <option value="custom">Custom days</option>
+              </select>
+            </label>
+            <label id="customDaysWrap" hidden>
+              <span>Custom days</span>
+              <input type="number" id="customDays" min="1" max="120" value="21" />
+            </label>
+          </div>
+
+          <div class="field-row">
+            <label>
+              <span>Deposit upfront (%)</span>
+              <input type="number" id="depositPct" min="0" max="100" step="5" value="50" />
+            </label>
+            <label>
+              <span>Late fee (% / month)</span>
+              <input type="number" id="lateFeePct" min="0" max="10" step="0.5" value="1.5" />
+            </label>
+          </div>
+
+          <label>
+            <span>Accepted payment methods</span>
+            <input type="text" id="paymentMethods" value="bank transfer, card via payment link" />
+          </label>
+
+          <fieldset class="tone-fieldset">
+            <legend>Tone</legend>
+            <div class="tone-options">
+              <label class="tone-chip"><input type="radio" name="tone" value="friendly" checked /> Friendly</label>
+              <label class="tone-chip"><input type="radio" name="tone" value="standard" /> Standard</label>
+              <label class="tone-chip"><input type="radio" name="tone" value="firm" /> Firm</label>
+            </div>
+          </fieldset>
+
+          <button type="submit" class="btn-primary">Generate terms</button>
+        </form>
+        <p class="disclaimer">Templates only — not legal advice. Have important contracts reviewed locally.</p>
+      </section>
+
+      <section class="outputs" id="outputs" hidden>
+        <article class="output-card" data-block="clause">
+          <header>
+            <h3>Contract clause</h3>
+            <button type="button" class="btn-copy" data-target="clause">Copy</button>
+          </header>
+          <pre id="clause"></pre>
+          <p class="copied" hidden>Copied</p>
+        </article>
+
+        <article class="output-card" data-block="footer">
+          <header>
+            <h3>Invoice footer</h3>
+            <button type="button" class="btn-copy" data-target="footer">Copy</button>
+          </header>
+          <pre id="footer"></pre>
+          <p class="copied" hidden>Copied</p>
+        </article>
+
+        <article class="output-card" data-block="email">
+          <header>
+            <h3>Client email</h3>
+            <button type="button" class="btn-copy" data-target="email">Copy</button>
+          </header>
+          <pre id="email"></pre>
+          <p class="copied" hidden>Copied</p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Part of the Get Paid Toolkit · Built with <a href="https://github.com/cubixmeow-commits/ai-dos">AI-DOS</a> Mission 015</p>
+    </footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

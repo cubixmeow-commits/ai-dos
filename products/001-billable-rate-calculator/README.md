@@ -2,6 +2,8 @@
 
 **Portfolio Project 001** — first external product built under AI-DOS Mission 013.
 
+Part of the **Get Paid Toolkit** — see also [Payment Terms Studio](../003-payment-terms-studio/) and [Invoice Chase](../002-invoice-chase/).
+
 ## What it does
 
 Calculates the minimum freelance hourly rate needed to reach a take-home income

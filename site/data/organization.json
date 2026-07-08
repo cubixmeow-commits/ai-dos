@@ -1,14 +1,14 @@
 {
-    "compiled_at": "2026-07-07T23:41:11+00:00",
+    "compiled_at": "2026-07-08T00:25:37+00:00",
     "compiler": "Repository Compiler (PHP)",
     "compiler_version": "1.6.0-mission-014",
     "current_mission": null,
     "next_mission": {
-        "id": "015",
-        "title": "Continue Product Portfolio",
+        "id": "016",
+        "title": "Portfolio Growth From Learned Strategy",
         "source": "tasks/Backlog.md"
     },
-    "completed_mission_count": 13,
+    "completed_mission_count": 14,
     "paused_missions": [
         {
             "id": "006",
@@ -33,7 +33,7 @@
     "asset_registry": {
         "source": "system/assets.yaml",
         "version": 2,
-        "asset_count": 90,
+        "asset_count": 100,
         "full_lookup": "site/data/repository.json"
     }
 }
