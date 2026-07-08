@@ -7,8 +7,8 @@ meta:
   registry: asset-registry
   deployment_root: https://cubixmeow.com/ai-dos/
   canonical_source: system/assets.yaml
-  maintained_by: Mission 014
-  last_updated: '2026-07-07'
+  maintained_by: Mission 015
+  last_updated: '2026-07-08'
   schema:
     asset_types:
     - file
@@ -1923,7 +1923,7 @@ assets: &id001
   public:
     url: null
   created_by: Mission 014
-  updated_by: Mission 014
+  updated_by: Mission 015
   depends_on: []
   outputs:
   - site-data-portfolio-json
@@ -1936,7 +1936,7 @@ assets: &id001
   source_or_generated: source
   public_url: null
   created_by_mission: Mission 014
-  last_major_update: Mission 014
+  last_major_update: Mission 015
 - id: portfolio-registry-php
   type: compiler
   name: PortfolioRegistry.php
@@ -1972,7 +1972,7 @@ assets: &id001
   public:
     url: https://cubixmeow.com/ai-dos/site/data/portfolio.json
   created_by: Mission 014
-  updated_by: Mission 014
+  updated_by: Mission 015
   depends_on:
   - compiler-compile-php
   outputs: []
@@ -1985,7 +1985,7 @@ assets: &id001
   source_or_generated: generated
   public_url: https://cubixmeow.com/ai-dos/site/data/portfolio.json
   created_by_mission: Mission 014
-  last_major_update: Mission 014
+  last_major_update: Mission 015
 - id: portfolio-p002-invoice-chase
   type: directory
   name: products/002-invoice-chase
@@ -2202,4 +2202,245 @@ assets: &id001
   public_url: null
   created_by_mission: Mission 014
   last_major_update: Mission 014
+- id: portfolio-p003-payment-terms-studio
+  type: directory
+  name: products/003-payment-terms-studio
+  purpose: Portfolio Project 003 — Payment Terms Studio (Mission 015).
+  short_description: Payment terms clause, footer, and email generator.
+  source:
+    path: products/003-payment-terms-studio/
+  public:
+    url: https://cubixmeow.com/ai-dos/products/003-payment-terms-studio/
+  created_by: Mission 015
+  updated_by: Mission 015
+  depends_on: []
+  outputs:
+  - portfolio-p003-index-html
+  editable: true
+  generated: false
+  status: active
+  notes: Organizational learning product selection Mission 015.
+  path: products/003-payment-terms-studio/
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: https://cubixmeow.com/ai-dos/products/003-payment-terms-studio/
+  created_by_mission: Mission 015
+  last_major_update: Mission 015
+- id: portfolio-p003-index-html
+  type: website
+  name: index.html
+  purpose: Payment Terms Studio main UI.
+  short_description: Payment Terms Studio homepage.
+  source:
+    path: products/003-payment-terms-studio/index.html
+  public:
+    url: https://cubixmeow.com/ai-dos/products/003-payment-terms-studio/
+  created_by: Mission 015
+  updated_by: Mission 015
+  depends_on:
+  - portfolio-p003-payment-terms-studio
+  outputs: []
+  editable: true
+  generated: false
+  status: active
+  notes: null
+  path: products/003-payment-terms-studio/index.html
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: https://cubixmeow.com/ai-dos/products/003-payment-terms-studio/
+  created_by_mission: Mission 015
+  last_major_update: Mission 015
+- id: portfolio-p003-styles-css
+  type: file
+  name: styles.css
+  purpose: Payment Terms Studio styles.
+  short_description: Product stylesheet.
+  source:
+    path: products/003-payment-terms-studio/styles.css
+  public:
+    url: https://cubixmeow.com/ai-dos/products/003-payment-terms-studio/styles.css
+  created_by: Mission 015
+  updated_by: Mission 015
+  depends_on:
+  - portfolio-p003-index-html
+  outputs: []
+  editable: true
+  generated: false
+  status: active
+  notes: null
+  path: products/003-payment-terms-studio/styles.css
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: https://cubixmeow.com/ai-dos/products/003-payment-terms-studio/styles.css
+  created_by_mission: Mission 015
+  last_major_update: Mission 015
+- id: portfolio-p003-app-js
+  type: file
+  name: app.js
+  purpose: Payment Terms Studio logic and templates.
+  short_description: Product JavaScript.
+  source:
+    path: products/003-payment-terms-studio/app.js
+  public:
+    url: https://cubixmeow.com/ai-dos/products/003-payment-terms-studio/app.js
+  created_by: Mission 015
+  updated_by: Mission 015
+  depends_on:
+  - portfolio-p003-index-html
+  outputs: []
+  editable: true
+  generated: false
+  status: active
+  notes: null
+  path: products/003-payment-terms-studio/app.js
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: https://cubixmeow.com/ai-dos/products/003-payment-terms-studio/app.js
+  created_by_mission: Mission 015
+  last_major_update: Mission 015
+- id: portfolio-p003-readme-md
+  type: file
+  name: README.md
+  purpose: Payment Terms Studio documentation.
+  short_description: Product README.
+  source:
+    path: products/003-payment-terms-studio/README.md
+  public:
+    url: null
+  created_by: Mission 015
+  updated_by: Mission 015
+  depends_on:
+  - portfolio-p003-payment-terms-studio
+  outputs: []
+  editable: true
+  generated: false
+  status: active
+  notes: null
+  path: products/003-payment-terms-studio/README.md
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 015
+  last_major_update: Mission 015
+- id: decision-d009-payment-terms-studio
+  type: file
+  name: D009-payment-terms-studio-p003.md
+  purpose: Decision record for organizational-learning P003 selection.
+  short_description: Decision D009.
+  source:
+    path: decisions/D009-payment-terms-studio-p003.md
+  public:
+    url: null
+  created_by: Mission 015
+  updated_by: Mission 015
+  depends_on: []
+  outputs: []
+  editable: true
+  generated: false
+  status: active
+  notes: null
+  path: decisions/D009-payment-terms-studio-p003.md
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 015
+  last_major_update: Mission 015
+- id: missions-015-organizational-product-strategy
+  type: mission
+  name: 'Mission folder: missions/015-organizational-product-strategy'
+  purpose: Mission 015 — organizational learning and product strategy.
+  short_description: Organizational Product Strategy mission folder.
+  source:
+    path: missions/015-organizational-product-strategy/
+  public:
+    url: null
+  created_by: Mission 015
+  updated_by: Mission 015
+  depends_on: []
+  outputs:
+  - missions-015-organizational-product-strategy-report-md
+  - missions-015-organizational-product-strategy-product-recommendation-report-md
+  - portfolio-p003-payment-terms-studio
+  editable: true
+  generated: false
+  status: complete
+  notes: null
+  path: missions/015-organizational-product-strategy/
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 015
+  last_major_update: Mission 015
+- id: missions-015-organizational-product-strategy-mission-md
+  type: file
+  name: mission.md
+  purpose: Mission 015 brief.
+  short_description: Organizational Product Strategy brief.
+  source:
+    path: missions/015-organizational-product-strategy/mission.md
+  public:
+    url: null
+  created_by: Mission 015
+  updated_by: Mission 015
+  depends_on:
+  - missions-015-organizational-product-strategy
+  outputs: []
+  editable: true
+  generated: false
+  status: complete
+  notes: null
+  path: missions/015-organizational-product-strategy/mission.md
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 015
+  last_major_update: Mission 015
+- id: missions-015-organizational-product-strategy-product-recommendation-report-md
+  type: file
+  name: product-recommendation-report.md
+  purpose: Mission 015 Phase 1 — 10 candidates before product code.
+  short_description: Product Recommendation Report.
+  source:
+    path: missions/015-organizational-product-strategy/product-recommendation-report.md
+  public:
+    url: null
+  created_by: Mission 015
+  updated_by: Mission 015
+  depends_on:
+  - missions-015-organizational-product-strategy
+  outputs: []
+  editable: true
+  generated: false
+  status: complete
+  notes: Committed before P003 code.
+  path: missions/015-organizational-product-strategy/product-recommendation-report.md
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 015
+  last_major_update: Mission 015
+- id: missions-015-organizational-product-strategy-report-md
+  type: file
+  name: report.md
+  purpose: Mission 015 outcome — organizational learning product strategy.
+  short_description: Organizational Product Strategy report.
+  source:
+    path: missions/015-organizational-product-strategy/report.md
+  public:
+    url: null
+  created_by: Mission 015
+  updated_by: Mission 015
+  depends_on:
+  - missions-015-organizational-product-strategy
+  outputs: []
+  editable: true
+  generated: false
+  status: complete
+  notes: null
+  path: missions/015-organizational-product-strategy/report.md
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 015
+  last_major_update: Mission 015
 entries: *id001

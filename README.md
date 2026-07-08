@@ -77,8 +77,10 @@ Missions **001–005** established governance, showcase, and merge-based approva
   [missions/013-first-external-product/report.md](missions/013-first-external-product/report.md).
 - **Mission 014** — Invoice Chase (P002), built autonomously by AI-DOS. See
   [missions/014-ai-dos-independent-product-test/report.md](missions/014-ai-dos-independent-product-test/report.md).
+- **Mission 015** — Payment Terms Studio (P003), selected from organizational memory before code. See
+  [missions/015-organizational-product-strategy/report.md](missions/015-organizational-product-strategy/report.md).
 
-**Next:** Mission 015 — Continue Product Portfolio. See [tasks/Backlog.md](tasks/Backlog.md).
+**Next:** Mission 016 — Portfolio Growth From Learned Strategy. See [tasks/Backlog.md](tasks/Backlog.md).
 
 **Portfolio:** [products/001-billable-rate-calculator/](products/001-billable-rate-calculator/) · [products/002-invoice-chase/](products/002-invoice-chase/)
 

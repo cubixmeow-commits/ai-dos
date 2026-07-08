@@ -1,5 +1,5 @@
 {
-    "compiled_at": "2026-07-07T23:41:11+00:00",
+    "compiled_at": "2026-07-08T00:25:37+00:00",
     "source": "system/context-packages.yaml",
     "package_count": 5,
     "packages": [
@@ -7,7 +7,7 @@
             "id": "mission-context",
             "name": "Mission Context",
             "purpose": "Execute, review, or approve missions without scanning the full repository.",
-            "file_count": 45,
+            "file_count": 48,
             "files": [
                 "company/Principles.md",
                 "company/Standards.md",
@@ -19,6 +19,7 @@
                 "decisions/D006-validation-before-build.md",
                 "decisions/D007-execution-engine-foundation.md",
                 "decisions/D008-invoice-chase-p002.md",
+                "decisions/D009-payment-terms-studio-p003.md",
                 "missions/001-bootstrap/mission.md",
                 "missions/001-bootstrap/report.md",
                 "missions/002-knowledge-preservation/mission.md",
@@ -46,6 +47,8 @@
                 "missions/013-first-external-product/report.md",
                 "missions/014-ai-dos-independent-product-test/mission.md",
                 "missions/014-ai-dos-independent-product-test/report.md",
+                "missions/015-organizational-product-strategy/mission.md",
+                "missions/015-organizational-product-strategy/report.md",
                 "system/execution-engine.md",
                 "system/execution-engine.yaml",
                 "system/execution-plans/example-inventory-saas.yaml",
@@ -60,7 +63,7 @@
             "id": "architecture-context",
             "name": "Architecture Context",
             "purpose": "Design or implement V2 capabilities against the approved blueprint.",
-            "file_count": 15,
+            "file_count": 16,
             "files": [
                 "architecture-audit.md",
                 "company/Identity.md",
@@ -73,6 +76,7 @@
                 "decisions/D006-validation-before-build.md",
                 "decisions/D007-execution-engine-foundation.md",
                 "decisions/D008-invoice-chase-p002.md",
+                "decisions/D009-payment-terms-studio-p003.md",
                 "missions/007-design-v2/architecture.md",
                 "missions/007-design-v2/report.md",
                 "system/execution-engine.md",
@@ -83,7 +87,7 @@
             "id": "compiler-context",
             "name": "Compiler Context",
             "purpose": "Modify or extend the Repository Compiler and generated artifacts.",
-            "file_count": 22,
+            "file_count": 23,
             "files": [
                 ".github/workflows/compile-site.yml",
                 "company/Standards.md",
@@ -100,6 +104,7 @@
                 "decisions/D006-validation-before-build.md",
                 "decisions/D007-execution-engine-foundation.md",
                 "decisions/D008-invoice-chase-p002.md",
+                "decisions/D009-payment-terms-studio-p003.md",
                 "system/assets.yaml",
                 "system/context-packages.yaml",
                 "system/execution-engine.yaml",
@@ -134,7 +139,7 @@
             "id": "governance-context",
             "name": "Governance Context",
             "purpose": "Governance, standards, and organizational memory decisions.",
-            "file_count": 13,
+            "file_count": 14,
             "files": [
                 "README.md",
                 "company/Identity.md",
@@ -148,6 +153,7 @@
                 "decisions/D006-validation-before-build.md",
                 "decisions/D007-execution-engine-foundation.md",
                 "decisions/D008-invoice-chase-p002.md",
+                "decisions/D009-payment-terms-studio-p003.md",
                 "tasks/Backlog.md"
             ]
         }

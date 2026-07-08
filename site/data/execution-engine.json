@@ -1,5 +1,5 @@
 {
-    "compiled_at": "2026-07-07T23:41:11+00:00",
+    "compiled_at": "2026-07-08T00:25:37+00:00",
     "source": "system/execution-engine.yaml",
     "subsystem": "execution-engine",
     "status": "minimal-implementation",
@@ -434,19 +434,19 @@
                 "id": "mission-context",
                 "name": "Mission Context",
                 "purpose": "Execute, review, or approve missions without scanning the full repository.",
-                "file_count": 45
+                "file_count": 48
             },
             {
                 "id": "architecture-context",
                 "name": "Architecture Context",
                 "purpose": "Design or implement V2 capabilities against the approved blueprint.",
-                "file_count": 15
+                "file_count": 16
             },
             {
                 "id": "compiler-context",
                 "name": "Compiler Context",
                 "purpose": "Modify or extend the Repository Compiler and generated artifacts.",
-                "file_count": 22
+                "file_count": 23
             },
             {
                 "id": "website-context",
@@ -458,7 +458,7 @@
                 "id": "governance-context",
                 "name": "Governance Context",
                 "purpose": "Governance, standards, and organizational memory decisions.",
-                "file_count": 13
+                "file_count": 14
             }
         ]
     },
@@ -913,8 +913,8 @@
         "status": "completed",
         "work_unit_count": 7,
         "backlog_next": {
-            "id": "015",
-            "title": "Continue Product Portfolio",
+            "id": "016",
+            "title": "Portfolio Growth From Learned Strategy",
             "source": "tasks/Backlog.md"
         }
     },

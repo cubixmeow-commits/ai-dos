@@ -1,16 +1,26 @@
 # Backlog
 
-## Next: Mission 015 — Continue Product Portfolio
+## Next: Mission 016 — Portfolio Growth From Learned Strategy
 
-**Goal:** Operator choice — improve P002 (Invoice Chase), launch P001/P002
-publicly, spin a product to its own repo, or start P003.
+**Goal:** Use Mission 015 organizational learning patterns to grow the portfolio — operator approves direction in report.
 
-**Options:**
+**Options (operator choice at merge):**
 
-- Add email provider integration (still manual send) or PDF export
-- Public launch + analytics on portfolio products
-- Build full M003 invoice follow-up SaaS as separate repo (P003)
-- Pause products; resume Mission 006 validation
+- Fourth product from learned strategy (see M015 recommendation report patterns)
+- Deepen Get Paid Toolkit suite (cross-links, shared branding, landing page)
+- Public launch + analytics on P001–P003
+- Spin a product to its own repo (graduation path)
+- Resume deferred M003 invoice follow-up SaaS scoping
+
+## Mission 015 Record — Organizational Product Strategy
+
+AI-DOS analyzed full repo history and wrote a **Product Recommendation Report** (10 candidates) **before** any product code. Selected **Payment Terms Studio** (P003) from organizational memory (M013 deferral + Get Paid Toolkit gap).
+
+- Phase 1 report committed before build
+- P003: contract clause, invoice footer, client email generator
+- Decision D009; portfolio updated to 3 projects
+
+See [missions/015-organizational-product-strategy/report.md](../missions/015-organizational-product-strategy/report.md).
 
 ## Mission 014 Record — Independent Product Test
 

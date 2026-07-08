@@ -1,7 +1,7 @@
 {
-    "compiled_at": "2026-07-07T23:41:11+00:00",
+    "compiled_at": "2026-07-08T00:25:37+00:00",
     "source": "system/portfolio.yaml",
-    "project_count": 2,
+    "project_count": 3,
     "projects": [
         {
             "id": "P001",
@@ -24,6 +24,18 @@
             "created_by_mission": "014",
             "problem": "Freelancers dread writing late-invoice reminder emails",
             "stack": "static HTML/CSS/JS"
+        },
+        {
+            "id": "P003",
+            "name": "Payment Terms Studio",
+            "slug": "003-payment-terms-studio",
+            "path": "products/003-payment-terms-studio/",
+            "public_url": "https://cubixmeow.com/ai-dos/products/003-payment-terms-studio/",
+            "status": "active",
+            "created_by_mission": "015",
+            "problem": "Unclear payment terms cause late invoices",
+            "stack": "static HTML/CSS/JS",
+            "suite": "get-paid-toolkit"
         }
     ]
 }

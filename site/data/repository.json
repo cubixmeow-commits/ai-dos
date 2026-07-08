@@ -1,5 +1,5 @@
 {
-    "compiled_at": "2026-07-07T23:41:11+00:00",
+    "compiled_at": "2026-07-08T00:25:37+00:00",
     "subsystem": "repository-intelligence",
     "capabilities": [
         "repository_manifest",
@@ -22,14 +22,14 @@
             "issue_count": 0,
             "error_count": 0,
             "warning_count": 0,
-            "asset_count": 90
+            "asset_count": 100
         },
         "compiler_version": "1.6.0-mission-014",
         "asset_registry_version": 2
     },
     "dependency_status": "healthy",
     "context_package_count": 5,
-    "decision_count": 8,
+    "decision_count": 9,
     "execution_engine": {
         "source": "system/execution-engine.yaml",
         "compiled": "site/data/execution-engine.json",
@@ -40,7 +40,7 @@
     "portfolio": {
         "source": "system/portfolio.yaml",
         "compiled": "site/data/portfolio.json",
-        "project_count": 2
+        "project_count": 3
     },
     "lookup": {
         "by_id": {
@@ -1965,6 +1965,213 @@
                 "outputs": [],
                 "generated_by": [
                     "missions-014-ai-dos-independent-product-test"
+                ],
+                "context_packages": [
+                    "mission-context"
+                ]
+            },
+            "portfolio-p003-payment-terms-studio": {
+                "id": "portfolio-p003-payment-terms-studio",
+                "type": "directory",
+                "name": "products/003-payment-terms-studio",
+                "path": "products/003-payment-terms-studio/",
+                "public_url": "https://cubixmeow.com/ai-dos/products/003-payment-terms-studio/",
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 015",
+                "depends_on": [],
+                "depended_on_by": [
+                    "portfolio-p003-index-html",
+                    "portfolio-p003-readme-md"
+                ],
+                "outputs": [
+                    "portfolio-p003-index-html"
+                ],
+                "generated_by": [
+                    "missions-015-organizational-product-strategy"
+                ],
+                "context_packages": []
+            },
+            "portfolio-p003-index-html": {
+                "id": "portfolio-p003-index-html",
+                "type": "website",
+                "name": "index.html",
+                "path": "products/003-payment-terms-studio/index.html",
+                "public_url": "https://cubixmeow.com/ai-dos/products/003-payment-terms-studio/",
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 015",
+                "depends_on": [
+                    "portfolio-p003-payment-terms-studio"
+                ],
+                "depended_on_by": [
+                    "portfolio-p003-styles-css",
+                    "portfolio-p003-app-js"
+                ],
+                "outputs": [],
+                "generated_by": [
+                    "portfolio-p003-payment-terms-studio"
+                ],
+                "context_packages": []
+            },
+            "portfolio-p003-styles-css": {
+                "id": "portfolio-p003-styles-css",
+                "type": "file",
+                "name": "styles.css",
+                "path": "products/003-payment-terms-studio/styles.css",
+                "public_url": "https://cubixmeow.com/ai-dos/products/003-payment-terms-studio/styles.css",
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 015",
+                "depends_on": [
+                    "portfolio-p003-index-html"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "portfolio-p003-app-js": {
+                "id": "portfolio-p003-app-js",
+                "type": "file",
+                "name": "app.js",
+                "path": "products/003-payment-terms-studio/app.js",
+                "public_url": "https://cubixmeow.com/ai-dos/products/003-payment-terms-studio/app.js",
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 015",
+                "depends_on": [
+                    "portfolio-p003-index-html"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "portfolio-p003-readme-md": {
+                "id": "portfolio-p003-readme-md",
+                "type": "file",
+                "name": "README.md",
+                "path": "products/003-payment-terms-studio/README.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 015",
+                "depends_on": [
+                    "portfolio-p003-payment-terms-studio"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "decision-d009-payment-terms-studio": {
+                "id": "decision-d009-payment-terms-studio",
+                "type": "file",
+                "name": "D009-payment-terms-studio-p003.md",
+                "path": "decisions/D009-payment-terms-studio-p003.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 015",
+                "depends_on": [],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context",
+                    "architecture-context",
+                    "compiler-context",
+                    "governance-context"
+                ]
+            },
+            "missions-015-organizational-product-strategy": {
+                "id": "missions-015-organizational-product-strategy",
+                "type": "mission",
+                "name": "Mission folder: missions/015-organizational-product-strategy",
+                "path": "missions/015-organizational-product-strategy/",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 015",
+                "depends_on": [],
+                "depended_on_by": [
+                    "missions-015-organizational-product-strategy-mission-md",
+                    "missions-015-organizational-product-strategy-product-recommendation-report-md",
+                    "missions-015-organizational-product-strategy-report-md"
+                ],
+                "outputs": [
+                    "missions-015-organizational-product-strategy-report-md",
+                    "missions-015-organizational-product-strategy-product-recommendation-report-md",
+                    "portfolio-p003-payment-terms-studio"
+                ],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "missions-015-organizational-product-strategy-mission-md": {
+                "id": "missions-015-organizational-product-strategy-mission-md",
+                "type": "file",
+                "name": "mission.md",
+                "path": "missions/015-organizational-product-strategy/mission.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 015",
+                "depends_on": [
+                    "missions-015-organizational-product-strategy"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
+            },
+            "missions-015-organizational-product-strategy-product-recommendation-report-md": {
+                "id": "missions-015-organizational-product-strategy-product-recommendation-report-md",
+                "type": "file",
+                "name": "product-recommendation-report.md",
+                "path": "missions/015-organizational-product-strategy/product-recommendation-report.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 015",
+                "depends_on": [
+                    "missions-015-organizational-product-strategy"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-015-organizational-product-strategy"
+                ],
+                "context_packages": []
+            },
+            "missions-015-organizational-product-strategy-report-md": {
+                "id": "missions-015-organizational-product-strategy-report-md",
+                "type": "file",
+                "name": "report.md",
+                "path": "missions/015-organizational-product-strategy/report.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 015",
+                "depends_on": [
+                    "missions-015-organizational-product-strategy"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-015-organizational-product-strategy"
                 ],
                 "context_packages": [
                     "mission-context"
@@ -3897,6 +4104,213 @@
                 "context_packages": [
                     "mission-context"
                 ]
+            },
+            "products/003-payment-terms-studio/": {
+                "id": "portfolio-p003-payment-terms-studio",
+                "type": "directory",
+                "name": "products/003-payment-terms-studio",
+                "path": "products/003-payment-terms-studio/",
+                "public_url": "https://cubixmeow.com/ai-dos/products/003-payment-terms-studio/",
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 015",
+                "depends_on": [],
+                "depended_on_by": [
+                    "portfolio-p003-index-html",
+                    "portfolio-p003-readme-md"
+                ],
+                "outputs": [
+                    "portfolio-p003-index-html"
+                ],
+                "generated_by": [
+                    "missions-015-organizational-product-strategy"
+                ],
+                "context_packages": []
+            },
+            "products/003-payment-terms-studio/index.html": {
+                "id": "portfolio-p003-index-html",
+                "type": "website",
+                "name": "index.html",
+                "path": "products/003-payment-terms-studio/index.html",
+                "public_url": "https://cubixmeow.com/ai-dos/products/003-payment-terms-studio/",
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 015",
+                "depends_on": [
+                    "portfolio-p003-payment-terms-studio"
+                ],
+                "depended_on_by": [
+                    "portfolio-p003-styles-css",
+                    "portfolio-p003-app-js"
+                ],
+                "outputs": [],
+                "generated_by": [
+                    "portfolio-p003-payment-terms-studio"
+                ],
+                "context_packages": []
+            },
+            "products/003-payment-terms-studio/styles.css": {
+                "id": "portfolio-p003-styles-css",
+                "type": "file",
+                "name": "styles.css",
+                "path": "products/003-payment-terms-studio/styles.css",
+                "public_url": "https://cubixmeow.com/ai-dos/products/003-payment-terms-studio/styles.css",
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 015",
+                "depends_on": [
+                    "portfolio-p003-index-html"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "products/003-payment-terms-studio/app.js": {
+                "id": "portfolio-p003-app-js",
+                "type": "file",
+                "name": "app.js",
+                "path": "products/003-payment-terms-studio/app.js",
+                "public_url": "https://cubixmeow.com/ai-dos/products/003-payment-terms-studio/app.js",
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 015",
+                "depends_on": [
+                    "portfolio-p003-index-html"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "products/003-payment-terms-studio/README.md": {
+                "id": "portfolio-p003-readme-md",
+                "type": "file",
+                "name": "README.md",
+                "path": "products/003-payment-terms-studio/README.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 015",
+                "depends_on": [
+                    "portfolio-p003-payment-terms-studio"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "decisions/D009-payment-terms-studio-p003.md": {
+                "id": "decision-d009-payment-terms-studio",
+                "type": "file",
+                "name": "D009-payment-terms-studio-p003.md",
+                "path": "decisions/D009-payment-terms-studio-p003.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "active",
+                "created_by": "Mission 015",
+                "depends_on": [],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context",
+                    "architecture-context",
+                    "compiler-context",
+                    "governance-context"
+                ]
+            },
+            "missions/015-organizational-product-strategy/": {
+                "id": "missions-015-organizational-product-strategy",
+                "type": "mission",
+                "name": "Mission folder: missions/015-organizational-product-strategy",
+                "path": "missions/015-organizational-product-strategy/",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 015",
+                "depends_on": [],
+                "depended_on_by": [
+                    "missions-015-organizational-product-strategy-mission-md",
+                    "missions-015-organizational-product-strategy-product-recommendation-report-md",
+                    "missions-015-organizational-product-strategy-report-md"
+                ],
+                "outputs": [
+                    "missions-015-organizational-product-strategy-report-md",
+                    "missions-015-organizational-product-strategy-product-recommendation-report-md",
+                    "portfolio-p003-payment-terms-studio"
+                ],
+                "generated_by": [],
+                "context_packages": []
+            },
+            "missions/015-organizational-product-strategy/mission.md": {
+                "id": "missions-015-organizational-product-strategy-mission-md",
+                "type": "file",
+                "name": "mission.md",
+                "path": "missions/015-organizational-product-strategy/mission.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 015",
+                "depends_on": [
+                    "missions-015-organizational-product-strategy"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [],
+                "context_packages": [
+                    "mission-context"
+                ]
+            },
+            "missions/015-organizational-product-strategy/product-recommendation-report.md": {
+                "id": "missions-015-organizational-product-strategy-product-recommendation-report-md",
+                "type": "file",
+                "name": "product-recommendation-report.md",
+                "path": "missions/015-organizational-product-strategy/product-recommendation-report.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 015",
+                "depends_on": [
+                    "missions-015-organizational-product-strategy"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-015-organizational-product-strategy"
+                ],
+                "context_packages": []
+            },
+            "missions/015-organizational-product-strategy/report.md": {
+                "id": "missions-015-organizational-product-strategy-report-md",
+                "type": "file",
+                "name": "report.md",
+                "path": "missions/015-organizational-product-strategy/report.md",
+                "public_url": null,
+                "editable": true,
+                "generated": false,
+                "status": "complete",
+                "created_by": "Mission 015",
+                "depends_on": [
+                    "missions-015-organizational-product-strategy"
+                ],
+                "depended_on_by": [],
+                "outputs": [],
+                "generated_by": [
+                    "missions-015-organizational-product-strategy"
+                ],
+                "context_packages": [
+                    "mission-context"
+                ]
             }
         },
         "by_type": {
@@ -3952,7 +4366,14 @@
                 "portfolio-p002-readme-md",
                 "decision-d008-invoice-chase",
                 "missions-014-ai-dos-independent-product-test-mission-md",
-                "missions-014-ai-dos-independent-product-test-report-md"
+                "missions-014-ai-dos-independent-product-test-report-md",
+                "portfolio-p003-styles-css",
+                "portfolio-p003-app-js",
+                "portfolio-p003-readme-md",
+                "decision-d009-payment-terms-studio",
+                "missions-015-organizational-product-strategy-mission-md",
+                "missions-015-organizational-product-strategy-product-recommendation-report-md",
+                "missions-015-organizational-product-strategy-report-md"
             ],
             "template": [
                 "workflow-templates-missiontemplate-md"
@@ -3968,7 +4389,8 @@
                 "site-index-html",
                 "site-validation-invoice-tool-html",
                 "portfolio-p001-index-html",
-                "portfolio-p002-index-html"
+                "portfolio-p002-index-html",
+                "portfolio-p003-index-html"
             ],
             "generated-file": [
                 "site-styles-css",
@@ -3998,13 +4420,15 @@
                 "decisions-directory",
                 "execution-plans-directory",
                 "portfolio-p001-billable-rate-calculator",
-                "portfolio-p002-invoice-chase"
+                "portfolio-p002-invoice-chase",
+                "portfolio-p003-payment-terms-studio"
             ],
             "mission": [
                 "missions-011-architecture-integration",
                 "missions-012-execution-engine-foundation",
                 "missions-013-first-external-product",
-                "missions-014-ai-dos-independent-product-test"
+                "missions-014-ai-dos-independent-product-test",
+                "missions-015-organizational-product-strategy"
             ]
         }
     },
