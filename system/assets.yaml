@@ -7,7 +7,7 @@ meta:
   registry: asset-registry
   deployment_root: https://cubixmeow.com/ai-dos/
   canonical_source: system/assets.yaml
-  maintained_by: Mission 015
+  maintained_by: Mission 016
   last_updated: '2026-07-08'
   schema:
     asset_types:
@@ -2443,4 +2443,201 @@ assets: &id001
   public_url: null
   created_by_mission: Mission 015
   last_major_update: Mission 015
+- id: missions-016-portfolio-intelligence
+  type: mission
+  name: 'Mission folder: missions/016-portfolio-intelligence'
+  purpose: Mission 016 — portfolio intelligence and strategic direction.
+  short_description: Portfolio Intelligence mission folder.
+  source:
+    path: missions/016-portfolio-intelligence/
+  public:
+    url: null
+  created_by: Mission 016
+  updated_by: Mission 016
+  depends_on: []
+  outputs:
+  - missions-016-portfolio-intelligence-report-md
+  - missions-016-portfolio-intelligence-executive-summary-md
+  - missions-016-portfolio-intelligence-portfolio-analysis-md
+  - missions-016-portfolio-intelligence-strategy-md
+  - missions-016-portfolio-intelligence-product-opportunities-md
+  - missions-016-portfolio-intelligence-roadmap-md
+  editable: true
+  generated: false
+  status: complete
+  notes: Strategic planning session; no product code.
+  path: missions/016-portfolio-intelligence/
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 016
+  last_major_update: Mission 016
+- id: missions-016-portfolio-intelligence-mission-md
+  type: file
+  name: mission.md
+  purpose: Mission 016 brief.
+  short_description: Portfolio Intelligence brief.
+  source:
+    path: missions/016-portfolio-intelligence/mission.md
+  public:
+    url: null
+  created_by: Mission 016
+  updated_by: Mission 016
+  depends_on:
+  - missions-016-portfolio-intelligence
+  outputs: []
+  editable: true
+  generated: false
+  status: complete
+  notes: null
+  path: missions/016-portfolio-intelligence/mission.md
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 016
+  last_major_update: Mission 016
+- id: missions-016-portfolio-intelligence-executive-summary-md
+  type: file
+  name: executive-summary.md
+  purpose: Mission 016 one-page leadership brief.
+  short_description: Executive summary.
+  source:
+    path: missions/016-portfolio-intelligence/executive-summary.md
+  public:
+    url: null
+  created_by: Mission 016
+  updated_by: Mission 016
+  depends_on:
+  - missions-016-portfolio-intelligence
+  outputs: []
+  editable: true
+  generated: false
+  status: complete
+  notes: null
+  path: missions/016-portfolio-intelligence/executive-summary.md
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 016
+  last_major_update: Mission 016
+- id: missions-016-portfolio-intelligence-portfolio-analysis-md
+  type: file
+  name: portfolio-analysis.md
+  purpose: Mission 016 per-product investment review.
+  short_description: Portfolio analysis.
+  source:
+    path: missions/016-portfolio-intelligence/portfolio-analysis.md
+  public:
+    url: null
+  created_by: Mission 016
+  updated_by: Mission 016
+  depends_on:
+  - missions-016-portfolio-intelligence
+  outputs: []
+  editable: true
+  generated: false
+  status: complete
+  notes: null
+  path: missions/016-portfolio-intelligence/portfolio-analysis.md
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 016
+  last_major_update: Mission 016
+- id: missions-016-portfolio-intelligence-strategy-md
+  type: file
+  name: strategy.md
+  purpose: Mission 016 business identity and competitive position.
+  short_description: Strategy document.
+  source:
+    path: missions/016-portfolio-intelligence/strategy.md
+  public:
+    url: null
+  created_by: Mission 016
+  updated_by: Mission 016
+  depends_on:
+  - missions-016-portfolio-intelligence
+  outputs: []
+  editable: true
+  generated: false
+  status: complete
+  notes: Final recommendation B — unify suite.
+  path: missions/016-portfolio-intelligence/strategy.md
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 016
+  last_major_update: Mission 016
+- id: missions-016-portfolio-intelligence-product-opportunities-md
+  type: file
+  name: product-opportunities.md
+  purpose: Mission 016 opportunity brainstorm and rankings.
+  short_description: Product opportunities.
+  source:
+    path: missions/016-portfolio-intelligence/product-opportunities.md
+  public:
+    url: null
+  created_by: Mission 016
+  updated_by: Mission 016
+  depends_on:
+  - missions-016-portfolio-intelligence
+  outputs: []
+  editable: true
+  generated: false
+  status: complete
+  notes: 24 ideas; Scope Guard top product pick post-suite.
+  path: missions/016-portfolio-intelligence/product-opportunities.md
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 016
+  last_major_update: Mission 016
+- id: missions-016-portfolio-intelligence-roadmap-md
+  type: file
+  name: roadmap.md
+  purpose: Mission 016 month/quarter/year roadmap.
+  short_description: Company roadmap.
+  source:
+    path: missions/016-portfolio-intelligence/roadmap.md
+  public:
+    url: null
+  created_by: Mission 016
+  updated_by: Mission 016
+  depends_on:
+  - missions-016-portfolio-intelligence
+  outputs: []
+  editable: true
+  generated: false
+  status: complete
+  notes: null
+  path: missions/016-portfolio-intelligence/roadmap.md
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 016
+  last_major_update: Mission 016
+- id: missions-016-portfolio-intelligence-report-md
+  type: file
+  name: report.md
+  purpose: Mission 016 outcome — strategic planning session.
+  short_description: Portfolio Intelligence report.
+  source:
+    path: missions/016-portfolio-intelligence/report.md
+  public:
+    url: null
+  created_by: Mission 016
+  updated_by: Mission 016
+  depends_on:
+  - missions-016-portfolio-intelligence
+  outputs: []
+  editable: true
+  generated: false
+  status: complete
+  notes: null
+  path: missions/016-portfolio-intelligence/report.md
+  safe_to_edit: true
+  source_or_generated: source
+  public_url: null
+  created_by_mission: Mission 016
+  last_major_update: Mission 016
 entries: *id001

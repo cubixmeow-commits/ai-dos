@@ -1,5 +1,5 @@
 {
-    "compiled_at": "2026-07-08T00:25:37+00:00",
+    "compiled_at": "2026-07-08T00:35:51+00:00",
     "source": "system/execution-engine.yaml",
     "subsystem": "execution-engine",
     "status": "minimal-implementation",
@@ -434,7 +434,7 @@
                 "id": "mission-context",
                 "name": "Mission Context",
                 "purpose": "Execute, review, or approve missions without scanning the full repository.",
-                "file_count": 48
+                "file_count": 50
             },
             {
                 "id": "architecture-context",
@@ -913,8 +913,8 @@
         "status": "completed",
         "work_unit_count": 7,
         "backlog_next": {
-            "id": "016",
-            "title": "Portfolio Growth From Learned Strategy",
+            "id": "017",
+            "title": "Execute the Strategic Product Roadmap",
             "source": "tasks/Backlog.md"
         }
     },

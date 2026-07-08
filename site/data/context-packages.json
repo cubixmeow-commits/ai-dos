@@ -1,5 +1,5 @@
 {
-    "compiled_at": "2026-07-08T00:25:37+00:00",
+    "compiled_at": "2026-07-08T00:35:51+00:00",
     "source": "system/context-packages.yaml",
     "package_count": 5,
     "packages": [
@@ -7,7 +7,7 @@
             "id": "mission-context",
             "name": "Mission Context",
             "purpose": "Execute, review, or approve missions without scanning the full repository.",
-            "file_count": 48,
+            "file_count": 50,
             "files": [
                 "company/Principles.md",
                 "company/Standards.md",
@@ -49,6 +49,8 @@
                 "missions/014-ai-dos-independent-product-test/report.md",
                 "missions/015-organizational-product-strategy/mission.md",
                 "missions/015-organizational-product-strategy/report.md",
+                "missions/016-portfolio-intelligence/mission.md",
+                "missions/016-portfolio-intelligence/report.md",
                 "system/execution-engine.md",
                 "system/execution-engine.yaml",
                 "system/execution-plans/example-inventory-saas.yaml",

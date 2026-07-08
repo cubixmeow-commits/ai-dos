@@ -1,22 +1,21 @@
 AI-DOS MOBILE GPT BRIEF (select all, copy, paste into GPT)
 
-STATUS: Mission 015 complete. Organizational learning selected Payment Terms Studio (P003).
+STATUS: Mission 016 complete. Strategic planning — unify Get Paid Toolkit suite.
 
-PRODUCTS:
+PRODUCTS (Get Paid Toolkit):
 P001 Billable Rate Calculator — /products/001-billable-rate-calculator/
-P002 Invoice Chase — /products/002-invoice-chase/
+P002 Invoice Chase (flagship) — /products/002-invoice-chase/
 P003 Payment Terms Studio — /products/003-payment-terms-studio/
-
-P003 URL: https://cubixmeow.com/ai-dos/products/003-payment-terms-studio/
 
 AI-DOS: https://cubixmeow.com/ai-dos/site/
 
 PORTFOLIO JSON: site/data/portfolio.json (3 projects)
 
-MISSION: missions/015-organizational-product-strategy/
+STRATEGY: missions/016-portfolio-intelligence/strategy.md
+RECOMMENDATION: B — Unify suite (not another independent product)
 
-NEXT: Mission 016 Portfolio Growth From Learned Strategy
+NEXT: Mission 017 Execute Strategic Product Roadmap
 
-APPROVE: Mission 016 Portfolio Growth From Learned Strategy? Y/N
+APPROVE: Mission 017 Execute the Strategic Product Roadmap? Y/N
 
-WHAT P003 DOES: generates payment terms — contract clause, invoice footer, client email — copy and use yourself
+M017 PRIORITY: suite landing, cross-links, branding, analytics — then Scope Guard (P004)
